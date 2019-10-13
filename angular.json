@@ -26,7 +26,12 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/vendor/bootstrap/js/bootstrap.min.js",
+              "src/assets/vendor/jquery/jquery.min.js",
+              "src/assets/js/contact_me.js",
+              "src/assets/js/jqBootstrapValidation.js"
+            ]
           },
           "configurations": {
             "production": {
