@@ -10,6 +10,7 @@ import { CrearActividadComponent } from './components/crear-actividad/crear-acti
 import { BorrarActividadComponent } from './components/borrar-actividad/borrar-actividad.component';
 import { ModificarActividadComponent } from './components/modificar-actividad/modificar-actividad.component';
 import { SubirContenidoComponent } from './components/subir-contenido/subir-contenido.component';
+import { BorrarContenidoComponent } from './components/borrar-contenido/borrar-contenido.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SubirContenidoComponent } from './components/subir-contenido/subir-cont
     CrearActividadComponent,
     BorrarActividadComponent,
     ModificarActividadComponent,
-    SubirContenidoComponent
+    SubirContenidoComponent,
+    BorrarContenidoComponent
   ],
   imports: [
     BrowserModule,
