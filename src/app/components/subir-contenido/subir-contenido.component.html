@@ -1,0 +1,75 @@
+<!--Contenedor Contenido Pagina-->
+<div class="contenedor py-3">
+
+    <!--Titulo pagina-->
+    <div class="container m-auto pb-2 bg-primary rounded-top">
+        <h1 class="mt-5 py-4 text-center m ">Subir Contenido</h1>
+    </div>
+    <!--Contenedor Formulario-->
+    <div class="container container pt-1 bg-secondary rounded-bottom">
+
+        <!--Informacion del contenido-->
+        <div>
+            <h3 class="py-3 text-center text-white">Informacion del contenido</h3>
+            <div class="contenedor py-3">
+                <form>
+                    <div class="form-group">
+                        <label for="inputNombreContenido" class="text-white ">Nombre del contenido</label>
+                        <input type="text" class="form-control col-md-8" id="inputNombreContenido"
+                            placeholder="Nombre Contenido">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescripcionContenido" class="text-white">Descripcion del contenido</label>
+                        <textarea class="form-control" id="inputDescripcionContenido"
+                            rows="4">Descripcion ...</textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="inputMateria" class="text-white">Materia</label>
+                            <select id="inputMateria" class="form-control">
+                                <option selected>- Materia -</option>
+                                <option>1...</option>
+                                <option>2...</option>
+                                <option>3...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="inputGrado" class="text-white">Grado</label>
+                            <select id="inputGrado" class="form-control">
+                                <option selected>- Grado -</option>
+                                <option>Decimo</option>
+                                <option>Once</option>
+                                <option>Decimo y Once</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="inputGrado" class="text-white">Tipo de Contenido</label>
+                            <select id="inputGrado" class="form-control">
+                                <option selected>- Tipo de Contenido -</option>
+                                <option>Video</option>
+                                <option>PDF</option>
+                                <option>Audio</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <label for="inputMateria" class="text-white">Seleccionar Contenido</label>
+                    <div class="input-group">
+                        <div class="custom-file col-md-8">
+                            <input type="file" class="custom-file-input" id="inputGroupFileContenido" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">...</label>
+                        </div>
+                    </div>
+                </form>
+                <hr class="style2">
+            </div>
+        </div>
+
+        <!--Boton Crear Actividad-->
+        <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
+            <a href="#" class="btn bg-primary px-5 py-4 font-weight-bold" id="inputGroupFileContenido">Subir Contenido</a>
+        </div>
+        <hr class="style2">
+
+    </div>
+</div>

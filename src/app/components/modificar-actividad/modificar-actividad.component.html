@@ -1,0 +1,631 @@
+<!--Contenedor Contenido Pagina-->
+<div class="contenedor py-3">
+
+    <!--Titulo pagina-->
+    <div class="container m-auto pb-2 bg-warning rounded-top">
+        <h1 class="mt-5 py-4 text-center m ">Modificar Actividad</h1>
+    </div>
+    <!--Contenedor Formulario-->
+    <div class="container container pt-1 bg-secondary rounded-bottom">
+
+        <!--Buscar Actividad-->
+        <div>
+            <div class="contenedor py-3">
+                <form>
+                    <div class="form-group">
+                        <!--Barra busqueda-->
+                        <label for="inputNombreActividad" class="text-white">Busqueda de Contenido</label>
+                        <div class="form-inline">
+                            <input type="text" class="form-control col-md-8" id="inputTextoBusqueda"
+                                placeholder="Busqueda por nombre">
+                            <button class="btn btn-info" value="Buscar" name="Buscar" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                    <label for="inputState" class="text-white">Filtros:</label>
+                    <div class="form-row pb-3">
+                        <!--Filtros-->
+                        <div class="form-group col">
+                            <select id="inputMateria" class="form-control">
+                                <option selected>- Materia -</option>
+                                <option>1...</option>
+                                <option>2...</option>
+                                <option>3...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <select id="inputGrado" class="form-control">
+                                <option selected>- Grado -</option>
+                                <option>Decimo</option>
+                                <option>Once</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <select id="inputCompetencia" class="form-control">
+                                <option selected>- Competencia -</option>
+                                <option>1...</option>
+                                <option>2...</option>
+                                <option>3...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <select id="inputProfesor" class="form-control">
+                                <option selected>- Profesor -</option>
+                                <option>1...</option>
+                                <option>2...</option>
+                                <option>3...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--Tabla de Resultados-->
+                    <label for="inputState" class="text-white">Resultados:</label>
+                    <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
+                        style="width: 95%; height: 450px">
+                        <!--Resultado-->
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-warning rounded-top">
+                                    <h5 class="card-title">Nombre Actividad</h5>
+                                </div>
+                                <div class="row no-gutters border border-top-0 border-secondary">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Descripcion: This is a wider card with supporting text
+                                                below as a
+                                                natural lead-in to
+                                                additional content.
+                                                This content is a little bit longer.</p>
+                                            <p class="card-text"><small class="text-muted">Materia</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado</small></p>
+                                            <p class="card-text"><small class="text-muted">Competencia</small></p>
+                                            <p class="card-text"><small class="text-muted">Profesor</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters"
+                                    data-toggle="modal" data-target="#mimodalejemplo">
+                                    <a href="#" class="btn bg-warning">Seleccionar Actividad</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Resultado-->
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-warning rounded-top">
+                                    <h5 class="card-title">Nombre Actividad</h5>
+                                </div>
+                                <div class="row no-gutters border border-top-0 border-secondary">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Descripcion: This is a wider card with supporting text
+                                                below as a
+                                                natural lead-in to
+                                                additional content.
+                                                This content is a little bit longer.</p>
+                                            <p class="card-text"><small class="text-muted">Materia</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado</small></p>
+                                            <p class="card-text"><small class="text-muted">Competencia</small></p>
+                                            <p class="card-text"><small class="text-muted">Profesor</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters"
+                                    data-toggle="modal" data-target="#mimodalejemplo">
+                                    <a href="#" class="btn bg-warning">Seleccionar Actividad</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Resultado-->
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-warning rounded-top">
+                                    <h5 class="card-title">Nombre Actividad</h5>
+                                </div>
+                                <div class="row no-gutters border border-top-0 border-secondary">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Descripcion: This is a wider card with supporting text
+                                                below as a
+                                                natural lead-in to
+                                                additional content.
+                                                This content is a little bit longer.</p>
+                                            <p class="card-text"><small class="text-muted">Materia</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado</small></p>
+                                            <p class="card-text"><small class="text-muted">Competencia</small></p>
+                                            <p class="card-text"><small class="text-muted">Profesor</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters"
+                                    data-toggle="modal" data-target="#mimodalejemplo">
+                                    <a href="#" class="btn bg-warning">Seleccionar Actividad</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr class="style1">
+        
+        <!--Informacion de la Actividad-->
+        <div>
+            <h3 class="py-3 text-center text-white">Informacion de la Actividad</h3>
+            <div class="contenedor py-3">
+                <form>
+                    <div class="form-group">
+                        <label for="inputNombreActividad" class="text-white ">Nombre de la Actividad</label>
+                        <input type="text" class="form-control col-md-8" id="inputNombreActividad"
+                            placeholder="Nombre Actividad">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescripcionActividad" class="text-white">Descripcion de la Actividad</label>
+                        <textarea class="form-control" id="inputDescripcionActividad" rows="4">Descripcion ...</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputCompetencia" class="text-white">Competencia a la que pertenece</label>
+                        <select id="inputCompetencia" class="form-control col-md-8">
+                            <option selected>- Competencia -</option>
+                            <option>1...</option>
+                            <option>2...</option>
+                            <option>3...</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputMateria" class="text-white">Materia</label>
+                            <select id="inputMateria" class="form-control">
+                                <option selected>- Materia -</option>
+                                <option>1...</option>
+                                <option>2...</option>
+                                <option>3...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputGrado" class="text-white">Grado</label>
+                            <select id="inputGrado" class="form-control">
+                                <option selected>- Grado -</option>
+                                <option>Decimo</option>
+                                <option>Once</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <hr class="style1">
+            </div>
+        </div>
+        
+        <!--Contenido de la Actividad-->
+        <div>
+            <h3 class="py-3 text-center text-white">Contenido de la Actividad</h3>
+            <div class="contenedor py-3">
+                <form>
+                    <!--Contenido Actual-->
+                    <label for="inputState" class="text-white">Contenido actual de la Actividad</label>
+                    <div class="col container p-4 my bg-light" style="width: 95%; height: 95%">
+                        <!--Resultado-->
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-primary rounded-top">
+                                    <h5 class="card-title">Nombre Contenido</h5>
+                                </div>
+                                <div class="row no-gutters border border-top-0 border-secondary">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Descripcion: This is a wider card with supporting text below
+                                                as a
+                                                natural lead-in to
+                                                additional content.
+                                                This content is a little bit longer.</p>
+                                            <p class="card-text"><small class="text-muted">Materia</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado</small></p>
+                                            <p class="card-text"><small class="text-muted">Tipo de contenido</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group"> <!--Barra busqueda-->
+                        <label for="inputNombreActividad" class="text-white">Busqueda de Contenido</label>
+                        <div class="form-inline">
+                            <input type="text" class="form-control col-md-8" id="inputTextoBusqueda"
+                                placeholder="Busqueda por nombre">
+                            <button class="btn btn-info" value="Buscar" name="Buscar" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                    <label for="inputState" class="text-white">Filtros:</label>
+                    <div class="form-row pb-3">
+                        <!--Filtros-->
+                        <div class="form-group col">
+                            <select id="inputMateria" class="form-control">
+                                <option selected>- Materia -</option>
+                                <option>1...</option>
+                                <option>2...</option>
+                                <option>3...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <select id="inputGrado" class="form-control">
+                                <option selected>- Grado -</option>
+                                <option>Decimo</option>
+                                <option>Once</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <select id="inputTipoContenido" class="form-control">
+                                <option selected>- Tipo Contenido -</option>
+                                <option>Video...</option>
+                                <option>PDF...</option>
+                                <option>Audio...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--Tabla de Resultados-->
+                    <label for="inputState" class="text-white">Resultados:</label>
+                    <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
+                        style="width: 95%; height: 450px">
+                        <!--Resultado-->
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-primary rounded-top">
+                                    <h5 class="card-title">Nombre Contenido</h5>
+                                </div>
+                                <div class="row no-gutters border border-top-0 border-secondary">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Descripcion: This is a wider card with supporting text below
+                                                as a
+                                                natural lead-in to
+                                                additional content.
+                                                This content is a little bit longer.</p>
+                                            <p class="card-text"><small class="text-muted">Materia</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado</small></p>
+                                            <p class="card-text"><small class="text-muted">Tipo de contenido</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters">
+                                    <a href="#" class="btn btn-primary">Adjuntar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Resultado-->
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-primary rounded-top">
+                                    <h5 class="card-title">Nombre Contenido</h5>
+                                </div>
+                                <div class="row no-gutters border border-top-0 border-secondary">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Descripcion: This is a wider card with supporting text below
+                                                as a
+                                                natural lead-in to
+                                                additional content.
+                                                This content is a little bit longer.</p>
+                                            <p class="card-text"><small class="text-muted">Materia</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado</small></p>
+                                            <p class="card-text"><small class="text-muted">Tipo de contenido</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters">
+                                    <a href="#" class="btn btn-primary">Adjuntar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Resultado-->
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-primary rounded-top">
+                                    <h5 class="card-title">Nombre Contenido</h5>
+                                </div>
+                                <div class="row no-gutters border border-top-0 border-secondary">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Descripcion: This is a wider card with supporting text below
+                                                as a
+                                                natural lead-in to
+                                                additional content.
+                                                This content is a little bit longer.</p>
+                                            <p class="card-text"><small class="text-muted">Materia</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado</small></p>
+                                            <p class="card-text"><small class="text-muted">Tipo de contenido</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters">
+                                    <a href="#" class="btn btn-primary">Adjuntar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <hr class="style1">
+            </div>
+        </div>
+        
+        <!--Creacion del Quiz-->
+        <div>
+            <h3 class="py-3 text-center text-white">Quiz del Contenido</h3>
+            <div class="contenedor py-3">
+                <form>
+                    <div class="form-group">
+                        <label for="inputDescripcionQuiz" class="text-white">Descripcion del Quiz</label>
+                        <textarea class="form-control" id="inputDescripcionQuiz" rows="4">Descripcion ...</textarea>
+                    </div>
+                    <div class="container">
+                        <!--Tabs-->
+                        <div>
+                            <label for="inputDescripcionQuiz" class="text-white">Preguntas del Quiz</label>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card mt-3 tab-card">
+                                    <div class="card-header tab-card-header">
+                                        <!--Opcion Tab-->
+                                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item col">
+                                                <a class="nav-link text-center" id="one-tab" data-toggle="tab" href="#pregunta1"
+                                                    role="tab" aria-controls="pregunta1" aria-selected="true">Pregunta 1</a>
+                                            </li>
+                                            <li class="nav-item col">
+                                                <a class="nav-link text-center" id="two-tab" data-toggle="tab" href="#pregunta2"
+                                                    role="tab" aria-controls="pregunta2" aria-selected="false">Pregunta 2</a>
+                                            </li>
+                                            <li class="nav-item col">
+                                                <a class="nav-link text-center" id="three-tab" data-toggle="tab"
+                                                    href="#pregunta3" role="tab" aria-controls="pregunta3"
+                                                    aria-selected="false">Pregunta 3</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content" id="myTabContent">
+                                        <!--Contenido Tabs-->
+                                        <div class="tab-pane fade show active p-3" id="pregunta1" role="tabpanel"
+                                            aria-labelledby="one-tab">
+                                            <div class="form-group">
+                                                <h5 class="py-1 text-center text-dark">Pregunta 1</h5>
+                                                <label for="inputDescripcionQuiz" class="text-dark">Escribir pregunta</label>
+                                                <textarea class="form-control" id="inputDescripcionPregunta"
+                                                    rows="3">Pregunta ...</textarea>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Escribir las cuatro posibles
+                                                respuestas</label>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaA" class="col-sm-2 col-form-label">Respuesta
+                                                    A)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaA"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaB" class="col-sm-2 col-form-label">Respuesta
+                                                    B)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaB"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaC" class="col-sm-2 col-form-label">Respuesta
+                                                    C)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaC"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaD" class="col-sm-2 col-form-label">Respuesta
+                                                    D)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaD"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Seleccione la respuesta
+                                                correcta</label>
+                                            <div class="form-grup row-1">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio1" value="1">
+                                                    <label class="form-check-label" for="inlineRadioA">A</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio2" value="2">
+                                                    <label class="form-check-label" for="inlineRadioB">B</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio1" value="3">
+                                                    <label class="form-check-label" for="inlineRadioC">C</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio2" value="4">
+                                                    <label class="form-check-label" for="inlineRadioD">D</label>
+                                                </div>
+                                            </div>
+                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="pregunta2" role="tabpanel" aria-labelledby="two-tab">
+                                            <div class="form-group">
+                                                <h5 class="py-1 text-center text-dark">Pregunta 2</h5>
+                                                <label for="inputDescripcionQuiz" class="text-dark">Escribir pregunta</label>
+                                                <textarea class="form-control" id="inputDescripcionPregunta"
+                                                    rows="3">Pregunta ...</textarea>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Escribir las cuatro posibles
+                                                respuestas</label>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaA" class="col-sm-2 col-form-label">Respuesta
+                                                    A)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaA"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaB" class="col-sm-2 col-form-label">Respuesta
+                                                    B)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaB"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaC" class="col-sm-2 col-form-label">Respuesta
+                                                    C)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaC"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaD" class="col-sm-2 col-form-label">Respuesta
+                                                    D)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaD"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Seleccione la respuesta
+                                                correcta</label>
+                                            <div class="form-grup row-1">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio1" value="1">
+                                                    <label class="form-check-label" for="inlineRadioA">A</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio2" value="2">
+                                                    <label class="form-check-label" for="inlineRadioB">B</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio1" value="3">
+                                                    <label class="form-check-label" for="inlineRadioC">C</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio2" value="4">
+                                                    <label class="form-check-label" for="inlineRadioD">D</label>
+                                                </div>
+                                            </div>
+                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="pregunta3" role="tabpanel"
+                                            aria-labelledby="three-tab">
+                                            <div class="form-group">
+                                                <h5 class="py-1 text-center text-dark">Pregunta 3</h5>
+                                                <label for="inputDescripcionQuiz" class="text-dark">Escribir pregunta</label>
+                                                <textarea class="form-control" id="inputDescripcionPregunta"
+                                                    rows="3">Pregunta ...</textarea>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Escribir las cuatro posibles
+                                                respuestas</label>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaA" class="col-sm-2 col-form-label">Respuesta
+                                                    A)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaA"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaB" class="col-sm-2 col-form-label">Respuesta
+                                                    B)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaB"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaC" class="col-sm-2 col-form-label">Respuesta
+                                                    C)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaC"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaD" class="col-sm-2 col-form-label">Respuesta
+                                                    D)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaD"
+                                                        rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Seleccione la respuesta
+                                                correcta</label>
+                                            <div class="form-grup row-1">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio1" value="1">
+                                                    <label class="form-check-label" for="inlineRadioA">A</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio2" value="2">
+                                                    <label class="form-check-label" for="inlineRadioB">B</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio1" value="3">
+                                                    <label class="form-check-label" for="inlineRadioC">C</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                        id="inlineRadio2" value="4">
+                                                    <label class="form-check-label" for="inlineRadioD">D</label>
+                                                </div>
+                                            </div>
+                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <hr class="style1">
+            </div>
+        </div>
+        
+        <!--Boton Crear Actividad-->
+        <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
+            <a href="#" class="btn bg-warning px-5 py-4 font-weight-bold">Subir Actividad</a>
+        </div>
+        <hr class="style1">
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Confirmar Acción</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters">
+                    <button type="button" class="btn btn-default bg-warning" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

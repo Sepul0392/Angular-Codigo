@@ -360,6 +360,10 @@ hr.style1 {
 	text-align: center;
 }
 hr.style2 {
+	border-top: 6px double #0275d8;
+	text-align: center;
+}
+hr.styleOtro {
 	height: 10px;
 	border: 0;
 	box-shadow: 0 10px 10px -10px #8c8b8b inset;

@@ -3,7 +3,7 @@
     
     <!--Titulo pagina-->
     <div class="container m-auto pb-2 bg-warning rounded-top">
-        <h1 class="mt-5 py-4 text-center m ">Crear Actividades</h1>
+        <h1 class="mt-5 py-4 text-center m ">Crear Actividade</h1>
     </div>
     <!--Contenedor Formulario-->
     <div class="container container pt-1 bg-secondary rounded-bottom">
@@ -14,11 +14,11 @@
             <div class="contenedor py-3">
                 <form>
                     <div class="form-group">
-                        <label for="inputNombreActividad" class="text-white">Nombre de la Actividad</label>
+                        <label for="inputNombreActividad" class="text-white ">Nombre de la Actividad</label>
                         <input type="text" class="form-control col-md-8" id="inputNombreActividad" placeholder="Nombre Actividad">
                     </div>
                     <div class="form-group">
-                        <label for="inputDescripcionActividad" class="text-white">Descripcion de la Actividad textarea</label>
+                        <label for="inputDescripcionActividad" class="text-white">Descripcion de la Actividad</label>
                         <textarea class="form-control" id="inputDescripcionActividad" rows="4">Descripcion ...</textarea>
                     </div>
                     <div class="form-group">
@@ -62,13 +62,13 @@
                     <div class="form-group"><!--Barra busqueda-->
                         <label for="inputNombreActividad" class="text-white">Busqueda de Contenido</label>
                         <div class="form-inline">
-                            <input type="text" class="form-control col-md-8" id="inputTextoBusqueda" placeholder="Busqueda">
+                            <input type="text" class="form-control col-md-8" id="inputTextoBusqueda" placeholder="Busqueda por nombre">
                             <button class="btn btn-info" value="Buscar" name="Buscar" type="submit">Buscar</button>
                         </div>
                     </div>
                     <label for="inputState" class="text-white">Filtros:</label>
-                    <div class="form-row"><!--Filtros-->
-                        <div class="form-group col-md-4">
+                    <div class="form-row pb-3"><!--Filtros-->
+                        <div class="form-group col">
                             <select id="inputMateria" class="form-control">
                                 <option selected>- Materia -</option>
                                 <option>1...</option>
@@ -76,14 +76,14 @@
                                 <option>3...</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col">
                             <select id="inputGrado" class="form-control">
                                 <option selected>- Grado -</option>
                                 <option>Decimo</option>
                                 <option>Once</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col">
                             <select id="inputTipoContenido" class="form-control">
                                 <option selected>- Tipo Contenido -</option>
                                 <option>Video...</option>
@@ -93,6 +93,7 @@
                         </div>
                     </div>
                     <!--Tabla de Resultados-->
+                    <label for="inputState" class="text-white">Resultados:</label>
                     <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar" style="width: 95%; height: 450px"> 
                         <!--Resultado-->
                         <div class="row-1">
@@ -188,7 +189,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="card mt-3 tab-card">
-                                    <div class="card-header tab-card-header">
+                                    <div class="card-header tab-card-header"><!--Opcion Tab-->
                                         <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                                             <li class="nav-item col">
                                                 <a class="nav-link text-center" id="one-tab" data-toggle="tab" href="#pregunta1" role="tab"
@@ -204,26 +205,163 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="tab-content" id="myTabContent">
+                                    <div class="tab-content" id="myTabContent"><!--Contenido Tabs-->
                                         <div class="tab-pane fade show active p-3" id="pregunta1" role="tabpanel" aria-labelledby="one-tab">
-                                            <h5 class="card-title">Descripcion pregunta 1</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                                the card's content.</p>
-                                            <a href="#" class="btn btn-primary">Guardar</a>
+                                            <div class="form-group">
+                                                <h5 class="py-1 text-center text-dark">Pregunta 1</h5>
+                                                <label for="inputDescripcionQuiz" class="text-dark">Escribir pregunta</label>
+                                                <textarea class="form-control" id="inputDescripcionPregunta" rows="3">Pregunta ...</textarea>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Escribir las cuatro posibles respuestas</label>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaA" class="col-sm-2 col-form-label">Respuesta A)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaA" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaB" class="col-sm-2 col-form-label">Respuesta B)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaB" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaC" class="col-sm-2 col-form-label">Respuesta C)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaC" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaD" class="col-sm-2 col-form-label">Respuesta D)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaD" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Seleccione la respuesta correcta</label>
+                                            <div class="form-grup row-1">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">
+                                                    <label class="form-check-label" for="inlineRadioA">A</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+                                                    <label class="form-check-label" for="inlineRadioB">B</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="3">
+                                                    <label class="form-check-label" for="inlineRadioC">C</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="4">
+                                                    <label class="form-check-label" for="inlineRadioD">D</label>
+                                                </div>
+                                            </div>
+                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
                                         </div>
                                         <div class="tab-pane fade p-3" id="pregunta2" role="tabpanel" aria-labelledby="two-tab">
-                                            <h5 class="card-title">Descripcion pregunta 2</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                                the card's content.</p>
-                                            <a href="#" class="btn btn-primary">Guardar</a>
+                                            <div class="form-group">
+                                                <h5 class="py-1 text-center text-dark">Pregunta 2</h5>
+                                                <label for="inputDescripcionQuiz" class="text-dark">Escribir pregunta</label>
+                                                <textarea class="form-control" id="inputDescripcionPregunta" rows="3">Pregunta ...</textarea>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Escribir las cuatro posibles respuestas</label>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaA" class="col-sm-2 col-form-label">Respuesta A)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaA" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaB" class="col-sm-2 col-form-label">Respuesta B)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaB" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaC" class="col-sm-2 col-form-label">Respuesta C)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaC" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaD" class="col-sm-2 col-form-label">Respuesta D)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaD" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Seleccione la respuesta correcta</label>
+                                            <div class="form-grup row-1">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">
+                                                    <label class="form-check-label" for="inlineRadioA">A</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+                                                    <label class="form-check-label" for="inlineRadioB">B</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="3">
+                                                    <label class="form-check-label" for="inlineRadioC">C</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="4">
+                                                    <label class="form-check-label" for="inlineRadioD">D</label>
+                                                </div>
+                                            </div>
+                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
                                         </div>
                                         <div class="tab-pane fade p-3" id="pregunta3" role="tabpanel" aria-labelledby="three-tab">
-                                            <h5 class="card-title">Descripcion pregunta 3</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                                the card's content.</p>
-                                            <a href="#" class="btn btn-primary">Guardar</a>
+                                            <div class="form-group">
+                                                <h5 class="py-1 text-center text-dark">Pregunta 3</h5>
+                                                <label for="inputDescripcionQuiz" class="text-dark">Escribir pregunta</label>
+                                                <textarea class="form-control" id="inputDescripcionPregunta" rows="3">Pregunta ...</textarea>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Escribir las cuatro posibles respuestas</label>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaA" class="col-sm-2 col-form-label">Respuesta A)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaA" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaB" class="col-sm-2 col-form-label">Respuesta B)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaB" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaC" class="col-sm-2 col-form-label">Respuesta C)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaC" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputRespuestaD" class="col-sm-2 col-form-label">Respuesta D)</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" id="inputRespuestaD" rows="1">respuesta ...</textarea>
+                                                </div>
+                                            </div>
+                                            <label for="inputDescripcionQuiz" class="text-dark">Seleccione la respuesta correcta</label>
+                                            <div class="form-grup row-1">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">
+                                                    <label class="form-check-label" for="inlineRadioA">A</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+                                                    <label class="form-check-label" for="inlineRadioB">B</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="3">
+                                                    <label class="form-check-label" for="inlineRadioC">C</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="4">
+                                                    <label class="form-check-label" for="inlineRadioD">D</label>
+                                                </div>
+                                            </div>
+                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
                                         </div>
-                    
                                     </div>
                                 </div>
                             </div>
@@ -234,6 +372,11 @@
             </div>
         </div>
 
-    </div>
-    
+        <!--Boton Crear Actividad-->
+        <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
+            <a href="#" class="btn bg-warning px-5 py-4 font-weight-bold">Subir Actividad</a>
+        </div>
+        <hr class="style1">
+        
+    </div>  
 </div>
