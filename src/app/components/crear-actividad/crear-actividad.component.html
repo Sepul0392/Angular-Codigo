@@ -1,0 +1,177 @@
+<!--Contenedor Contenido Pagina-->
+<div class="contenedor py-3">
+    
+    <!--Titulo pagina-->
+    <div class="container m-auto pb-2 bg-warning rounded-top">
+        <h1 class="mt-5 py-4 text-center m ">Crear Actividades</h1>
+    </div>
+    <!--Contenedor Formulario-->
+    <div class="container container pt-1 bg-secondary rounded-bottom">
+        
+        <!--Informacion de la Actividad-->
+        <div>
+            <h3 class="py-3 text-center text-white">Informacion de la Actividad</h3>
+            <div class="contenedor py-3">
+                <form>
+                    <div class="form-group">
+                        <label for="inputNombreActividad" class="text-white">Nombre de la Actividad</label>
+                        <input type="text" class="form-control col-md-8" id="inputNombreActividad" placeholder="Nombre Actividad">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescripcionActividad" class="text-white">Descripcion de la Actividad textarea</label>
+                        <textarea class="form-control" id="inputDescripcionActividad" rows="4">Descripcion ...</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputState" class="text-white">Competencia a la que pertenece</label>
+                        <select id="inputState" class="form-control col-md-8">
+                            <option selected>- Competencia -</option>
+                            <option>1...</option>
+                            <option>2...</option>
+                            <option>3...</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputMateria" class="text-white">Materia</label>
+                            <select id="inputMateria" class="form-control">
+                                <option selected>- Materia -</option>
+                                <option>1...</option>
+                                <option>2...</option>
+                                <option>3...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputGrado" class="text-white">Grado</label>
+                            <select id="inputGrado" class="form-control">
+                                <option selected>- Grado -</option>
+                                <option>Decimo</option>
+                                <option>Once</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <hr class="style1">
+            </div>
+        </div>
+
+        <!--Contenido de la Actividad-->
+        <div>
+            <h3 class="py-3 text-center text-white">Contenido de la Actividad</h3>
+            <div class="contenedor py-3">
+                <form>
+                    <div class="form-group"><!--Barra busqueda-->
+                        <label for="inputNombreActividad" class="text-white">Busqueda de Contenido</label>
+                        <div class="form-inline">
+                            <input type="text" class="form-control col-md-8" id="inputTextoBusqueda" placeholder="Busqueda">
+                            <button class="btn btn-info" value="Busqueda" name="Busqueda" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                    <label for="inputState" class="text-white">Filtros:</label>
+                    <div class="form-row"><!--Filtros-->
+                        <div class="form-group col-md-4">
+                            <select id="inputState" class="form-control">
+                                <option selected>- Materia -</option>
+                                <option>1...</option>
+                                <option>2...</option>
+                                <option>3...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select id="inputState" class="form-control">
+                                <option selected>- Grado -</option>
+                                <option>Decimo</option>
+                                <option>Once</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select id="inputState" class="form-control">
+                                <option selected>- Tipo Contenido -</option>
+                                <option>Video...</option>
+                                <option>PDF...</option>
+                                <option>Audio...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--Tabla de Resultados-->
+                    <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar" style="width: 95%; height: 450px"> 
+                        <!--Resultado-->
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-primary rounded-top">
+                                    <h5 class="card-title">Nombre Contenido</h5>
+                                </div>
+                                <div class="row no-gutters border border-top-0 border-secondary">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Descripcion: This is a wider card with supporting text below as a
+                                                natural lead-in to
+                                                additional content.
+                                                This content is a little bit longer.</p>
+                                            <p class="card-text"><small class="text-muted">Materia</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado</small></p>
+                                            <p class="card-text"><small class="text-muted">Tipo de contenido</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters">
+                                    <a href="#" class="btn btn-primary">Adjuntar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Resultado-->
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-primary rounded-top">
+                                    <h5 class="card-title">Nombre Contenido</h5>
+                                </div>
+                                <div class="row no-gutters border border-top-0 border-secondary">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Descripcion: This is a wider card with supporting text below as a
+                                                natural lead-in to
+                                                additional content.
+                                                This content is a little bit longer.</p>
+                                            <p class="card-text"><small class="text-muted">Materia</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado</small></p>
+                                            <p class="card-text"><small class="text-muted">Tipo de contenido</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters">
+                                    <a href="#" class="btn btn-primary">Adjuntar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Resultado-->
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-primary rounded-top">
+                                    <h5 class="card-title">Nombre Contenido</h5>
+                                </div>
+                                <div class="row no-gutters border border-top-0 border-secondary">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Descripcion: This is a wider card with supporting text below as a
+                                                natural lead-in to
+                                                additional content.
+                                                This content is a little bit longer.</p>
+                                            <p class="card-text"><small class="text-muted">Materia</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado</small></p>
+                                            <p class="card-text"><small class="text-muted">Tipo de contenido</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters">
+                                    <a href="#" class="btn btn-primary">Adjuntar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <hr class="style1">
+            </div>
+        </div>
+
+    </div>
+    
+</div>

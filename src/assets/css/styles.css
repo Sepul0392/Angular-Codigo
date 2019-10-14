@@ -420,3 +420,14 @@ select{
     width: 100%;
     max-width: 1000px;
 }
+
+/**Linear Divide**/
+hr.style15 {
+	border-top: 4px double #8c8b8b;
+	text-align: center;
+}
+hr.style13 {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}

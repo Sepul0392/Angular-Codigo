@@ -347,3 +347,34 @@
   [hidden] {
     display: none;
   }
+
+  /*====================================================================================== */
+  /*================================= MIS MODIFICACIONES ================================= */
+  /*====================================================================================== */
+ 
+  
+  /**Linear Divide**/
+  
+hr.style1 {
+	border-top: 6px double #8c8b8b;
+	text-align: center;
+}
+hr.style2 {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+  /**Barra de Busqueda**/
+
+.input-group.md-form.form-sm.form-2 input {
+    border: 1px solid #bdbdbd;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}  
+.input-group.md-form.form-sm.form-2 input.red-border {
+  border: 1px solid #ef9a9a;
+  }
+.input-group.md-form.form-sm.form-2 input.wite-border {
+  border: 1px solid #ffffff;
+  }
