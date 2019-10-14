@@ -22,8 +22,8 @@
                         <textarea class="form-control" id="inputDescripcionActividad" rows="4">Descripcion ...</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="inputState" class="text-white">Competencia a la que pertenece</label>
-                        <select id="inputState" class="form-control col-md-8">
+                        <label for="inputCompetencia" class="text-white">Competencia a la que pertenece</label>
+                        <select id="inputCompetencia" class="form-control col-md-8">
                             <option selected>- Competencia -</option>
                             <option>1...</option>
                             <option>2...</option>
@@ -63,13 +63,13 @@
                         <label for="inputNombreActividad" class="text-white">Busqueda de Contenido</label>
                         <div class="form-inline">
                             <input type="text" class="form-control col-md-8" id="inputTextoBusqueda" placeholder="Busqueda">
-                            <button class="btn btn-info" value="Busqueda" name="Busqueda" type="submit">Buscar</button>
+                            <button class="btn btn-info" value="Buscar" name="Buscar" type="submit">Buscar</button>
                         </div>
                     </div>
                     <label for="inputState" class="text-white">Filtros:</label>
                     <div class="form-row"><!--Filtros-->
                         <div class="form-group col-md-4">
-                            <select id="inputState" class="form-control">
+                            <select id="inputMateria" class="form-control">
                                 <option selected>- Materia -</option>
                                 <option>1...</option>
                                 <option>2...</option>
@@ -77,14 +77,14 @@
                             </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <select id="inputState" class="form-control">
+                            <select id="inputGrado" class="form-control">
                                 <option selected>- Grado -</option>
                                 <option>Decimo</option>
                                 <option>Once</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <select id="inputState" class="form-control">
+                            <select id="inputTipoContenido" class="form-control">
                                 <option selected>- Tipo Contenido -</option>
                                 <option>Video...</option>
                                 <option>PDF...</option>
@@ -163,6 +163,68 @@
                                 </div>
                                 <div class="card-footer bg-secondary row justify-content-md-center no-gutters">
                                     <a href="#" class="btn btn-primary">Adjuntar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <hr class="style1">
+            </div>
+        </div>
+
+        <!--Creacion del Quiz-->
+        <div>
+            <h3 class="py-3 text-center text-white">Quiz del Contenido</h3>
+            <div class="contenedor py-3">
+                <form>
+                    <div class="form-group">
+                        <label for="inputDescripcionQuiz" class="text-white">Descripcion del Quiz</label>
+                        <textarea class="form-control" id="inputDescripcionQuiz" rows="4">Descripcion ...</textarea>
+                    </div>
+                    <div class="container"> <!--Tabs-->
+                        <div>
+                            <label for="inputDescripcionQuiz" class="text-white">Preguntas del Quiz</label>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card mt-3 tab-card">
+                                    <div class="card-header tab-card-header">
+                                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item col">
+                                                <a class="nav-link text-center" id="one-tab" data-toggle="tab" href="#pregunta1" role="tab"
+                                                    aria-controls="pregunta1" aria-selected="true">Pregunta 1</a>
+                                            </li>
+                                            <li class="nav-item col">
+                                                <a class="nav-link text-center" id="two-tab" data-toggle="tab" href="#pregunta2" role="tab"
+                                                    aria-controls="pregunta2" aria-selected="false">Pregunta 2</a>
+                                            </li>
+                                            <li class="nav-item col">
+                                                <a class="nav-link text-center" id="three-tab" data-toggle="tab" href="#pregunta3" role="tab"
+                                                    aria-controls="pregunta3" aria-selected="false">Pregunta 3</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active p-3" id="pregunta1" role="tabpanel" aria-labelledby="one-tab">
+                                            <h5 class="card-title">Descripcion pregunta 1</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                                the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Guardar</a>
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="pregunta2" role="tabpanel" aria-labelledby="two-tab">
+                                            <h5 class="card-title">Descripcion pregunta 2</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                                the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Guardar</a>
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="pregunta3" role="tabpanel" aria-labelledby="three-tab">
+                                            <h5 class="card-title">Descripcion pregunta 3</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                                the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Guardar</a>
+                                        </div>
+                    
+                                    </div>
                                 </div>
                             </div>
                         </div>
