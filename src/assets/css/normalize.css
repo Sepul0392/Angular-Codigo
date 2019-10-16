@@ -367,6 +367,10 @@ hr.style3 {
 	border-top: 6px double #d9534f;
 	text-align: center;
 }
+hr.style4 {
+	border-top: 6px double #5bc0de;
+	text-align: center;
+}
 hr.styleOtro {
 	height: 10px;
 	border: 0;

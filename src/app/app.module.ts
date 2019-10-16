@@ -1,3 +1,8 @@
+// RUTAS
+import { app_routing } from "./app.routes";
+
+//Componentes
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -11,6 +16,8 @@ import { BorrarActividadComponent } from './components/borrar-actividad/borrar-a
 import { ModificarActividadComponent } from './components/modificar-actividad/modificar-actividad.component';
 import { SubirContenidoComponent } from './components/subir-contenido/subir-contenido.component';
 import { BorrarContenidoComponent } from './components/borrar-contenido/borrar-contenido.component';
+import { from } from 'rxjs';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +29,13 @@ import { BorrarContenidoComponent } from './components/borrar-contenido/borrar-c
     BorrarActividadComponent,
     ModificarActividadComponent,
     SubirContenidoComponent,
-    BorrarContenidoComponent
+    BorrarContenidoComponent,
+    BusquedaComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    app_routing
   ],
   providers: [],
   bootstrap: [AppComponent]
