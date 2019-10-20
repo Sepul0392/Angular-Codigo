@@ -5,6 +5,9 @@ import { app_routing } from "./app.routes";
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +21,10 @@ import { SubirContenidoComponent } from './components/subir-contenido/subir-cont
 import { BorrarContenidoComponent } from './components/borrar-contenido/borrar-contenido.component';
 import { from } from 'rxjs';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { LoginComponent } from "./components/login/login.component"
+import { AuthDService } from './services/auth-d.service';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -30,14 +37,18 @@ import { BusquedaComponent } from './components/busqueda/busqueda.component';
     ModificarActividadComponent,
     SubirContenidoComponent,
     BorrarContenidoComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    app_routing
+    app_routing,
+    HttpClientModule,
+    FormsModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [AuthDService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import {
     InicioProfesoresComponent,
@@ -9,9 +10,9 @@ import {
     BorrarActividadComponent,
     BusquedaComponent,
     LoginComponent
-} from './components/index.paginas';
+} from 'src/app/components/index.paginas';
 
-const app_routes: Routes = [
+const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'inicioProfesores', component: InicioProfesoresComponent },
     { path: 'subirContenido', component: SubirContenidoComponent },
@@ -23,4 +24,9 @@ const app_routes: Routes = [
     { path: '**', pathMatch: 'full', redirectTo: 'inicioProfesores'}
 ];
 
-export const app_routing = RouterModule.forRoot(app_routes, {useHash:true});
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class FCRoutingModule { }

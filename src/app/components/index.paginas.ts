@@ -5,3 +5,4 @@ export { ModificarActividadComponent } from "./modificar-actividad/modificar-act
 export { BorrarActividadComponent } from "./borrar-actividad/borrar-actividad.component"
 export { InicioProfesoresComponent } from "./inicio-profesores/inicio-profesores.component";
 export { BusquedaComponent } from "./busqueda/busqueda.component"
+export { LoginComponent } from "./login/login.component"
