@@ -4,6 +4,7 @@ import { DocenteI } from '../models/docente';
 import { JwtResponseI } from '../models/jwt-response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { contenidoREAI } from '../models/contenidoREA';
 
 
 @Injectable()
@@ -55,6 +56,18 @@ export class AuthDService {
       this.token=localStorage.getItem("ACCESS_TOKEN");
     }
     return this.token;
+  }
+
+  createContentREA(contenidoREA:contenidoREAI): Observable<JwtResponseI> {
+    return this.httpClient.post<JwtResponseI>(`${this.AUTHD_SERVER}/createContentREA`,
+    contenidoREA).pipe(tap(
+      (res:JwtResponseI) => {
+        if(res){
+          // guardar token
+          //this.saveToken(res.dataDocente.accessToken, res.dataDocente.expiresIn);
+        }
+      })
+    );
   }
 
 }

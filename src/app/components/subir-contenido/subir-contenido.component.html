@@ -12,42 +12,37 @@
         <div>
             <h3 class="py-3 text-center text-white">Informacion del contenido</h3>
             <div class="contenedor py-3">
-                <form>
+                <form #frmSubirContenido="ngForm" (ngSubmit)="onSubirContenido(frmSubirContenido)">
                     <div class="form-group">
                         <label for="inputNombreContenido" class="text-white ">Nombre del contenido</label>
-                        <input type="text" class="form-control col-md-8" id="inputNombreContenido" placeholder="Nombre Contenido">
+                        <input type="text" name="nombre_CREA" class="form-control col-md-8" id="inputNombreContenido" placeholder="Nombre Contenido" ngModel required>
                     </div>
                     <div class="form-group">
                         <label for="inputDescripcionContenido" class="text-white">Descripcion del contenido</label>
-                        <textarea class="form-control" id="inputDescripcionContenido"
-                            rows="4">Descripcion ...</textarea>
+                        <textarea class="form-control" name="descripcion_CREA" id="inputDescripcionContenido"
+                            rows="4" ngModel required>Descripcion ...</textarea>
                     </div>
                     <div class="form-row">
                         <div class="form-group col">
                             <label for="inputMateria" class="text-white">Materia</label>
-                            <select id="inputMateria" class="form-control">
-                                <option selected>- Materia -</option>
-                                <option>1...</option>
-                                <option>2...</option>
-                                <option>3...</option>
+                            <select [(ngModel)]="materiaSelected" [ngModelOptions]="{standalone: true}" id="inputMateria" nombre="id_materia" class="form-control" ngModel required>
+                                <option selected [value]='0'>- Materia -</option>
+                                <option *ngFor="let mater of materia" [value]="mater.id_materia">{{mater.nombre_materia}}</option>
                             </select>
+                            <!--selected value is {{materiaSelected}}-->
                         </div>
                         <div class="form-group col">
                             <label for="inputGrado" class="text-white">Grado</label>
-                            <select id="inputGrado" class="form-control">
+                            <select [(ngModel)]="gradoSelected" [ngModelOptions]="{standalone: true}" id="inputGrado" nombre="id_grado" class="form-control" ngModel required>
                                 <option selected>- Grado -</option>
-                                <option>Decimo</option>
-                                <option>Once</option>
-                                <option>Decimo y Once</option>
+                                <option *ngFor="let grad of grado" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
                             </select>
                         </div>
                         <div class="form-group col">
                             <label for="inputGrado" class="text-white">Tipo de Contenido</label>
-                            <select id="inputGrado" class="form-control">
-                                <option selected>- Tipo de Contenido -</option>
-                                <option>Video</option>
-                                <option>PDF</option>
-                                <option>Audio</option>
+                            <select [(ngModel)]="tipoContenidoSelected" [ngModelOptions]="{standalone: true}" id="inputGrado" nombre="id_tipoContenido" class="form-control" ngModel required>
+                                <option selected [value]='0'>- Tipo de Contenido -</option>
+                                <option *ngFor="let tipCon of tipoContenido" [value]="tipCon.id_tipoContenido">{{tipCon.nombre_tipoContenido}}</option>
                             </select>
                         </div>
                     </div>
@@ -59,16 +54,17 @@
                             <label class="custom-file-label" for="inputGroupFile01">...</label>
                         </div>
                     </div>
+                    <br>
+                    <hr class="style2">
+                    <br>
+
+                    <!--Boton Crear Actividad-->
+                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
+                        <button type="submit" name="button" class="btn bg-primary px-5 py-4 font-weight-bold">Subir Contenido</button>
+                    </div>
                 </form>
                 <hr class="style2">
             </div>
         </div>
-
-        <!--Boton Crear Actividad-->
-        <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
-            <a href="#" class="btn bg-primary px-5 py-4 font-weight-bold" id="inputGroupFileContenido">Subir Contenido</a>
-        </div>
-        <hr class="style2">
-
     </div>
 </div>

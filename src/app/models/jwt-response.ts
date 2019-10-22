@@ -11,4 +11,15 @@ export interface JwtResponseI {
         accessToken: string,
         expiresIn: string
     }
+
+    dataContenidoREA:{
+        id_CREA: number,
+        tipo_CREA: number,
+        id_materia: number,
+        grado10: number,
+        grado11: number,
+        nombre_CREA: string,
+        urlrepositorio: string,
+        descripcion_CREA: string
+    }
 }
