@@ -70,4 +70,8 @@ export class AuthDService {
     );
   }
 
+  uploadFile(formData){
+    return this.httpClient.post(`http://localhost:3000/subir`, formData);
+  }
+
 }

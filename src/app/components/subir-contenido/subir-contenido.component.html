@@ -50,7 +50,7 @@
                     <label for="inputMateria" class="text-white">Seleccionar Contenido</label>
                     <div class="input-group">
                         <div class="custom-file col-md-8">
-                            <input type="file" class="custom-file-input" id="inputGroupFileContenido" aria-describedby="inputGroupFileAddon01">
+                            <input type="file" class="custom-file-input" id="inputGroupFileContenido" aria-describedby="inputGroupFileAddon01" (change)="onFileChange($event)">
                             <label class="custom-file-label" for="inputGroupFile01">...</label>
                         </div>
                     </div>
@@ -58,9 +58,9 @@
                     <hr class="style2">
                     <br>
 
-                    <!--Boton Crear Actividad-->
+                    <!--Boton Crear Contenido-->
                     <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
-                        <button type="submit" name="button" class="btn bg-primary px-5 py-4 font-weight-bold">Subir Contenido</button>
+                        <button type="submit" name="button" class="btn bg-primary px-5 py-4 font-weight-bold" (click)="onSubirContenido()">Subir Contenido</button>
                     </div>
                 </form>
                 <hr class="style2">

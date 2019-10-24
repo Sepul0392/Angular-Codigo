@@ -20,6 +20,8 @@ export class SubirContenidoComponent implements OnInit {
   materiaSelected:number;
   gradoSelected:number;
   tipoContenidoSelected:number;
+  uploadedFiles: Array <File>;
+  urlFinal:string;
   /*modifedtext: string;*/
 
   constructor(private AuthDService: AuthDService, private router: Router) { }
@@ -43,26 +45,60 @@ export class SubirContenidoComponent implements OnInit {
     ]
   }
 
+  onFileChange(e){
+    /*console.log('archivo', e)*/
+    this.uploadedFiles = e.target.files;
+  }
+  /*Prueba de Upload
+  onUpload(){
+    let formData = new FormData();
+    for (let i = 0; i < this.uploadedFiles.length; i++) {
+      formData.append("uploads[]",this.uploadedFiles[i], this.uploadedFiles[i].name);
+    }
+
+    this.AuthDService.uploadFile(formData).subscribe((res) => {
+      console.log('url-web: ', res)
+    });
+  }*/
+
   onSubirContenido(form):void{
+    /*
     console.log('text', form.value);
     console.log('materia seleccionada', this.materiaSelected);
     console.log('grado seleccionado', this.gradoSelected);
     console.log('tipoContenido seleccionado', this.tipoContenidoSelected);
-    
-    const newContenidoREA = {
-      id_CREA: Math.floor((Math.random() * 100) + 1),
-      tipo_CREA: this.tipoContenidoSelected,
-      id_materia: this.materiaSelected,
-      id_grado: this.gradoSelected,
-      nombre_CREA: form.value.nombre_CREA,
-      urlrepositorio: "temporal",
-      descripcion_CREA: form.value.descripcion_CREA
-    }
-    console.log('subirContenido', newContenidoREA);
+    */
 
-    this.AuthDService.createContentREA(newContenidoREA).subscribe(res => {
+    /*para multiples archivos*/
+    let formData = new FormData();
+    for (let i=0; i < this.uploadedFiles.length; i++){
+      formData.append("uploads[]",this.uploadedFiles[i], this.uploadedFiles[i].name)
+    }
+    
+    this.AuthDService.uploadFile(formData).subscribe((res) => {
+      console.log('url-res', res);
+      const urlFinal=res.url;
+      console.log('urlFinal', urlFinal);
+      
+      const newContenidoREA = {
+        id_CREA: Math.floor((Math.random() * 100) + 1),
+        tipo_CREA: this.tipoContenidoSelected,
+        id_materia: this.materiaSelected,
+        id_grado: this.gradoSelected,
+        nombre_CREA: form.value.nombre_CREA,
+        urlrepositorio: urlFinal,
+        descripcion_CREA: form.value.descripcion_CREA
+      }
+
+      console.log('datosContenido', newContenidoREA);
+
+      this.AuthDService.createContentREA(newContenidoREA).subscribe(res => {
       this.router.navigateByUrl('/inicioProfesores')
+      })
     })
+
+    
+    
   }
 
 }
