@@ -58,20 +58,4 @@ export class AuthDService {
     return this.token;
   }
 
-  createContentREA(contenidoREA:contenidoREAI): Observable<JwtResponseI> {
-    return this.httpClient.post<JwtResponseI>(`${this.AUTHD_SERVER}/createContentREA`,
-    contenidoREA).pipe(tap(
-      (res:JwtResponseI) => {
-        if(res){
-          // guardar token
-          //this.saveToken(res.dataDocente.accessToken, res.dataDocente.expiresIn);
-        }
-      })
-    );
-  }
-
-  uploadFile(formData){
-    return this.httpClient.post(`http://localhost:3000/subir`, formData);
-  }
-
 }

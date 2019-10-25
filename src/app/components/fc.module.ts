@@ -19,6 +19,7 @@ import { AppComponent } from 'src/app/app.component';
 import { from } from 'rxjs';
 import { LoginComponent } from './login/login.component';
 import { AuthDService } from '../services/auth-d.service';
+import { ContentREAService } from '../services/content-rea.service';
 
 @NgModule({
   declarations:[
@@ -41,6 +42,6 @@ import { AuthDService } from '../services/auth-d.service';
       FCRoutingModule,
       HttpClientModule
   ],
-  providers:[AuthDService]
+  providers:[AuthDService, ContentREAService]
 })
 export class FCModule { }

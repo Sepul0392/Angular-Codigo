@@ -23,6 +23,7 @@ import { from } from 'rxjs';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { LoginComponent } from "./components/login/login.component"
 import { AuthDService } from './services/auth-d.service';
+import { ContentREAService } from './services/content-rea.service';
 import { CommonModule } from '@angular/common';
 
 
@@ -48,7 +49,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     CommonModule
   ],
-  providers: [AuthDService],
+  providers: [AuthDService, ContentREAService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

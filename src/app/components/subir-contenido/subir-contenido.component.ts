@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { AuthDService } from "../../services/auth-d.service";
+import { ContentREAService } from '../../services/content-rea.service';
 import { contenidoREAI } from '../../models/contenidoREA';
 import { MateriaI } from '../../models/materia';
 import { GradoI } from '../../models/grado';
 import { TipoContenidoI } from '../../models/tipoContenido';
+
 
 @Component({
   selector: 'app-subir-contenido',
@@ -24,7 +25,7 @@ export class SubirContenidoComponent implements OnInit {
   urlFinal:string;
   /*modifedtext: string;*/
 
-  constructor(private AuthDService: AuthDService, private router: Router) { }
+  constructor(private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
     this.materia = [
@@ -75,7 +76,7 @@ export class SubirContenidoComponent implements OnInit {
       formData.append("uploads[]",this.uploadedFiles[i], this.uploadedFiles[i].name)
     }
     
-    this.AuthDService.uploadFile(formData).subscribe((res) => {
+    this.ContentREAService.uploadFile(formData).subscribe((res) => {
       console.log('url-res', res);
       const urlFinal=res.url;
       console.log('urlFinal', urlFinal);
@@ -92,7 +93,7 @@ export class SubirContenidoComponent implements OnInit {
 
       console.log('datosContenido', newContenidoREA);
 
-      this.AuthDService.createContentREA(newContenidoREA).subscribe(res => {
+      this.ContentREAService.createContentREA(newContenidoREA).subscribe(res => {
       this.router.navigateByUrl('/inicioProfesores')
       })
     })
