@@ -5,6 +5,7 @@ import { contenidoREAI } from '../../models/contenidoREA';
 import { MateriaI } from '../../models/materia';
 import { GradoI } from '../../models/grado';
 import { TipoContenidoI } from '../../models/tipoContenido';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -98,8 +99,6 @@ export class SubirContenidoComponent implements OnInit {
       })
     })
 
-    
-    
   }
-
+  
 }
