@@ -21,33 +21,30 @@
                         <label for="inputDescripcionActividad" class="text-white">Descripcion de la Actividad</label>
                         <textarea class="form-control" id="inputDescripcionActividad" rows="4">Descripcion ...</textarea>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputMateriaActividad" class="text-white">Materia</label>
+                            <select [(ngModel)]="materiaASelected" name="materiaActividad" id="inputMateriaActividad" class="form-control"
+                                ngModel required>
+                                <!--<option selected [value]='0'>- Materia -</option>-->
+                                <option *ngFor="let mater of materia" [value]="mater.id_materia">{{mater.nombre_materia}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputGradoActivdad" class="text-white">Grado</label>
+                            <select [(ngModel)]="gradoASelected" name="gradoActividad" id="inputGradoActivdad" class="form-control" ngModel required>
+                                <option *ngFor="let grad of grado" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label for="inputCompetencia" class="text-white">Competencia a la que pertenece</label>
-                        <select id="inputCompetencia" class="form-control col-md-8">
+                        <label for="inputCompetenciaActividad" class="text-white">Competencia a la que pertenece</label>
+                        <select id="inputCompetenciaActividad" name="competenciaActividad" class="form-control col-md-8">
                             <option selected>- Competencia -</option>
                             <option>1...</option>
                             <option>2...</option>
                             <option>3...</option>
                         </select>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputMateria" class="text-white">Materia</label>
-                            <select id="inputMateria" class="form-control">
-                                <option selected>- Materia -</option>
-                                <option>1...</option>
-                                <option>2...</option>
-                                <option>3...</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputGrado" class="text-white">Grado</label>
-                            <select id="inputGrado" class="form-control">
-                                <option selected>- Grado -</option>
-                                <option>Decimo</option>
-                                <option>Once</option>
-                            </select>
-                        </div>
                     </div>
                 </form>
                 <hr class="style1">
@@ -59,36 +56,37 @@
             <h3 class="py-3 text-center text-white">Contenido de la Actividad</h3>
             <div class="contenedor py-3">
                 <form>
-                    <div class="form-group"><!--Barra busqueda-->
+                    <div class="form-group">
+                        <!--Barra busqueda-->
                         <label for="inputNombreActividad" class="text-white">Busqueda de Contenido</label>
                         <div class="form-inline">
                             <input type="text" class="form-control col-md-8" id="inputTextoBusqueda" placeholder="Busqueda por nombre">
                             <button class="btn btn-info" value="Buscar" name="Buscar" type="submit">Buscar</button>
                         </div>
                     </div>
+                    <!--Filtros-->
                     <label for="inputState" class="text-white">Filtros:</label>
-                    <div class="form-row pb-3"><!--Filtros-->
+                    <div class="form-row pb-3">
                         <div class="form-group col">
-                            <select id="inputMateria" class="form-control">
-                                <option selected>- Materia -</option>
-                                <option>1...</option>
-                                <option>2...</option>
-                                <option>3...</option>
+                            <label for="inputMateriaContenido" class="text-white">Materia</label>
+                            <select [(ngModel)]="materiaCSelected" name="materiaContenido" id="inputMateriaContenido" class="form-control"
+                                ngModel required>
+                                <!--<option selected [value]='0'>- Materia -</option>-->
+                                <option *ngFor="let mater of materia" [value]="mater.id_materia">{{mater.nombre_materia}}</option>
                             </select>
                         </div>
                         <div class="form-group col">
-                            <select id="inputGrado" class="form-control">
-                                <option selected>- Grado -</option>
-                                <option>Decimo</option>
-                                <option>Once</option>
+                            <label for="inputGradoContenido" class="text-white">Grado</label>
+                            <select [(ngModel)]="gradoCSelected" name="gradoContenido" id="inputGradoContenido" class="form-control" ngModel
+                                required>
+                                <option *ngFor="let grad of grado" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
                             </select>
                         </div>
                         <div class="form-group col">
-                            <select id="inputTipoContenido" class="form-control">
-                                <option selected>- Tipo Contenido -</option>
-                                <option>Video...</option>
-                                <option>PDF...</option>
-                                <option>Audio...</option>
+                            <label for="inputTipoContenido" class="text-white">Tipo de Contenido</label>
+                            <select [(ngModel)]="tipoContenidoCSelected" name="tipoContenido" id="inputTipoContenido" class="form-control" ngModel required>
+                                <option *ngFor="let tipCon of tipoContenido" [value]="tipCon.id_tipoContenido">{{tipCon.nombre_tipoContenido}}
+                                </option>
                             </select>
                         </div>
                     </div>
