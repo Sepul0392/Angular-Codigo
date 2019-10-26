@@ -11,29 +11,31 @@
         <!--Buscar Actividad-->
         <div>
             <div class="contenedor py-3">
-                <form>
-                    <div class="form-group"><!--Barra busqueda-->
+                <form #frmBorrarActividad="ngForm" (ngSubmit)="onBorrarActividad(frmBorrarActividad)">
+                    <div class="form-group">
+                        <!--Barra busqueda-->
                         <label for="inputNombreActividad" class="text-white">Busqueda de Actividad</label>
                         <div class="form-inline">
-                            <input type="text" class="form-control col-md-8" id="inputTextoBusqueda" placeholder="Busqueda por nombre">
+                            <input type="text" class="form-control col-md-8" name="inputBusquedaActividad" id="inputTextoBusqueda" placeholder="Busqueda por nombre" required #busquedaNombreCREA="ngModel" [(ngModel)]="ContentREAService.selectedContenidoREA.nombre_CREA">
                             <button class="btn btn-info" value="Buscar" name="Buscar" type="submit">Buscar</button>
                         </div>
                     </div>
                     <label for="inputState" class="text-white">Filtros:</label>
-                    <div class="form-row pb-3"><!--Filtros-->
+                    <div class="form-row pb-3">
+                        <!--Filtros-->
                         <div class="form-group col">
-                            <select id="inputMateria" class="form-control">
-                                <option selected>- Materia -</option>
-                                <option>1...</option>
-                                <option>2...</option>
-                                <option>3...</option>
+                            <label for="inputMateria" class="text-white">Materia</label>
+                            <select [(ngModel)]="materiaSelected" name="materia" id="inputMateria" nombre="id_materia"
+                                class="form-control" ngModel required>
+                                <!--<option selected [value]='0'>- Materia -</option>-->
+                                <option *ngFor="let mater of materia" [value]="mater.id_materia">{{mater.nombre_materia}}</option>
                             </select>
                         </div>
                         <div class="form-group col">
-                            <select id="inputGrado" class="form-control">
-                                <option selected>- Grado -</option>
-                                <option>Decimo</option>
-                                <option>Once</option>
+                            <label for="inputGrado" class="text-white">Grado</label>
+                            <select [(ngModel)]="gradoSelected" name="grado" id="inputGrado" nombre="id_grado"
+                                class="form-control " ngModel required>
+                                <option *ngFor="let grad of grado" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
                             </select>
                         </div>
                         <div class="form-group col">
