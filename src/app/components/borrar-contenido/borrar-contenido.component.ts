@@ -50,6 +50,15 @@ export class BorrarContenidoComponent implements OnInit {
       {id_tipoContenido:2,nombre_tipoContenido:"Documento"},
       {id_tipoContenido:3,nombre_tipoContenido:"Audio"}
     ]
+
+    this.getContenidos();
+  }
+
+  getContenidos(){
+    this.ContentREAService.allContent().subscribe(res =>{
+      this.ContentREAService.contenidosREA = res as contenidoREAI[];
+      console.log(res)
+    });
   }
 
 }

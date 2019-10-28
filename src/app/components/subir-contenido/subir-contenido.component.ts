@@ -61,7 +61,7 @@ export class SubirContenidoComponent implements OnInit {
   }
 
   //Funcion leer y subir informacion y archivo del formulario a Mongo
-  onSubirContenido(form):void{
+  onSubirContenido(form: NgForm):void{
     /*console.log('text', form.value);
     console.log('materia seleccionada', this.materiaSelected);
     console.log('grado seleccionado', this.gradoSelected);
@@ -95,10 +95,17 @@ export class SubirContenidoComponent implements OnInit {
       console.log('datosContenido', newContenidoREA);
 
       this.ContentREAService.createContentREA(newContenidoREA).subscribe(res => {
-      this.router.navigateByUrl('/inicioProfesores')
+      //this.router.navigateByUrl('/inicioProfesores')
+      this.resetForm(form);
       })
     })
+  }
 
+  resetForm(form?: NgForm) {
+    if (form) {
+      form.reset();
+      //this.ContentREAService.selectedContenidoREA = new contenidoREAI();
+    }
   }
   
 }
