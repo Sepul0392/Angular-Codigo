@@ -15,6 +15,7 @@ import { NgForm } from '@angular/forms';
 })
 export class BorrarContenidoComponent implements OnInit {
 
+  //Elementos de Busqueda de Contenido
   contenidoToSave:contenidoREAI;
   contenidos:contenidoREAI[];
   materia:MateriaI[];
@@ -26,8 +27,6 @@ export class BorrarContenidoComponent implements OnInit {
   contenidoVisualizar:contenidoREAVisualizarI[];
 
   constructor(private ContentREAService: ContentREAService, private router: Router) { }
-
-  //filterContenido = "";
 
   ngOnInit() {
     this.getOptions();
@@ -58,6 +57,7 @@ export class BorrarContenidoComponent implements OnInit {
     this.getContenidos();
   }
 
+  //Obtener los datos de los options
   getOptions(){
     this.ContentREAService.allSubject().subscribe(res =>{
       this.materia = res as MateriaI[];
@@ -70,6 +70,7 @@ export class BorrarContenidoComponent implements OnInit {
     });
   }
 
+  //consultar todos los ContenidosREA y verificar el nombre de la materia y contenido con sus respectivos ID´s
   getContenidos(){
     this.ContentREAService.allContent().subscribe(res =>{
       console.log(res);
@@ -92,11 +93,13 @@ export class BorrarContenidoComponent implements OnInit {
     });
   }
 
+  //Almacenar info temporal de un ContenidoREA
   saveData(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
     console.log("contenido guardado:", this.contenidoToSave);
   }
 
+  //Eliminar contenidoREA de Mongo
   deleteContenido(){
     console.log("id para eliminar:", this.contenidoToSave.id_CREA);
     this.ContentREAService.deleteContentREA(this.contenidoToSave).subscribe(res =>{
