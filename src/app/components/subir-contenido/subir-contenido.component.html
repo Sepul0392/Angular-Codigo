@@ -57,13 +57,38 @@
                     <hr class="style2">
                     <br>
                     <!--Boton Crear Contenido-->
-                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
+                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
                         <button class="btn bg-primary px-5 py-4 font-weight-bold" (click)="onSubirContenido()">Subir
                             Contenido
                         </button>
                     </div>
                 </form>
                 <hr class="style2">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Guardado Exitoso</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters">
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
+                </div>
             </div>
         </div>
     </div>

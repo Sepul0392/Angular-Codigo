@@ -51,4 +51,9 @@ export class ContentREAService {
     return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllGrades`);
   }
 
+  //Servicio para llamar todos los tipos de Contenidos
+  allType() {
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllTypes`);
+  }
+
 }

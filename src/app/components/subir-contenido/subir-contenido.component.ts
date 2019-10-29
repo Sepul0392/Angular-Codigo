@@ -47,11 +47,11 @@ export class SubirContenidoComponent implements OnInit {
       {id_grado:7,nombre_grado:"Septimo"},
       {id_grado:6,nombre_grado:"Sexto"},
     ]*/
-    this.tipoContenido = [
+    /*this.tipoContenido = [
       {id_tipoContenido:1,nombre_tipoContenido:"Video"},
       {id_tipoContenido:2,nombre_tipoContenido:"Documento"},
       {id_tipoContenido:3,nombre_tipoContenido:"Audio"}
-    ]
+    ]*/
   }
 
   getOptions(){
@@ -60,6 +60,9 @@ export class SubirContenidoComponent implements OnInit {
     });
     this.ContentREAService.allGrade().subscribe(res =>{
       this.grado = res as GradoI[];
+    });
+    this.ContentREAService.allType().subscribe(res =>{
+      this.tipoContenido = res as TipoContenidoI[];
     });
   }
 
