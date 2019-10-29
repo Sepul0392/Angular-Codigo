@@ -30,7 +30,7 @@ export class BorrarContenidoComponent implements OnInit {
   //filterContenido = "";
 
   ngOnInit() {
-    this.getSubjects();
+    this.getOptions();
     /*this.materia = [
       {id_materia:1,nombre_materia:"Matematicas",id_colegio:0,url_imagen:""},
       {id_materia:2,nombre_materia:"Español",id_colegio:0,url_imagen:""},
@@ -41,15 +41,14 @@ export class BorrarContenidoComponent implements OnInit {
       {id_materia:7,nombre_materia:"Quimica",id_colegio:0,url_imagen:""}
     ];*/
     /*this.materiaSelected=3;*/
-    this.grado = [
+    /*this.grado = [
       {id_grado:11,nombre_grado:"Once"},
       {id_grado:10,nombre_grado:"Decimo"},
       {id_grado:9,nombre_grado:"Noveno"},
       {id_grado:8,nombre_grado:"Octavo"},
       {id_grado:7,nombre_grado:"Septimo"},
       {id_grado:6,nombre_grado:"Sexto"},
-    ]
-
+    ]*/
     this.tipoContenido = [
       {id_tipoContenido:1,nombre_tipoContenido:"Video"},
       {id_tipoContenido:2,nombre_tipoContenido:"Documento"},
@@ -59,9 +58,12 @@ export class BorrarContenidoComponent implements OnInit {
     this.getContenidos();
   }
 
-  getSubjects(){
+  getOptions(){
     this.ContentREAService.allSubject().subscribe(res =>{
       this.materia = res as MateriaI[];
+    });
+    this.ContentREAService.allGrade().subscribe(res =>{
+      this.grado = res as GradoI[];
     });
   }
 

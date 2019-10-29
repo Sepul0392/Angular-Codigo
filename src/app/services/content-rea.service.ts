@@ -41,8 +41,14 @@ export class ContentREAService {
     return this.httpClient.post(`${this.AUTHD_SERVER}/deleteContentREA/`, contenidoREA)
   }
 
+  //Servicio para llamar todas las materias
   allSubject() {
     return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjects`);
+  }
+
+  //Servicio para llamar todos los grados
+  allGrade() {
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllGrades`);
   }
 
 }
