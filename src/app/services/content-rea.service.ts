@@ -41,4 +41,8 @@ export class ContentREAService {
     return this.httpClient.post(`${this.AUTHD_SERVER}/deleteContentREA/`, contenidoREA)
   }
 
+  allSubject() {
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjects`);
+  }
+
 }

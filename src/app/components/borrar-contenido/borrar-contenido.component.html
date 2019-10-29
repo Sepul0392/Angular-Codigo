@@ -12,12 +12,11 @@
         <div>
             <div class="contenedor py-3">
                 <form #frmBorrarContenido="ngForm" (ngSubmit)="onBorrarContenido(frmBorrarContenido)">
+                    <!--Barra busqueda-->
                     <div class="form-group">
-                        <!--Barra busqueda-->
                         <label for="inputNombreActividad" class="text-white">Busqueda de Contenido</label>
                         <div class="form-inline">
                             <input type="text" class="form-control col-md-8" id="inputTextoBusqueda" placeholder="Busqueda por nombre" [(ngModel)]="nombreCREASelected" name="inputBusquedaContenido">
-                            <button class="btn btn-info" value="Buscar" name="Buscar" type="submit">Buscar</button>
                         </div>
                     </div>
                     <!--Filtros-->
@@ -65,6 +64,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--Boton borrar Contenido-->
                                 <div class="card-footer bg-secondary row justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
                                     <a class="btn btn-primary" (click)="saveData(contenidoREA)">Borrar Contenido</a>
                                 </div>
