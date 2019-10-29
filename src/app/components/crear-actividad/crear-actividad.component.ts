@@ -5,6 +5,7 @@ import { contenidoREAI } from '../../models/contenidoREA';
 import { MateriaI } from '../../models/materia';
 import { GradoI } from '../../models/grado';
 import { TipoContenidoI } from '../../models/tipoContenido';
+import { contenidoREAVisualizarI } from '../../models/contenidoREAVisualizar';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -14,44 +15,66 @@ import { NgForm } from '@angular/forms';
 })
 export class CrearActividadComponent implements OnInit {
 
-  contenido:contenidoREAI[];
+  //Elementos de Busqueda de Contenido
+  contenidoToSave:contenidoREAI;
+  contenidos:contenidoREAI[];
   materia:MateriaI[];
   grado:GradoI[];
   tipoContenido:TipoContenidoI[];
-  materiaCSelected:number;
-  gradoCSelected:number;
-  tipoContenidoCSelected:number;
-  materiaASelected:number;
-  gradoASelected:number;
-  competenciaSelected:number;
+  materiaSelected:number;
+  gradoSelected:number;
+  tipoContenidoSelected:number;
+  contenidoVisualizar:contenidoREAVisualizarI[];
+
+  //Elementos de Creacion de Actividad
 
   constructor(private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
-    this.materia = [
-      {id_materia:1,nombre_materia:"Matematicas",id_colegio:0,url_imagen:""},
-      {id_materia:2,nombre_materia:"Español",id_colegio:0,url_imagen:""},
-      {id_materia:3,nombre_materia:"Ingles",id_colegio:0,url_imagen:""},
-      {id_materia:4,nombre_materia:"Sociales",id_colegio:0,url_imagen:""},
-      {id_materia:5,nombre_materia:"Fisica",id_colegio:0,url_imagen:""},
-      {id_materia:6,nombre_materia:"Biologia",id_colegio:0,url_imagen:""},
-      {id_materia:7,nombre_materia:"Quimica",id_colegio:0,url_imagen:""}
-    ];
-    /*this.materiaSelected=3;*/
-    this.grado = [
-      {id_grado:11,nombre_grado:"Once"},
-      {id_grado:10,nombre_grado:"Decimo"},
-      {id_grado:9,nombre_grado:"Noveno"},
-      {id_grado:8,nombre_grado:"Octavo"},
-      {id_grado:7,nombre_grado:"Septimo"},
-      {id_grado:6,nombre_grado:"Sexto"},
-    ]
-
-    this.tipoContenido = [
-      {id_tipoContenido:1,nombre_tipoContenido:"Video"},
-      {id_tipoContenido:2,nombre_tipoContenido:"Documento"},
-      {id_tipoContenido:3,nombre_tipoContenido:"Audio"}
-    ]
+    this.getOptions();
+    this.getContenidos();
   }
 
+  //Obtener los datos de los options
+  getOptions(){
+    this.ContentREAService.allSubject().subscribe(res =>{
+      this.materia = res as MateriaI[];
+    });
+    this.ContentREAService.allGrade().subscribe(res =>{
+      this.grado = res as GradoI[];
+    });
+    this.ContentREAService.allType().subscribe(res =>{
+      this.tipoContenido = res as TipoContenidoI[];
+    });
+  }
+
+  //consultar todos los ContenidosREA y verificar el nombre de la materia y contenido con sus respectivos ID´s
+  getContenidos(){
+    this.ContentREAService.allContent().subscribe(res =>{
+      console.log(res);
+      this.ContentREAService.contenidosREA = res as contenidoREAI[];
+      this.contenidoVisualizar = res as contenidoREAVisualizarI[];
+      
+      for (let i=0; i < this.ContentREAService.contenidosREA.length; i++){
+        for (let n=0; n < this.tipoContenido.length; n++){
+          if(this.ContentREAService.contenidosREA[i].tipo_CREA == this.tipoContenido[n].id_tipoContenido){
+            this.contenidoVisualizar[i].nombre_tipo_CREA = this.tipoContenido[n].nombre_tipoContenido;
+          }
+        }
+        for (let m=0; m < this.materia.length; m++){
+          if(this.ContentREAService.contenidosREA[i].id_materia == this.materia[m].id_materia){
+            this.contenidoVisualizar[i].materia = this.materia[m].nombre_materia;
+          }
+        }
+      }
+      console.log("contenido visualizar:", this.contenidoVisualizar)
+    });
+  }
+
+  //Almacenar info temporal de un ContenidoREA
+  saveDataContent(contenidoREAhtml){
+    this.contenidoToSave = contenidoREAhtml;
+    console.log("contenido guardado:", this.contenidoToSave);
+  }
+  
 }
