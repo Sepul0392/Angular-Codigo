@@ -49,74 +49,23 @@
                     <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
                         style="width: 95%; height: 450px">
                         <!--Resultado-->
-                        <div class="row-1">
+                        <div class="row-1" *ngFor="let contenidoREA of contenidoVisualizar">
                             <div class="card mb-4 border-0" style="max-width: 1440px;">
                                 <div class="card-footer p-2 bg-primary rounded-top">
-                                    <h5 class="card-title">Nombre Contenido</h5>
+                                    <h5 class="card-title">{{contenidoREA.nombre_CREA}}</h5>
                                 </div>
                                 <div class="row no-gutters border border-top-0 border-secondary">
                                     <div class="col-md-10" style="max-width: 840px;">
                                         <div class="card-body p-2">
-                                            <p class="card-text ">Descripcion: This is a wider card with supporting text below as a
-                                                natural lead-in to
-                                                additional content.
-                                                This content is a little bit longer.</p>
-                                            <p class="card-text"><small class="text-muted">Materia</small></p>
-                                            <p class="card-text"><small class="text-muted">Grado</small></p>
-                                            <p class="card-text"><small class="text-muted">Tipo de contenido</small></p>
+                                            <p class="card-text ">Descripcion: {{contenidoREA.descripcion_CREA}}.</p>
+                                            <p class="card-text"><small class="text-muted">Materia: {{contenidoREA.materia}}</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado: {{contenidoREA.id_grado}}</small></p>
+                                            <p class="card-text"><small class="text-muted">Tipo de contenido: {{contenidoREA.nombre_tipo_CREA}}</small></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer bg-secondary row justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
-                                    <a href="#" class="btn btn-primary">Borrar Contenido</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Resultado-->
-                        <div class="row-1">
-                            <div class="card mb-4 border-0" style="max-width: 1440px;">
-                                <div class="card-footer p-2 bg-primary rounded-top">
-                                    <h5 class="card-title">Nombre Contenido</h5>
-                                </div>
-                                <div class="row no-gutters border border-top-0 border-secondary">
-                                    <div class="col-md-10" style="max-width: 840px;">
-                                        <div class="card-body p-2">
-                                            <p class="card-text ">Descripcion: This is a wider card with supporting text below as a
-                                                natural lead-in to
-                                                additional content.
-                                                This content is a little bit longer.</p>
-                                            <p class="card-text"><small class="text-muted">Materia</small></p>
-                                            <p class="card-text"><small class="text-muted">Grado</small></p>
-                                            <p class="card-text"><small class="text-muted">Tipo de contenido</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
-                                    <a href="#" class="btn btn-primary">Borrar Contenido</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Resultado-->
-                        <div class="row-1">
-                            <div class="card mb-4 border-0" style="max-width: 1440px;">
-                                <div class="card-footer p-2 bg-primary rounded-top">
-                                    <h5 class="card-title">Nombre Contenido</h5>
-                                </div>
-                                <div class="row no-gutters border border-top-0 border-secondary">
-                                    <div class="col-md-10" style="max-width: 840px;">
-                                        <div class="card-body p-2">
-                                            <p class="card-text ">Descripcion: This is a wider card with supporting text below as a
-                                                natural lead-in to
-                                                additional content.
-                                                This content is a little bit longer.</p>
-                                            <p class="card-text"><small class="text-muted">Materia</small></p>
-                                            <p class="card-text"><small class="text-muted">Grado</small></p>
-                                            <p class="card-text"><small class="text-muted">Tipo de contenido</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
-                                    <a href="#" class="btn btn-primary">Borrar Contenido</a>
+                                    <a class="btn btn-primary" (click)="saveData(contenidoREA)">Borrar Contenido</a>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +95,7 @@
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
                 <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteContenido()">Aceptar</button>
                 </div>
             </div>
         </div>

@@ -37,8 +37,8 @@ export class ContentREAService {
   }**/
 
   //Servicio para borrar el contenido de MongoDB
-  deleteContentREA(id_CREA: string){
-    return this.httpClient.delete(`${this.AUTHD_SERVER}/deleteContentREA`)
+  deleteContentREA(contenidoREA: contenidoREAI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteContentREA/`, contenidoREA)
   }
 
 }

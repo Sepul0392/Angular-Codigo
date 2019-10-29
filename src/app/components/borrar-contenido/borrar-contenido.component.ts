@@ -5,6 +5,7 @@ import { contenidoREAI } from '../../models/contenidoREA';
 import { MateriaI } from '../../models/materia';
 import { GradoI } from '../../models/grado';
 import { TipoContenidoI } from '../../models/tipoContenido';
+import { contenidoREAVisualizarI } from '../../models/contenidoREAVisualizar';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -14,14 +15,15 @@ import { NgForm } from '@angular/forms';
 })
 export class BorrarContenidoComponent implements OnInit {
 
-  contenido:contenidoREAI[];
+  contenidoToSave:contenidoREAI;
+  contenidos:contenidoREAI[];
   materia:MateriaI[];
   grado:GradoI[];
   tipoContenido:TipoContenidoI[];
   materiaSelected:number;
   gradoSelected:number;
   tipoContenidoSelected:number;
-
+  contenidoVisualizar:contenidoREAVisualizarI[];
 
   constructor(private ContentREAService: ContentREAService, private router: Router) { }
 
@@ -56,9 +58,37 @@ export class BorrarContenidoComponent implements OnInit {
 
   getContenidos(){
     this.ContentREAService.allContent().subscribe(res =>{
+      console.log(res);
       this.ContentREAService.contenidosREA = res as contenidoREAI[];
-      console.log(res)
+      this.contenidoVisualizar = res as contenidoREAVisualizarI[];
+      
+      for (let i=0; i < this.ContentREAService.contenidosREA.length; i++){
+        for (let n=0; n < this.tipoContenido.length; n++){
+          if(this.ContentREAService.contenidosREA[i].tipo_CREA == this.tipoContenido[n].id_tipoContenido){
+            this.contenidoVisualizar[i].nombre_tipo_CREA = this.tipoContenido[n].nombre_tipoContenido;
+          }
+        }
+        for (let m=0; m < this.materia.length; m++){
+          if(this.ContentREAService.contenidosREA[i].id_materia == this.materia[m].id_materia){
+            this.contenidoVisualizar[i].materia = this.materia[m].nombre_materia;
+          }
+        }
+      }
+      console.log("contenido visualizar:", this.contenidoVisualizar)
     });
+  }
+
+  saveData(contenidoREAhtml){
+    this.contenidoToSave = contenidoREAhtml;
+    console.log("contenido guardado:", this.contenidoToSave);
+  }
+
+  deleteContenido(){
+    console.log("id para eliminar:", this.contenidoToSave.id_CREA);
+    this.ContentREAService.deleteContentREA(this.contenidoToSave).subscribe(res =>{
+      console.log(res);
+    });
+    window.location.reload();
   }
 
 }
