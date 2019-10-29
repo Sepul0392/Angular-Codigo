@@ -25,6 +25,7 @@ import { LoginComponent } from "./components/login/login.component"
 import { AuthDService } from './services/auth-d.service';
 import { ContentREAService } from './services/content-rea.service';
 import { CommonModule } from '@angular/common';
+import { FilterContentPipe } from './pipes/filter-content.pipe';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { CommonModule } from '@angular/common';
     BorrarContenidoComponent,
     BusquedaComponent,
     LoginComponent,
+    FilterContentPipe,
   ],
   imports: [
     BrowserModule,

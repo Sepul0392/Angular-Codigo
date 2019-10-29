@@ -16,8 +16,7 @@
                         <!--Barra busqueda-->
                         <label for="inputNombreActividad" class="text-white">Busqueda de Contenido</label>
                         <div class="form-inline">
-                            <input type="text" class="form-control col-md-8" id="inputTextoBusqueda" placeholder="Busqueda por nombre" required
-                                #busquedaNombreCREA="ngModel" [(ngModel)]="ContentREAService.selectedContenidoREA.nombre_CREA" name="inputBusquedaContenido">
+                            <input type="text" class="form-control col-md-8" id="inputTextoBusqueda" placeholder="Busqueda por nombre" [(ngModel)]="nombreCREASelected" name="inputBusquedaContenido">
                             <button class="btn btn-info" value="Buscar" name="Buscar" type="submit">Buscar</button>
                         </div>
                     </div>
@@ -27,19 +26,21 @@
                         <div class="form-group col">
                             <label for="inputMateria" class="text-white">Materia</label>
                             <select [(ngModel)]="materiaSelected" id="inputMateria" name="materia" class="form-control" ngModel required>
-                                <!--<option selected [value]='0'>- Materia -</option>-->
-                                <option *ngFor="let mater of materia" [value]="mater.id_materia">{{mater.nombre_materia}}</option>
+                                <option selected></option>
+                                <option *ngFor="let mater of materia" [value]="mater.nombre_materia">{{mater.nombre_materia}}</option>
                             </select>
                         </div>
                         <div class="form-group col">
                             <label for="inputGrado" class="text-white">Grado</label>
                             <select [(ngModel)]="gradoSelected" id="inputGrado" name="grado" class="form-control" ngModel required>
+                                <option selected></option>
                                 <option *ngFor="let grad of grado" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
                             </select>
                         </div>
                         <div class="form-group col">
                             <label for="inputGrado" class="text-white">Tipo de Contenido</label>
                             <select [(ngModel)]="tipoContenidoSelected" id="inputGrado" name="tipoContenido" class="form-control" ngModel required>
+                                <option selected></option>
                                 <option *ngFor="let tipCon of tipoContenido" [value]="tipCon.id_tipoContenido">{{tipCon.nombre_tipoContenido}}</option>
                             </select>
                         </div>
@@ -49,7 +50,7 @@
                     <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
                         style="width: 95%; height: 450px">
                         <!--Resultado-->
-                        <div class="row-1" *ngFor="let contenidoREA of contenidoVisualizar">
+                        <div class="row-1" *ngFor="let contenidoREA of contenidoVisualizar | filterContent: nombreCREASelected:materiaSelected:gradoSelected:tipoContenidoSelected">
                             <div class="card mb-4 border-0" style="max-width: 1440px;">
                                 <div class="card-footer p-2 bg-primary rounded-top">
                                     <h5 class="card-title">{{contenidoREA.nombre_CREA}}</h5>

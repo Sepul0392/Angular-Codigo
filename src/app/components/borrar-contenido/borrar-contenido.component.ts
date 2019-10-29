@@ -27,6 +27,8 @@ export class BorrarContenidoComponent implements OnInit {
 
   constructor(private ContentREAService: ContentREAService, private router: Router) { }
 
+  //filterContenido = "";
+
   ngOnInit() {
     this.materia = [
       {id_materia:1,nombre_materia:"Matematicas"},
