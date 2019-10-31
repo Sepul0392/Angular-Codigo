@@ -76,6 +76,7 @@ export class BorrarContenidoComponent implements OnInit {
       console.log(res);
       this.ContentREAService.contenidosREA = res as contenidoREAI[];
       this.contenidoVisualizar = res as contenidoREAVisualizarI[];
+      console.log("contenido visualizar inicial:", this.contenidoVisualizar)
       
       for (let i=0; i < this.ContentREAService.contenidosREA.length; i++){
         for (let n=0; n < this.tipoContenido.length; n++){
