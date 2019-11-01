@@ -48,7 +48,7 @@ export class BorrarActividadComponent implements OnInit {
   //consultar todos los ContenidosREA y verificar el nombre de la materia y contenido con sus respectivos ID´s
   getActividades(){
     this.ContentREAService.allContent().subscribe(res =>{
-      console.log(res);
+      //console.log(res);
       this.ContentREAService.contenidosREA = res as contenidoREAI[];
       this.contenidoVisualizar = res as contenidoREAVisualizarI[];
       

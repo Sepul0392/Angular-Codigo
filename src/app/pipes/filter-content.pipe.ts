@@ -7,8 +7,8 @@ export class FilterContentPipe implements PipeTransform {
 
   //transform(value: any, ...args: any[]): any {
   transform(items: any, nombreSearch: string, materiaSearch: string, gradoSearch: number, tipoContenidoSearch: number) {
-    console.log("entradas:", nombreSearch,  materiaSearch, gradoSearch, tipoContenidoSearch);
-    console.log("item:", items);
+    //console.log("entradas:", nombreSearch,  materiaSearch, gradoSearch, tipoContenidoSearch);
+    //console.log("item:", items);
     if (items && items.length) {
       return items.filter(item => {
         if (nombreSearch && item.nombre_CREA.toLowerCase().indexOf(nombreSearch.toLowerCase()) === -1) {

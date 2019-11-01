@@ -51,7 +51,7 @@ export class ModificarActividadComponent implements OnInit {
   //consultar todos los ContenidosREA y verificar el nombre de la materia y contenido con sus respectivos ID´s
   getContenidos(){
     this.ContentREAService.allContent().subscribe(res =>{
-      console.log(res);
+      //console.log(res);
       this.ContentREAService.contenidosREA = res as contenidoREAI[];
       this.contenidoVisualizar = res as contenidoREAVisualizarI[];
       

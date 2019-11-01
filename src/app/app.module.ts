@@ -26,6 +26,9 @@ import { AuthDService } from './services/auth-d.service';
 import { ContentREAService } from './services/content-rea.service';
 import { CommonModule } from '@angular/common';
 import { FilterContentPipe } from './pipes/filter-content.pipe';
+import { FilterCompetenciaPipe } from './pipes/filter-competencia.pipe';
+import { FilterActividadPipe } from './pipes/filter-actividad.pipe';
+import { ActividadService } from './services/actividad.service';
 
 
 @NgModule({
@@ -42,6 +45,8 @@ import { FilterContentPipe } from './pipes/filter-content.pipe';
     BusquedaComponent,
     LoginComponent,
     FilterContentPipe,
+    FilterCompetenciaPipe,
+    FilterActividadPipe,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,7 @@ import { FilterContentPipe } from './pipes/filter-content.pipe';
     FormsModule,
     CommonModule
   ],
-  providers: [AuthDService, ContentREAService],
+  providers: [AuthDService, ContentREAService, ActividadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

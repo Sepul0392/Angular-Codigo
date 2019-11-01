@@ -71,7 +71,7 @@ export class SubirContenidoComponent implements OnInit {
 
   getContenidos(){
     this.ContentREAService.allContent().subscribe(res =>{
-      console.log(res);
+      //console.log(res);
       this.ContentREAService.contenidosREA = res as contenidoREAI[];
     });
   }
