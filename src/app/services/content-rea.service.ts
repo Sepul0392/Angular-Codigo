@@ -30,6 +30,9 @@ export class ContentREAService {
   allContent(){
       return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllcontents`);
   }
+  newAllContents(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadContentREA`);
+  }
 
   /**Modificar Contenido 
   putContenidoREA(contenidoREA: contenidoREAI){
@@ -45,15 +48,24 @@ export class ContentREAService {
   allSubject() {
     return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjects`);
   }
+  newAllSubjects(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadSubjects`);
+  }
 
   //Servicio para llamar todos los grados
   allGrade() {
     return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllGrades`);
   }
+  newAllGrades(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadGrades`);
+  }
 
   //Servicio para llamar todos los tipos de Contenidos
   allType() {
     return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllTypes`);
+  }
+  newAllTypes(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadTypes`);
   }
 
 }
