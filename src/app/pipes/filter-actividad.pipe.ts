@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterActividadPipe implements PipeTransform {
 
   //transform(value: any, ...args: any[]): any {
-    transform(items: any, nombreSearch: string, materiaSearch: number, gradoSearch: number, docenteSearch: number) {
-      //console.log("entradas:", nombreSearch,  materiaSearch, gradoSearch, docenteSearch);
+    transform(items: any, nombreSearch: string, materiaSearch: number, gradoSearch: number, docenteSearch: number, competenciaSearch: number) {
+      console.log("entradas:", nombreSearch,  materiaSearch, gradoSearch, docenteSearch, competenciaSearch);
       //console.log("item:", items);
       if (items && items.length) {
         return items.filter(item => {
@@ -21,6 +21,9 @@ export class FilterActividadPipe implements PipeTransform {
             return false;
           }
           if (docenteSearch && item.id_docente != docenteSearch) {
+            return false;
+          }
+          if (competenciaSearch && item.id_competencia != competenciaSearch) {
             return false;
           }
           return true;

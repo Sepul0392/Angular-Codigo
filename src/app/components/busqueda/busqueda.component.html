@@ -79,7 +79,7 @@
                                                         <div class="form-row pb-3">
                                                             <div class="form-group col">
                                                                 <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA" class="form-control" ngModel required>
-                                                                    <option selected [value]=0></option>
+                                                                    <option selected></option>
                                                                     <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA" [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
                                                                     </option>
                                                                 </select>
@@ -93,7 +93,7 @@
                                                         <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
                                                             style="width: 95%; height: 450px">
                                                             <!--Resultado-->
-                                                            <div class="row-1" *ngFor="let actividad of actividadVisualizar | filterActividad: nombreActividadSelected:materiaSelectedA:gradoSelectedA:docenteSelectedA">
+                                                            <div class="row-1" *ngFor="let actividad of actividadVisualizar | filterActividad: nombreActividadSelected:materiaSelectedA:gradoSelectedA:docenteSelectedA:competenciaSelectedA">
                                                                 <div class="card mb-4 border-0"
                                                                     style="max-width: 1440px;">
                                                                     <div class="card-footer p-2 bg-warning rounded-top">

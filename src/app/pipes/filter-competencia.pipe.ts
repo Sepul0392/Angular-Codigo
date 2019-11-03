@@ -19,14 +19,13 @@ export class FilterCompetenciaPipe implements PipeTransform {
   //transform(value: any, ...args: any[]): any {
     transform(items: any, nombreCSearch: string, materiaCSearch: number, gradoCSearch: number) {
 
-      for(let n=0; n < this.Materia.length; n++)
-      {
-        if(materiaCSearch == this.Materia[n].id_materia)
-        {
-          this.id_areaMateria = this.Materia[n].id_areaMateria;
+      if (this.Materia) {
+        for (let n = 0; n < this.Materia.length; n++) {
+          if (materiaCSearch == this.Materia[n].id_materia) {
+            this.id_areaMateria = this.Materia[n].id_areaMateria;
+          }
         }
       }
-
       //console.log("entradas:", nombreCSearch,  materiaCSearch, gradoCSearch);
       //console.log("id_area", this.id_areaMateria);
       //console.log("item:", items);

@@ -7,8 +7,6 @@ import { GradoI } from '../../models/grado';
 import { TipoContenidoI } from '../../models/tipoContenido';
 import { contenidoREAVisualizarI } from '../../models/contenidoREAVisualizar';
 import { NgForm } from '@angular/forms';
-import { delay } from 'rxjs/operators';
-import { async } from '@angular/core/testing';
 
 
 @Component({
