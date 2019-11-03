@@ -57,7 +57,7 @@
                                                                 <label for="inputMateriaA" class="text-white">Materia</label>
                                                                 <select [(ngModel)]="materiaSelectedA" id="inputMateriaA" name="materiaA" class="form-control" ngModel required>
                                                                     <option selected></option>
-                                                                    <option *ngFor="let mater of materia" [value]="mater.nombre_materia">{{mater.nombre_materia}}</option>
+                                                                    <option *ngFor="let mater of materia" [value]="mater.id_materia">{{mater.nombre_materia}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group col">
@@ -77,14 +77,16 @@
                                                         </div>
                                                         <!--Filtro Competencia-->
                                                         <div class="form-row pb-3">
-                                                            <input type="text" class="form-control col-md-6" id="inputTextoBusquedaCompetencia"
-                                                                    placeholder="Nombre de la Competencia" [(ngModel)]="nombreCompetenciaSelected" name="inputBusquedaCompetencia">
                                                             <div class="form-group col">
-                                                                <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA" class="form-control " ngModel required>
-                                                                    <option selected></option>
-                                                                    <option *ngFor="let compe of competencia" [value]="compe.id_competencia">{{(compe.nombre_competencia)}}</option>
+                                                                <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA" class="form-control" ngModel required>
+                                                                    <option selected [value]=0></option>
+                                                                    <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA" [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
+                                                                    </option>
                                                                 </select>
+                                                                <!--el valor seleccionado es {{competenciaSelectedA}}-->
                                                             </div>
+                                                            <input type="text" class="form-control col-md-6" id="inputTextoBusquedaCompetencia"
+                                                                    placeholder="Buscar Competencia" [(ngModel)]="nombreCompetenciaSelected" name="inputBusquedaCompetencia">
                                                         </div>
                                                         <!--Tabla de Resultados-->
                                                         <label for="inputState" class="text-white">Resultados:</label>
