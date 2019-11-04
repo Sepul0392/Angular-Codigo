@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <!--Contenedor Contenido Pagina-->
 <div class="contenedor py-3">
     
@@ -48,6 +50,7 @@
                     <!--Filtro Competencia-->
                     <div class="form-row pb-3">
                         <div class="form-group col">
+                            <label for="inputDocenteA" class="text-white">Competencia</label>
                             <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA" class="form-control" ngModel required>
                                 <option selected></option>
                                 <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA" [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
@@ -55,8 +58,11 @@
                             </select>
                             <!--el valor seleccionado es {{competenciaSelectedA}}-->
                         </div>
-                        <input type="text" class="form-control col-md-6" id="inputTextoBusquedaCompetencia"
-                                placeholder="Buscar Competencia" [(ngModel)]="nombreCompetenciaSelected" name="inputBusquedaCompetencia">
+                        <div class="form-group col">
+                            <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
+                            <input type="text" class="form-control col-auto" id="inputTextoBusquedaCompetencia" 
+                                placeholder="Ingrese nombre competencia" [(ngModel)]="nombreCompetenciaSelected" name="inputBusquedaCompetencia">
+                        </div>
                     </div>
                     <!--Tabla de Resultados-->
                     <label for="inputState" class="text-white">Resultados:</label>
@@ -80,10 +86,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters"
-                                    data-toggle="modal"
-                                    data-target="#mimodalejemplo">
-                                    <a href="#" class="btn bg-warning">Borrar Actividad</a>
+                                <!--Boton borrar Actividad-->
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
+                                    <a class="btn bg-warning" (click)="saveDataActivity(actividad)">Borrar Contenido</a>
                                 </div>
                             </div>
                         </div>
@@ -113,10 +118,12 @@
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
                 <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteActividad()">Aceptar</button>
                 </div>
             </div>
         </div>
     </div>
 
 </div>
+
+<app-footer></app-footer>

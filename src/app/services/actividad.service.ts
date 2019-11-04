@@ -33,7 +33,7 @@ export class ActividadService {
 
   //Servicio para borrar la Actividad de MongoDB
   deleteActivity(actividad: ActividadI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteActivity/`, actividad)
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteActivity`, actividad)
   }
 
   //Servicio para llamar todas las Competencias en Mongo

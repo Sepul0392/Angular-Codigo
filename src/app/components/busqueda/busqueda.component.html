@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <!--Contenedor Contenido Pagina-->
 <div class="container py-3">
 
@@ -78,6 +80,7 @@
                                                         <!--Filtro Competencia-->
                                                         <div class="form-row pb-3">
                                                             <div class="form-group col">
+                                                                <label for="inputDocenteA" class="text-white">Competencia</label>
                                                                 <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA" class="form-control" ngModel required>
                                                                     <option selected></option>
                                                                     <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA" [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
@@ -85,8 +88,11 @@
                                                                 </select>
                                                                 <!--el valor seleccionado es {{competenciaSelectedA}}-->
                                                             </div>
-                                                            <input type="text" class="form-control col-md-6" id="inputTextoBusquedaCompetencia"
-                                                                    placeholder="Buscar Competencia" [(ngModel)]="nombreCompetenciaSelected" name="inputBusquedaCompetencia">
+                                                            <div class="form-group col">
+                                                                <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
+                                                                <input type="text" class="form-control col-auto" id="inputTextoBusquedaCompetencia"
+                                                                    placeholder="Ingrese nombre competencia" [(ngModel)]="nombreCompetenciaSelected" name="inputBusquedaCompetencia">
+                                                            </div>
                                                         </div>
                                                         <!--Tabla de Resultados-->
                                                         <label for="inputState" class="text-white">Resultados:</label>
@@ -114,7 +120,7 @@
                                                                     <div class="card-footer bg-secondary row justify-content-md-center no-gutters"
                                                                         data-toggle="modal"
                                                                         data-target="#mimodalejemplo">
-                                                                        <a href="#" class="btn bg-warning">Ver</a>
+                                                                        <a class="btn bg-warning" (click)="saveDataActivity(actividad)">Ver</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -216,3 +222,4 @@
 </div>
 <!-- /.container -->
 
+<app-footer></app-footer>
