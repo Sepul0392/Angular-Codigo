@@ -122,7 +122,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--Boton ver Contenido-->
+                                <!--Boton Adjuntar Contenido-->
                                 <div class="card-footer bg-secondary row justify-content-md-center no-gutters" data-toggle="modal"
                                     data-target="#mimodalejemplo">
                                     <a class="btn btn-primary" (click)="saveDataContent(contenidoREA)">Adjuntar</a>
@@ -170,7 +170,7 @@
                                         </ul>
                                     </div>
                                     <div class="tab-content" id="myTabContent">
-                                        <!--Contenido Tabs-->
+                                        <!--Pregunta 1 Tabs-->
                                         <div class="tab-pane fade show active p-3" id="pregunta1" role="tabpanel" aria-labelledby="one-tab">
                                             <div class="form-group">
                                                 <h5 class="py-1 text-center text-dark">Pregunta 1</h5>
@@ -213,113 +213,108 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <br>
-                                            el valor seleccionado es {{respuestaCorrectaSelected1}}
-                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
+                                            <!--el valor seleccionado es {{respuestaCorrectaSelected1}}-->
                                         </div>
+                                        <!--Pregunta 2 Tabs-->
                                         <div class="tab-pane fade p-3" id="pregunta2" role="tabpanel" aria-labelledby="two-tab">
                                             <div class="form-group">
                                                 <h5 class="py-1 text-center text-dark">Pregunta 2</h5>
-                                                <label for="inputDescripcionQuiz" class="text-dark">Escribir pregunta</label>
-                                                <textarea class="form-control" id="inputDescripcionPregunta" rows="3">Pregunta ...</textarea>
+                                                <label for="inputPregunta2" class="text-dark">Escribir pregunta</label>
+                                                <textarea class="form-control" name="pregunta2" id="inputPregunta2" rows="3" required [(ngModel)]="pregunta2"
+                                                    placeholder="Pregunta ..."></textarea>
                                             </div>
-                                            <label for="inputDescripcionQuiz" class="text-dark">Escribir las cuatro posibles respuestas</label>
+                                            <label for="tituloCuatroRespuestas" class="text-dark">Escribir las cuatro posibles respuestas</label>
                                             <div class="form-group row">
-                                                <label for="inputRespuestaA" class="col-sm-2 col-form-label">Respuesta A)</label>
+                                                <label for="inputRespuesta2A" class="col-sm-2 col-form-label">Respuesta A)</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaA" rows="1">respuesta ...</textarea>
+                                                    <textarea class="form-control" name="respuesta21" id="inputRespuesta2A" rows="1" required
+                                                        [(ngModel)]="respuesta21" placeholder="respuesta ..."></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputRespuestaB" class="col-sm-2 col-form-label">Respuesta B)</label>
+                                                <label for="inputRespuesta2B" class="col-sm-2 col-form-label">Respuesta B)</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaB" rows="1">respuesta ...</textarea>
+                                                    <textarea class="form-control" name="respuesta22" id="inputRespuesta2B" rows="1" required
+                                                        [(ngModel)]="respuesta22" placeholder="respuesta ..."></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputRespuestaC" class="col-sm-2 col-form-label">Respuesta C)</label>
+                                                <label for="inputRespuesta2C" class="col-sm-2 col-form-label">Respuesta C)</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaC" rows="1">respuesta ...</textarea>
+                                                    <textarea class="form-control" name="respuesta23" id="inputRespuesta2C" rows="1" required
+                                                        [(ngModel)]="respuesta23" placeholder="respuesta ..."></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputRespuestaD" class="col-sm-2 col-form-label">Respuesta D)</label>
+                                                <label for="inputRespuesta2D" class="col-sm-2 col-form-label">Respuesta D)</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaD" rows="1">respuesta ...</textarea>
+                                                    <textarea class="form-control" name="respuesta24" id="inputRespuesta2D" rows="1" required
+                                                        [(ngModel)]="respuesta24" placeholder="respuesta ..."></textarea>
                                                 </div>
                                             </div>
-                                            <label for="inputDescripcionQuiz" class="text-dark">Seleccione la respuesta correcta</label>
+                                            <label for="inputSelectPreguntaCorrecta" class="text-dark">Seleccione la respuesta correcta</label>
                                             <div class="form-grup row-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">
-                                                    <label class="form-check-label" for="inlineRadioA">A</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
-                                                    <label class="form-check-label" for="inlineRadioB">B</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="3">
-                                                    <label class="form-check-label" for="inlineRadioC">C</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="4">
-                                                    <label class="form-check-label" for="inlineRadioD">D</label>
+                                                <div class="form-group col-2">
+                                                    <select [(ngModel)]="respuestaCorrectaSelected2" name="respuestaCorrecta2" id="inputMateria"
+                                                        class="form-control">
+                                                        <option [value]=1>A</option>
+                                                        <option [value]=2>B</option>
+                                                        <option [value]=3>C</option>
+                                                        <option [value]=4>D</option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
+                                            <!--el valor seleccionado es {{respuestaCorrectaSelected1}}-->
                                         </div>
                                         <div class="tab-pane fade p-3" id="pregunta3" role="tabpanel" aria-labelledby="three-tab">
                                             <div class="form-group">
                                                 <h5 class="py-1 text-center text-dark">Pregunta 3</h5>
-                                                <label for="inputDescripcionQuiz" class="text-dark">Escribir pregunta</label>
-                                                <textarea class="form-control" id="inputDescripcionPregunta" rows="3">Pregunta ...</textarea>
+                                                <label for="inputPregunta3" class="text-dark">Escribir pregunta</label>
+                                                <textarea class="form-control" name="pregunta3" id="inputPregunta3" rows="3" required [(ngModel)]="pregunta3"
+                                                    placeholder="Pregunta ..."></textarea>
                                             </div>
-                                            <label for="inputDescripcionQuiz" class="text-dark">Escribir las cuatro posibles respuestas</label>
+                                            <label for="tituloCuatroRespuestas" class="text-dark">Escribir las cuatro posibles respuestas</label>
                                             <div class="form-group row">
-                                                <label for="inputRespuestaA" class="col-sm-2 col-form-label">Respuesta A)</label>
+                                                <label for="inputRespuesta3A" class="col-sm-2 col-form-label">Respuesta A)</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaA" rows="1">respuesta ...</textarea>
+                                                    <textarea class="form-control" name="respuesta31" id="inputRespuesta3A" rows="1" required
+                                                        [(ngModel)]="respuesta31" placeholder="respuesta ..."></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputRespuestaB" class="col-sm-2 col-form-label">Respuesta B)</label>
+                                                <label for="inputRespuesta3B" class="col-sm-2 col-form-label">Respuesta B)</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaB" rows="1">respuesta ...</textarea>
+                                                    <textarea class="form-control" name="respuesta32" id="inputRespuesta3B" rows="1" required
+                                                        [(ngModel)]="respuesta32" placeholder="respuesta ..."></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputRespuestaC" class="col-sm-2 col-form-label">Respuesta C)</label>
+                                                <label for="inputRespuesta3C" class="col-sm-2 col-form-label">Respuesta C)</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaC" rows="1">respuesta ...</textarea>
+                                                    <textarea class="form-control" name="respuesta33" id="inputRespuesta3C" rows="1" required
+                                                        [(ngModel)]="respuesta33" placeholder="respuesta ..."></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="inputRespuestaD" class="col-sm-2 col-form-label">Respuesta D)</label>
+                                                <label for="inputRespuesta3D" class="col-sm-2 col-form-label">Respuesta D)</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaD" rows="1">respuesta ...</textarea>
+                                                    <textarea class="form-control" name="respuesta34" id="inputRespuesta3D" rows="1" required
+                                                        [(ngModel)]="respuesta34" placeholder="respuesta ..."></textarea>
                                                 </div>
                                             </div>
-                                            <label for="inputDescripcionQuiz" class="text-dark">Seleccione la respuesta correcta</label>
+                                            <label for="inputSelectPreguntaCorrecta" class="text-dark">Seleccione la respuesta correcta</label>
                                             <div class="form-grup row-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">
-                                                    <label class="form-check-label" for="inlineRadioA">A</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
-                                                    <label class="form-check-label" for="inlineRadioB">B</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="3">
-                                                    <label class="form-check-label" for="inlineRadioC">C</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="4">
-                                                    <label class="form-check-label" for="inlineRadioD">D</label>
+                                                <div class="form-group col-2">
+                                                    <select [(ngModel)]="respuestaCorrectaSelected3" name="respuestaCorrecta3" id="inputMateria"
+                                                        class="form-control">
+                                                        <option [value]=1>A</option>
+                                                        <option [value]=2>B</option>
+                                                        <option [value]=3>C</option>
+                                                        <option [value]=4>D</option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
+                                            <!--el valor seleccionado es {{respuestaCorrectaSelected1}}-->
                                         </div>
                                     </div>
                                 </div>
