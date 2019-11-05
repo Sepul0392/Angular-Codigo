@@ -15,7 +15,6 @@ export class InicioProfesoresComponent implements OnInit {
 
   ngOnInit() {
     this.nombreApellidoDocente = this.AuthDService.getnombreApellidoDocente();
-    console.log
   }
 
 }
