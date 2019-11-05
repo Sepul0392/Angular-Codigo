@@ -1,4 +1,7 @@
+import { AuthDService } from '../../services/auth-d.service';
+import { JwtResponseI } from '../../models/jwt-response';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-inicio-profesores',
@@ -6,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioProfesoresComponent implements OnInit {
 
-  constructor() { }
+  public nombreApellidoDocente: string;
+
+  constructor(private AuthDService: AuthDService) { }
 
   ngOnInit() {
+    this.nombreApellidoDocente = this.AuthDService.getnombreApellidoDocente();
+    console.log
   }
 
 }
