@@ -118,6 +118,7 @@ export class CrearActividadComponent implements OnInit {
     });
   }
 
+  //Consultar todas las actividades en Mongo
   getActividades(){
     this.ActividadService.allActivities().subscribe(res =>{
       //console.log(res);
@@ -125,6 +126,7 @@ export class CrearActividadComponent implements OnInit {
     });
   }
 
+  //Crear Actividad en Mongo
   onCrearActividad(form: NgForm): void {
     
     //Generar ID
@@ -250,10 +252,12 @@ export class CrearActividadComponent implements OnInit {
     console.log("contenido guardado:", this.contenidoToSave);
   }
 
+  //Resetear pagina
   resetPage(){
     window.location.reload();
   }
 
+  //resetear Formulario
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();

@@ -36,6 +36,8 @@ export class BorrarActividadComponent implements OnInit {
   constructor(private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+
     this.getOptions();
     this.getActividades();
   }
@@ -105,9 +107,8 @@ export class BorrarActividadComponent implements OnInit {
     this.ActividadService.deleteActivity(this.actividadToSave).subscribe(res =>{
       console.log(res);
     });
-    window.location.reload();
+    this.getActividades();
+    //window.location.reload();
   }
-
-
 
 }

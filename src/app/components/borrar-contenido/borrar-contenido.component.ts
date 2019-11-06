@@ -32,6 +32,8 @@ export class BorrarContenidoComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+
     this.getOptions();
     this.getContenidos();
   }
@@ -98,7 +100,8 @@ export class BorrarContenidoComponent implements OnInit {
     this.ContentREAService.deleteContentREA(this.contenidoToSave).subscribe(res =>{
       console.log(res);
     });
-    window.location.reload();
+    this.getContenidos();
+    //window.location.reload();
   }
 
 }

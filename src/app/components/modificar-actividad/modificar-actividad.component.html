@@ -13,49 +13,56 @@
         <!--Buscar Actividad-->
         <div>
             <div class="contenedor py-3">
-                <form>
+                <form #frmBuscarActividad="ngForm" (ngSubmit)="saveDataActividad(frmBuscarActvidad)">
                     <div class="form-group">
                         <!--Barra busqueda-->
+                        <br>
                         <label for="inputNombreActividad" class="text-white">Busqueda de Actividad</label>
                         <div class="form-inline">
-                            <input type="text" class="form-control col-md-8" id="inputTextoBusqueda"
-                                placeholder="Busqueda por nombre">
-                            <button class="btn btn-info" value="Buscar" name="Buscar" type="submit">Buscar</button>
+                            <input type="text" class="form-control col-md-8" id="inputTextoBusquedaActividad"
+                                placeholder="Busqueda por nombre de la Actividad" [(ngModel)]="nombreActividadSelected" name="inputBusquedaActividad">
                         </div>
                     </div>
                     <label for="inputState" class="text-white">Filtros:</label>
                     <div class="form-row pb-3">
                         <!--Filtros-->
                         <div class="form-group col">
-                            <select id="inputMateria" class="form-control">
-                                <option selected>- Materia -</option>
-                                <option>1...</option>
-                                <option>2...</option>
-                                <option>3...</option>
+                            <label for="inputMateriaA" class="text-white">Materia</label>
+                            <select [(ngModel)]="materiaSelectedA" id="inputMateriaA" name="materiaA" class="form-control" ngModel required>
+                                <option selected></option>
+                                <option *ngFor="let mater of materia" [value]="mater.id_materia">{{mater.nombre_materia}}</option>
                             </select>
                         </div>
                         <div class="form-group col">
-                            <select id="inputGrado" class="form-control">
-                                <option selected>- Grado -</option>
-                                <option>Decimo</option>
-                                <option>Once</option>
+                            <label for="inputGradoA" class="text-white">Grado</label>
+                            <select [(ngModel)]="gradoSelectedA" id="inputGradoA" name="gradoA" class="form-control" ngModel required>
+                                <option selected></option>
+                                <option *ngFor="let grad of grado" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
                             </select>
                         </div>
                         <div class="form-group col">
-                            <select id="inputCompetencia" class="form-control">
-                                <option selected>- Competencia -</option>
-                                <option>1...</option>
-                                <option>2...</option>
-                                <option>3...</option>
+                            <label for="inputDocenteA" class="text-white">Profesor</label>
+                            <select [(ngModel)]="docenteSelectedA" id="inputDocenteA" name="DocenteA" class="form-control" ngModel required>
+                                <option selected></option>
+                                <option *ngFor="let docen of docente" [value]="docen.id_docente">{{(docen.nombre_docente+" "+docen.apellido_docente)}}</option>
                             </select>
                         </div>
+                    </div>
+                    <!--Filtro Competencia-->
+                    <div class="form-row pb-3">
                         <div class="form-group col">
-                            <select id="inputProfesor" class="form-control">
-                                <option selected>- Profesor -</option>
-                                <option>1...</option>
-                                <option>2...</option>
-                                <option>3...</option>
+                            <label for="inputDocenteA" class="text-white">Competencia</label>
+                            <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA" class="form-control" ngModel required>
+                                <option selected></option>
+                                <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA" [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
+                                </option>
                             </select>
+                            <!--el valor seleccionado es {{competenciaSelectedA}}-->
+                        </div>
+                        <div class="form-group col">
+                            <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
+                            <input type="text" class="form-control col-auto" id="inputTextoBusquedaCompetencia"
+                                placeholder="Ingrese nombre competencia" [(ngModel)]="nombreCompetenciaSelected" name="inputBusquedaCompetencia">
                         </div>
                     </div>
                     <!--Tabla de Resultados-->
@@ -63,83 +70,28 @@
                     <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
                         style="width: 95%; height: 450px">
                         <!--Resultado-->
-                        <div class="row-1">
-                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                        <div class="row-1" *ngFor="let actividad of actividadVisualizar | filterActividad: nombreActividadSelected:materiaSelectedA:gradoSelectedA:docenteSelectedA:competenciaSelectedA">
+                            <div class="card mb-4 border-0"
+                                style="max-width: 1440px;">
                                 <div class="card-footer p-2 bg-warning rounded-top">
-                                    <h5 class="card-title">Nombre Actividad</h5>
+                                    <h5 class="card-title">{{actividad.titulo_actividad}}</h5>
                                 </div>
                                 <div class="row no-gutters border border-top-0 border-secondary">
-                                    <div class="col-md-10" style="max-width: 840px;">
+                                    <div class="col-md-10"
+                                        style="max-width: 840px;">
                                         <div class="card-body p-2">
-                                            <p class="card-text ">Descripcion: This is a wider card with supporting text
-                                                below as a
-                                                natural lead-in to
-                                                additional content.
-                                                This content is a little bit longer.</p>
-                                            <p class="card-text"><small class="text-muted">Materia</small></p>
-                                            <p class="card-text"><small class="text-muted">Grado</small></p>
-                                            <p class="card-text"><small class="text-muted">Competencia</small></p>
-                                            <p class="card-text"><small class="text-muted">Profesor</small></p>
+                                            <p class="card-text ">Descripcion: {{actividad.descripcion_actividad}}.</p>
+                                            <p class="card-text"><small class="text-muted">Materia: {{actividad.materia}}</small></p>
+                                            <p class="card-text"><small class="text-muted">Grado: {{actividad.id_grado}}</small></p>
+                                            <p class="card-text"><small class="text-muted">Competencia: {{actividad.competencia}}</small></p>
+                                            <p class="card-text"><small class="text-muted">Profesor: {{actividad.docente}}</small></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer bg-secondary row justify-content-md-center no-gutters"
-                                    data-toggle="modal" data-target="#mimodalejemplo">
-                                    <a href="#" class="btn bg-warning">Seleccionar Actividad</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Resultado-->
-                        <div class="row-1">
-                            <div class="card mb-4 border-0" style="max-width: 1440px;">
-                                <div class="card-footer p-2 bg-warning rounded-top">
-                                    <h5 class="card-title">Nombre Actividad</h5>
-                                </div>
-                                <div class="row no-gutters border border-top-0 border-secondary">
-                                    <div class="col-md-10" style="max-width: 840px;">
-                                        <div class="card-body p-2">
-                                            <p class="card-text ">Descripcion: This is a wider card with supporting text
-                                                below as a
-                                                natural lead-in to
-                                                additional content.
-                                                This content is a little bit longer.</p>
-                                            <p class="card-text"><small class="text-muted">Materia</small></p>
-                                            <p class="card-text"><small class="text-muted">Grado</small></p>
-                                            <p class="card-text"><small class="text-muted">Competencia</small></p>
-                                            <p class="card-text"><small class="text-muted">Profesor</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters"
-                                    data-toggle="modal" data-target="#mimodalejemplo">
-                                    <a href="#" class="btn bg-warning">Seleccionar Actividad</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Resultado-->
-                        <div class="row-1">
-                            <div class="card mb-4 border-0" style="max-width: 1440px;">
-                                <div class="card-footer p-2 bg-warning rounded-top">
-                                    <h5 class="card-title">Nombre Actividad</h5>
-                                </div>
-                                <div class="row no-gutters border border-top-0 border-secondary">
-                                    <div class="col-md-10" style="max-width: 840px;">
-                                        <div class="card-body p-2">
-                                            <p class="card-text ">Descripcion: This is a wider card with supporting text
-                                                below as a
-                                                natural lead-in to
-                                                additional content.
-                                                This content is a little bit longer.</p>
-                                            <p class="card-text"><small class="text-muted">Materia</small></p>
-                                            <p class="card-text"><small class="text-muted">Grado</small></p>
-                                            <p class="card-text"><small class="text-muted">Competencia</small></p>
-                                            <p class="card-text"><small class="text-muted">Profesor</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters"
-                                    data-toggle="modal" data-target="#mimodalejemplo">
-                                    <a href="#" class="btn bg-warning">Seleccionar Actividad</a>
+                                    data-toggle="modal"
+                                    data-target="#mimodalejemplo">
+                                    <a class="btn bg-warning" (click)="saveDataActivity(actividad)">Seleccionar Actividad</a>
                                 </div>
                             </div>
                         </div>

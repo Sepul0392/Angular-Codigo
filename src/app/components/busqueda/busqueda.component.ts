@@ -47,6 +47,8 @@ export class BusquedaComponent implements OnInit {
    }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+
     this.getOptions();
     this.getContenidos();
     this.getActividades();

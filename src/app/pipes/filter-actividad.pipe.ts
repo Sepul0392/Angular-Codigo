@@ -7,7 +7,7 @@ export class FilterActividadPipe implements PipeTransform {
 
   //transform(value: any, ...args: any[]): any {
     transform(items: any, nombreSearch: string, materiaSearch: number, gradoSearch: number, docenteSearch: number, competenciaSearch: number) {
-      console.log("entradas:", nombreSearch,  materiaSearch, gradoSearch, docenteSearch, competenciaSearch);
+      //console.log("entradas:", nombreSearch,  materiaSearch, gradoSearch, docenteSearch, competenciaSearch);
       //console.log("item:", items);
       if (items && items.length) {
         return items.filter(item => {
