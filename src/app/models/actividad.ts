@@ -3,7 +3,7 @@ export class ActividadI {
     constructor(id_actividad = 0, id_colegio = 0, id_docente = 0, id_materia = 0, id_grado = 0, id_competencia = 0, titulo_actividad = '', 
                 descripcion_actividad = '',id_contenidoREA = 0, video = 0, urlvideo = '', lectura = 0, urllectura = '', html = 0, urlhtml = '', descripcion_test = '',
                 Q1 = '', A11 = '', A12 = '', A13 = '', A14 = '', CA1 = 0, Q2 = '', A21 = '', A22 = '', A23 = '', A24 = '', CA2 = 0,
-                Q3 = '', A31 = '', A32 = '', A33 = '', A34 = '', CA3 = 0){
+                Q3 = '', A31 = '', A32 = '', A33 = '', A34 = '', CA3 = 0, audio = 0, urlaudio = ''){
                     this.id_actividad = id_actividad;
                     this.id_colegio = id_colegio;
                     this.id_docente = id_docente;
@@ -15,8 +15,10 @@ export class ActividadI {
                     this.id_contenidoREA = id_contenidoREA;
                     this.video = video;
                     this.urlvideo = urlvideo;
-                    this.lectura = lectura;
-                    this.urllectura = urllectura;
+                    this.documento = lectura;
+                    this.urldocumento = urllectura;
+                    this.audio = audio;
+                    this.urlaudio = urlaudio;
                     this.html = html;
                     this.urlhtml = urlhtml;
                     this.descripcion_test = descripcion_test;
@@ -51,8 +53,10 @@ export class ActividadI {
     id_contenidoREA: number;
     video: number;
     urlvideo: string;
-    lectura: number;
-    urllectura: string;
+    documento: number;
+    urldocumento: string;
+    audio: number;
+    urlaudio: string;
     html: number;
     urlhtml: string;
     descripcion_test: string;

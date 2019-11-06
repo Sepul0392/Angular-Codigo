@@ -44,7 +44,7 @@ export class AuthDService {
         if(res){
           //this.saveData(res.dataDocente.id_docente, res.dataDocente)
           console.log('login res:', res);
-          this.saveSession(res.dataDocente.id_colegio, res.dataDocente.nombre_docente, res.dataDocente.apellido_docente,  
+          this.saveSession(res.dataDocente.id_docente, res.dataDocente.nombre_docente, res.dataDocente.apellido_docente,  
                            res.dataDocente.accessToken, res.dataDocente.expiresIn, res.dataDocente.nombre_usuario);
         }
       })
@@ -96,11 +96,8 @@ export class AuthDService {
   }
 
   getIdDocente(): number {
-    if(!this.id_docenteAuth)
-    {
-      this.id_docenteAuth = this.localStorageService.getItem("ID_DOCENTE");
-    }
-    return this.id_docenteAuth;
+    var id_docenteAuthString = this.localStorageService.getItem("ID_DOCENTE");
+    return parseInt(id_docenteAuthString, 20);
   }
 
   getNombreUsuario(): string {

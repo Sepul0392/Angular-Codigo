@@ -30,6 +30,8 @@ export class SubirContenidoComponent implements OnInit {
   constructor(private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+    
     this.getOptions();
     /*this.materia = [
       {id_materia:1,nombre_materia:"Matematicas",id_colegio:0,url_imagen:""},
@@ -90,59 +92,59 @@ export class SubirContenidoComponent implements OnInit {
     console.log('tipoContenido seleccionado', this.tipoContenidoSelected);
     */
 
-    const nombre_CREA:any = form.value.nombre_CREA;
-    const descripcion_CREA:any = form.value.descripcion_CREA;
-
     /*para subir multiples archivos*/
     let formData = new FormData();
-    for (let i=0; i < this.uploadedFiles.length; i++){
-      formData.append("uploads[]",this.uploadedFiles[i], this.uploadedFiles[i].name)
+    for (let i = 0; i < this.uploadedFiles.length; i++) {
+      formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name)
     }
-    
+
     this.ContentREAService.uploadFile(formData).subscribe((res) => {
       console.log('url-res', res);
-      this.urlSelected =res;
+      this.urlSelected = res;
       console.log('urlFinal', this.urlSelected.url);
 
-      //Generar ID
-      this.getContenidos();
-      console.log('Contenidos',  this.ContentREAService.contenidosREA);
-      for(let n=0; n < this.ContentREAService.contenidosREA.length; n++){
-        for (let i = 0; i < this.ContentREAService.contenidosREA.length; i++) {
-          console.log('n=', n, 'id_CREA=', this.ContentREAService.contenidosREA[i].id_CREA);
-          if (n == this.ContentREAService.contenidosREA[i].id_CREA) {
-            this.newID = n+1;
-            this.temp = 0;
-            i = this.ContentREAService.contenidosREA.length;
+      this.ContentREAService.allContent().subscribe(res => {
+        //console.log(res);
+        this.ContentREAService.contenidosREA = res as contenidoREAI[];
+
+        //Generar ID
+        //console.log('Contenidos',  this.ContentREAService.contenidosREA);
+        for (let n = 0; n < this.ContentREAService.contenidosREA.length; n++) {
+          for (let i = 0; i < this.ContentREAService.contenidosREA.length; i++) {
+            //console.log('n=', n, 'id_CREA=', this.ContentREAService.contenidosREA[i].id_CREA);
+            if (n == this.ContentREAService.contenidosREA[i].id_CREA) {
+              this.newID = n + 1;
+              this.temp = 0;
+              i = this.ContentREAService.contenidosREA.length;
+            }
+            else {
+              this.newID = n;
+              this.temp = 1;
+            }
           }
-          else {
-            this.newID = n;
-            this.temp = 1;
+          if (this.temp == 1) {
+            n = this.ContentREAService.contenidosREA.length;
           }
         }
-        if(this.temp == 1)
-        {
-          n = this.ContentREAService.contenidosREA.length;
+
+        const newContenidoREA = {
+          //id_CREA: Math.floor((Math.random() * 100) + 1),
+          id_CREA: this.newID,
+          tipo_CREA: this.tipoContenidoSelected,
+          id_materia: this.materiaSelected,
+          id_grado: this.gradoSelected,
+          nombre_CREA: form.value.nombre_CREA,
+          urlrepositorio: this.urlSelected.url,
+          descripcion_CREA: form.value.descripcion_CREA
         }
-      }
 
-      const newContenidoREA = {
-        //id_CREA: Math.floor((Math.random() * 100) + 1),
-        id_CREA: this.newID,
-        tipo_CREA: this.tipoContenidoSelected,
-        id_materia: this.materiaSelected,
-        id_grado: this.gradoSelected,
-        nombre_CREA: nombre_CREA,
-        urlrepositorio: this.urlSelected.url,
-        descripcion_CREA: descripcion_CREA
-      }
+        console.log('datosContenido', newContenidoREA);
 
-      console.log('datosContenido', newContenidoREA);
-
-      this.ContentREAService.createContentREA(newContenidoREA).subscribe(res => {
-      //this.router.navigateByUrl('/inicioProfesores')
-      this.resetForm(form);
-      })
+        this.ContentREAService.createContentREA(newContenidoREA).subscribe(res => {
+        //this.router.navigateByUrl('/inicioProfesores')
+        this.resetForm(form);
+        })
+      });
     })
   }
 
@@ -153,6 +155,7 @@ export class SubirContenidoComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
+      window.scrollTo(0, 0);
       //this.ContentREAService.selectedContenidoREA = new contenidoREAI();
     }
   }

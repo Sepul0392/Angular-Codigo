@@ -9,8 +9,8 @@ import { contenidoREAVisualizarI } from '../../models/contenidoREAVisualizar';
 import { CompetenciaI } from '../../models/competencia';
 import { ActividadI } from '../../models/actividad';
 import { DocenteI } from '../../models/docente';
-import { ActividadVisualizaI } from '../../models/actividadVisualizar';
 import { ActividadService } from '../../services/actividad.service';
+import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -31,24 +31,40 @@ export class CrearActividadComponent implements OnInit {
   tipoContenidoSelected:number;
   contenidoVisualizar:contenidoREAVisualizarI[];
 
-  //Elementos de Busqueda de Actividad
+  //Elementos de Creacion de Actividad
   actividadToSave:ActividadI;
   actividad:ActividadI[];
   docente: DocenteI[];
   competencia:CompetenciaI[];
-  gradoSelecteA:number;
+  gradoSelectedA:number;
   materiaSelectedA:number;
   docenteSelectedA:number;
   competenciaSelectedA:number;
   respuestaCorrectaSelected:number;
+  newID: number;
+  temp: number;
 
-  //Elementos de Creacion de Actividad
+  id_docenteAuth:number;
+  videoOpt:number;
+  urlvideoOpt:string;
+  documentoOpt:number;
+  urldocumentoOpt:string;
+  audioOpt:number;
+  urlaudioOpt:string;
+  htmlOpt:number;
+  urlhtmlOpt:string;
+  respuestaCorrectaSelected1:number;
+  respuestaCorrectaSelected2:number;
+  respuestaCorrectaSelected3:number;
 
-  constructor(private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
+  constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+
     this.getOptions();
     this.getContenidos();
+    this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
   }
 
   //Obtener los datos de los Options
@@ -102,14 +118,147 @@ export class CrearActividadComponent implements OnInit {
     });
   }
 
-  onCrearActivida(form: NgForm): void {
+  getActividades(){
+    this.ActividadService.allActivities().subscribe(res =>{
+      //console.log(res);
+      this.ActividadService.actividades = res as ActividadI[];
+    });
+  }
 
+  onCrearActividad(form: NgForm): void {
+    
+    //Generar ID
+    this.ActividadService.allActivities().subscribe(res =>{
+      //console.log(res);
+      this.ActividadService.actividades = res as ActividadI[];
+      console.log('Actividades', this.ActividadService.actividades);
+
+      for (let n = 0; n < this.ActividadService.actividades.length; n++) {
+        for (let i = 0; i < this.ActividadService.actividades.length; i++) {
+          //console.log('n=', n, 'id_CREA=', this.ActividadService.actividades[i].id_actividad);
+          if (n == this.ActividadService.actividades[i].id_actividad) {
+            this.newID = n + 1;
+            this.temp = 0;
+            i = this.ActividadService.actividades.length;
+          }
+          else {
+            this.newID = n;
+            this.temp = 1;
+          }
+        }
+        if (this.temp == 1) {
+          n = this.ActividadService.actividades.length;
+        }
+      }
+
+      if(this.contenidoToSave.tipo_CREA == 1){
+        this.videoOpt = 1;
+        this.urlvideoOpt = this.contenidoToSave.urlrepositorio;
+        this.documentoOpt = 0;
+        this.urldocumentoOpt = "";
+        this.audioOpt = 0;
+        this.urlaudioOpt = "";
+        this.htmlOpt = 0;
+        this.urlhtmlOpt = "";
+      }
+      if(this.contenidoToSave.tipo_CREA == 2){
+        this.videoOpt = 0;
+        this.urlvideoOpt = "";
+        this.documentoOpt = 1;
+        this.urldocumentoOpt = this.contenidoToSave.urlrepositorio;
+        this.audioOpt = 0;
+        this.urlaudioOpt = "";
+        this.htmlOpt = 0;
+        this.urlhtmlOpt = "";
+      }
+      if(this.contenidoToSave.tipo_CREA == 3){
+        this.videoOpt = 0;
+        this.urlvideoOpt = "";
+        this.documentoOpt = 0;
+        this.urldocumentoOpt = "";
+        this.audioOpt = 1;
+        this.urlaudioOpt = this.contenidoToSave.urlrepositorio;
+        this.htmlOpt = 0;
+        this.urlhtmlOpt = "";
+      }
+      if(this.contenidoToSave.tipo_CREA == 4){
+        this.videoOpt = 0;
+        this.urlvideoOpt = "";
+        this.documentoOpt = 0;
+        this.urldocumentoOpt = "";
+        this.audioOpt = 0;
+        this.urlaudioOpt = "";
+        this.htmlOpt = 1;
+        this.urlhtmlOpt = this.contenidoToSave.urlrepositorio;
+      }
+
+      //console.log("prueba:", form.value.nombre_actividad);
+
+      const newActividad = {
+        //id_CREA: Math.floor((Math.random() * 100) + 1),
+        id_actividad: this.newID,
+        id_colegio: 0,
+        id_docente: this.id_docenteAuth,
+        id_materia: this.materiaSelectedA,
+        id_grado: this.gradoSelectedA,
+        id_competencia: this.competenciaSelectedA,
+        titulo_actividad: form.value.nombre_actividad,
+        descripcion_actividad: form.value.descripcion_actividad,
+        id_contenidoREA: this.contenidoToSave.id_CREA,
+        video: this.videoOpt,
+        urlvideo: this.urlvideoOpt,
+        documento: this.documentoOpt,
+        urldocumento: this.urldocumentoOpt,
+        audio: this.audioOpt,
+        urlaudio: this.urlaudioOpt,
+        html: this.htmlOpt,
+        urlhtml: this.urlhtmlOpt,
+        descripcion_test: form.value.descripcion_quiz,
+        Q1: form.value.preguntaQ1,
+        A11: form.value.respuesta11,
+        A12: form.value.respuesta12,
+        A13: form.value.respuesta13,
+        A14: form.value.respuesta14,
+        CA1: this.respuestaCorrectaSelected1,
+        Q2: form.value.preguntaQ2,
+        A21: form.value.respuesta21,
+        A22: form.value.respuesta22,
+        A23: form.value.respuesta23,
+        A24: form.value.respuesta24,
+        CA2: this.respuestaCorrectaSelected2,
+        Q3: form.value.preguntaQ3,
+        A31: form.value.respuesta31,
+        A32: form.value.respuesta32,
+        A33: form.value.respuesta33,
+        A34: form.value.respuesta34,
+        CA3: this.respuestaCorrectaSelected3
+      }
+
+      console.log('datosActividad', newActividad);
+
+      this.ActividadService.createActivity(newActividad).subscribe(res => {
+        //window.location.reload();
+        this.resetForm(form);
+      })
+    });
+    
   }
 
   //Almacenar info temporal de un ContenidoREA
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
     console.log("contenido guardado:", this.contenidoToSave);
+  }
+
+  resetPage(){
+    window.location.reload();
+  }
+
+  resetForm(form?: NgForm) {
+    if (form) {
+      form.reset();
+      window.scrollTo(0, 0);
+    }
   }
   
 }
