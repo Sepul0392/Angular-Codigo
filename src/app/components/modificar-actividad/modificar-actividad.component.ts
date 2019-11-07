@@ -13,6 +13,7 @@ import { ActividadVisualizaI } from '../../models/actividadVisualizar';
 import { ActividadService } from '../../services/actividad.service';
 import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-modificar-actividad',
@@ -36,23 +37,19 @@ export class ModificarActividadComponent implements OnInit {
   //Elementos de Busqueda de Actividad
   actividadToSave:ActividadI;
   actividad:ActividadI[];
-  docente: DocenteI[];
+  docente:DocenteI[];
   competencia:CompetenciaI[];
   gradoSelecteA:number;
   materiaSelectedA:number;
   docenteSelectedA:number;
   competenciaSelectedA:number;
   actividadVisualizar:ActividadVisualizaI[];
-  newID: number;
-  temp: number;
+  newID:number;
+  temp:number;
 
   id_docenteAuth:number;
-  nombreREAActual:string="";
-  descripcionREAActual:string="";
-  materiaREAActual:string="";
-  gradoREAActual:number=0;
-  tipoContenidoREAActual:string="";
   contenidoAct:contenidoREAVisualizarI;
+  verificationSaveContent:boolean;
 
   constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
@@ -64,6 +61,7 @@ export class ModificarActividadComponent implements OnInit {
     this.getActividades();
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
     this.contenidoAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""}
+    this.verificationSaveContent = false;
   }
 
   //Obtener los datos de los Options
@@ -111,7 +109,7 @@ export class ModificarActividadComponent implements OnInit {
               }
             }
           }
-          console.log("contenido visualizar final:", this.contenidoVisualizar)
+          //console.log("contenido visualizar final:", this.contenidoVisualizar)
         });
       });
     });
@@ -148,14 +146,157 @@ export class ModificarActividadComponent implements OnInit {
               }
             }
           }
-          console.log("actividades visualizar:", this.actividadVisualizar)
+          //console.log("actividades visualizar final:", this.actividadVisualizar)
         });
       });
     });
   }
 
-  getContenidoEspecifico(){
+  //Modificar Actividad en Mongo
+  onModificarActividad(form: NgForm){
+    //cambiar informacion de contenido en la Actividad al identificar que se a seleccionado un nuevo contenido
+    if(this.verificationSaveContent == true){
+      if(this.contenidoToSave.tipo_CREA == 1){
+        this.actividadToSave.video = 1;
+        this.actividadToSave.urlvideo = this.contenidoToSave.urlrepositorio;
+        this.actividadToSave.documento = 0;
+        this.actividadToSave.urldocumento = "";
+        this.actividadToSave.audio = 0;
+        this.actividadToSave.urlaudio = "";
+        this.actividadToSave.html = 0;
+        this.actividadToSave.urlhtml = "";
+      }
+      if(this.contenidoToSave.tipo_CREA == 2){
+        this.actividadToSave.video = 0;
+        this.actividadToSave.urlvideo = "";
+        this.actividadToSave.documento = 1;
+        this.actividadToSave.urldocumento = this.contenidoToSave.urlrepositorio;
+        this.actividadToSave.audio = 0;
+        this.actividadToSave.urlaudio = "";
+        this.actividadToSave.html = 0;
+        this.actividadToSave.urlhtml = "";
+      }
+      if(this.contenidoToSave.tipo_CREA == 3){
+        this.actividadToSave.video = 0;
+        this.actividadToSave.urlvideo = "";
+        this.actividadToSave.documento = 0;
+        this.actividadToSave.urldocumento = "";
+        this.actividadToSave.audio = 1;
+        this.actividadToSave.urlaudio = this.contenidoToSave.urlrepositorio;
+        this.actividadToSave.html = 0;
+        this.actividadToSave.urlhtml = "";
+      }
+      if(this.contenidoToSave.tipo_CREA == 4){
+        this.actividadToSave.video = 0;
+        this.actividadToSave.urlvideo = "";
+        this.actividadToSave.documento = 0;
+        this.actividadToSave.urldocumento = "";
+        this.actividadToSave.audio = 0;
+        this.actividadToSave.urlaudio = "";
+        this.actividadToSave.html = 1;
+        this.actividadToSave.urlhtml = this.contenidoToSave.urlrepositorio;
+      }
+      this.actividadToSave.id_contenidoREA = this.contenidoToSave.id_CREA;
+    }
+    
+    //Verificar si la Actividad es del docente que la esta modificando
+    if(this.id_docenteAuth == this.actividadToSave.id_docente){
 
+      this.actividadToSave.id_materia = form.value.id_materia;
+      this.actividadToSave.id_grado = form.value.id_grado;
+      this.actividadToSave.id_competencia = form.value.id_competencia;
+      this.actividadToSave.titulo_actividad = form.value.titulo_actividad;
+      this.actividadToSave.descripcion_actividad = form.value.descripcion_actividad;
+      this.actividadToSave.descripcion_test = form.value.descripcion_test;
+      this.actividadToSave.Q1 = form.value.Q1;
+      this.actividadToSave.A11 = form.value.A11;
+      this.actividadToSave.A12 = form.value.A12;
+      this.actividadToSave.A13 = form.value.A13;
+      this.actividadToSave.A14 = form.value.A14;
+      this.actividadToSave.CA1 = form.value.CA1;
+      this.actividadToSave.Q2 = form.value.Q2;
+      this.actividadToSave.A21 = form.value.A21;
+      this.actividadToSave.A22 = form.value.A22;
+      this.actividadToSave.A23 = form.value.A23;
+      this.actividadToSave.A24 = form.value.A24;
+      this.actividadToSave.CA2 = form.value.CA2;
+      this.actividadToSave.Q3 = form.value.Q3;
+      this.actividadToSave.A31 = form.value.A31;
+      this.actividadToSave.A32 = form.value.A32;
+      this.actividadToSave.A33 = form.value.A33;
+      this.actividadToSave.A34 = form.value.A34;
+      this.actividadToSave.CA3 = form.value.CA3;
+
+      console.log('datosActividadModificada', this.actividadToSave);
+
+      this.ActividadService.uploadActivity(this.actividadToSave).subscribe(res => {
+        //window.location.reload();
+        console.log(res);
+      })
+      this.resetForm(form);
+    }
+    else {
+
+      //Generar ID
+      this.ActividadService.allActivities().subscribe(res => {
+        //console.log(res);
+        this.ActividadService.actividades = res as ActividadI[];
+        //console.log('Actividades', this.ActividadService.actividades);
+
+        for (let n = 0; n < this.ActividadService.actividades.length; n++) {
+          for (let i = 0; i < this.ActividadService.actividades.length; i++) {
+            //console.log('n=', n, 'id_CREA=', this.ActividadService.actividades[i].id_actividad);
+            if (n == this.ActividadService.actividades[i].id_actividad) {
+              this.newID = n + 1;
+              this.temp = 0;
+              i = this.ActividadService.actividades.length;
+            }
+            else {
+              this.newID = n;
+              this.temp = 1;
+            }
+          }
+          if (this.temp == 1) {
+            n = this.ActividadService.actividades.length;
+          }
+        }
+
+        this.actividadToSave.id_actividad = this.newID;
+        this.actividadToSave.id_docente = this.id_docenteAuth;
+        this.actividadToSave.id_materia = form.value.id_materia;
+        this.actividadToSave.id_grado = form.value.id_grado;
+        this.actividadToSave.id_competencia = form.value.id_competencia;
+        this.actividadToSave.titulo_actividad = form.value.titulo_actividad;
+        this.actividadToSave.descripcion_actividad = form.value.descripcion_actividad;
+        this.actividadToSave.descripcion_test = form.value.descripcion_test;
+        this.actividadToSave.Q1 = form.value.Q1;
+        this.actividadToSave.A11 = form.value.A11;
+        this.actividadToSave.A12 = form.value.A12;
+        this.actividadToSave.A13 = form.value.A13;
+        this.actividadToSave.A14 = form.value.A14;
+        this.actividadToSave.CA1 = form.value.CA1;
+        this.actividadToSave.Q2 = form.value.Q2;
+        this.actividadToSave.A21 = form.value.A21;
+        this.actividadToSave.A22 = form.value.A22;
+        this.actividadToSave.A23 = form.value.A23;
+        this.actividadToSave.A24 = form.value.A24;
+        this.actividadToSave.CA2 = form.value.CA2;
+        this.actividadToSave.Q3 = form.value.Q3;
+        this.actividadToSave.A31 = form.value.A31;
+        this.actividadToSave.A32 = form.value.A32;
+        this.actividadToSave.A33 = form.value.A33;
+        this.actividadToSave.A34 = form.value.A34;
+        this.actividadToSave.CA3 = form.value.CA3;
+
+        console.log('datosActividadModificada', this.actividadToSave);
+
+        this.ActividadService.createActivity(this.actividadToSave).subscribe(res => {
+          //window.location.reload();
+          console.log("Creada nueva Actividad");
+        })
+        this.resetForm(form);
+      });
+    }
   }
 
   //Imprimir datos de la Actividad seleccionanda en el Form 
@@ -187,6 +328,7 @@ export class ModificarActividadComponent implements OnInit {
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
     console.log("contenido guardado:", this.contenidoToSave);
+    this.verificationSaveContent = true;
   }
   //Almacenar info temporal de una Actividad
   saveDataActivity(actividad){
@@ -204,6 +346,11 @@ export class ModificarActividadComponent implements OnInit {
     if (form) {
       form.reset();
       window.scrollTo(0, 0);
+      this.verificationSaveContent = false;
+      this.contenidoToSave = new contenidoREAI();
+      this.actividadToSave = new ActividadI();
+      this.ActividadService.selectedActividad = new ActividadI();
+      this.getActividades();
     }
   }
 

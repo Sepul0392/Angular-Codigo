@@ -243,7 +243,6 @@ export class CrearActividadComponent implements OnInit {
         this.resetForm(form);
       })
     });
-    
   }
 
   //Almacenar info temporal de un ContenidoREA

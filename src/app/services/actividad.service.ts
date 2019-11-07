@@ -28,7 +28,7 @@ export class ActividadService {
 
   //Servicio para modificar datos de la Actividad en MongoDB 
   uploadActivity(actividad: ActividadI){
-      return this.httpClient.put(`${this.AUTHD_SERVER}/uploadActivity`, actividad);
+      return this.httpClient.post(`${this.AUTHD_SERVER}/uploadActivity`, actividad);
   }
 
   //Servicio para borrar la Actividad de MongoDB

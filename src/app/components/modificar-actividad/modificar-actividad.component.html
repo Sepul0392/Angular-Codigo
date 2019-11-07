@@ -147,7 +147,7 @@
                                     class="form-control" ngModel required [(ngModel)]="ActividadService.selectedActividad.id_competencia">
                                     <option selected></option>
                                     <option
-                                        *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA"
+                                        *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelectedAct:ActividadService.selectedActividad.id_materia:ActividadService.selectedActividad.id_grado"
                                         [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
                                     </option>
                                 </select>
@@ -156,7 +156,7 @@
                             <div class="form-group col">
                                 <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
                                 <input type="text" class="form-control col-auto" id="inputTextoBusquedaCompetencia"
-                                    placeholder="Ingrese nombre competencia" [(ngModel)]="nombreCompetenciaSelectedA"
+                                    placeholder="Ingrese nombre competencia" [(ngModel)]="nombreCompetenciaSelectedAct"
                                     name="nombreCompetenciaSelectedA">
                             </div>
                         </div>
@@ -168,7 +168,7 @@
                             <div class="contenedor py-3">
                                 <!--Contenido Actual-->
                                 <label for="inputState" class="text-white">Contenido actual de la Actividad</label>
-                                <div class="col container p-4 my bg-light" style="width: 95%; height: 95%">
+                                <div class="col container p-4 my bg-light table-wrapper-scroll-y my-custom-scrollbar" style="width: 95%; height: 95%">
                                     <!-- -->
                                     <div class="row-1" >
                                         <div class="card mb-4 border-0" style="max-width: 1440px;">
@@ -227,8 +227,7 @@
                                                 class="form-control" ngModel required>
                                                 <option selected></option>
                                                 <option *ngFor="let tipCon of tipoContenido" [value]="tipCon.id_tipoContenido">
-                                                    {{tipCon.nombre_tipoContenido}}
-                                                </option>
+                                                    {{tipCon.nombre_tipoContenido}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -502,10 +501,8 @@
                         <br>
         
                         <!--Boton Crear Contenido-->
-                        <div class="bg-secondary row pb-4 justify-content-md-center no-gutters" data-toggle="modal"
-                            data-target="#mimodalejemplo">
-                            <button class="btn bg-warning px-5 py-4 font-weight-bold"
-                                (click)="onModificarActividad(frmModificarActividad)">Subir Actividad</button>
+                        <div class="bg-secondary row pb-4 justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
+                            <button class="btn bg-warning px-5 py-4 font-weight-bold" (click)="onModificarActividad(frmModificarActividad)">Modificar Actividad</button>
                         </div>
         
                     </form>
