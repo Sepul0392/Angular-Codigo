@@ -7,6 +7,7 @@
     <div class="container m-auto pb-2 bg-warning rounded-top">
         <h1 class="mt-5 py-4 text-center m ">Modificar Actividad</h1>
     </div>
+
     <!--Contenedor Formulario-->
     <div class="container container pt-1 bg-secondary rounded-bottom">
 
@@ -88,430 +89,489 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters"
-                                    data-toggle="modal"
-                                    data-target="#mimodalejemplo">
-                                    <a class="btn bg-warning" (click)="saveDataActivity(actividad)">Seleccionar Actividad</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <hr class="style1">
-        
-        <!--Informacion de la Actividad-->
-        <div>
-            <h3 class="py-3 text-center text-white">Informacion de la Actividad</h3>
-            <div class="contenedor py-3">
-                <form>
-                    <div class="form-group">
-                        <label for="inputNombreActividad" class="text-white ">Nombre de la Actividad</label>
-                        <input type="text" class="form-control col-md-8" id="inputNombreActividad"
-                            placeholder="Nombre Actividad">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDescripcionActividad" class="text-white">Descripcion de la Actividad</label>
-                        <textarea class="form-control" id="inputDescripcionActividad" rows="4">Descripcion ...</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputCompetencia" class="text-white">Competencia a la que pertenece</label>
-                        <select id="inputCompetencia" class="form-control col-md-8">
-                            <option selected>- Competencia -</option>
-                            <option>1...</option>
-                            <option>2...</option>
-                            <option>3...</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputMateria" class="text-white">Materia</label>
-                            <select id="inputMateria" class="form-control">
-                                <option selected>- Materia -</option>
-                                <option>1...</option>
-                                <option>2...</option>
-                                <option>3...</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputGrado" class="text-white">Grado</label>
-                            <select id="inputGrado" class="form-control">
-                                <option selected>- Grado -</option>
-                                <option>Decimo</option>
-                                <option>Once</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-                <hr class="style1">
-            </div>
-        </div>
-        
-        <!--Contenido de la Actividad-->
-        <div>
-            <h3 class="py-3 text-center text-white">Contenido de la Actividad</h3>
-            <div class="contenedor py-3">
-                <form>
-                    <!--Contenido Actual-->
-                    <label for="inputState" class="text-white">Contenido actual de la Actividad</label>
-                    <div class="col container p-4 my bg-light" style="width: 95%; height: 95%">
-                        <!--Resultado-->
-                        <div class="row-1">
-                            <div class="card mb-4 border-0" style="max-width: 1440px;">
-                                <div class="card-footer p-2 bg-primary rounded-top">
-                                    <h5 class="card-title">Nombre Contenido</h5>
-                                </div>
-                                <div class="row no-gutters border border-top-0 border-secondary">
-                                    <div class="col-md-10" style="max-width: 840px;">
-                                        <div class="card-body p-2">
-                                            <p class="card-text ">Descripcion: This is a wider card with supporting text below
-                                                as a
-                                                natural lead-in to
-                                                additional content.
-                                                This content is a little bit longer.</p>
-                                            <p class="card-text"><small class="text-muted">Materia</small></p>
-                                            <p class="card-text"><small class="text-muted">Grado</small></p>
-                                            <p class="card-text"><small class="text-muted">Tipo de contenido</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="form-group"> 
-                        <!--Barra busqueda-->
-                        <label for="inputNombreActividad" class="text-white">Busqueda de Contenido</label>
-                        <div class="form-inline">
-                            <input type="text" class="form-control col-md-8" id="inputTextoBusqueda" placeholder="Busqueda por nombre"
-                                [(ngModel)]="nombreCREASelected" name="inputBusquedaContenido">
-                        </div>
-                    </div>
-                    <label for="inputState" class="text-white">Filtros:</label>
-                    <div class="form-row pb-3">
-                        <!--Filtros-->
-                        <div class="form-group col">
-                            <label for="inputMateria" class="text-white">Materia</label>
-                            <select [(ngModel)]="materiaSelected" id="inputMateria" name="materia" class="form-control" ngModel required>
-                                <option selected></option>
-                                <option *ngFor="let mater of materia" [value]="mater.nombre_materia">{{mater.nombre_materia}}</option>
-                            </select>
-                        </div>
-                        <div class="form-group col">
-                            <label for="inputGrado" class="text-white">Grado</label>
-                            <select [(ngModel)]="gradoSelected" id="inputGrado" name="grado" class="form-control" ngModel required>
-                                <option selected></option>
-                                <option *ngFor="let grad of grado" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
-                            </select>
-                        </div>
-                        <div class="form-group col">
-                            <label for="inputGrado" class="text-white">Tipo de Contenido</label>
-                            <select [(ngModel)]="tipoContenidoSelected" id="inputGrado" name="tipoContenido" class="form-control" ngModel required>
-                                <option selected></option>
-                                <option *ngFor="let tipCon of tipoContenido" [value]="tipCon.id_tipoContenido">{{tipCon.nombre_tipoContenido}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--Tabla de Resultados-->
-                    <label for="inputState" class="text-white">Resultados:</label>
-                    <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
-                        style="width: 95%; height: 450px">
-                        <!--Resultado-->
-                        <div class="row-1"
-                            *ngFor="let contenidoREA of contenidoVisualizar | filterContent: nombreCREASelected:materiaSelected:gradoSelected:tipoContenidoSelected">
-                            <div class="card mb-4 border-0" style="max-width: 1440px;">
-                                <div class="card-footer p-2 bg-primary rounded-top">
-                                    <h5 class="card-title">{{contenidoREA.nombre_CREA}}</h5>
-                                </div>
-                                <div class="row no-gutters border border-top-0 border-secondary">
-                                    <div class="col-md-10" style="max-width: 840px;">
-                                        <div class="card-body p-2">
-                                            <p class="card-text ">Descripcion: {{contenidoREA.descripcion_CREA}}.</p>
-                                            <p class="card-text"><small class="text-muted">Materia: {{contenidoREA.materia}}</small></p>
-                                            <p class="card-text"><small class="text-muted">Grado: {{contenidoREA.id_grado}}</small></p>
-                                            <p class="card-text"><small class="text-muted">Tipo de contenido: {{contenidoREA.nombre_tipo_CREA}}</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Boton ver Contenido-->
                                 <div class="card-footer bg-secondary row justify-content-md-center no-gutters" data-toggle="modal"
-                                    data-target="#mimodalejemplo">
-                                    <a class="btn btn-primary" (click)="saveDataContent(contenidoREA)">Cambiar</a>
+                                    data-target="#mimodalejemplo2">
+                                    <a class="btn bg-warning" (click)="getActividadinForm(actividad)">Seleccionar Actividad</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
-                <hr class="style1">
             </div>
-        </div>
-        
-        <!--Creacion del Quiz-->
-        <div>
-            <h3 class="py-3 text-center text-white">Quiz del Contenido</h3>
-            <div class="contenedor py-3">
-                <form>
-                    <div class="form-group">
-                        <label for="inputDescripcionQuiz" class="text-white">Descripcion del Quiz</label>
-                        <textarea class="form-control" id="inputDescripcionQuiz" rows="4">Descripcion ...</textarea>
-                    </div>
-                    <div class="container">
-                        <!--Tabs-->
-                        <div>
-                            <label for="inputDescripcionQuiz" class="text-white">Preguntas del Quiz</label>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="card mt-3 tab-card">
-                                    <div class="card-header tab-card-header">
-                                        <!--Opcion Tab-->
-                                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                                            <li class="nav-item col">
-                                                <a class="nav-link text-center" id="one-tab" data-toggle="tab" href="#pregunta1"
-                                                    role="tab" aria-controls="pregunta1" aria-selected="true">Pregunta 1</a>
-                                            </li>
-                                            <li class="nav-item col">
-                                                <a class="nav-link text-center" id="two-tab" data-toggle="tab" href="#pregunta2"
-                                                    role="tab" aria-controls="pregunta2" aria-selected="false">Pregunta 2</a>
-                                            </li>
-                                            <li class="nav-item col">
-                                                <a class="nav-link text-center" id="three-tab" data-toggle="tab"
-                                                    href="#pregunta3" role="tab" aria-controls="pregunta3"
-                                                    aria-selected="false">Pregunta 3</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-content" id="myTabContent">
-                                        <!--Contenido Tabs-->
-                                        <div class="tab-pane fade show active p-3" id="pregunta1" role="tabpanel"
-                                            aria-labelledby="one-tab">
-                                            <div class="form-group">
-                                                <h5 class="py-1 text-center text-dark">Pregunta 1</h5>
-                                                <label for="inputDescripcionQuiz" class="text-dark">Escribir pregunta</label>
-                                                <textarea class="form-control" id="inputDescripcionPregunta"
-                                                    rows="3">Pregunta ...</textarea>
-                                            </div>
-                                            <label for="inputDescripcionQuiz" class="text-dark">Escribir las cuatro posibles
-                                                respuestas</label>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaA" class="col-sm-2 col-form-label">Respuesta
-                                                    A)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaA"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaB" class="col-sm-2 col-form-label">Respuesta
-                                                    B)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaB"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaC" class="col-sm-2 col-form-label">Respuesta
-                                                    C)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaC"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaD" class="col-sm-2 col-form-label">Respuesta
-                                                    D)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaD"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <label for="inputDescripcionQuiz" class="text-dark">Seleccione la respuesta
-                                                correcta</label>
-                                            <div class="form-grup row-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio1" value="1">
-                                                    <label class="form-check-label" for="inlineRadioA">A</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio2" value="2">
-                                                    <label class="form-check-label" for="inlineRadioB">B</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio1" value="3">
-                                                    <label class="form-check-label" for="inlineRadioC">C</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio2" value="4">
-                                                    <label class="form-check-label" for="inlineRadioD">D</label>
-                                                </div>
-                                            </div>
-                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="pregunta2" role="tabpanel" aria-labelledby="two-tab">
-                                            <div class="form-group">
-                                                <h5 class="py-1 text-center text-dark">Pregunta 2</h5>
-                                                <label for="inputDescripcionQuiz" class="text-dark">Escribir pregunta</label>
-                                                <textarea class="form-control" id="inputDescripcionPregunta"
-                                                    rows="3">Pregunta ...</textarea>
-                                            </div>
-                                            <label for="inputDescripcionQuiz" class="text-dark">Escribir las cuatro posibles
-                                                respuestas</label>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaA" class="col-sm-2 col-form-label">Respuesta
-                                                    A)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaA"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaB" class="col-sm-2 col-form-label">Respuesta
-                                                    B)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaB"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaC" class="col-sm-2 col-form-label">Respuesta
-                                                    C)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaC"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaD" class="col-sm-2 col-form-label">Respuesta
-                                                    D)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaD"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <label for="inputDescripcionQuiz" class="text-dark">Seleccione la respuesta
-                                                correcta</label>
-                                            <div class="form-grup row-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio1" value="1">
-                                                    <label class="form-check-label" for="inlineRadioA">A</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio2" value="2">
-                                                    <label class="form-check-label" for="inlineRadioB">B</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio1" value="3">
-                                                    <label class="form-check-label" for="inlineRadioC">C</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio2" value="4">
-                                                    <label class="form-check-label" for="inlineRadioD">D</label>
-                                                </div>
-                                            </div>
-                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="pregunta3" role="tabpanel"
-                                            aria-labelledby="three-tab">
-                                            <div class="form-group">
-                                                <h5 class="py-1 text-center text-dark">Pregunta 3</h5>
-                                                <label for="inputDescripcionQuiz" class="text-dark">Escribir pregunta</label>
-                                                <textarea class="form-control" id="inputDescripcionPregunta"
-                                                    rows="3">Pregunta ...</textarea>
-                                            </div>
-                                            <label for="inputDescripcionQuiz" class="text-dark">Escribir las cuatro posibles
-                                                respuestas</label>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaA" class="col-sm-2 col-form-label">Respuesta
-                                                    A)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaA"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaB" class="col-sm-2 col-form-label">Respuesta
-                                                    B)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaB"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaC" class="col-sm-2 col-form-label">Respuesta
-                                                    C)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaC"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="inputRespuestaD" class="col-sm-2 col-form-label">Respuesta
-                                                    D)</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputRespuestaD"
-                                                        rows="1">respuesta ...</textarea>
-                                                </div>
-                                            </div>
-                                            <label for="inputDescripcionQuiz" class="text-dark">Seleccione la respuesta
-                                                correcta</label>
-                                            <div class="form-grup row-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio1" value="1">
-                                                    <label class="form-check-label" for="inlineRadioA">A</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio2" value="2">
-                                                    <label class="form-check-label" for="inlineRadioB">B</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio1" value="3">
-                                                    <label class="form-check-label" for="inlineRadioC">C</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                        id="inlineRadio2" value="4">
-                                                    <label class="form-check-label" for="inlineRadioD">D</label>
-                                                </div>
-                                            </div>
-                                            <!--<a href="#" class="btn btn-primary">Guardar</a>-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <hr class="style1">
-            </div>
-        </div>
-        
-        <!--Boton Crear Actividad-->
-        <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
-            <a href="#" class="btn bg-warning px-5 py-4 font-weight-bold">Subir Actividad</a>
         </div>
         <hr class="style1">
+        
+        <!--Modificar Actividad-->
+        <!--Informacion de la Actividad-->
+        <div class="container container pt-1 bg-secondary rounded-bottom">
+        
+            <!--Actividad-->
+            <div>
+                <h3 class="py-3 text-center text-white">Informacion de la Actividad</h3>
+                <div class="contenedor py-3">
+                    <form #frmModificarActividad="ngForm">
+                        <div class="form-group">
+                            <label for="inputNombreActividad" class="text-white ">Nombre de la Actividad</label>
+                            <input type="text" name="titulo_actividad" class="form-control col-md-8" id="inputNombreActividad"
+                                placeholder="Nombre Actividad" required [(ngModel)]="ActividadService.selectedActividad.titulo_actividad">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDescripcionActividad" class="text-white">Descripcion de la Actividad</label>
+                            <textarea class="form-control" name="descripcion_actividad" id="inputDescripcionActividad" rows="4"
+                                 placeholder="Descripcion ..." required [(ngModel)]="ActividadService.selectedActividad.descripcion_actividad"></textarea>
+                        </div>
+                        <!-- Selectores -->
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputMateriaActividad" class="text-white">Materia</label>
+                                <select name="id_materia" id="inputMateriaActividad"
+                                    class="form-control" ngModel required [(ngModel)]="ActividadService.selectedActividad.id_materia">
+                                    <!--<option selected [value]='0'>- Materia -</option>-->
+                                    <option *ngFor="let mater of materia" [value]="mater.id_materia">{{mater.nombre_materia}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputGradoActivdad" class="text-white">Grado</label>
+                                <select name="id_grado" id="inputGradoActivdad"
+                                    class="form-control" ngModel required [(ngModel)]="ActividadService.selectedActividad.id_grado">
+                                    <option *ngFor="let grad of grado" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--Filtro Competencia-->
+                        <div class="form-row pb-3">
+                            <div class="form-group col">
+                                <label for="inputDocenteA" class="text-white">Competencia</label>
+                                <select id="inputCompetenciaA" name="id_competencia"
+                                    class="form-control" ngModel required [(ngModel)]="ActividadService.selectedActividad.id_competencia">
+                                    <option selected></option>
+                                    <option
+                                        *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA"
+                                        [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
+                                    </option>
+                                </select>
+                                <!--el valor seleccionado es {{competenciaSelectedA}}-->
+                            </div>
+                            <div class="form-group col">
+                                <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
+                                <input type="text" class="form-control col-auto" id="inputTextoBusquedaCompetencia"
+                                    placeholder="Ingrese nombre competencia" [(ngModel)]="nombreCompetenciaSelectedA"
+                                    name="nombreCompetenciaSelectedA">
+                            </div>
+                        </div>
+                        <hr class="style1">
+        
+                        <!--Contenido de la Actividad-->
+                        <div>
+                            <h3 class="py-3 text-center text-white">Contenido de la Actividad</h3>
+                            <div class="contenedor py-3">
+                                <!--Contenido Actual-->
+                                <label for="inputState" class="text-white">Contenido actual de la Actividad</label>
+                                <div class="col container p-4 my bg-light" style="width: 95%; height: 95%">
+                                    <!-- -->
+                                    <div class="row-1" >
+                                        <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                            <div class="card-footer p-2 bg-primary rounded-top">
+                                                <h5 class="card-title">{{contenidoAct.nombre_CREA}}</h5>
+                                            </div>
+                                            <div class="row no-gutters border border-top-0 border-secondary">
+                                                <div class="col-md-10" style="max-width: 840px;">
+                                                    <div class="card-body p-2">
+                                                        <p class="card-text ">Descripcion: {{contenidoAct.descripcion_CREA}}</p>
+                                                        <p class="card-text"><small class="text-muted">Materia: {{contenidoAct.materia}}</small></p>
+                                                        <p class="card-text"><small class="text-muted">Grado: {{contenidoAct.id_grado}}</small></p>
+                                                        <p class="card-text"><small class="text-muted">Tipo de contenido: {{contenidoAct.nombre_tipo_CREA}}</small></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <form #frmBuscarContenido="ngForm" (ngSubmit)="onBuscarContenido(frmBorrarContenido)">
+                                    <div class="form-group">
+                                        <!--Barra busqueda-->
+                                        <label for="inputNombreActividad" class="text-white">Busqueda de Contenido</label>
+                                        <div class="form-inline">
+                                            <input type="text" class="form-control col-md-8" id="inputTextoBusqueda"
+                                                placeholder="Busqueda por nombre" [(ngModel)]="nombreCREASelected"
+                                                name="inputBusquedaContenido">
+                                        </div>
+                                    </div>
+                                    <!--Filtros-->
+                                    <label for="inputState" class="text-white">Filtros:</label>
+                                    <div class="form-row pb-3">
+                                        <div class="form-group col">
+                                            <label for="inputMateria" class="text-white">Materia</label>
+                                            <select [(ngModel)]="materiaSelected" id="inputMateria" name="materia"
+                                                class="form-control" ngModel required>
+                                                <option selected></option>
+                                                <option *ngFor="let mater of materia" [value]="mater.nombre_materia">
+                                                    {{mater.nombre_materia}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="inputGrado" class="text-white">Grado</label>
+                                            <select [(ngModel)]="gradoSelected" id="inputGrado" name="grado"
+                                                class="form-control" ngModel required>
+                                                <option selected></option>
+                                                <option *ngFor="let grad of grado" [value]="grad.id_grado">{{grad.nombre_grado}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="inputGrado" class="text-white">Tipo de Contenido</label>
+                                            <select [(ngModel)]="tipoContenidoSelected" id="inputGrado" name="tipoContenido"
+                                                class="form-control" ngModel required>
+                                                <option selected></option>
+                                                <option *ngFor="let tipCon of tipoContenido" [value]="tipCon.id_tipoContenido">
+                                                    {{tipCon.nombre_tipoContenido}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+        
+                                    <!--Tabla de Resultados-->
+                                    <label for="inputState" class="text-white">Resultados:</label>
+                                    <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
+                                        style="width: 95%; height: 450px">
+                                        <!--Resultado-->
+                                        <div class="row-1"
+                                            *ngFor="let contenidoREA of contenidoVisualizar | filterContent: nombreCREASelected:materiaSelected:gradoSelected:tipoContenidoSelected">
+                                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                                <div class="card-footer p-2 bg-primary rounded-top">
+                                                    <h5 class="card-title">{{contenidoREA.nombre_CREA}}</h5>
+                                                </div>
+                                                <div class="row no-gutters border border-top-0 border-secondary">
+                                                    <div class="col-md-10" style="max-width: 840px;">
+                                                        <div class="card-body p-2">
+                                                            <p class="card-text ">Descripcion:
+                                                                {{contenidoREA.descripcion_CREA}}.</p>
+                                                            <p class="card-text"><small class="text-muted">Materia:
+                                                                    {{contenidoREA.materia}}</small></p>
+                                                            <p class="card-text"><small class="text-muted">Grado:
+                                                                    {{contenidoREA.id_grado}}</small></p>
+                                                            <p class="card-text"><small class="text-muted">Tipo de contenido:
+                                                                    {{contenidoREA.nombre_tipo_CREA}}</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--Boton Adjuntar Contenido-->
+                                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters"
+                                                    data-toggle="modal" data-target="#mimodalejemplo2">
+                                                    <a class="btn btn-primary"
+                                                        (click)="saveDataContent(contenidoREA)">Adjuntar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <hr class="style1">
+        
+                        <!--Creacion del Quiz-->
+                        <div>
+                            <h3 class="py-3 text-center text-white">Quiz del Contenido</h3>
+                            <div class="contenedor py-3">
+                                <div class="form-group">
+                                    <label for="inputDescripcionQuiz" class="text-white">Descripcion del Quiz</label>
+                                    <textarea class="form-control" name="descripcion_test" id="inputDescripcionQuiz" rows="4"
+                                        placeholder="Descripcion ..." required [(ngModel)]="ActividadService.selectedActividad.descripcion_test"></textarea>
+                                </div>
+                                <div class="container">
+                                    <!--Tabs-->
+                                    <div>
+                                        <label for="tituloPreguntasQuiz" class="text-white">Preguntas del Quiz</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="card mt-3 tab-card">
+                                                <div class="card-header tab-card-header">
+                                                    <!--Opcion Tab-->
+                                                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                                                        <li class="nav-item col">
+                                                            <a class="nav-link text-center" id="one-tab" data-toggle="tab"
+                                                                href="#pregunta1" role="tab" aria-controls="pregunta1"
+                                                                aria-selected="true">Pregunta 1</a>
+                                                        </li>
+                                                        <li class="nav-item col">
+                                                            <a class="nav-link text-center" id="two-tab" data-toggle="tab"
+                                                                href="#pregunta2" role="tab" aria-controls="pregunta2"
+                                                                aria-selected="false">Pregunta 2</a>
+                                                        </li>
+                                                        <li class="nav-item col">
+                                                            <a class="nav-link text-center" id="three-tab" data-toggle="tab"
+                                                                href="#pregunta3" role="tab" aria-controls="pregunta3"
+                                                                aria-selected="false">Pregunta 3</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="tab-content" id="myTabContent">
+                                                    <!--Pregunta 1 Tabs-->
+                                                    <div class="tab-pane fade show active p-3" id="pregunta1" role="tabpanel"
+                                                        aria-labelledby="one-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 1</h5>
+                                                            <label for="inputPregunta1" class="text-dark">Escribir
+                                                                pregunta</label>
+                                                            <textarea class="form-control" name="Q1" id="inputPregunta1"
+                                                                rows="3" required [(ngModel)]="ActividadService.selectedActividad.Q1"
+                                                                placeholder="Pregunta ..."></textarea>
+                                                        </div>
+                                                        <label for="tituloCuatroRespuestas" class="text-dark">Escribir las cuatro posibles respuestas</label>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta1A"
+                                                                class="col-sm-2 col-form-label">Respuesta A)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A11" id="inputRespuesta1A" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A11"
+                                                                    placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta1B"
+                                                                class="col-sm-2 col-form-label">Respuesta B)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A12" id="inputRespuesta1B" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A12"
+                                                                    placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta1C"
+                                                                class="col-sm-2 col-form-label">Respuesta C)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A13" id="inputRespuesta1C" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A13"
+                                                                    placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta1D"
+                                                                class="col-sm-2 col-form-label">Respuesta D)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A14" id="inputRespuesta1D" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A14"
+                                                                    placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <label for="inputSelectPreguntaCorrecta" class="text-dark">Seleccione la respuesta correcta</label>
+                                                        <div class="form-grup row-1">
+                                                            <div class="form-group col-2">
+                                                                <select [(ngModel)]="ActividadService.selectedActividad.CA1" name="CA1"
+                                                                    id="inputRespuestaCorrecta1" class="form-control" ngModel required>
+                                                                    <option [value]=1>A</option>
+                                                                    <option [value]=2>B</option>
+                                                                    <option [value]=3>C</option>
+                                                                    <option [value]=4>D</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!--el valor seleccionado es {{respuestaCorrectaSelected1}}-->
+                                                    </div>
+                                                    <!--Pregunta 2 Tabs-->
+                                                    <div class="tab-pane fade p-3" id="pregunta2" role="tabpanel"
+                                                        aria-labelledby="two-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 2</h5>
+                                                            <label for="inputPregunta2" class="text-dark">Escribir
+                                                                pregunta</label>
+                                                            <textarea class="form-control" name="Q2" id="inputPregunta2"
+                                                                rows="3" required [(ngModel)]="ActividadService.selectedActividad.Q2"
+                                                                placeholder="Pregunta ..."></textarea>
+                                                        </div>
+                                                        <label for="tituloCuatroRespuestas" class="text-dark">Escribir las
+                                                            cuatro posibles
+                                                            respuestas</label>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta2A"
+                                                                class="col-sm-2 col-form-label">Respuesta A)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A21" id="inputRespuesta2A" rows="1" required 
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A21"
+                                                                    placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta2B"
+                                                                class="col-sm-2 col-form-label">Respuesta B)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A22" id="inputRespuesta2B" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A22"
+                                                                    placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta2C"
+                                                                class="col-sm-2 col-form-label">Respuesta C)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A23" id="inputRespuesta2C" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A23"
+                                                                    placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta2D"
+                                                                class="col-sm-2 col-form-label">Respuesta D)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A24" id="inputRespuesta2D" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A24"
+                                                                    placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <label for="inputSelectPreguntaCorrecta" class="text-dark">Seleccione la respuesta correcta</label>
+                                                        <div class="form-grup row-1">
+                                                            <div class="form-group col-2">
+                                                                <select [(ngModel)]="ActividadService.selectedActividad.CA2" name="CA2" 
+                                                                    id="inputRespuestaCorrecta2" class="form-control" ngModel required>
+                                                                    <option [value]=1>A</option>
+                                                                    <option [value]=2>B</option>
+                                                                    <option [value]=3>C</option>
+                                                                    <option [value]=4>D</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!--el valor seleccionado es {{respuestaCorrectaSelected1}}-->
+                                                    </div>
+                                                    <div class="tab-pane fade p-3" id="pregunta3" role="tabpanel"
+                                                        aria-labelledby="three-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 3</h5>
+                                                            <label for="inputPregunta3" class="text-dark">Escribir pregunta</label>
+                                                            <textarea class="form-control" name="Q3" id="inputPregunta3"  rows="3" required 
+                                                                [(ngModel)]="ActividadService.selectedActividad.Q3" placeholder="Pregunta ..."></textarea>
+                                                        </div>
+                                                        <label for="tituloCuatroRespuestas" class="text-dark">Escribir las cuatro posibles respuestas</label>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta3A"
+                                                                class="col-sm-2 col-form-label">Respuesta A)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A31" id="inputRespuesta3A" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A31" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta3B"
+                                                                class="col-sm-2 col-form-label">Respuesta B)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A32" id="inputRespuesta3B" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A32" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta3C"
+                                                                class="col-sm-2 col-form-label">Respuesta C)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A33" id="inputRespuesta3C" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A33" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuesta3D"
+                                                                class="col-sm-2 col-form-label">Respuesta D)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="A34" id="inputRespuesta3D" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.A34" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <label for="inputSelectPreguntaCorrecta" class="text-dark">Seleccione la respuesta correcta</label>
+                                                        <div class="form-grup row-1">
+                                                            <div class="form-group col-2">
+                                                                <select [(ngModel)]="ActividadService.selectedActividad.CA3" name="CA3" 
+                                                                    id="inputRespuestaCorrecta3" class="form-control" ngModel required>
+                                                                    <option [value]=1>A</option>
+                                                                    <option [value]=2>B</option>
+                                                                    <option [value]=3>C</option>
+                                                                    <option [value]=4>D</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!--el valor seleccionado es {{respuestaCorrectaSelected1}}-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="style1">
+                        <br>
+        
+                        <!--Boton Crear Contenido-->
+                        <div class="bg-secondary row pb-4 justify-content-md-center no-gutters" data-toggle="modal"
+                            data-target="#mimodalejemplo">
+                            <button class="btn bg-warning px-5 py-4 font-weight-bold"
+                                (click)="onModificarActividad(frmModificarActividad)">Subir Actividad</button>
+                        </div>
+        
+                    </form>
+                    <hr class="style1">
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Confirmar accion Modificar -->
     <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">Confirmar Acción</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters">
+                    <button type="button" class="btn btn-default bg-warning" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Actividad Seleccionada-->
+    <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Actividad Seleccionada</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters">
+                    <button type="button" class="btn btn-default bg-warning" data-dismiss="modal" >Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Contenido Cambiado -->
+    <div class="modal fade" id="mimodalejemplo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Contenido Cambiado</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

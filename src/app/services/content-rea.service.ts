@@ -4,6 +4,7 @@ import { JwtResponseI } from '../models/jwt-response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { contenidoREAI } from '../models/contenidoREA';
+import { ActividadI } from '../models/actividad';
 
 
 @Injectable()
@@ -21,12 +22,16 @@ export class ContentREAService {
     return this.httpClient.post(`${this.AUTHD_SERVER}/createContentREA`, contenidoREA);
   }
 
-  //Servicio para subir el contenido al Repositorio
+  //Servicio para subir el contenido al Repositorio ***
   uploadFile(formData){
     return this.httpClient.post(`http://localhost:3000/subir`, formData);
   }
 
-  //Servicio para llamar el contenido en MongoDB
+  loadContentREA(id_contenidoREA:ActividadI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/loadContentREA`, id_contenidoREA);
+  }
+
+  //Servicio para llamar todos los contenidos en MongoDB
   allContent(){
       return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllcontents`);
   }

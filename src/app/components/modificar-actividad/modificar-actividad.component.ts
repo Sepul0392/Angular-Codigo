@@ -31,6 +31,7 @@ export class ModificarActividadComponent implements OnInit {
   gradoSelected:number;
   tipoContenidoSelected:number;
   contenidoVisualizar:contenidoREAVisualizarI[];
+  contenidoRes:any;
 
   //Elementos de Busqueda de Actividad
   actividadToSave:ActividadI;
@@ -42,22 +43,16 @@ export class ModificarActividadComponent implements OnInit {
   docenteSelectedA:number;
   competenciaSelectedA:number;
   actividadVisualizar:ActividadVisualizaI[];
-  respuestaCorrectaSelected:number;
   newID: number;
   temp: number;
 
   id_docenteAuth:number;
-  videoOpt:number;
-  urlvideoOpt:string;
-  documentoOpt:number;
-  urldocumentoOpt:string;
-  audioOpt:number;
-  urlaudioOpt:string;
-  htmlOpt:number;
-  urlhtmlOpt:string;
-  respuestaCorrectaSelected1:number;
-  respuestaCorrectaSelected2:number;
-  respuestaCorrectaSelected3:number;
+  nombreREAActual:string="";
+  descripcionREAActual:string="";
+  materiaREAActual:string="";
+  gradoREAActual:number=0;
+  tipoContenidoREAActual:string="";
+  contenidoAct:contenidoREAVisualizarI;
 
   constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
@@ -68,6 +63,7 @@ export class ModificarActividadComponent implements OnInit {
     this.getContenidos();
     this.getActividades();
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
+    this.contenidoAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""}
   }
 
   //Obtener los datos de los Options
@@ -158,14 +154,43 @@ export class ModificarActividadComponent implements OnInit {
     });
   }
 
+  getContenidoEspecifico(){
+
+  }
+
+  //Imprimir datos de la Actividad seleccionanda en el Form 
+  getActividadinForm(actividad: ActividadI) {
+    this.ActividadService.selectedActividad = actividad;
+    this.saveDataActivity(actividad);
+    //console.log(this.ContentREAService.contenidosREA);
+    this.ContentREAService.loadContentREA(this.ActividadService.selectedActividad).subscribe(res =>{
+      this.contenidoRes = res;
+      this.contenidoAct.nombre_CREA = this.contenidoRes.content.nombre_CREA;
+      this.contenidoAct.descripcion_CREA = this.contenidoRes.content.descripcion_CREA;
+      this.contenidoAct.id_grado = this.contenidoRes.content.id_grado;
+
+      for(let x=0; x < this.materia.length ;x++){
+        if(this.contenidoRes.content.id_materia == this.materia[x].id_materia){
+          this.contenidoAct.materia = this.materia[x].nombre_materia;
+        }
+      }
+      for(let y=0; y < this.tipoContenido.length ;y++){
+        if(this.contenidoRes.content.tipo_CREA == this.tipoContenido[y].id_tipoContenido){
+          this.contenidoAct.nombre_tipo_CREA = this.tipoContenido[y].nombre_tipoContenido;
+        }
+      }
+      //console.log('contenidoAct', this.contenidoAct);
+    })
+  }
+
   //Almacenar info temporal de un ContenidoREA
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
     console.log("contenido guardado:", this.contenidoToSave);
   }
   //Almacenar info temporal de una Actividad
-  saveDataActivity(actividadhtml){
-    this.actividadToSave = actividadhtml;
+  saveDataActivity(actividad){
+    this.actividadToSave = actividad;
     console.log("actividad guardada:", this.actividadToSave);
   }
 
