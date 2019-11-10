@@ -478,17 +478,17 @@ padding-bottom: 0;
 }
 .ingresar_btn {
   width: 100%;
-  background: #0088ff !important;
+  background: #0275d8 !important;
   color: white !important;
 }
 .registrarce_btn {
   width: 100%;
-  background: #b80f22 !important;
+  background: #d9534f !important;
   color: white !important;
 }
 .invitado_btn {
   width: 100%;
-  background: #e08709 !important;
+  background: #f0ad4e !important;
   color: white !important;
 }
 .admin_btn{

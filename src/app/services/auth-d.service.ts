@@ -4,6 +4,7 @@ import { DocenteI } from '../models/docente';
 import { JwtResponseI } from '../models/jwt-response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { MateriaActivaI } from '../models/materiaActiva';
 import { Router } from '@angular/router';
 
 
@@ -22,12 +23,40 @@ export class AuthDService {
   selectedDocente: DocenteI;
   Docentes: DocenteI[]; 
 
+  selectedMateriaActiva: MateriaActivaI;
+  MateriasActivas: MateriaActivaI[];
+
   constructor(private httpClient: HttpClient, private router: Router) {
     //this.localStorageService = sessionStorage;
     this.localStorageService = localStorage;
     //this.currentSession = this.loadSessionData();
-   }
+    this.selectedDocente = new DocenteI;
+    this.selectedMateriaActiva = new MateriaActivaI;
+  }
 
+  //------------------------------------------------------------------------------------ DOCENTE
+
+  //Servicio Crear Docente
+  createDocente(docente:DocenteI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/createDocente`, docente);
+  }
+
+  //Cragar Todos los docentes
+  loadAllDocentes(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllDocentes`);
+  }
+
+  //Eliminar una Actividad Activa
+  deleteDocente(docente:DocenteI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteDocente`, docente);
+  }
+
+  //Modificar datos del Docente en MongoDB 
+  uploadDocente(docente:DocenteI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadDocente`, docente);
+}
+
+  //------------------------------------------------------------------------------------ LOGIN
   register(docente:DocenteI): Observable<JwtResponseI> {
     return this.httpClient.post<JwtResponseI>(`${this.AUTHD_SERVER}/register`,
     docente).pipe(tap(
@@ -40,6 +69,7 @@ export class AuthDService {
     );
   }
 
+  //Sericio Verificacion de Login
   loginDocente(docente:DocenteI): Observable<JwtResponseI> {
     return this.httpClient.post<JwtResponseI>(`${this.AUTHD_SERVER}/loginDocente`,
     docente).pipe(tap(
@@ -54,6 +84,7 @@ export class AuthDService {
     );
   }
 
+  //Servicio de Logout
   logout(): void{
     this.token = '';
     this.nombreApellido_docenteAuth = '';
@@ -67,6 +98,7 @@ export class AuthDService {
     localStorage.removeItem("NOMBRE_USUARIO");
   }
 
+  //Guardar Informacion de inicio de Sesion
   saveSession(id_docent: number, nombre_docente: string, apellido_docente: string, 
                     token: string, expiresIn: string, nombre_usuario: string): void{
     this.localStorageService.setItem("ID_DOCENTE", id_docent);
@@ -115,6 +147,25 @@ export class AuthDService {
     return (this.getToken() != null) ? true : false;
   };
 
+  //------------------------------------------------------------------------------------ MATERIAACTIVA
+
+  //Crear Materia Activa del profesor
+  createSubjectActive(materiaActiva:MateriaActivaI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/createSubjectActive`, materiaActiva);
+  }
+
+  //Cragar Todas las Materias Activas
+  loadAllSubjectActives(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjectActives`);
+  }
+
+  //Eliminar una Actividad Activa
+  deleteSubjectActive(materiaActiva:MateriaActivaI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteSubjectActive`, materiaActiva);
+  }
+
+
+
   /* Storage Services
 
   setCurrentSession(docente: DocenteI): void {
@@ -154,5 +205,4 @@ export class AuthDService {
     this.removeCurrentSession();
     this.router.navigate(['/login']);
   }*/
-
 }
