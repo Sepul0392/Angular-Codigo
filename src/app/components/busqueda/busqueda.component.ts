@@ -142,6 +142,13 @@ export class BusquedaComponent implements OnInit {
     });
   }
 
+  verContenido(contenidoREAhtml){
+    const urlcut = contenidoREAhtml.urlrepositorio.substring(41);
+    const urlLoad = 'http://localhost:3000/repositorio/'+urlcut;
+    console.log('urlload', urlLoad);
+    window.open(urlLoad, "_blank");
+  }
+
   //Almacenar info temporal de un ContenidoREA
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
