@@ -8,11 +8,13 @@ import {
     ModificarActividadComponent,
     BorrarActividadComponent,
     BusquedaComponent,
-    LoginComponent
+    LoginComponent,
+    RegistroUsuarioComponent
 } from './components/index.paginas';
 
 const app_routes: Routes = [
     { path: 'login', component: LoginComponent },
+    { path: 'registroProfesor', component: RegistroUsuarioComponent },
     { path: 'inicioProfesores', component: InicioProfesoresComponent },
     { path: 'subirContenido', component: SubirContenidoComponent },
     { path: 'borrarContenido', component: BorrarContenidoComponent },

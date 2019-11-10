@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLogin(form):void{
+  onLoginDocente(form):void{
     console.log('login', form.value);
     this.AuthDService.loginDocente(form.value).subscribe(res => {
       this.router.navigateByUrl('/inicioProfesores')

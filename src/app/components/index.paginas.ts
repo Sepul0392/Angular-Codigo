@@ -6,3 +6,4 @@ export { BorrarActividadComponent } from "./borrar-actividad/borrar-actividad.co
 export { InicioProfesoresComponent } from "./inicio-profesores/inicio-profesores.component";
 export { BusquedaComponent } from "./busqueda/busqueda.component"
 export { LoginComponent } from "./login/login.component"
+export { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';

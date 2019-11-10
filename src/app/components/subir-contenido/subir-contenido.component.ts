@@ -5,6 +5,7 @@ import { contenidoREAI } from '../../models/contenidoREA';
 import { MateriaI } from '../../models/materia';
 import { GradoI } from '../../models/grado';
 import { TipoContenidoI } from '../../models/tipoContenido';
+import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -26,37 +27,16 @@ export class SubirContenidoComponent implements OnInit {
   urlSelected:any;
   newID: number;
   temp: number;
+  id_docenteAuth:number;
 
-  constructor(private ContentREAService: ContentREAService, private router: Router) { }
+  constructor(private AuthDService: AuthDService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
     
     this.getOptions();
-    /*this.materia = [
-      {id_materia:1,nombre_materia:"Matematicas",id_colegio:0,url_imagen:""},
-      {id_materia:2,nombre_materia:"Español",id_colegio:0,url_imagen:""},
-      {id_materia:3,nombre_materia:"Ingles",id_colegio:0,url_imagen:""},
-      {id_materia:4,nombre_materia:"Sociales",id_colegio:0,url_imagen:""},
-      {id_materia:5,nombre_materia:"Fisica",id_colegio:0,url_imagen:""},
-      {id_materia:6,nombre_materia:"Biologia",id_colegio:0,url_imagen:""},
-      {id_materia:7,nombre_materia:"Quimica",id_colegio:0,url_imagen:""}
-    ];*/
-    /*this.materiaSelected=3;*/
-    /*this.grado = [
-      {id_grado:11,nombre_grado:"Once"},
-      {id_grado:10,nombre_grado:"Decimo"},
-      {id_grado:9,nombre_grado:"Noveno"},
-      {id_grado:8,nombre_grado:"Octavo"},
-      {id_grado:7,nombre_grado:"Septimo"},
-      {id_grado:6,nombre_grado:"Sexto"},
-    ]*/
-    /*this.tipoContenido = [
-      {id_tipoContenido:1,nombre_tipoContenido:"Video"},
-      {id_tipoContenido:2,nombre_tipoContenido:"Documento"},
-      {id_tipoContenido:3,nombre_tipoContenido:"Audio"}
-    ]*/
     this.getContenidos();
+    this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
   }
 
   getOptions(){
@@ -106,31 +86,40 @@ export class SubirContenidoComponent implements OnInit {
       this.ContentREAService.allContent().subscribe(res => {
         //console.log(res);
         this.ContentREAService.contenidosREA = res as contenidoREAI[];
-
         //Generar ID
         //console.log('Contenidos',  this.ContentREAService.contenidosREA);
-        for (let n = 0; n < this.ContentREAService.contenidosREA.length; n++) {
-          for (let i = 0; i < this.ContentREAService.contenidosREA.length; i++) {
-            //console.log('n=', n, 'id_CREA=', this.ContentREAService.contenidosREA[i].id_CREA);
-            if (n == this.ContentREAService.contenidosREA[i].id_CREA) {
-              this.newID = n + 1;
-              this.temp = 0;
-              i = this.ContentREAService.contenidosREA.length;
+        if(this.ContentREAService.contenidosREA.length == 0){
+          this.newID = 0;
+        }
+        else {
+          for (let n = 0; n < this.ContentREAService.contenidosREA.length; n++) {
+            for (let i = 0; i < this.ContentREAService.contenidosREA.length; i++) {
+              //console.log('n=', n, 'id_CREA=', this.ContentREAService.contenidosREA[i].id_CREA);
+              if (this.ContentREAService.contenidosREA.length) {
+                this.newID = 0;
+              }
+              if (n == this.ContentREAService.contenidosREA[i].id_CREA) {
+                this.newID = n + 1;
+                this.temp = 0;
+                i = this.ContentREAService.contenidosREA.length;
+              }
+              else {
+                this.newID = n;
+                this.temp = 1;
+              }
             }
-            else {
-              this.newID = n;
-              this.temp = 1;
+            if (this.temp == 1) {
+              n = this.ContentREAService.contenidosREA.length;
             }
-          }
-          if (this.temp == 1) {
-            n = this.ContentREAService.contenidosREA.length;
           }
         }
+
 
         const newContenidoREA = {
           //id_CREA: Math.floor((Math.random() * 100) + 1),
           id_CREA: this.newID,
           tipo_CREA: this.tipoContenidoSelected,
+          id_docente: this.id_docenteAuth,
           id_materia: this.materiaSelected,
           id_grado: this.gradoSelected,
           nombre_CREA: form.value.nombre_CREA,
@@ -143,9 +132,9 @@ export class SubirContenidoComponent implements OnInit {
         this.ContentREAService.createContentREA(newContenidoREA).subscribe(res => {
         //this.router.navigateByUrl('/inicioProfesores')
         this.resetForm(form);
-        })
+        });
       });
-    })
+    });
   }
 
   resetPage(){

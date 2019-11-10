@@ -19,6 +19,9 @@ export class AuthDService {
   private localStorageService;
   //private currentSession : DocenteI = null;
 
+  selectedDocente: DocenteI;
+  Docentes: DocenteI[]; 
+
   constructor(private httpClient: HttpClient, private router: Router) {
     //this.localStorageService = sessionStorage;
     this.localStorageService = localStorage;

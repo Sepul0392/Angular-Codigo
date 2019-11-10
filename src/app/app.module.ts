@@ -29,6 +29,9 @@ import { FilterContentPipe } from './pipes/filter-content.pipe';
 import { FilterCompetenciaPipe } from './pipes/filter-competencia.pipe';
 import { FilterActividadPipe } from './pipes/filter-actividad.pipe';
 import { ActividadService } from './services/actividad.service';
+import { FilterContentDeletePipe } from './pipes/filter-content-delete.pipe';
+import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
+
 
 
 @NgModule({
@@ -47,6 +50,8 @@ import { ActividadService } from './services/actividad.service';
     FilterContentPipe,
     FilterCompetenciaPipe,
     FilterActividadPipe,
+    FilterContentDeletePipe,
+    RegistroUsuarioComponent,
   ],
   imports: [
     BrowserModule,

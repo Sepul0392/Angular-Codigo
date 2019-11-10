@@ -20,6 +20,7 @@ import { from } from 'rxjs';
 import { LoginComponent } from './login/login.component';
 import { AuthDService } from '../services/auth-d.service';
 import { ContentREAService } from '../services/content-rea.service';
+import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 
 @NgModule({
   declarations:[
@@ -34,7 +35,8 @@ import { ContentREAService } from '../services/content-rea.service';
     BorrarContenidoComponent,
     BusquedaComponent,
     LoginComponent,
-    AuthDService
+    AuthDService,
+    RegistroUsuarioComponent
   ],
   imports:[
       CommonModule,
