@@ -1,0 +1,120 @@
+<app-header></app-header>
+
+<!--Contenedor Contenido Pagina-->
+<div class="pb-5 col-9 mx-auto">
+
+    <!--Titulo pagina-->
+    <div class="container m-auto pb-2 bg-info rounded-top">
+        <h1 class="mt-5 pt-4 text-center m ">Administrar Usuario</h1>
+    </div>
+    
+    <!--Contenedor Formularios-->
+    <div class="container pt-1 bg-secondary rounded-bottom">
+    
+        <!--Informacion Personal Docente-->
+        <div>
+            <h3 class="py-3 text-center text-white">Informacion Personal</h3>
+            <div class="contenedor py-3">
+                <form #frmDatosPersonales="ngForm">
+    
+                    <div class="col-5 mx-auto">
+                        <div class="form-group col">
+                            <div class="form-group ">
+                                <label for="inputNombreDocente" class="text-white ">Nombre del profesor</label>
+                                <input type="text" name="nombre_docente" class="form-control col" id="inputNombreDocente"
+                                    placeholder="Nombre" required [(ngModel)]="AuthDService.selectedDocente.nombre_docente">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputApellidoDocente" class="text-white ">Apellidos del profesor</label>
+                                <input type="text" name="apellido_docente" class="form-control col" id="inputApellidoDocente" 
+                                    placeholder="Apellidos" required [(ngModel)]="AuthDService.selectedDocente.apellido_docente">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCorreoElectronico" class="text-white ">Correo Electronico</label>
+                                <input type="text" name="correo_electronico" class="form-control col" id="inputCorreoElectronico"
+                                    placeholder="Correo Electronico" required [(ngModel)]="AuthDService.selectedDocente.correo_electronico">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    
+                    <!--Boton Crear Contenido-->
+                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
+                        <button class="btn bg-info px-5 py-4 font-weight-bold" (click)="onActualizarDatosPersonales(frmDatosPersonales)">Actualizar Datos</button>
+                    </div>
+                </form>
+                <hr class="style4">
+            </div>
+        </div>
+
+        <!--Informacion Seguridad Docente-->
+        <div>
+            <h3 class="py-3 text-center text-white">Informacion Login</h3>
+            <div class="contenedor py-3">
+                <form #frmDatosPersonales="ngForm">
+        
+                    <div class="col-5 mx-auto">
+                        <div class="form-group col">
+                            <div class="form-group ">
+                                <label for="inputNombreDocente" class="text-white ">Nombre del profesor</label>
+                                <input type="text" name="nombre_docente" class="form-control col" id="inputNombreDocente"
+                                    placeholder="Nombre" required [(ngModel)]="AuthDService.selectedDocente.nombre_docente">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputApellidoDocente" class="text-white ">Apellidos del profesor</label>
+                                <input type="text" name="apellido_docente" class="form-control col" id="inputApellidoDocente"
+                                    placeholder="Apellidos" required
+                                    [(ngModel)]="AuthDService.selectedDocente.apellido_docente">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCorreoElectronico" class="text-white ">Correo Electronico</label>
+                                <input type="text" name="correo_electronico" class="form-control col"
+                                    id="inputCorreoElectronico" placeholder="Correo Electronico" required
+                                    [(ngModel)]="AuthDService.selectedDocente.correo_electronico">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+        
+                    <!--Boton Crear Contenido-->
+                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters" data-toggle="modal"
+                        data-target="#mimodalejemplo">
+                        <button class="btn bg-info px-5 py-4 font-weight-bold"
+                            (click)="onActualizarDatosPersonales(frmDatosPersonales)">Actualizar Datos</button>
+                    </div>
+                </form>
+                <hr class="style4">
+            </div>
+        
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Guardado Exitoso</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters">
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold"
+                        data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

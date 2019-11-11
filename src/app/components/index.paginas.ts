@@ -7,3 +7,5 @@ export { InicioProfesoresComponent } from "./inicio-profesores/inicio-profesores
 export { BusquedaComponent } from "./busqueda/busqueda.component"
 export { LoginComponent } from "./login/login.component"
 export { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
+export { InfromacionDocenteComponent} from './infromacion-docente/infromacion-docente.component';
+export { AdministrarDocenteComponent} from './administrar-docente/administrar-docente.component';

@@ -27,6 +27,7 @@ export class ContentREAService {
     return this.httpClient.post(`http://localhost:3000/subir`, formData);
   }
 
+  //Buscar un Contenido
   loadContentREA(id_contenidoREA:ActividadI){
     return this.httpClient.post(`${this.AUTHD_SERVER}/loadContentREA`, id_contenidoREA);
   }

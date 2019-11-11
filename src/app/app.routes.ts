@@ -9,13 +9,17 @@ import {
     BorrarActividadComponent,
     BusquedaComponent,
     LoginComponent,
-    RegistroUsuarioComponent
+    RegistroUsuarioComponent,
+    InfromacionDocenteComponent,
+    AdministrarDocenteComponent
 } from './components/index.paginas';
 
 const app_routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'registroProfesor', component: RegistroUsuarioComponent },
     { path: 'inicioProfesores', component: InicioProfesoresComponent },
+    { path: 'InformacionProfesor', component: InfromacionDocenteComponent },
+    { path: 'AdministrarProfesor', component: AdministrarDocenteComponent },
     { path: 'subirContenido', component: SubirContenidoComponent },
     { path: 'borrarContenido', component: BorrarContenidoComponent },
     { path: 'crearActividad', component: CrearActividadComponent },

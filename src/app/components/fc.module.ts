@@ -21,6 +21,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthDService } from '../services/auth-d.service';
 import { ContentREAService } from '../services/content-rea.service';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
+import { InfromacionDocenteComponent } from './infromacion-docente/infromacion-docente.component';
+import { AdministrarDocenteComponent } from './administrar-docente/administrar-docente.component';
 
 @NgModule({
   declarations:[
@@ -36,7 +38,9 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
     BusquedaComponent,
     LoginComponent,
     AuthDService,
-    RegistroUsuarioComponent
+    RegistroUsuarioComponent,
+    InfromacionDocenteComponent,
+    AdministrarDocenteComponent
   ],
   imports:[
       CommonModule,

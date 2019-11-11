@@ -5,6 +5,7 @@ import { JwtResponseI } from '../models/jwt-response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { MateriaActivaI } from '../models/materiaActiva';
+import { ColegioI } from '../models/colegio';
 import { Router } from '@angular/router';
 
 
@@ -23,6 +24,9 @@ export class AuthDService {
   selectedDocente: DocenteI;
   Docentes: DocenteI[]; 
 
+  selectedColegio: ColegioI;
+  Colegios: ColegioI[];
+
   selectedMateriaActiva: MateriaActivaI;
   MateriasActivas: MateriaActivaI[];
 
@@ -32,6 +36,7 @@ export class AuthDService {
     //this.currentSession = this.loadSessionData();
     this.selectedDocente = new DocenteI;
     this.selectedMateriaActiva = new MateriaActivaI;
+    this.selectedColegio = new ColegioI;
   }
 
   //------------------------------------------------------------------------------------ DOCENTE
@@ -39,6 +44,11 @@ export class AuthDService {
   //Servicio Crear Docente
   createDocente(docente:DocenteI){
     return this.httpClient.post(`${this.AUTHD_SERVER}/createDocente`, docente);
+  }
+
+  //Buscar un Docente
+  loadDocente(info:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/loadDocente`, info);
   }
 
   //Cragar Todos los docentes
@@ -163,6 +173,15 @@ export class AuthDService {
   deleteSubjectActive(materiaActiva:MateriaActivaI){
     return this.httpClient.post(`${this.AUTHD_SERVER}/deleteSubjectActive`, materiaActiva);
   }
+
+  //------------------------------------------------------------------------------------ COLEGIO
+
+  loadColegio(infoColegio:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/loadSchool`, infoColegio);
+  }
+
+
+
 
 
 
