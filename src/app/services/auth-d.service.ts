@@ -61,10 +61,15 @@ export class AuthDService {
     return this.httpClient.post(`${this.AUTHD_SERVER}/deleteDocente`, docente);
   }
 
-  //Modificar datos del Docente en MongoDB 
-  uploadDocente(docente:DocenteI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadDocente`, docente);
-}
+  //Modificar datos Login del Docente en MongoDB 
+  uploadInfoLoginDocente(info:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadInfoLoginDocente`, info);
+  }
+
+  //Modificar datos Presonales del Docente en MongoDB 
+  uploadInfoPersonalDocente(info:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadInfoPersonalDocente`, info);
+  }
 
   //------------------------------------------------------------------------------------ LOGIN
   register(docente:DocenteI): Observable<JwtResponseI> {

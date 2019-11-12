@@ -40,9 +40,9 @@ export class AdministrarDocenteComponent implements OnInit {
     this.ColegioInfo = new ColegioI;
 
     this.getOptions();
-    this.getActividadinForm();
     this.idDocente = this.AuthDService.getIdDocente();
     this.nombreApellidoDocente = this.AuthDService.getnombreApellidoDocente();
+    this.getActividadinForm();
     this.getInformacionCompleta();
   }
 
@@ -72,12 +72,12 @@ export class AdministrarDocenteComponent implements OnInit {
       this.AuthDService.loadDocente(infoDocente).subscribe(res =>{
         this.resDocente = res as DocenteI;
         this.DocenteInfo = this.resDocente.teacher; 
-        console.log('info docente', this.resDocente);
+        //console.log('info docente', this.resDocente);
   
         this.AuthDService.loadColegio(this.resDocente.teacher).subscribe(res =>{
           this.resColegio = res as ColegioI;
           this.ColegioInfo = this.resColegio.school;
-          console.log('info colegio', this.resColegio);
+          //console.log('info colegio', this.resColegio);
   
           this.AuthDService.loadAllSubjectActives().subscribe(res =>{
             this.AuthDService.MateriasActivas = res as MateriaActivaI[];
@@ -98,37 +98,38 @@ export class AdministrarDocenteComponent implements OnInit {
 
   //Crear una MateriaActiva
   CrearMateriaActiva(form: NgForm): void {
-
+    
     this.AuthDService.loadAllSubjectActives().subscribe(res => {
       this.AuthDService.MateriasActivas = res as MateriaActivaI[];
 
       //Crear ID MateriaACtiva
       if (this.AuthDService.MateriasActivas.length == 0) {
-        this.newIDMA = 0;
+        this.newIDMA = 1;
       }
       else {
         for (let n = 0; n < this.AuthDService.MateriasActivas.length; n++) {
           for (let i = 0; i < this.AuthDService.MateriasActivas.length; i++) {
             //console.log('n=', n, 'id_CREA=', this.AuthDService.MateriasActivas[i].id_materiaActiva);
             if (this.AuthDService.MateriasActivas.length) {
-              this.newIDMA = 0;
+              this.newIDMA = 1;
             }
-            if (n == this.AuthDService.MateriasActivas[i].id_materiaActiva) {
-              this.newIDMA = n + 1;
+            if (n+1 == this.AuthDService.MateriasActivas[i].id_materiaActiva) {
+              this.newIDMA = n + 2;
               this.temp = 0;
               i = this.AuthDService.MateriasActivas.length;
             }
             else {
-              this.newIDMA = n;
+              this.newIDMA = n + 1;
               this.temp = 1;
             }
           }
           if (this.temp == 1) {
-            n = this.AuthDService.MateriasActivas.length;
+            n = this.AuthDService.MateriasActivas.length + 1;
           }
         }
       }
 
+      console.log('form', form.value.nombre_materiaActiva);
       const newMateriaActiva = {
         id_materiaActiva: this.newIDMA,
         nombre_materiaActiva: form.value.nombre_materiaActiva,
@@ -142,9 +143,10 @@ export class AdministrarDocenteComponent implements OnInit {
 
       this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
         console.log(res);
+        this.resetForm(form);
+        this.getInformacionCompleta();
       });
     });
-    this.resetForm(form);
   }
 
   //Almacenar info temporal de una materiaActiva
@@ -174,7 +176,36 @@ export class AdministrarDocenteComponent implements OnInit {
     this.AuthDService.loadDocente(infoDocente).subscribe(res =>{
       this.resDocente = res as DocenteI;
       this.AuthDService.selectedDocente = this.resDocente.teacher; 
-      console.log('info docente', this.AuthDService.selectedDocente);
+      //console.log('info docente', this.AuthDService.selectedDocente);
+    });
+  }
+
+  //Actualizar datos de Login del docente
+  actualizarInfoPersonalDocente(form: NgForm): void{
+    const infoPersonalDocente = {
+      id_docente: this.idDocente,
+      nombre_docente: form.value.nombre_docente,
+      apellido_docente: form.value.apellido_docente
+    }
+
+    this.AuthDService.uploadInfoPersonalDocente(infoPersonalDocente).subscribe(res => {
+      console.log(res);
+      this.getActividadinForm();
+    });
+  }
+
+  //Actualizar datos de Login del docente
+  actualizarInfoLoginDocente(form: NgForm): void{
+    const infoLoginDocente = {
+      id_docente: this.idDocente,
+      nombre_usuario: form.value.nombre_usuario,
+      correo_electronico: form.value.correo_electronico,
+      contrasena: form.value.contrasena
+    }
+
+    this.AuthDService.uploadInfoLoginDocente(infoLoginDocente).subscribe(res => {
+      console.log(res);
+      this.getActividadinForm();
     });
   }
 

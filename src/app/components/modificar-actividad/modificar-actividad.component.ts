@@ -243,24 +243,29 @@ export class ModificarActividadComponent implements OnInit {
         this.ActividadService.actividades = res as ActividadI[];
         //console.log('Actividades', this.ActividadService.actividades);
 
-        for (let n = 0; n < this.ActividadService.actividades.length; n++) {
-          for (let i = 0; i < this.ActividadService.actividades.length; i++) {
-            //console.log('n=', n, 'id_CREA=', this.ActividadService.actividades[i].id_actividad);
-            if (n == this.ActividadService.actividades[i].id_actividad) {
-              this.newID = n + 1;
-              this.temp = 0;
-              i = this.ActividadService.actividades.length;
+        if (this.ActividadService.actividades.length == 0) {
+          this.newID = 1;
+        }
+        else{
+          for (let n = 0; n < this.ActividadService.actividades.length; n++) {
+            for (let i = 0; i < this.ActividadService.actividades.length; i++) {
+              //console.log('n=', n, 'id_CREA=', this.ActividadService.actividades[i].id_actividad);
+              if (n+1 == this.ActividadService.actividades[i].id_actividad) {
+                this.newID = n + 2;
+                this.temp = 0;
+                i = this.ActividadService.actividades.length;
+              }
+              else {
+                this.newID = n + 1;
+                this.temp = 1;
+              }
             }
-            else {
-              this.newID = n;
-              this.temp = 1;
+            if (this.temp == 1) {
+              n = this.ActividadService.actividades.length + 1;
             }
-          }
-          if (this.temp == 1) {
-            n = this.ActividadService.actividades.length;
           }
         }
-
+        
         this.actividadToSave.id_actividad = this.newID;
         this.actividadToSave.id_docente = this.id_docenteAuth;
         this.actividadToSave.id_materia = form.value.id_materia;

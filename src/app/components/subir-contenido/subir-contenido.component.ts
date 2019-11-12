@@ -89,27 +89,27 @@ export class SubirContenidoComponent implements OnInit {
         //Generar ID
         //console.log('Contenidos',  this.ContentREAService.contenidosREA);
         if(this.ContentREAService.contenidosREA.length == 0){
-          this.newID = 0;
+          this.newID = 1;
         }
         else {
           for (let n = 0; n < this.ContentREAService.contenidosREA.length; n++) {
             for (let i = 0; i < this.ContentREAService.contenidosREA.length; i++) {
               //console.log('n=', n, 'id_CREA=', this.ContentREAService.contenidosREA[i].id_CREA);
               if (this.ContentREAService.contenidosREA.length) {
-                this.newID = 0;
+                this.newID = 1;
               }
-              if (n == this.ContentREAService.contenidosREA[i].id_CREA) {
-                this.newID = n + 1;
+              if (n+1 == this.ContentREAService.contenidosREA[i].id_CREA) {
+                this.newID = n + 2;
                 this.temp = 0;
                 i = this.ContentREAService.contenidosREA.length;
               }
               else {
-                this.newID = n;
+                this.newID = n + 1;
                 this.temp = 1;
               }
             }
             if (this.temp == 1) {
-              n = this.ContentREAService.contenidosREA.length;
+              n = this.ContentREAService.contenidosREA.length + 1;
             }
           }
         }

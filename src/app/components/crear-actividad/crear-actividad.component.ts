@@ -135,21 +135,27 @@ export class CrearActividadComponent implements OnInit {
       this.ActividadService.actividades = res as ActividadI[];
       console.log('Actividades', this.ActividadService.actividades);
 
-      for (let n = 0; n < this.ActividadService.actividades.length; n++) {
-        for (let i = 0; i < this.ActividadService.actividades.length; i++) {
-          //console.log('n=', n, 'id_CREA=', this.ActividadService.actividades[i].id_actividad);
-          if (n == this.ActividadService.actividades[i].id_actividad) {
-            this.newID = n + 1;
-            this.temp = 0;
-            i = this.ActividadService.actividades.length;
+      //Crear ID
+      if (this.ActividadService.actividades.length == 0) {
+        this.newID = 1;
+      }
+      else{
+        for (let n = 0; n < this.ActividadService.actividades.length; n++) {
+          for (let i = 0; i < this.ActividadService.actividades.length; i++) {
+            //console.log('n=', n, 'id_CREA=', this.ActividadService.actividades[i].id_actividad);
+            if (n+1 == this.ActividadService.actividades[i].id_actividad) {
+              this.newID = n + 2;
+              this.temp = 0;
+              i = this.ActividadService.actividades.length;
+            }
+            else {
+              this.newID = n+1;
+              this.temp = 1;
+            }
           }
-          else {
-            this.newID = n;
-            this.temp = 1;
+          if (this.temp == 1) {
+            n = this.ActividadService.actividades.length + 1;
           }
-        }
-        if (this.temp == 1) {
-          n = this.ActividadService.actividades.length;
         }
       }
 

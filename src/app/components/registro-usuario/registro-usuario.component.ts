@@ -55,54 +55,54 @@ export class RegistroUsuarioComponent implements OnInit {
 
         //Crear ID Docente
         if (this.AuthDService.Docentes.length == 0) {
-          this.newIDD = 0;
+          this.newIDD = 1;
         }
         else {
           for (let n = 0; n < this.AuthDService.Docentes.length; n++) {
             for (let i = 0; i < this.AuthDService.Docentes.length; i++) {
               //console.log('n=', n, 'id_CREA=', this.AuthDService.Docentes[i].id_docente);
               if (this.AuthDService.Docentes.length) {
-                this.newIDD = 0;
+                this.newIDD = 1;
               }
-              if (n == this.AuthDService.Docentes[i].id_docente) {
-                this.newIDD = n + 1;
+              if (n+1 == this.AuthDService.Docentes[i].id_docente) {
+                this.newIDD = n + 2;
                 this.temp1 = 0;
                 i = this.AuthDService.Docentes.length;
               }
               else {
-                this.newIDD = n;
+                this.newIDD = n + 1;
                 this.temp1 = 1;
               }
             }
             if (this.temp1 == 1) {
-              n = this.AuthDService.Docentes.length;
+              n = this.AuthDService.Docentes.length + 1;
             }
           }
         }
 
         //Crear ID MateriaACtiva
         if (this.AuthDService.MateriasActivas.length == 0) {
-          this.newIDMA = 0;
+          this.newIDMA = 1;
         }
         else {
           for (let n = 0; n < this.AuthDService.MateriasActivas.length; n++) {
             for (let i = 0; i < this.AuthDService.MateriasActivas.length; i++) {
               //console.log('n=', n, 'id_CREA=', this.AuthDService.MateriasActivas[i].id_materiaActiva);
               if (this.AuthDService.MateriasActivas.length) {
-                this.newIDMA = 0;
+                this.newIDMA = 1;
               }
-              if (n == this.AuthDService.MateriasActivas[i].id_materiaActiva) {
-                this.newIDMA = n + 1;
+              if (n+1 == this.AuthDService.MateriasActivas[i].id_materiaActiva) {
+                this.newIDMA = n + 2;
                 this.temp2 = 0;
                 i = this.AuthDService.MateriasActivas.length;
               }
               else {
-                this.newIDMA = n;
+                this.newIDMA = n + 1;
                 this.temp2 = 1;
               }
             }
             if (this.temp2 == 1) {
-              n = this.AuthDService.MateriasActivas.length;
+              n = this.AuthDService.MateriasActivas.length + 1;
             }
           }
         }
@@ -136,12 +136,12 @@ export class RegistroUsuarioComponent implements OnInit {
           console.log(res);
           this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
             console.log(res);
+            this.resetForm(form);
+            this.router.navigateByUrl('/login')
           });
         });  
       });
     });
-    this.resetForm(form);
-    this.router.navigateByUrl('/login')
   }
 
   resetPage(){
