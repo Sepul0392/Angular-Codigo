@@ -96,7 +96,7 @@ export class BorrarContenidoComponent implements OnInit {
 
   //Eliminar contenidoREA de Mongo
   deleteContenido(){
-    console.log("id para eliminar:", this.contenidoToSave.id_CREA);
+    //console.log("id para eliminar:", this.contenidoToSave.id_CREA);
     this.ContentREAService.deleteContentREA(this.contenidoToSave).subscribe(res =>{
       console.log(res);
     });

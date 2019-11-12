@@ -44,6 +44,7 @@ export class RegistroUsuarioComponent implements OnInit {
     });
   }
 
+  //Crear Docente y una MateriaActiva
   onCrearDocente(form:NgForm):void {
 
     this.AuthDService.loadAllSubjectActives().subscribe(res => {

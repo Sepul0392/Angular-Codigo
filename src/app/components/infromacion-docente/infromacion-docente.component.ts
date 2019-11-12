@@ -27,6 +27,8 @@ export class InfromacionDocenteComponent implements OnInit {
   constructor(private ContentREAService: ContentREAService, private AuthDService: AuthDService, private router: Router) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+    
     this.DocenteInfo = new DocenteI;
     this.ColegioInfo = new ColegioI;
 
@@ -71,10 +73,6 @@ export class InfromacionDocenteComponent implements OnInit {
         });
       });
     });
-
-
-
-    
   }
 
 }
