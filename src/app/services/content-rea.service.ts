@@ -18,7 +18,7 @@ export class ContentREAService {
    }
 
 
-   //------------------------------------------------------------------------------------ LOGIN
+   //------------------------------------------------------------------------------------ ContenidoREA
   //Servicio para crear el contenido en MongoDB
   createContentREA(contenidoREA:contenidoREAI){
     return this.httpClient.post(`${this.AUTHD_SERVER}/createContentREA`, contenidoREA);
@@ -35,8 +35,8 @@ export class ContentREAService {
   }
 
   //Buscar un Contenido
-  loadContentREA(id_contenidoREA:ActividadI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/loadContentREA`, id_contenidoREA);
+  loadContentREA(data:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/loadContentREA`, data);
   }
 
   //Servicio para llamar todos los contenidos en MongoDB

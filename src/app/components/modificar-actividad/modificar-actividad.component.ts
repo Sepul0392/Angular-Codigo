@@ -24,6 +24,7 @@ export class ModificarActividadComponent implements OnInit {
 
   //Elementos de Busqueda de Contenido
   contenidoToSave:contenidoREAI;
+  tallerToSave:contenidoREAI;
   contenidos:contenidoREAI[];
   materia:MateriaI[];
   grado:GradoI[];
@@ -32,7 +33,6 @@ export class ModificarActividadComponent implements OnInit {
   gradoSelected:number;
   tipoContenidoSelected:number;
   contenidoVisualizar:contenidoREAVisualizarI[];
-  contenidoRes:any;
 
   //Elementos de Busqueda de Actividad
   actividadToSave:ActividadI;
@@ -49,18 +49,24 @@ export class ModificarActividadComponent implements OnInit {
 
   id_docenteAuth:number;
   contenidoAct:contenidoREAVisualizarI;
+  tallerAct:contenidoREAVisualizarI;
   verificationSaveContent:boolean;
+  ID_TipoContenido_Taller:number;
+  contenidoRes:any;
+  tallerRes:any;
 
   constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.ID_TipoContenido_Taller = 5;
 
     this.getOptions();
     this.getContenidos();
     this.getActividades();
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
-    this.contenidoAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""}
+    this.contenidoAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
+    this.tallerAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
     this.verificationSaveContent = false;
   }
 
@@ -309,6 +315,10 @@ export class ModificarActividadComponent implements OnInit {
     this.ActividadService.selectedActividad = actividad;
     this.saveDataActivity(actividad);
     //console.log(this.ContentREAService.contenidosREA);
+    const TallerInfo = {
+      id_contenidoREA: this.ActividadService.selectedActividad.id_taller,
+    }
+
     this.ContentREAService.loadContentREA(this.ActividadService.selectedActividad).subscribe(res =>{
       this.contenidoRes = res;
       this.contenidoAct.nombre_CREA = this.contenidoRes.content.nombre_CREA;
@@ -327,6 +337,25 @@ export class ModificarActividadComponent implements OnInit {
       }
       //console.log('contenidoAct', this.contenidoAct);
     })
+
+    this.ContentREAService.loadContentREA(TallerInfo).subscribe(res =>{
+      this.tallerRes = res;
+      this.tallerAct.nombre_CREA = this.tallerRes.content.nombre_CREA;
+      this.tallerAct.descripcion_CREA = this.tallerRes.content.descripcion_CREA;
+      this.tallerAct.id_grado = this.tallerRes.content.id_grado;
+
+      for(let x=0; x < this.materia.length ;x++){
+        if(this.tallerRes.content.id_materia == this.materia[x].id_materia){
+          this.tallerAct.materia = this.materia[x].nombre_materia;
+        }
+      }
+      for(let y=0; y < this.tipoContenido.length ;y++){
+        if(this.tallerRes.content.tipo_CREA == this.tipoContenido[y].id_tipoContenido){
+          this.tallerAct.nombre_tipo_CREA = this.tipoContenido[y].nombre_tipoContenido;
+        }
+      }
+      //console.log('contenidoAct', this.contenidoAct);
+    })
   }
 
   //Almacenar info temporal de un ContenidoREA
@@ -339,6 +368,11 @@ export class ModificarActividadComponent implements OnInit {
   saveDataActivity(actividad){
     this.actividadToSave = actividad;
     console.log("actividad guardada:", this.actividadToSave);
+  }
+  //Almacenar info temporal de un Taller
+  saveDataTaller(tallerhtml){
+    this.tallerToSave = tallerhtml;
+    console.log("taller guardado:", this.tallerToSave);
   }
 
   //Resetear pagina

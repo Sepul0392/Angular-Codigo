@@ -8,6 +8,8 @@ import { ActividadI } from '../../models/actividad';
 import { DocenteI } from '../../models/docente';
 import { ActividadVisualizaI } from '../../models/actividadVisualizar';
 import { ActividadService } from '../../services/actividad.service';
+import { AuthDService } from '../../services/auth-d.service';
+import { contenidoREAI } from '../../models/contenidoREA';
 import { NgForm } from '@angular/forms';
 
 
@@ -19,6 +21,7 @@ import { NgForm } from '@angular/forms';
 export class BorrarActividadComponent implements OnInit {
 
   //Elementos de Busqueda de Contenido
+  contenidoToSave:any;
   materia:MateriaI[];
   grado:GradoI[];
 
@@ -33,11 +36,14 @@ export class BorrarActividadComponent implements OnInit {
   competenciaSelectedA:number;
   actividadVisualizar:ActividadVisualizaI[];
 
-  constructor(private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
+  id_docenteAuth:number;
+
+  constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
 
+    this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
     this.getOptions();
     this.getActividades();
   }
@@ -89,7 +95,7 @@ export class BorrarActividadComponent implements OnInit {
               }
             }
           }
-          console.log("actividades visualizar:", this.actividadVisualizar)
+          //console.log("actividades visualizar:", this.actividadVisualizar)
         });
       });
     });
@@ -98,14 +104,37 @@ export class BorrarActividadComponent implements OnInit {
   //Almacenar info temporal de una Actividad
   saveDataActivity(actividadhtml){
     this.actividadToSave = actividadhtml;
-    console.log("actividad guardada:", this.actividadToSave);
+    //console.log('actividad guardada:', this.actividadToSave);
+  }
+
+  //Buscar y guardar info de 
+  BusquedaYCambioEstadoContent(id_contenido){
+    const id_contenidoBusqueda = {
+      id_contenidoREA: id_contenido
+    }
+
+    this.ContentREAService.loadContentREA(id_contenidoBusqueda).subscribe(res => {
+      this.contenidoToSave = res as contenidoREAI;
+      //console.log('contenido encontrado', this.contenidoToSave);
+
+      const infoContenidoREA = {
+        id_CREA: id_contenido,
+        en_uso: (this.contenidoToSave.content.en_uso - 1)
+      }
+      this.ContentREAService.uploadEstadoContentREA(infoContenidoREA).subscribe(res => {
+        //console.log(res);
+      });
+    });
   }
 
   //Eliminar Actividad de Mongo
   deleteActividad(){
-    console.log("id para eliminar:", this.actividadToSave.id_actividad);
+    //console.log("id para eliminar:", this.actividadToSave.id_actividad);
+    this.BusquedaYCambioEstadoContent(this.actividadToSave.id_contenidoREA);
+    this.BusquedaYCambioEstadoContent(this.actividadToSave.id_taller);
+
     this.ActividadService.deleteActivity(this.actividadToSave).subscribe(res =>{
-      console.log(res);
+      //console.log(res);
     });
     this.getActividades();
     //window.location.reload();

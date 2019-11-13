@@ -34,6 +34,7 @@ import { RegistroUsuarioComponent } from './components/registro-usuario/registro
 import { InfromacionDocenteComponent } from './components/infromacion-docente/infromacion-docente.component';
 import { AdministrarDocenteComponent } from './components/administrar-docente/administrar-docente.component';
 import { FilterTableMateriaDocentePipe } from './pipes/filter-table-materia-docente.pipe';
+import { FilterActividadDeletePipe } from './pipes/filter-actividad-delete.pipe';
 
 
 
@@ -57,7 +58,8 @@ import { FilterTableMateriaDocentePipe } from './pipes/filter-table-materia-doce
     RegistroUsuarioComponent,
     InfromacionDocenteComponent,
     AdministrarDocenteComponent,
-    FilterTableMateriaDocentePipe
+    FilterTableMateriaDocentePipe,
+    FilterActividadDeletePipe
   ],
   imports: [
     BrowserModule,

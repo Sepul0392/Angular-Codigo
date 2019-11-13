@@ -66,9 +66,9 @@ export class CrearActividadComponent implements OnInit {
     window.scrollTo(0, 0);
     this.ID_TipoContenido_Taller = 5;
 
+    this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
     this.getOptions();
     this.getContenidos();
-    this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
   }
 
   //Obtener los datos de los Options

@@ -75,23 +75,29 @@
                             <div class="card mb-4 border-0"
                                 style="max-width: 1440px;">
                                 <div class="card-footer p-2 bg-warning rounded-top">
-                                    <h5 class="card-title">{{actividad.titulo_actividad}}</h5>
+                                    <h5 class="card-title m-1">{{actividad.titulo_actividad}}</h5>
                                 </div>
                                 <div class="row no-gutters border border-top-0 border-secondary">
-                                    <div class="col-md-10"
-                                        style="max-width: 840px;">
+                                    <div class="col-md-10" style="max-width: 840px;">
                                         <div class="card-body p-2">
                                             <p class="card-text ">Descripcion: {{actividad.descripcion_actividad}}.</p>
-                                            <p class="card-text"><small class="text-muted">Materia: {{actividad.materia}}</small></p>
-                                            <p class="card-text"><small class="text-muted">Grado: {{actividad.id_grado}}</small></p>
-                                            <p class="card-text"><small class="text-muted">Competencia: {{actividad.competencia}}</small></p>
-                                            <p class="card-text"><small class="text-muted">Profesor: {{actividad.docente}}</small></p>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Materia: {{actividad.materia}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Grado: {{actividad.id_grado}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Competencia: {{actividad.competencia}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Profesor: {{actividad.docente}}</small></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters" data-toggle="modal"
-                                    data-target="#mimodalejemplo2">
-                                    <a class="btn bg-warning" (click)="getActividadinForm(actividad)">Seleccionar Actividad</a>
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
+                                    <a class="btn bg-warning" data-toggle="modal" data-target="#mimodalejemplo2" (click)="getActividadinForm(actividad)">Seleccionar Actividad</a>
                                 </div>
                             </div>
                         </div>
@@ -102,13 +108,13 @@
         <hr class="style1">
         
         <!--Modificar Actividad-->
-        <!--Informacion de la Actividad-->
         <div class="container container pt-1 bg-secondary rounded-bottom">
         
             <!--Actividad-->
             <div>
                 <h3 class="py-3 text-center text-white">Informacion de la Actividad</h3>
                 <div class="contenedor py-3">
+                    <!--Informacion de la Actividad-->
                     <form #frmModificarActividad="ngForm">
                         <div class="form-group">
                             <label for="inputNombreActividad" class="text-white ">Nombre de la Actividad</label>
@@ -166,22 +172,28 @@
                         <div>
                             <h3 class="py-3 text-center text-white">Contenido de la Actividad</h3>
                             <div class="contenedor py-3">
-                                <!--Contenido Actual-->
-                                <label for="inputState" class="text-white">Contenido actual de la Actividad</label>
+                                <!--Contenido Original-->
+                                <label for="inputState" class="text-white">Contenido original de la Actividad</label>
                                 <div class="col container p-4 my bg-light table-wrapper-scroll-y my-custom-scrollbar" style="width: 95%; height: 95%">
                                     <!-- -->
                                     <div class="row-1" >
                                         <div class="card mb-4 border-0" style="max-width: 1440px;">
                                             <div class="card-footer p-2 bg-primary rounded-top">
-                                                <h5 class="card-title">{{contenidoAct.nombre_CREA}}</h5>
+                                                <h5 class="card-title m-1">{{contenidoAct.nombre_CREA}}</h5>
                                             </div>
                                             <div class="row no-gutters border border-top-0 border-secondary">
                                                 <div class="col-md-10" style="max-width: 840px;">
                                                     <div class="card-body p-2">
                                                         <p class="card-text ">Descripcion: {{contenidoAct.descripcion_CREA}}</p>
-                                                        <p class="card-text"><small class="text-muted">Materia: {{contenidoAct.materia}}</small></p>
-                                                        <p class="card-text"><small class="text-muted">Grado: {{contenidoAct.id_grado}}</small></p>
-                                                        <p class="card-text"><small class="text-muted">Tipo de contenido: {{contenidoAct.nombre_tipo_CREA}}</small></p>
+                                                        <div>
+                                                            <p class="card-text"><small class="text-muted">Materia: {{contenidoAct.materia}}</small></p>
+                                                        </div>
+                                                        <div>
+                                                            <p class="card-text"><small class="text-muted">Grado: {{contenidoAct.id_grado}}</small></p>
+                                                        </div>
+                                                        <div>
+                                                            <p class="card-text"><small class="text-muted">Tipo de contenido: {{contenidoAct.nombre_tipo_CREA}}</small></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -222,6 +234,13 @@
                                             </select>
                                         </div>
                                         <div class="form-group col">
+                                            <label for="inputDocente" class="text-white">Profesor</label>
+                                            <select [(ngModel)]="docenteSelected" id="inputDocente" name="Docente" class="form-control" ngModel required>
+                                                <option selected></option>
+                                                <option *ngFor="let docen of docente" [value]="docen.id_docente">{{(docen.nombre_docente+" "+docen.apellido_docente)}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col">
                                             <label for="inputGrado" class="text-white">Tipo de Contenido</label>
                                             <select [(ngModel)]="tipoContenidoSelected" id="inputGrado" name="tipoContenido"
                                                 class="form-control" ngModel required>
@@ -238,7 +257,7 @@
                                         style="width: 95%; height: 450px">
                                         <!--Resultado-->
                                         <div class="row-1"
-                                            *ngFor="let contenidoREA of contenidoVisualizar | filterContent: nombreCREASelected:materiaSelected:gradoSelected:tipoContenidoSelected">
+                                            *ngFor="let contenidoREA of contenidoVisualizar | filterContent: nombreCREASelected:materiaSelected:gradoSelected:docenteSelected:tipoContenidoSelected">
                                             <div class="card mb-4 border-0" style="max-width: 1440px;">
                                                 <div class="card-footer p-2 bg-primary rounded-top">
                                                     <h5 class="card-title">{{contenidoREA.nombre_CREA}}</h5>
@@ -246,14 +265,16 @@
                                                 <div class="row no-gutters border border-top-0 border-secondary">
                                                     <div class="col-md-10" style="max-width: 840px;">
                                                         <div class="card-body p-2">
-                                                            <p class="card-text ">Descripcion:
-                                                                {{contenidoREA.descripcion_CREA}}.</p>
-                                                            <p class="card-text"><small class="text-muted">Materia:
-                                                                    {{contenidoREA.materia}}</small></p>
-                                                            <p class="card-text"><small class="text-muted">Grado:
-                                                                    {{contenidoREA.id_grado}}</small></p>
-                                                            <p class="card-text"><small class="text-muted">Tipo de contenido:
-                                                                    {{contenidoREA.nombre_tipo_CREA}}</small></p>
+                                                            <p class="card-text ">Descripcion:  {{contenidoREA.descripcion_CREA}}.</p>
+                                                            <div>
+                                                                <p class="card-text"><small class="text-muted">Materia: {{contenidoREA.materia}}</small></p>
+                                                            </div>
+                                                            <div>
+                                                                <p class="card-text"><small class="text-muted">Grado: {{contenidoREA.id_grado}}</small></p>
+                                                            </div>
+                                                            <div>
+                                                                <p class="card-text"><small class="text-muted">Tipo de contenido: {{contenidoREA.nombre_tipo_CREA}}</small></p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -499,10 +520,127 @@
                         </div>
                         <hr class="style1">
                         <br>
+
+                        <!--Taller de la Actividad-->
+                        <div>
+                            <h3 class="py-3 text-center text-white">Taller de la Actividad</h3>
+                            <div class="contenedor py-3">
+                                <!--Taller Original-->
+                                <label for="inputState" class="text-white">Taller original de la Actividad</label>
+                                <div class="col container p-4 my bg-light table-wrapper-scroll-y my-custom-scrollbar" style="width: 95%; height: 95%">
+                                    <!-- -->
+                                    <div class="row-1" >
+                                        <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                            <div class="card-footer p-2 bg-primary rounded-top">
+                                                <h5 class="card-title m-1">{{tallerAct.nombre_CREA}}</h5>
+                                            </div>
+                                            <div class="row no-gutters border border-top-0 border-secondary">
+                                                <div class="col-md-10" style="max-width: 840px;">
+                                                    <div class="card-body p-2">
+                                                        <p class="card-text ">Descripcion: {{tallerAct.descripcion_CREA}}</p>
+                                                        <div>
+                                                            <p class="card-text"><small class="text-muted">Materia: {{tallerAct.materia}}</small></p>
+                                                        </div>
+                                                        <div>
+                                                            <p class="card-text"><small class="text-muted">Grado: {{tallerAct.id_grado}}</small></p>
+                                                        </div>
+                                                        <div>
+                                                            <p class="card-text"><small class="text-muted">Tipo de contenido: {{tallerAct.nombre_tipo_CREA}}</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <form #frmBuscarTaller="ngForm">
+                                    <div class="form-group">
+                                        <!--Barra busqueda-->
+                                        <label for="inputNombreTaller" class="text-white">Busqueda del Taller</label>
+                                        <div class="form-inline">
+                                            <input type="text" class="form-control col-md-8" id="inputTextoBusquedaTaller"
+                                                placeholder="Busqueda por nombre" [(ngModel)]="nombreTallerSelected" name="inputBusquedaTaller">
+                                        </div>
+                                    </div>
+                                    <!--Filtros-->
+                                    <label for="inputFiltrosTaller" class="text-white">Filtros:</label>
+                                    <div class="form-row pb-3">
+                                        <div class="form-group col">
+                                            <label for="inputMateriaTaller" class="text-white">Materia</label>
+                                            <select [(ngModel)]="materiaTallerSelected" id="inputMateriaTaller" name="materiaTaller"
+                                                class="form-control" ngModel required>
+                                                <option selected></option>
+                                                <option *ngFor="let mater of materia" [value]="mater.nombre_materia">{{mater.nombre_materia}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="inputGradoTaller" class="text-white">Grado</label>
+                                            <select [(ngModel)]="gradoTallerSelected" id="inputGradoTaller" name="gradoTaller"
+                                                class="form-control" ngModel required>
+                                                <option selected></option>
+                                                <option *ngFor="let grad of grado" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="inputDocenteTaller" class="text-white">Profesor</label>
+                                            <select [(ngModel)]="docenteSelectedTaller" id="inputDocenteTaller" name="DocenteTaller"
+                                                class="form-control" ngModel required>
+                                                <option selected></option>
+                                                <option *ngFor="let docen of docente" [value]="docen.id_docente">
+                                                    {{(docen.nombre_docente+" "+docen.apellido_docente)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                        
+                                    <!--Tabla de Resultados-->
+                                    <label for="inputState" class="text-white">Resultados:</label>
+                                    <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
+                                        style="width: 95%; height: 450px">
+                                        <!--Resultado-->
+                                        <div class="row-1"
+                                            *ngFor="let tallerREA of contenidoVisualizar | filterContent: nombreTallerSelected:materiaTallerSelected:gradoTallerSelected:docenteSelectedTaller:ID_TipoContenido_Taller">
+                                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                                <div class="card-footer p-2 bg-primary rounded-top">
+                                                    <h5 class="card-title m-1">{{tallerREA.nombre_CREA}}</h5>
+                                                </div>
+                                                <div class="row no-gutters border border-top-0 border-secondary">
+                                                    <div class="col-md-10" style="max-width: 840px;">
+                                                        <div class="card-body p-2">
+                                                            <p class="card-text ">Descripcion: {{tallerREA.descripcion_CREA}}.</p>
+                                                            <div>
+                                                                <p class="card-text"><small class="text-muted">Materia:
+                                                                        {{tallerREA.materia}}</small></p>
+                                                            </div>
+                                                            <div>
+                                                                <p class="card-text"><small class="text-muted">Grado:
+                                                                        {{tallerREA.id_grado}}</small></p>
+                                                            </div>
+                                                            <div>
+                                                                <p class="card-text"><small class="text-muted">Tipo de contenido:
+                                                                        {{tallerREA.nombre_tipo_CREA}}</small></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--Boton Adjuntar Contenido-->
+                                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
+                                                    <a class="btn btn-primary" data-toggle="modal" data-target="#mimodalejemplo3"
+                                                        (click)="saveDataTaller(tallerREA)">Adjuntar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <hr class="style1">
+                        <br>
         
-                        <!--Boton Crear Contenido-->
-                        <div class="bg-secondary row pb-4 justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
-                            <button class="btn bg-warning px-5 py-4 font-weight-bold" (click)="onModificarActividad(frmModificarActividad)">Modificar Actividad</button>
+                        <!--Boton Modificar Actividad-->
+                        <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
+                            <button class="btn bg-warning px-5 py-4 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo" (click)="onModificarActividad(frmModificarActividad)">Modificar Actividad</button>
                         </div>
         
                     </form>
@@ -583,6 +721,31 @@
                 </div>
                 <div class="modal-footer justify-content-md-center no-gutters">
                     <button type="button" class="btn btn-default bg-warning" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Adjuntar Taller-->
+    <div class="modal fade" id="mimodalejemplo4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Taller Cambiado</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters">
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
         </div>
