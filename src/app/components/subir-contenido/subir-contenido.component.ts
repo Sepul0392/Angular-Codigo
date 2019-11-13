@@ -124,7 +124,8 @@ export class SubirContenidoComponent implements OnInit {
           id_grado: this.gradoSelected,
           nombre_CREA: form.value.nombre_CREA,
           urlrepositorio: this.urlSelected.url,
-          descripcion_CREA: form.value.descripcion_CREA
+          descripcion_CREA: form.value.descripcion_CREA,
+          en_uso: 0
         }
 
         console.log('datosContenido', newContenidoREA);

@@ -1,9 +1,10 @@
 export class ActividadI {
 
     constructor(id_actividad = 0, id_colegio = 0, id_docente = 0, id_materia = 0, id_grado = 0, id_competencia = 0, titulo_actividad = '', 
-                descripcion_actividad = '',id_contenidoREA = 0, video = 0, urlvideo = '', lectura = 0, urllectura = '', html = 0, urlhtml = '', descripcion_test = '',
+                descripcion_actividad = '',id_contenidoREA = 0, video = 0, urlvideo = '', lectura = 0, urllectura = '', html = 0, urlhtml = '',
                 Q1 = '', A11 = '', A12 = '', A13 = '', A14 = '', CA1 = 0, Q2 = '', A21 = '', A22 = '', A23 = '', A24 = '', CA2 = 0,
-                Q3 = '', A31 = '', A32 = '', A33 = '', A34 = '', CA3 = 0, audio = 0, urlaudio = ''){
+                Q3 = '', A31 = '', A32 = '', A33 = '', A34 = '', CA3 = 0, audio = 0, urlaudio = '', descripcion_test = '',
+                id_taller = 0, taller = 0, urltaller = ''){
                     this.id_actividad = id_actividad;
                     this.id_colegio = id_colegio;
                     this.id_docente = id_docente;
@@ -21,6 +22,9 @@ export class ActividadI {
                     this.urlaudio = urlaudio;
                     this.html = html;
                     this.urlhtml = urlhtml;
+                    this.id_taller = id_taller;
+                    this.taller = taller;
+                    this.urltaller = urltaller;
                     this.descripcion_test = descripcion_test;
                     this.Q1 = Q1;
                     this.A11 = A11;
@@ -59,6 +63,9 @@ export class ActividadI {
     urlaudio: string;
     html: number;
     urlhtml: string;
+    id_taller: number;
+    taller: number;
+    urltaller: string;
     descripcion_test: string;
     Q1: string;
     A11: string;

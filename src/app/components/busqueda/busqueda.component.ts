@@ -29,6 +29,7 @@ export class BusquedaComponent implements OnInit {
   tipoContenido:TipoContenidoI[];
   materiaSelected:number;
   gradoSelected:number;
+  docenteSelected:number;
   tipoContenidoSelected:number;
   contenidoVisualizar:contenidoREAVisualizarI[];
 
@@ -99,7 +100,7 @@ export class BusquedaComponent implements OnInit {
               }
             }
           }
-          console.log("contenido visualizar final:", this.contenidoVisualizar)
+          //console.log("contenido visualizar final:", this.contenidoVisualizar)
         });
       });
     });
@@ -136,7 +137,7 @@ export class BusquedaComponent implements OnInit {
               }
             }
           }
-          console.log("actividades visualizar:", this.actividadVisualizar)
+          //console.log("actividades visualizar:", this.actividadVisualizar)
         });
       });
     });

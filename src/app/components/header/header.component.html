@@ -12,50 +12,47 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link bg-danger text-dark font-weight-bold rounded" routerLink="/busqueda">Busqueda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link bg-success text-dark font-weight-bold rounded" href="#">Materias</a>
+                            <a class="nav-link bg-danger px-5 text-dark text-center font-weight-bold rounded" routerLink="/busqueda">Busqueda</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link p-2 mb-1 bg-warning text-dark font-weight-bold rounded dropdown-toggle"
+                            <a class="nav-link py-2 mb-1 bg-warning text-center text-dark font-weight-bold rounded dropdown-toggle"
                                 id="navbarGestionarActividad" href="#" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" data-target="#navbarDropdownActividad">
                                 Gestionar Actividad
                             </a>
                             <div class="dropdown-menu dropdown-menu-right bg-warning text-dark" id="navbarDropdownActividad"
                                 aria-labelledby="navbarDropdownActividad">
-                                <a class="dropdown-item" routerLink="/crearActividad">Crear Actividad</a>
-                                <a class="dropdown-item" routerLink="/modificarActividad">Modificar Actividad</a>
-                                <a class="dropdown-item" routerLink="/borrarActividad">Borrar Actividad</a>
-                                <a class="dropdown-item" href="#">Ayuda</a>
+                                <a class="dropdown-item text-center" routerLink="/crearActividad">Crear Actividad</a>
+                                <a class="dropdown-item text-center" routerLink="/modificarActividad">Modificar Actividad</a>
+                                <a class="dropdown-item text-center" routerLink="/borrarActividad">Borrar Actividad</a>
+                                <a class="dropdown-item text-center" href="#">Ayuda</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link p-2 mb-1 bg-primary text-dark font-weight-bold rounded dropdown-toggle"
+                            <a class="nav-link py-2 mb-1 bg-primary text-center text-dark font-weight-bold rounded dropdown-toggle"
                                 href="#" id="navbarMateria" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" data-target="#navbarDropdownContenido">
                                 Gestionar Contenido
                             </a>
                             <div class="dropdown-menu dropdown-menu-right bg-primary text-dark" id="navbarDropdownContenido"
                                 aria-labelledby="navbarDropdownContenido">
-                                <a class="dropdown-item" routerLink="/subirContenido">Subir Contenido</a>
-                                <a class="dropdown-item" routerLink="/borrarContenido">Borrar Contenido</a>
-                                <a class="dropdown-item" href="#">Ayuda</a>
+                                <a class="dropdown-item text-center" routerLink="/subirContenido">Subir Contenido</a>
+                                <a class="dropdown-item text-center" routerLink="/borrarContenido">Borrar Contenido</a>
+                                <a class="dropdown-item text-center" href="#">Ayuda</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link p-2 mb-1 bg-secondary text-dark font-weight-bold rounded dropdown-toggle"
+                            <a class="nav-link px-4 py-2 mb-1 text-center bg-info text-dark font-weight-bold rounded dropdown-toggle"
                                 href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" data-target="#navbarDropdownPerfil">
                                 Perfil
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right bg-secondary text-dark" id="navbarDropdownPerfil"
+                            <div class="dropdown-menu dropdown-menu-right bg-info text-dark" id="navbarDropdownPerfil"
                                 aria-labelledby="navbarDropdownPerfil">
-                                <a class="dropdown-item" routerLink="/InformacionProfesor">Informacion usuario</a>
-                                <a class="dropdown-item" routerLink="/AdministrarProfesor">Administrar usuario</a>
-                                <a class="dropdown-item btn" routerLink (click)="logOut()">Cerrar sesión</a>
-                                <a class="dropdown-item" href="#">Ayuda</a>
+                                <a class="dropdown-item text-center" routerLink="/InformacionProfesor">Informacion usuario</a>
+                                <a class="dropdown-item text-center" routerLink="/AdministrarProfesor">Administrar usuario</a>
+                                <a class="dropdown-item btn text-center" routerLink (click)="logOut()">Cerrar sesión</a>
+                                <a class="dropdown-item text-center" href="#">Ayuda</a>
                             </div>
                         </li>
                     </ul>

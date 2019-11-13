@@ -22,12 +22,14 @@ export class CrearActividadComponent implements OnInit {
 
   //Elementos de Busqueda de Contenido
   contenidoToSave:contenidoREAI;
+  tallerToSave:contenidoREAI;
   contenidos:contenidoREAI[];
   materia:MateriaI[];
   grado:GradoI[];
   tipoContenido:TipoContenidoI[];
   materiaSelected:number;
   gradoSelected:number;
+  docenteSelected:number;
   tipoContenidoSelected:number;
   contenidoVisualizar:contenidoREAVisualizarI[];
 
@@ -56,11 +58,13 @@ export class CrearActividadComponent implements OnInit {
   respuestaCorrectaSelected1:number;
   respuestaCorrectaSelected2:number;
   respuestaCorrectaSelected3:number;
+  ID_TipoContenido_Taller:number;
 
   constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.ID_TipoContenido_Taller = 5;
 
     this.getOptions();
     this.getContenidos();
@@ -221,6 +225,9 @@ export class CrearActividadComponent implements OnInit {
         urlaudio: this.urlaudioOpt,
         html: this.htmlOpt,
         urlhtml: this.urlhtmlOpt,
+        id_taller: this.tallerToSave.id_CREA,
+        taller: 1,
+        urltaller: this.tallerToSave.urlrepositorio,
         descripcion_test: form.value.descripcion_quiz,
         Q1: form.value.preguntaQ1,
         A11: form.value.respuesta11,
@@ -246,9 +253,31 @@ export class CrearActividadComponent implements OnInit {
 
       this.ActividadService.createActivity(newActividad).subscribe(res => {
         //window.location.reload();
-        this.resetForm(form);
-      })
+
+        const contenidoREAInfo = {
+          id_CREA: this.contenidoToSave.id_CREA,
+          en_uso: (this.contenidoToSave.en_uso + 1)
+        }
+        const tallerInfo = {
+          id_CREA: this.tallerToSave.id_CREA,
+          en_uso: (this.tallerToSave.en_uso + 1)
+        }
+
+        this.ContentREAService.uploadEstadoContentREA(contenidoREAInfo).subscribe(res => {
+          console.log(res);
+          this.ContentREAService.uploadEstadoContentREA(tallerInfo).subscribe(res => {
+            console.log(res);
+            this.resetForm(form);
+          });
+        });
+      });
     });
+  }
+
+  //Almacenar info temporal de un Taller
+  saveDataTaller(tallerhtml){
+    this.tallerToSave = tallerhtml;
+    console.log("taller guardado:", this.tallerToSave);
   }
 
   //Almacenar info temporal de un ContenidoREA

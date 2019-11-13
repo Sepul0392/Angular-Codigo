@@ -17,9 +17,16 @@ export class ContentREAService {
       this.selectedContenidoREA = new contenidoREAI;
    }
 
+
+   //------------------------------------------------------------------------------------ LOGIN
   //Servicio para crear el contenido en MongoDB
   createContentREA(contenidoREA:contenidoREAI){
     return this.httpClient.post(`${this.AUTHD_SERVER}/createContentREA`, contenidoREA);
+  }
+
+  //Servicio para cambiar el estado de USO del contenido en Mongo
+  uploadEstadoContentREA(data:any){
+    return this.httpClient.post(`http://localhost:3000/uploadEstadoContentREA`, data);
   }
 
   //Servicio para subir el contenido al Repositorio ***
@@ -40,15 +47,13 @@ export class ContentREAService {
     return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadContentREA`);
   }
 
-  /**Modificar Contenido 
-  putContenidoREA(contenidoREA: contenidoREAI){
-      return this.httpClient.put(`${this.AUTHD_SERVER}/uploadContenido`, contenidoREA);
-  }**/
-
   //Servicio para borrar el contenido de MongoDB
   deleteContentREA(contenidoREA: contenidoREAI){
     return this.httpClient.post(`${this.AUTHD_SERVER}/deleteContentREA/`, contenidoREA)
   }
+
+
+  //------------------------------------------------------------------------------------ Servicions de Ayuda
 
   //Servicio para llamar todas las materias
   allSubject() {
