@@ -260,7 +260,7 @@
                                             *ngFor="let contenidoREA of contenidoVisualizar | filterContent: nombreCREASelected:materiaSelected:gradoSelected:docenteSelected:tipoContenidoSelected">
                                             <div class="card mb-4 border-0" style="max-width: 1440px;">
                                                 <div class="card-footer p-2 bg-primary rounded-top">
-                                                    <h5 class="card-title">{{contenidoREA.nombre_CREA}}</h5>
+                                                    <h5 class="card-title m-1">{{contenidoREA.nombre_CREA}}</h5>
                                                 </div>
                                                 <div class="row no-gutters border border-top-0 border-secondary">
                                                     <div class="col-md-10" style="max-width: 840px;">
@@ -279,7 +279,7 @@
                                                     </div>
                                                 </div>
                                                 <!--Boton Adjuntar Contenido-->
-                                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters">
+                                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
                                                     <a class="btn btn-primary" data-toggle="modal" data-target="#mimodalejemplo2" (click)="saveDataContent(contenidoREA)">Adjuntar</a>
                                                 </div>
                                             </div>

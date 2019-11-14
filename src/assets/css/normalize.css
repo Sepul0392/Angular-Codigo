@@ -359,6 +359,10 @@ hr.style1 {
 	border-top: 6px double #f0ad4e;
 	text-align: center;
 }
+hr.style1b {
+	border-top: 1px solid #f0ad4e;
+	text-align: center;
+}
 hr.style2 {
 	border-top: 6px double #0275d8;
 	text-align: center;
@@ -373,6 +377,14 @@ hr.style4 {
 }
 hr.style5{
   border-top: 6px double #d9534f;
+	text-align: center;
+}
+hr.style6{
+  border-top: 6px double #292b2c;
+	text-align: center;
+}
+hr.style6b {
+	border-top: 1px solid #292b2c;
 	text-align: center;
 }
 hr.styleOtro {

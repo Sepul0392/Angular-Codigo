@@ -125,8 +125,9 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <!--Boton ver Actividad-->
                                                                     <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1"> 
-                                                                        <a class="btn bg-warning" data-toggle="modal" data-target="#mimodalejemplo" (click)="saveDataActivity(actividad)">Ver</a>
+                                                                        <a class="btn bg-warning" data-toggle="modal" data-target="#mimodalejemplo" (click)="getActividadinModal(actividad)">Ver</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -238,20 +239,256 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+    <div class="modal fade col" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content ">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Confirmar Acción</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h4 class="modal-title text-center my-0" id="myModalLabel">Actividad Seleccionada</h4>
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!--<iframe src="http://localhost:3000/repositorio/c.pdf" style="width:600px; height:500px;" frameborder="0"></iframe>-->
+                    <div class="">
+                        <div>
+                            <h3 class="text-center bg-warning py-4">{{ActividadService.selectedActividad.titulo_actividad}}</h3>
+                        </div>
+                        <div>
+                            <h5 class="">Descripcion: {{ActividadService.selectedActividad.descripcion_actividad}}</h5>
+                        </div>
+                        <div>
+                            <p class="card-text"><small class="text-muted">Materia: {{ActividadService.selectedActividad.materia}}</small>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="card-text"><small class="text-muted">Grado: {{ActividadService.selectedActividad.id_grado}}</small>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="card-text"><small class="text-muted">Competencia:
+                                    {{ActividadService.selectedActividad.competencia}}</small></p>
+                        </div>
+                        <div>
+                            <p class="card-text"><small class="text-muted">Profesor: {{ActividadService.selectedActividad.docente}}</small>
+                            </p>
+                        </div>
+                        <hr class="style1b">
+
+                        <!--Contenido Actividad-->
+                        <div>
+                            <h5 class="">Contenido:</h5>
+                        </div>
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-primary rounded-top">
+                                    <h5 class="card-title m-1">{{contenidoAct.nombre_CREA}}</h5>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text m-1">Descripcion: {{contenidoAct.descripcion_CREA}}</p>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Materia: {{contenidoAct.materia}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Grado: {{contenidoAct.id_grado}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Tipo de contenido:
+                                                        {{contenidoAct.nombre_tipo_CREA}}</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Boton ver Contenido-->
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
+                                    <a class="btn btn-primary" (click)="verContenidoActividad()">Ver</a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="style1b">
+
+                        <!--Quiz del contenido-->
+                        <div>
+                            <h5 class="">Quiz del contenido:</h5>
+                        </div>
+                        <div class="contenedor py-3">
+                            <div class="">
+                                <label>Descripcion: {{ActividadService.selectedActividad.descripcion_test}}</label>
+                            </div>
+                            <div class="container">
+                                <!--Tabs-->
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card mt-3 tab-card">
+                                            <div class="card-header tab-card-header bg-light">
+                                                <!--Opcion Tab-->
+                                                <nav>
+                                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                        <a class="col nav-item nav-link text-center active" id="nav-Pregunta1-tab" data-toggle="tab" href="#nav-Pregunta1" role="tab"
+                                                            aria-controls="nav-Pregunta1" aria-selected="true">Pregunta 1</a>
+                                                        <a class="col nav-item nav-link text-center" id="nav-Pregunta2-tab" data-toggle="tab" href="#nav-Pregunta2" role="tab"
+                                                            aria-controls="nav-Pregunta2" aria-selected="false">Pregunta 2</a>
+                                                        <a class="col nav-item nav-link text-center" id="nav-Pregunta3-tab" data-toggle="tab" href="#nav-Pregunta3" role="tab"
+                                                            aria-controls="nav-Pregunta3" aria-selected="false">Pregunta 3</a>
+                                                    </div>
+                                                </nav>
+
+                                                <!--Tabs Resultados-->
+                                                <div class="tab-content" id="nav-tabContent">
+                                                    <br>
+                                                    <!--Tab 1-->
+                                                    <div class="tab-pane fade show active" id="nav-Pregunta1" role="tabpanel" aria-labelledby="nav-Pregunta1-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 1</h5>
+                                                            <div class="">
+                                                                <label class="">Pregunta: {{ActividadService.selectedActividad.Q1}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <label class="text-dark">Respuestas:</label>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">A) {{ActividadService.selectedActividad.A11}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">B) {{ActividadService.selectedActividad.A12}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">C) {{ActividadService.selectedActividad.A13}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">D) {{ActividadService.selectedActividad.A14}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--Tab 2-->
+                                                    <div class="tab-pane fade" id="nav-Pregunta2" role="tabpanel" aria-labelledby="nav-Pregunta2-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 2</h5>
+                                                            <div class="">
+                                                                <label class="">Pregunta: {{ActividadService.selectedActividad.Q2}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <label class="text-dark">Respuestas:</label>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">A) {{ActividadService.selectedActividad.A21}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">B) {{ActividadService.selectedActividad.A22}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">C) {{ActividadService.selectedActividad.A23}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">D) {{ActividadService.selectedActividad.A24}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--Tab 3-->
+                                                    <div class="tab-pane fade" id="nav-Pregunta3" role="tabpanel" aria-labelledby="nav-Pregunta3-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 3</h5>
+                                                            <div class="">
+                                                                <label class="">Pregunta: {{ActividadService.selectedActividad.Q3}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <label class="text-dark">Respuestas:</label>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">A) {{ActividadService.selectedActividad.A31}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">B) {{ActividadService.selectedActividad.A32}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">C) {{ActividadService.selectedActividad.A33}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">D) {{ActividadService.selectedActividad.A34}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            <div class="tab-content" id="myTabContent">
+                                                <!--Pregunta 1 Tabs-->
+                                                <div class="tab-pane fade show active p-3" id="preguntaA1" role="tabpanel"
+                                                    aria-labelledby="one-tab">
+                                                    
+                                                </div>
+                                                <!--Pregunta 2 Tabs-->
+                                                <div class="tab-pane fade p-3" id="preguntaA2" role="tabpanel" aria-labelledby="two-tab">
+                                                    
+                                                </div>
+                                                <!--Pregunta 3 Tabs-->
+                                                <div class="tab-pane fade p-3" id="preguntaA3" role="tabpanel" aria-labelledby="three-tab">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="style1b">
+
+                        <!--Taller Actividad-->
+                        <div>
+                            <h5 class="">Taller:</h5>
+                        </div>
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="card-footer p-2 bg-primary rounded-top">
+                                    <h5 class="card-title m-1">{{tallerAct.nombre_CREA}}</h5>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Descripcion: {{tallerAct.descripcion_CREA}}</p>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Materia: {{tallerAct.materia}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Grado: {{tallerAct.id_grado}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Tipo de contenido:
+                                                        {{tallerAct.nombre_tipo_CREA}}</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Boton ver Taller-->
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
+                                    <a class="btn btn-primary" (click)="verTallerActividad()">Ver</a>
+                                </div>
+                            </div> 
+                        </div>
+                        <hr class="style1b">
+
+                    </div>  
                 </div>
                 <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteContenido()">Aceptar</button>
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
