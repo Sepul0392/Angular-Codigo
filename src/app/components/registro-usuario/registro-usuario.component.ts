@@ -24,6 +24,7 @@ export class RegistroUsuarioComponent implements OnInit {
   newIDMA: number;
   temp1: number;
   temp2: number;
+  urlTemp:string;
 
   constructor(private ContentREAService: ContentREAService, private AuthDService: AuthDService, private router: Router) { }
 
@@ -53,93 +54,107 @@ export class RegistroUsuarioComponent implements OnInit {
       this.AuthDService.loadAllDocentes().subscribe(res => {
         this.AuthDService.Docentes = res as DocenteI[];
 
-        //Crear ID Docente
-        if (this.AuthDService.Docentes.length == 0) {
-          this.newIDD = 1;
-        }
-        else {
-          for (let n = 0; n < this.AuthDService.Docentes.length; n++) {
-            for (let i = 0; i < this.AuthDService.Docentes.length; i++) {
-              //console.log('n=', n, 'id_CREA=', this.AuthDService.Docentes[i].id_docente);
-              if (this.AuthDService.Docentes.length) {
-                this.newIDD = 1;
+        this.ContentREAService.allSubject().subscribe(res => {
+          this.materia = res as MateriaI[];
+          //console.log('info materia',this.materia.length);
+
+          //Crear ID Docente
+          if (this.AuthDService.Docentes.length == 0) {
+            this.newIDD = 1;
+          }
+          else {
+            for (let n = 0; n < this.AuthDService.Docentes.length; n++) {
+              for (let i = 0; i < this.AuthDService.Docentes.length; i++) {
+                //console.log('n=', n, 'id_CREA=', this.AuthDService.Docentes[i].id_docente);
+                if (this.AuthDService.Docentes.length) {
+                  this.newIDD = 1;
+                }
+                if (n + 1 == this.AuthDService.Docentes[i].id_docente) {
+                  this.newIDD = n + 2;
+                  this.temp1 = 0;
+                  i = this.AuthDService.Docentes.length;
+                }
+                else {
+                  this.newIDD = n + 1;
+                  this.temp1 = 1;
+                }
               }
-              if (n+1 == this.AuthDService.Docentes[i].id_docente) {
-                this.newIDD = n + 2;
-                this.temp1 = 0;
-                i = this.AuthDService.Docentes.length;
+              if (this.temp1 == 1) {
+                n = this.AuthDService.Docentes.length + 1;
               }
-              else {
-                this.newIDD = n + 1;
-                this.temp1 = 1;
-              }
-            }
-            if (this.temp1 == 1) {
-              n = this.AuthDService.Docentes.length + 1;
             }
           }
-        }
 
-        //Crear ID MateriaACtiva
-        if (this.AuthDService.MateriasActivas.length == 0) {
-          this.newIDMA = 1;
-        }
-        else {
-          for (let n = 0; n < this.AuthDService.MateriasActivas.length; n++) {
-            for (let i = 0; i < this.AuthDService.MateriasActivas.length; i++) {
-              //console.log('n=', n, 'id_CREA=', this.AuthDService.MateriasActivas[i].id_materiaActiva);
-              if (this.AuthDService.MateriasActivas.length) {
-                this.newIDMA = 1;
+          //Crear ID MateriaACtiva
+          if (this.AuthDService.MateriasActivas.length == 0) {
+            this.newIDMA = 1;
+          }
+          else {
+            for (let n = 0; n < this.AuthDService.MateriasActivas.length; n++) {
+              for (let i = 0; i < this.AuthDService.MateriasActivas.length; i++) {
+                //console.log('n=', n, 'id_CREA=', this.AuthDService.MateriasActivas[i].id_materiaActiva);
+                if (this.AuthDService.MateriasActivas.length) {
+                  this.newIDMA = 1;
+                }
+                if (n + 1 == this.AuthDService.MateriasActivas[i].id_materiaActiva) {
+                  this.newIDMA = n + 2;
+                  this.temp2 = 0;
+                  i = this.AuthDService.MateriasActivas.length;
+                }
+                else {
+                  this.newIDMA = n + 1;
+                  this.temp2 = 1;
+                }
               }
-              if (n+1 == this.AuthDService.MateriasActivas[i].id_materiaActiva) {
-                this.newIDMA = n + 2;
-                this.temp2 = 0;
-                i = this.AuthDService.MateriasActivas.length;
+              if (this.temp2 == 1) {
+                n = this.AuthDService.MateriasActivas.length + 1;
               }
-              else {
-                this.newIDMA = n + 1;
-                this.temp2 = 1;
-              }
-            }
-            if (this.temp2 == 1) {
-              n = this.AuthDService.MateriasActivas.length + 1;
             }
           }
-        }
 
-        const newDocente = {
-          id_docente: this.newIDD,
-          tipo_usuario: 2,
-          nombre_docente: form.value.nombre_docente,
-          apellido_docente: form.value.apellido_docente,
-          id_colegio: 0,
-          nombre_usuario: form.value.nombre_usuario,
-          contrasena: form.value.contrasena,
-          correo_electronico: form.value.correo_electronico,
-          accessToken: '',
-          expiresIn: ''
-        }
+          for (let x = 0; x < this.materia.length; x++) {
+            if (this.materia[x].id_materia == form.value.id_materia) {
+              this.urlTemp = this.materia[x].url_imagen
+            }
+          }
 
-        const newMateriaActiva = {
-          id_materiaActiva: this.newIDMA,
-          nombre_materiaActiva: form.value.nombre_materiaActiva,
-          id_materia: form.value.id_materia,
-          id_grado: form.value.id_grado,
-          id_docente: this.newIDD,
-          id_colegio: 0
-        }
+          console.log('form', form.value.nombre_materiaActiva);
 
-        console.log('datosContenido', newDocente);
-        console.log('datosContenido', newMateriaActiva);
+          const newDocente = {
+            id_docente: this.newIDD,
+            tipo_usuario: 2,
+            nombre_docente: form.value.nombre_docente,
+            apellido_docente: form.value.apellido_docente,
+            id_colegio: 0,
+            nombre_usuario: form.value.nombre_usuario,
+            contrasena: form.value.contrasena,
+            correo_electronico: form.value.correo_electronico,
+            accessToken: '',
+            expiresIn: ''
+          }
 
-        this.AuthDService.createDocente(newDocente).subscribe(res => {
-          console.log(res);
-          this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
+          const newMateriaActiva = {
+            id_materiaActiva: this.newIDMA,
+            nombre_materiaActiva: form.value.nombre_materiaActiva,
+            id_materia: form.value.id_materia,
+            id_grado: form.value.id_grado,
+            id_docente: this.newIDD,
+            id_colegio: 0,
+            url_imagen: this.urlTemp
+          }
+
+          console.log('datosContenido', newDocente);
+          console.log('datosContenido', newMateriaActiva);
+
+          this.AuthDService.createDocente(newDocente).subscribe(res => {
             console.log(res);
-            this.resetForm(form);
-            this.router.navigateByUrl('/login')
+            this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
+              console.log(res);
+              this.resetForm(form);
+              this.router.navigateByUrl('/login')
+            });
           });
-        });  
+        });
       });
     });
   }

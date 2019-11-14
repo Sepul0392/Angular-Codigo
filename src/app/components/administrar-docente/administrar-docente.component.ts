@@ -30,6 +30,7 @@ export class AdministrarDocenteComponent implements OnInit {
   temp:number;
 
   materiaActivaToSave:MateriaActivaI;
+  urlTemp:string;
 
   constructor(private ContentREAService: ContentREAService, private AuthDService: AuthDService, private router: Router) { }
 
@@ -67,7 +68,7 @@ export class AdministrarDocenteComponent implements OnInit {
 
     this.ContentREAService.allSubject().subscribe(res => {
       this.materia = res as MateriaI[];
-      //console.log("1:",this.materia.length);
+      //console.log('info materia',this.materia.length);
 
       this.AuthDService.loadDocente(infoDocente).subscribe(res =>{
         this.resDocente = res as DocenteI;
@@ -102,49 +103,64 @@ export class AdministrarDocenteComponent implements OnInit {
     this.AuthDService.loadAllSubjectActives().subscribe(res => {
       this.AuthDService.MateriasActivas = res as MateriaActivaI[];
 
-      //Crear ID MateriaACtiva
-      if (this.AuthDService.MateriasActivas.length == 0) {
-        this.newIDMA = 1;
-      }
-      else {
-        for (let n = 0; n < this.AuthDService.MateriasActivas.length; n++) {
-          for (let i = 0; i < this.AuthDService.MateriasActivas.length; i++) {
-            //console.log('n=', n, 'id_CREA=', this.AuthDService.MateriasActivas[i].id_materiaActiva);
-            if (this.AuthDService.MateriasActivas.length) {
-              this.newIDMA = 1;
+      this.ContentREAService.allSubject().subscribe(res => {
+        this.materia = res as MateriaI[];
+        //console.log('info materia',this.materia.length);
+
+        //Crear ID MateriaACtiva
+        if (this.AuthDService.MateriasActivas.length == 0) {
+          this.newIDMA = 1;
+        }
+        else {
+          for (let n = 0; n < this.AuthDService.MateriasActivas.length; n++) {
+            for (let i = 0; i < this.AuthDService.MateriasActivas.length; i++) {
+              //console.log('n=', n, 'id_CREA=', this.AuthDService.MateriasActivas[i].id_materiaActiva);
+              if (this.AuthDService.MateriasActivas.length) {
+                this.newIDMA = 1;
+              }
+              if (n + 1 == this.AuthDService.MateriasActivas[i].id_materiaActiva) {
+                this.newIDMA = n + 2;
+                this.temp = 0;
+                i = this.AuthDService.MateriasActivas.length;
+              }
+              else {
+                this.newIDMA = n + 1;
+                this.temp = 1;
+              }
             }
-            if (n+1 == this.AuthDService.MateriasActivas[i].id_materiaActiva) {
-              this.newIDMA = n + 2;
-              this.temp = 0;
-              i = this.AuthDService.MateriasActivas.length;
+            if (this.temp == 1) {
+              n = this.AuthDService.MateriasActivas.length + 1;
             }
-            else {
-              this.newIDMA = n + 1;
-              this.temp = 1;
-            }
-          }
-          if (this.temp == 1) {
-            n = this.AuthDService.MateriasActivas.length + 1;
           }
         }
-      }
 
-      console.log('form', form.value.nombre_materiaActiva);
-      const newMateriaActiva = {
-        id_materiaActiva: this.newIDMA,
-        nombre_materiaActiva: form.value.nombre_materiaActiva,
-        id_materia: form.value.id_materia,
-        id_grado: form.value.id_grado,
-        id_docente: this.idDocente,
-        id_colegio: 0
-      }
+        for(let x=0; x < this.materia.length; x++)
+        {
+          if(this.materia[x].id_materia == form.value.id_materia){
+            this.urlTemp = this.materia[x].url_imagen
+          }
+        }
 
-      console.log('datosContenido', newMateriaActiva);
+        console.log('form', form.value.nombre_materiaActiva);
+        
+        const newMateriaActiva = {
+          id_materiaActiva: this.newIDMA,
+          nombre_materiaActiva: form.value.nombre_materiaActiva,
+          id_materia: form.value.id_materia,
+          id_grado: form.value.id_grado,
+          id_docente: this.idDocente,
+          id_colegio: 0,
+          url_imagen: this.urlTemp
+        }
 
-      this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
-        console.log(res);
-        this.resetForm(form);
-        this.getInformacionCompleta();
+        console.log('datosContenido', newMateriaActiva);
+
+        this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
+          console.log(res);
+          this.resetForm(form);
+          this.getInformacionCompleta();
+        });
+
       });
     });
   }

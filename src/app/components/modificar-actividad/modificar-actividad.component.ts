@@ -51,6 +51,8 @@ export class ModificarActividadComponent implements OnInit {
   contenidoAct:contenidoREAVisualizarI;
   tallerAct:contenidoREAVisualizarI;
   verificationSaveContent:boolean;
+  verificationSaveTaller:boolean;
+  verificationSaveActividad:boolean;
   ID_TipoContenido_Taller:number;
   contenidoRes:any;
   tallerRes:any;
@@ -68,6 +70,8 @@ export class ModificarActividadComponent implements OnInit {
     this.contenidoAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
     this.tallerAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
     this.verificationSaveContent = false;
+    this.verificationSaveTaller = false;
+    this.verificationSaveActividad = false;
   }
 
   //Obtener los datos de los Options
@@ -160,120 +164,146 @@ export class ModificarActividadComponent implements OnInit {
 
   //Modificar Actividad en Mongo
   onModificarActividad(form: NgForm){
-    //cambiar informacion de contenido en la Actividad al identificar que se a seleccionado un nuevo contenido
-    if(this.verificationSaveContent == true){
-      if(this.contenidoToSave.tipo_CREA == 1){
-        this.actividadToSave.video = 1;
-        this.actividadToSave.urlvideo = this.contenidoToSave.urlrepositorio;
-        this.actividadToSave.documento = 0;
-        this.actividadToSave.urldocumento = "";
-        this.actividadToSave.audio = 0;
-        this.actividadToSave.urlaudio = "";
-        this.actividadToSave.html = 0;
-        this.actividadToSave.urlhtml = "";
-      }
-      if(this.contenidoToSave.tipo_CREA == 2){
-        this.actividadToSave.video = 0;
-        this.actividadToSave.urlvideo = "";
-        this.actividadToSave.documento = 1;
-        this.actividadToSave.urldocumento = this.contenidoToSave.urlrepositorio;
-        this.actividadToSave.audio = 0;
-        this.actividadToSave.urlaudio = "";
-        this.actividadToSave.html = 0;
-        this.actividadToSave.urlhtml = "";
-      }
-      if(this.contenidoToSave.tipo_CREA == 3){
-        this.actividadToSave.video = 0;
-        this.actividadToSave.urlvideo = "";
-        this.actividadToSave.documento = 0;
-        this.actividadToSave.urldocumento = "";
-        this.actividadToSave.audio = 1;
-        this.actividadToSave.urlaudio = this.contenidoToSave.urlrepositorio;
-        this.actividadToSave.html = 0;
-        this.actividadToSave.urlhtml = "";
-      }
-      if(this.contenidoToSave.tipo_CREA == 4){
-        this.actividadToSave.video = 0;
-        this.actividadToSave.urlvideo = "";
-        this.actividadToSave.documento = 0;
-        this.actividadToSave.urldocumento = "";
-        this.actividadToSave.audio = 0;
-        this.actividadToSave.urlaudio = "";
-        this.actividadToSave.html = 1;
-        this.actividadToSave.urlhtml = this.contenidoToSave.urlrepositorio;
-      }
-      this.actividadToSave.id_contenidoREA = this.contenidoToSave.id_CREA;
-    }
-    
-    //Verificar si la Actividad es del docente que la esta modificando
-    if(this.id_docenteAuth == this.actividadToSave.id_docente){
+    if (this.verificationSaveActividad == true) {
 
-      this.actividadToSave.id_materia = form.value.id_materia;
-      this.actividadToSave.id_grado = form.value.id_grado;
-      this.actividadToSave.id_competencia = form.value.id_competencia;
-      this.actividadToSave.titulo_actividad = form.value.titulo_actividad;
-      this.actividadToSave.descripcion_actividad = form.value.descripcion_actividad;
-      this.actividadToSave.descripcion_test = form.value.descripcion_test;
-      this.actividadToSave.Q1 = form.value.Q1;
-      this.actividadToSave.A11 = form.value.A11;
-      this.actividadToSave.A12 = form.value.A12;
-      this.actividadToSave.A13 = form.value.A13;
-      this.actividadToSave.A14 = form.value.A14;
-      this.actividadToSave.CA1 = form.value.CA1;
-      this.actividadToSave.Q2 = form.value.Q2;
-      this.actividadToSave.A21 = form.value.A21;
-      this.actividadToSave.A22 = form.value.A22;
-      this.actividadToSave.A23 = form.value.A23;
-      this.actividadToSave.A24 = form.value.A24;
-      this.actividadToSave.CA2 = form.value.CA2;
-      this.actividadToSave.Q3 = form.value.Q3;
-      this.actividadToSave.A31 = form.value.A31;
-      this.actividadToSave.A32 = form.value.A32;
-      this.actividadToSave.A33 = form.value.A33;
-      this.actividadToSave.A34 = form.value.A34;
-      this.actividadToSave.CA3 = form.value.CA3;
+      //cambiar informacion de contenido en la Actividad al identificar que se a seleccionado un nuevo contenido
+      if (this.verificationSaveContent == true) {
 
-      console.log('datosActividadModificada', this.actividadToSave);
-
-      this.ActividadService.uploadActivity(this.actividadToSave).subscribe(res => {
-        //window.location.reload();
-        console.log(res);
-      })
-      this.resetForm(form);
-    }
-    else {
-
-      //Generar ID
-      this.ActividadService.allActivities().subscribe(res => {
-        //console.log(res);
-        this.ActividadService.actividades = res as ActividadI[];
-        //console.log('Actividades', this.ActividadService.actividades);
-
-        if (this.ActividadService.actividades.length == 0) {
-          this.newID = 1;
+        if (this.contenidoToSave.tipo_CREA == 1) {
+          this.actividadToSave.video = 1;
+          this.actividadToSave.urlvideo = this.contenidoToSave.urlrepositorio;
+          this.actividadToSave.documento = 0;
+          this.actividadToSave.urldocumento = "";
+          this.actividadToSave.audio = 0;
+          this.actividadToSave.urlaudio = "";
+          this.actividadToSave.html = 0;
+          this.actividadToSave.urlhtml = "";
         }
-        else{
-          for (let n = 0; n < this.ActividadService.actividades.length; n++) {
-            for (let i = 0; i < this.ActividadService.actividades.length; i++) {
-              //console.log('n=', n, 'id_CREA=', this.ActividadService.actividades[i].id_actividad);
-              if (n+1 == this.ActividadService.actividades[i].id_actividad) {
-                this.newID = n + 2;
-                this.temp = 0;
-                i = this.ActividadService.actividades.length;
-              }
-              else {
-                this.newID = n + 1;
-                this.temp = 1;
-              }
-            }
-            if (this.temp == 1) {
-              n = this.ActividadService.actividades.length + 1;
-            }
+        if (this.contenidoToSave.tipo_CREA == 2) {
+          this.actividadToSave.video = 0;
+          this.actividadToSave.urlvideo = "";
+          this.actividadToSave.documento = 1;
+          this.actividadToSave.urldocumento = this.contenidoToSave.urlrepositorio;
+          this.actividadToSave.audio = 0;
+          this.actividadToSave.urlaudio = "";
+          this.actividadToSave.html = 0;
+          this.actividadToSave.urlhtml = "";
+        }
+        if (this.contenidoToSave.tipo_CREA == 3) {
+          this.actividadToSave.video = 0;
+          this.actividadToSave.urlvideo = "";
+          this.actividadToSave.documento = 0;
+          this.actividadToSave.urldocumento = "";
+          this.actividadToSave.audio = 1;
+          this.actividadToSave.urlaudio = this.contenidoToSave.urlrepositorio;
+          this.actividadToSave.html = 0;
+          this.actividadToSave.urlhtml = "";
+        }
+        if (this.contenidoToSave.tipo_CREA == 4) {
+          this.actividadToSave.video = 0;
+          this.actividadToSave.urlvideo = "";
+          this.actividadToSave.documento = 0;
+          this.actividadToSave.urldocumento = "";
+          this.actividadToSave.audio = 0;
+          this.actividadToSave.urlaudio = "";
+          this.actividadToSave.html = 1;
+          this.actividadToSave.urlhtml = this.contenidoToSave.urlrepositorio;
+        }
+
+        if (this.id_docenteAuth == this.actividadToSave.id_docente) {
+          const contenidoREAViejoInfo = {
+            id_CREA: this.contenidoRes.content.id_CREA,
+            en_uso: (this.contenidoRes.content.en_uso - 1)
           }
+          const contenidoREANuevoInfo = {
+            id_CREA: this.contenidoToSave.id_CREA,
+            en_uso: (this.contenidoToSave.en_uso + 1)
+          }
+
+          this.ContentREAService.uploadEstadoContentREA(contenidoREANuevoInfo).subscribe(res => {
+            console.log('nuevo contenido', res);
+            this.ContentREAService.uploadEstadoContentREA(contenidoREAViejoInfo).subscribe(res => {
+              console.log('viejo contenido', res);
+            });
+          });
         }
-        
-        this.actividadToSave.id_actividad = this.newID;
-        this.actividadToSave.id_docente = this.id_docenteAuth;
+        else {
+          const contenidoREANuevoInfo = {
+            id_CREA: this.contenidoToSave.id_CREA,
+            en_uso: (this.contenidoToSave.en_uso + 1)
+          }
+
+          this.ContentREAService.uploadEstadoContentREA(contenidoREANuevoInfo).subscribe(res => {
+            console.log('nuevo contenido', res);
+          });
+        }
+
+        this.actividadToSave.id_contenidoREA = this.contenidoToSave.id_CREA;
+      }
+      else {
+        if (this.id_docenteAuth != this.actividadToSave.id_docente) {
+          const contenidoREAViejoInfo = {
+            id_CREA: this.contenidoRes.content.id_CREA,
+            en_uso: (this.contenidoRes.content.en_uso + 1)
+          }
+
+          this.ContentREAService.uploadEstadoContentREA(contenidoREAViejoInfo).subscribe(res => {
+            console.log('viejo contenido', res);
+          });
+        }
+      }
+
+      //cambiar informacion de taller en la Actividad al identificar que se a seleccionado un nuevo taller
+      if (this.verificationSaveTaller == true) {
+
+        if (this.id_docenteAuth == this.actividadToSave.id_docente) {
+          const tallerViejoInfo = {
+            id_CREA: this.tallerRes.content.id_CREA,
+            en_uso: (this.tallerRes.content.en_uso - 1)
+          }
+          const tallerNuevoInfo = {
+            id_CREA: this.tallerToSave.id_CREA,
+            en_uso: (this.tallerToSave.en_uso + 1)
+          }
+
+          this.ContentREAService.uploadEstadoContentREA(tallerNuevoInfo).subscribe(res => {
+            console.log('nuevo contenido', res);
+            this.ContentREAService.uploadEstadoContentREA(tallerViejoInfo).subscribe(res => {
+              console.log('viejo contenido', res);
+            });
+          });
+        }
+        else {
+          const tallerNuevoInfo = {
+            id_CREA: this.tallerToSave.id_CREA,
+            en_uso: (this.tallerToSave.en_uso + 1)
+          }
+
+          this.ContentREAService.uploadEstadoContentREA(tallerNuevoInfo).subscribe(res => {
+            console.log('nuevo contenido', res);
+          });
+        }
+
+        this.actividadToSave.id_taller = this.tallerToSave.id_CREA;
+        this.actividadToSave.taller = 1;
+        this.actividadToSave.urltaller = this.tallerToSave.urlrepositorio;
+      }
+      else {
+        if (this.id_docenteAuth != this.actividadToSave.id_docente) {
+          const tallerViejoInfo = {
+            id_CREA: this.tallerRes.content.id_CREA,
+            en_uso: (this.tallerRes.content.en_uso + 1)
+          }
+
+          this.ContentREAService.uploadEstadoContentREA(tallerViejoInfo).subscribe(res => {
+            console.log('viejo contenido', res);
+          });
+        }
+      }
+
+      //Verificar si la Actividad es del docente que la esta modificando
+      if (this.id_docenteAuth == this.actividadToSave.id_docente) {
+
         this.actividadToSave.id_materia = form.value.id_materia;
         this.actividadToSave.id_grado = form.value.id_grado;
         this.actividadToSave.id_competencia = form.value.id_competencia;
@@ -301,12 +331,82 @@ export class ModificarActividadComponent implements OnInit {
 
         console.log('datosActividadModificada', this.actividadToSave);
 
-        this.ActividadService.createActivity(this.actividadToSave).subscribe(res => {
+        this.ActividadService.uploadActivity(this.actividadToSave).subscribe(res => {
           //window.location.reload();
-          console.log("Creada nueva Actividad");
+          console.log(res);
+          this.resetForm(form);
         })
-        this.resetForm(form);
-      });
+      }
+      else {
+
+        //Generar ID
+        this.ActividadService.allActivities().subscribe(res => {
+          //console.log(res);
+          this.ActividadService.actividades = res as ActividadI[];
+          //console.log('Actividades', this.ActividadService.actividades);
+
+          if (this.ActividadService.actividades.length == 0) {
+            this.newID = 1;
+          }
+          else {
+            for (let n = 0; n < this.ActividadService.actividades.length; n++) {
+              for (let i = 0; i < this.ActividadService.actividades.length; i++) {
+                //console.log('n=', n, 'id_CREA=', this.ActividadService.actividades[i].id_actividad);
+                if (n + 1 == this.ActividadService.actividades[i].id_actividad) {
+                  this.newID = n + 2;
+                  this.temp = 0;
+                  i = this.ActividadService.actividades.length;
+                }
+                else {
+                  this.newID = n + 1;
+                  this.temp = 1;
+                }
+              }
+              if (this.temp == 1) {
+                n = this.ActividadService.actividades.length + 1;
+              }
+            }
+          }
+
+          this.actividadToSave.id_actividad = this.newID;
+          this.actividadToSave.id_docente = this.id_docenteAuth;
+          this.actividadToSave.id_materia = form.value.id_materia;
+          this.actividadToSave.id_grado = form.value.id_grado;
+          this.actividadToSave.id_competencia = form.value.id_competencia;
+          this.actividadToSave.titulo_actividad = form.value.titulo_actividad;
+          this.actividadToSave.descripcion_actividad = form.value.descripcion_actividad;
+          this.actividadToSave.descripcion_test = form.value.descripcion_test;
+          this.actividadToSave.Q1 = form.value.Q1;
+          this.actividadToSave.A11 = form.value.A11;
+          this.actividadToSave.A12 = form.value.A12;
+          this.actividadToSave.A13 = form.value.A13;
+          this.actividadToSave.A14 = form.value.A14;
+          this.actividadToSave.CA1 = form.value.CA1;
+          this.actividadToSave.Q2 = form.value.Q2;
+          this.actividadToSave.A21 = form.value.A21;
+          this.actividadToSave.A22 = form.value.A22;
+          this.actividadToSave.A23 = form.value.A23;
+          this.actividadToSave.A24 = form.value.A24;
+          this.actividadToSave.CA2 = form.value.CA2;
+          this.actividadToSave.Q3 = form.value.Q3;
+          this.actividadToSave.A31 = form.value.A31;
+          this.actividadToSave.A32 = form.value.A32;
+          this.actividadToSave.A33 = form.value.A33;
+          this.actividadToSave.A34 = form.value.A34;
+          this.actividadToSave.CA3 = form.value.CA3;
+
+          console.log('datosActividadModificada', this.actividadToSave);
+
+          this.ActividadService.createActivity(this.actividadToSave).subscribe(res => {
+            //window.location.reload();
+            console.log("Creada nueva Actividad");
+            this.resetForm(form);
+          });
+        });
+      }
+    }
+    else{
+      this.resetForm(form);
     }
   }
 
@@ -319,6 +419,7 @@ export class ModificarActividadComponent implements OnInit {
       id_contenidoREA: this.ActividadService.selectedActividad.id_taller,
     }
 
+    //Obtener contenido original de la actividad
     this.ContentREAService.loadContentREA(this.ActividadService.selectedActividad).subscribe(res =>{
       this.contenidoRes = res;
       this.contenidoAct.nombre_CREA = this.contenidoRes.content.nombre_CREA;
@@ -338,6 +439,7 @@ export class ModificarActividadComponent implements OnInit {
       //console.log('contenidoAct', this.contenidoAct);
     })
 
+    //Obtener taller original de la actividad
     this.ContentREAService.loadContentREA(TallerInfo).subscribe(res =>{
       this.tallerRes = res;
       this.tallerAct.nombre_CREA = this.tallerRes.content.nombre_CREA;
@@ -362,17 +464,30 @@ export class ModificarActividadComponent implements OnInit {
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
     console.log("contenido guardado:", this.contenidoToSave);
-    this.verificationSaveContent = true;
+    if (this.contenidoRes.content.id_CREA != this.contenidoToSave.id_CREA) {
+      this.verificationSaveContent = true;
+    }
+    else{
+      this.verificationSaveContent = false;
+    }
   }
   //Almacenar info temporal de una Actividad
   saveDataActivity(actividad){
     this.actividadToSave = actividad;
     console.log("actividad guardada:", this.actividadToSave);
+    this.verificationSaveActividad = true;
   }
   //Almacenar info temporal de un Taller
   saveDataTaller(tallerhtml){
     this.tallerToSave = tallerhtml;
     console.log("taller guardado:", this.tallerToSave);
+    if (this.tallerRes.content.id_CREA != this.tallerToSave.id_CREA) {
+      this.verificationSaveTaller = true;
+    }
+    else{
+      this.verificationSaveTaller = false;
+    }
+    console.log('bandera',this.verificationSaveTaller)
   }
 
   //Resetear pagina
@@ -384,12 +499,19 @@ export class ModificarActividadComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
+      this.getActividades();
+      this.getContenidos();
       window.scrollTo(0, 0);
       this.verificationSaveContent = false;
+      this.verificationSaveTaller = false;
+      this.verificationSaveActividad = false;
       this.contenidoToSave = new contenidoREAI();
       this.actividadToSave = new ActividadI();
+      this.tallerToSave = new contenidoREAI();
       this.ActividadService.selectedActividad = new ActividadI();
-      this.getActividades();
+      this.contenidoAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
+      this.tallerAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
+      console.log('reseteo');
     }
   }
 

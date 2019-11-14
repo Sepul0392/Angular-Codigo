@@ -77,7 +77,7 @@
                     <hr class="style5">
                     <br>
                     <!--Boton Crear Materia-->
-                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
+                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
                         <button class="btn bg-danger px-5 py-4 font-weight-bold" (click)="onCrearDocente(frmRegistroProfesor)">Crear Profesor</button>
                     </div>
                 </form>
@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal routerLink="/subirContenido"-->
     <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -106,7 +106,7 @@
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
                 <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="resetPage">Aceptar</button>
                 </div>
             </div>
         </div>
