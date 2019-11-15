@@ -1,0 +1,40 @@
+<header>
+    <div class="container p-5">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top pt-4 pb-3">
+                <div class="container">
+                    <a class="navbar-brand font-weight-bold " routerLink="/inicioAdmin">Plataforma FC</a>
+                    <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse"
+                        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link bg-danger text-dark text-center font-weight-bold rounded" routerLink="/inicioAdmin">Gestionar Colegio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-success text-dark text-center font-weight-bold rounded" routerLink="/inicioAdmin">Gestionar Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bg-light text-dark text-center font-weight-bold rounded" routerLink="/inicioAdmin">Gestionar Competencias</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link px-4 py-2 mb-1 text-center bg-info text-dark font-weight-bold rounded dropdown-toggle"
+                                    href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" data-target="#navbarDropdownPerfil">
+                                    Perfil
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right bg-info text-dark" id="navbarDropdownPerfil" aria-labelledby="navbarDropdownPerfil">
+                                    <a class="dropdown-item btn text-center" routerLink (click)="logOut()">Cerrar sesión</a>
+                                    <a class="dropdown-item text-center" href="#">Ayuda</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>

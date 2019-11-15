@@ -1,3 +1,4 @@
+export { InicioAdminComponent } from './Admin/inicio-admin/inicio-admin.component';
 export { SubirContenidoComponent } from "./subir-contenido/subir-contenido.component";
 export { BorrarContenidoComponent } from "./borrar-contenido/borrar-contenido.component";
 export { CrearActividadComponent } from "./crear-actividad/crear-actividad.component";

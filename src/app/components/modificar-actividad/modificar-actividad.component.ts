@@ -66,6 +66,7 @@ export class ModificarActividadComponent implements OnInit {
     this.getOptions();
     this.getContenidos();
     this.getActividades();
+    this.ActividadService.selectedActividad = new ActividadI();
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
     this.contenidoAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
     this.tallerAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};

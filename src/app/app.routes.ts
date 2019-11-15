@@ -11,7 +11,8 @@ import {
     LoginComponent,
     RegistroUsuarioComponent,
     InfromacionDocenteComponent,
-    AdministrarDocenteComponent
+    AdministrarDocenteComponent,
+    InicioAdminComponent
 } from './components/index.paginas';
 
 const app_routes: Routes = [
@@ -26,6 +27,7 @@ const app_routes: Routes = [
     { path: 'modificarActividad', component: ModificarActividadComponent },
     { path: 'borrarActividad', component: BorrarActividadComponent },
     { path: 'busqueda', component: BusquedaComponent },
+    { path: 'inicioAdmin', component: InicioAdminComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'inicioProfesores'}
 ];
 

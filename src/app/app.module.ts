@@ -36,6 +36,9 @@ import { AdministrarDocenteComponent } from './components/administrar-docente/ad
 import { FilterTableMateriaDocentePipe } from './pipes/filter-table-materia-docente.pipe';
 import { FilterActividadDeletePipe } from './pipes/filter-actividad-delete.pipe';
 
+import { InicioAdminComponent } from './components/Admin/inicio-admin/inicio-admin.component';
+import { HeaderAdminComponent } from './components/Admin/header-admin/header-admin.component';
+
 
 
 @NgModule({
@@ -59,7 +62,9 @@ import { FilterActividadDeletePipe } from './pipes/filter-actividad-delete.pipe'
     InfromacionDocenteComponent,
     AdministrarDocenteComponent,
     FilterTableMateriaDocentePipe,
-    FilterActividadDeletePipe
+    FilterActividadDeletePipe,
+    InicioAdminComponent,
+    HeaderAdminComponent
   ],
   imports: [
     BrowserModule,

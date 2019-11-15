@@ -37,6 +37,7 @@ export class SubirContenidoComponent implements OnInit {
     this.getOptions();
     this.getContenidos();
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
+    this.ContentREAService.selectedContenidoREA = new contenidoREAI();
   }
 
   getOptions(){
@@ -145,6 +146,7 @@ export class SubirContenidoComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
+      this.ContentREAService.selectedContenidoREA = new contenidoREAI();
       window.scrollTo(0, 0);
       //this.ContentREAService.selectedContenidoREA = new contenidoREAI();
     }

@@ -23,6 +23,9 @@ import { ContentREAService } from '../services/content-rea.service';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { InfromacionDocenteComponent } from './infromacion-docente/infromacion-docente.component';
 import { AdministrarDocenteComponent } from './administrar-docente/administrar-docente.component';
+import { InicioAdminComponent } from './Admin/inicio-admin/inicio-admin.component';
+import { HeaderAdminComponent } from './Admin/header-admin/header-admin.component';
+import { ActividadService } from '../services/actividad.service';
 
 @NgModule({
   declarations:[
@@ -40,7 +43,9 @@ import { AdministrarDocenteComponent } from './administrar-docente/administrar-d
     AuthDService,
     RegistroUsuarioComponent,
     InfromacionDocenteComponent,
-    AdministrarDocenteComponent
+    AdministrarDocenteComponent,
+    InicioAdminComponent,
+    HeaderAdminComponent
   ],
   imports:[
       CommonModule,
@@ -48,6 +53,6 @@ import { AdministrarDocenteComponent } from './administrar-docente/administrar-d
       FCRoutingModule,
       HttpClientModule
   ],
-  providers:[AuthDService, ContentREAService]
+  providers:[AuthDService, ContentREAService, ActividadService]
 })
 export class FCModule { }
