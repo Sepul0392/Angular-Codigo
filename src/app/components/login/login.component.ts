@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthDService } from "../../services/auth-d.service";
-import { DocenteI } from '../../models/docente';
+import { AuthAdminService } from '../../services/auth-admin.service';
 
 @Component({
   selector: 'app-login',
@@ -10,15 +10,22 @@ import { DocenteI } from '../../models/docente';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private AuthDService: AuthDService, private router: Router) { }
+  constructor(private AuthAdminService: AuthAdminService, private AuthDService: AuthDService, private router: Router) { }
 
   ngOnInit() {
   }
 
   onLoginDocente(form):void{
-    console.log('login', form.value);
+    console.log('login Docente', form.value);
     this.AuthDService.loginDocente(form.value).subscribe(res => {
-      this.router.navigateByUrl('/inicioProfesores')
+      this.router.navigateByUrl('/inicioProfesores');
+    })
+  }
+
+  onLoginAdmin(form):void{
+    console.log('Login Admin', form.value);
+    this.AuthAdminService.loginAdmin(form.value).subscribe(res => {
+      this.router.navigateByUrl('/inicioAdmin');
     })
   }
 

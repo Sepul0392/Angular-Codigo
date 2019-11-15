@@ -11,4 +11,14 @@ export interface JwtResponseI {
         accessToken: string,
         expiresIn: string
     }
+
+    dataAdmin:{
+        id_admin: number,
+        tipo_usuario: number,
+        id_colegio: number,
+        nombre_usuario: string,
+        contrasena: string,
+        accessToken: string,
+        expiresIn: string
+    }
 }
