@@ -10,3 +10,4 @@ export { LoginComponent } from "./login/login.component"
 export { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 export { InfromacionDocenteComponent} from './infromacion-docente/infromacion-docente.component';
 export { AdministrarDocenteComponent} from './administrar-docente/administrar-docente.component';
+export { GestionarCompetenciasAdminComponent } from './Admin/gestionar-competencias-admin/gestionar-competencias-admin.component';

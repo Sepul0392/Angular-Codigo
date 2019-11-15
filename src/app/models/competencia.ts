@@ -9,8 +9,6 @@ export class CompetenciaI {
     this.gradoFinal = gradoFinal;
   }
   
-  
-  
   id_competencia: number;
   nombre_competencia: string;
   id_areaMateria: number;

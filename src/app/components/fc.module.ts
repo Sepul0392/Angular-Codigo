@@ -26,6 +26,7 @@ import { AdministrarDocenteComponent } from './administrar-docente/administrar-d
 import { InicioAdminComponent } from './Admin/inicio-admin/inicio-admin.component';
 import { HeaderAdminComponent } from './Admin/header-admin/header-admin.component';
 import { ActividadService } from '../services/actividad.service';
+import { GestionarCompetenciasAdminComponent } from './Admin/gestionar-competencias-admin/gestionar-competencias-admin.component';
 
 @NgModule({
   declarations:[
@@ -45,7 +46,8 @@ import { ActividadService } from '../services/actividad.service';
     InfromacionDocenteComponent,
     AdministrarDocenteComponent,
     InicioAdminComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    GestionarCompetenciasAdminComponent
   ],
   imports:[
       CommonModule,
