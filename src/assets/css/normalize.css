@@ -388,13 +388,17 @@ hr.style6b {
 	text-align: center;
 }
 hr.style7{
-  border-top: 6px double #f7f7f7;
+  border-top: 6px double #857f5f;
 	text-align: center;
 }
 hr.styleOtro {
 	height: 10px;
 	border: 0;
 	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+.bg-cafe{
+  background: #857f5f;
 }
 
   /**Barra de Busqueda**/
@@ -618,3 +622,5 @@ padding-bottom: 0;
 .login input[type="submit"]:focus {
   border-color: #05a;
 }
+
+/* SCROLL */

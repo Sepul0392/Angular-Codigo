@@ -39,6 +39,7 @@ import { FilterActividadDeletePipe } from './pipes/filter-actividad-delete.pipe'
 import { InicioAdminComponent } from './components/Admin/inicio-admin/inicio-admin.component';
 import { HeaderAdminComponent } from './components/Admin/header-admin/header-admin.component';
 import { GestionarCompetenciasAdminComponent } from './components/Admin/gestionar-competencias-admin/gestionar-competencias-admin.component';
+import { FilterCompetenciaAdminPipe } from './pipes/filter-competencia-admin.pipe';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { GestionarCompetenciasAdminComponent } from './components/Admin/gestiona
     FilterActividadDeletePipe,
     InicioAdminComponent,
     HeaderAdminComponent,
-    GestionarCompetenciasAdminComponent
+    GestionarCompetenciasAdminComponent,
+    FilterCompetenciaAdminPipe
   ],
   imports: [
     BrowserModule,

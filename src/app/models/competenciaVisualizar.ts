@@ -1,4 +1,4 @@
-export interface CompetenciaREAVisualizarI {
+export interface CompetenciaVisualizarI {
 
     id_competencia: number;
     areaMateria: string;

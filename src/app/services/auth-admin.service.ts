@@ -63,6 +63,7 @@ export class AuthAdminService {
     this.selectedGrado = new GradoI;
   }
 
+
   //====================================================================================  LOGIN
 
   //Sericio Verificacion de Login
@@ -121,4 +122,188 @@ export class AuthAdminService {
   };
 
 
+  //====================================================================================  MATERIAACTIVA
+
+  //Crear Materia Activa del profesor
+  createSubjectActive(materiaActiva:MateriaActivaI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/createSubjectActive`, materiaActiva);
+  }
+
+  //Cragar Todas las Materias Activas
+  loadAllSubjectActives(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjectActives`);
+  }
+
+  //Eliminar una Actividad Activa
+  deleteSubjectActive(materiaActiva:MateriaActivaI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteSubjectActive`, materiaActiva);
+  }
+
+
+  //====================================================================================  DOCENTE
+
+  //Servicio Crear Docente
+  createDocente(docente:DocenteI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/createDocente`, docente);
+  }
+
+  //Buscar un Docente
+  loadDocente(info:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/loadDocente`, info);
+  }
+
+  //Cragar Todos los docentes
+  loadAllDocentes(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllDocentes`);
+  }
+
+  //Eliminar una Actividad Activa
+  deleteDocente(docente:DocenteI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteDocente`, docente);
+  }
+
+  //Modificar datos Login del Docente en MongoDB 
+  uploadInfoLoginDocente(info:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadInfoLoginDocente`, info);
+  }
+
+  //Modificar datos Presonales del Docente en MongoDB 
+  uploadInfoPersonalDocente(info:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadInfoPersonalDocente`, info);
+  }
+
+
+  //====================================================================================  ContenidoREA
+
+  //Servicio para crear el contenido en MongoDB
+  createContentREA(contenidoREA:contenidoREAI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/createContentREA`, contenidoREA);
+  }
+
+  //Servicio para cambiar el estado de USO del contenido en Mongo
+  uploadEstadoContentREA(data:any){
+    return this.httpClient.post(`http://localhost:3000/uploadEstadoContentREA`, data);
+  }
+
+  //Servicio para subir el contenido al Repositorio ***
+  uploadFile(formData){
+    return this.httpClient.post(`http://localhost:3000/subir`, formData);
+  }
+
+  //Buscar un Contenido
+  loadContentREA(data:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/loadContentREA`, data);
+  }
+
+  //Servicio para llamar todos los contenidos en MongoDB
+  allContent(){
+      return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllcontents`);
+  }
+  newAllContents(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadContentREA`);
+  }
+
+  //Servicio para borrar el contenido de MongoDB
+  deleteContentREA(contenidoREA: contenidoREAI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteContentREA/`, contenidoREA)
+  }
+
+
+  //====================================================================================  Actividades
+
+  //Servicio para crear la Actividad en MongoDB
+  createActivity(actividad:ActividadI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/createActivity`, actividad);
+  }
+
+  //Servicio para llamar todas las ACtividades en MongoDB
+  allActivities(){
+      return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllActivities`);
+  }
+
+  //Servicio para modificar datos de la Actividad en MongoDB 
+  uploadActivity(actividad: ActividadI){
+      return this.httpClient.post(`${this.AUTHD_SERVER}/uploadActivity`, actividad);
+  }
+
+  //Servicio para borrar la Actividad de MongoDB
+  deleteActivity(actividad: ActividadI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteActivity`, actividad)
+  }
+
+
+  //====================================================================================  COMPETENCIAS
+
+  //Servicio para crear la Competencia en MongoDB
+  createCompetencia(competencia:CompetenciaI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/createCompetencia`, competencia);
+  }
+
+  //Servicio para llamar todas las Competencias en Mongo
+  allCompetencias() {
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllCompetencias`);
+  }
+
+  //Servicio para borrar la Competencia de MongoDB
+  deleteCompetencia(info: any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteCompetencia`, info)
+  }
+
+
+  //====================================================================================  AreaMateria
+
+  //Servicio para crear la AreaMateria en MongoDB
+  createAreaSubject(areaMateria:AreaMateriaI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/createAreaSubject`, areaMateria);
+  }
+
+  //Servicio para llamar todas las AreaMaterias en Mongo
+  loadAllAreaSubjects() {
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllAreaSubjects`);
+  }
+
+  //Servicio para borrar la AreaMateria de MongoDB
+  deleteAreaSubject(info: any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteAreaSubject`, info)
+  }
+
+
+  //====================================================================================  COLEGIO
+
+  //Servicio para obtener la informacion del colegio
+  loadColegio(infoColegio:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/loadSchool`, infoColegio);
+  }
+
+  //Servicio para modificar datos del colegio en MongoDB 
+  uploadSchool(infoColegio: any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadSchool`, infoColegio);
+  }
+
+
+  //------------------------------------------------------------------------------------ Servicions de Ayuda
+
+  //Servicio para llamar todas las materias
+  allSubject() {
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjects`);
+  }
+  newAllSubjects(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadSubjects`);
+  }
+
+  //Servicio para llamar todos los grados
+  allGrade() {
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllGrades`);
+  }
+  newAllGrades(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadGrades`);
+  }
+
+  //Servicio para llamar todos los tipos de Contenidos
+  allType() {
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllTypes`);
+  }
+  newAllTypes(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadTypes`);
+  }
 }

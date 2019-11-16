@@ -18,7 +18,7 @@ export class ContentREAService {
    }
 
 
-   //------------------------------------------------------------------------------------ ContenidoREA
+  //------------------------------------------------------------------------------------ ContenidoREA
   //Servicio para crear el contenido en MongoDB
   createContentREA(contenidoREA:contenidoREAI){
     return this.httpClient.post(`${this.AUTHD_SERVER}/createContentREA`, contenidoREA);
