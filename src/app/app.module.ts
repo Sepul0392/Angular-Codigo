@@ -40,6 +40,7 @@ import { InicioAdminComponent } from './components/Admin/inicio-admin/inicio-adm
 import { HeaderAdminComponent } from './components/Admin/header-admin/header-admin.component';
 import { GestionarCompetenciasAdminComponent } from './components/Admin/gestionar-competencias-admin/gestionar-competencias-admin.component';
 import { FilterCompetenciaAdminPipe } from './pipes/filter-competencia-admin.pipe';
+import { GestionarUsuariosAdminComponent } from './components/Admin/gestionar-usuarios-admin/gestionar-usuarios-admin.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { FilterCompetenciaAdminPipe } from './pipes/filter-competencia-admin.pip
     InicioAdminComponent,
     HeaderAdminComponent,
     GestionarCompetenciasAdminComponent,
-    FilterCompetenciaAdminPipe
+    FilterCompetenciaAdminPipe,
+    GestionarUsuariosAdminComponent
   ],
   imports: [
     BrowserModule,

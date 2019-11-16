@@ -14,6 +14,7 @@ import { contenidoREAI } from '../models/contenidoREA';
 import { AdminI } from '../models/admin';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import { EstuadianteI } from '../models/estudiante';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,8 @@ export class AuthAdminService {
   Competencias: CompetenciaI[];
   selectedAreaMateria: AreaMateriaI;
   AreasMaterias: AreaMateriaI[];
+  selectedEstudiante: EstuadianteI;
+  estudiantes: EstuadianteI[];
   selectedActividad: ActividadI;
   Actividads: ActividadI[];
   selectedDocente: DocenteI;
@@ -46,6 +49,7 @@ export class AuthAdminService {
   Grados: GradoI[];
   selectedAdmin: AdminI;
   Admin: AdminI[];
+
 
   constructor(private httpClient: HttpClient, private router: Router) {
     //this.localStorageService = sessionStorage;
@@ -148,8 +152,8 @@ export class AuthAdminService {
   }
 
   //Buscar un Docente
-  loadDocente(info:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/loadDocente`, info);
+  loadDocente(infoID:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/loadDocente`, infoID);
   }
 
   //Cragar Todos los docentes
@@ -157,9 +161,9 @@ export class AuthAdminService {
     return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllDocentes`);
   }
 
-  //Eliminar una Actividad Activa
-  deleteDocente(docente:DocenteI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteDocente`, docente);
+  //Eliminar un Docente
+  deleteDocente(InfoID:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteDocente`, InfoID);
   }
 
   //Modificar datos Login del Docente en MongoDB 
@@ -170,6 +174,39 @@ export class AuthAdminService {
   //Modificar datos Presonales del Docente en MongoDB 
   uploadInfoPersonalDocente(info:any){
     return this.httpClient.post(`${this.AUTHD_SERVER}/uploadInfoPersonalDocente`, info);
+  }
+
+  //Modificar Docente en MongoDB 
+  uploadDocente(info:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadDocente`, info);
+  }
+
+
+  //====================================================================================  DOCENTE
+
+  //Servicio Crear Estudiante
+  createEstudiante(estudiante:EstuadianteI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/createEstudiante`, estudiante);
+  }
+
+  //Buscar un Estudiante
+  loadEstudiante(info:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/loadEstudiante`, info);
+  }
+
+  //Cragar Todos los Estudiantes
+  loadAllEstudiantes(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllEstudiantes`);
+  }
+
+  //Eliminar un Estudiante
+  deleteEstudiante(infoID:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteEstidiantes`, infoID);
+  }
+
+  //Modificar Estudiante en MongoDB 
+  uploadEstudiante(info:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadEstudiante`, info);
   }
 
 

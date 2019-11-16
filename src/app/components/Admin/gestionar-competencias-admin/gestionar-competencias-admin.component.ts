@@ -169,9 +169,9 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     //console.log("id para eliminar:", this.competenciaToSave.id_competencia);
     this.AuthAdminService.deleteCompetencia(this.competenciaToSave).subscribe(res =>{
       //console.log(res);
+      this.getCompetencias();
+      this.competenciaToSave = new CompetenciaI();
     });
-    this.getCompetencias();
-    this.competenciaToSave = new CompetenciaI();
     //window.location.reload();
   }
   //Eliminar AreaMateria de Mongo
@@ -181,9 +181,9 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
       //console.log(res);
       this.AuthAdminService.loadAllAreaSubjects().subscribe(res => {
         this.areasMaterias = res as AreaMateriaI[];
+        this.areaMateriaToSave = new AreaMateriaI();
       });
     });
-    this.areaMateriaToSave = new AreaMateriaI();
     //window.location.reload();
   }
 

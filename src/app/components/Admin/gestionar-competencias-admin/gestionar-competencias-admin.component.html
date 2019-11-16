@@ -72,7 +72,7 @@
                                         <div class="card-body p-2">
                                             <p class="card-text ">Competencia: {{compet.nombre_competencia}}.</p>
                                             <div>
-                                                <p class="card-text"><small class="text-muted">Area de materias: {{compet.id_areaMateria}}</small></p>
+                                                <p class="card-text"><small class="text-muted">Area de materias: {{compet.areaMateria}}</small></p>
                                             </div>
                                             <div>
                                                 <p class="card-text"><small class="text-muted">Grado Inicial: {{compet.gradoInicial}}</small></p>
@@ -134,7 +134,7 @@
         
                     <!--Boton Crear Competencia-->
                     <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
-                        <button class="btn bg-info px-5 py-4 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo" (click)="crearCompetencia(frmCrearCompetencia)">Crear Competencia</button>
+                        <a class="btn bg-info px-5 py-4 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo" (click)="crearCompetencia(frmCrearCompetencia)">Crear Competencia</a>
                     </div>
                 </form>
                 <hr class="style4">
@@ -243,7 +243,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Area de Materias Creada</h4>
+                    <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

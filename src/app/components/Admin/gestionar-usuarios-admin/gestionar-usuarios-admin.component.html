@@ -1,0 +1,223 @@
+<app-header-admin></app-header-admin>
+
+<!--Contenedor Contenido Pagina-->
+<div class="pb-5 col-9 mx-auto">
+
+    <!--Titulo pagina-->
+    <div class="container m-auto pb-2 bg-success rounded-top">
+        <h1 class="mt-5 pt-4 text-center m ">Gestionar Usuarios</h1>
+    </div>
+    
+    <!--Contenedor Formularios-->
+    <div class="container pt-1 bg-secondary rounded-bottom">
+    
+        <!--Gestion de Competencias-->
+        <div>
+            <h3 class="py-3 text-center text-white">Docentes</h3>
+
+            <div class="contenedor mx-3 py-3">
+                <form #frmBuscarDocente="ngForm">
+            
+                    <!--Crear Materias-->
+                    <h5 class="py-3 text-white">Buscador:</h5>
+                    <div class="form-group">
+                        <input type="text" class="form-control col-md-8" id="inputTextoBusquedaDocente"
+                                placeholder="Nombre / Usuario / Correo" [(ngModel)]="palabraClaveSelected" name="palabraClaveSelected">
+                    </div>
+                                
+                    <!--Resultados-->
+                    <h5 class="py-3 text-white">Resultados:</h5>
+                    <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar" style="width: 95%; height: 450px">
+                        <!--Resultado-->
+                        <div class="row-1"
+                            *ngFor="let docente of docentes | filterCompetenciaAdmin: nombreCompetenciaSelected:areaMateriaSelected:gradoSelected:gradoInicialC:gradoFinalC">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="row no-gutters border border-secondary">
+                                    <div class="col" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Nombre Docente: {{docente.nombre_docente}} {{docente.apellido_docente}}.</p>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Nombre Usuario: {{docente.nombre_usuario}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Correo Electronico: {{docente.correo_electronico}}</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Boton Editar y Borrar-->
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
+                                    <a class="btn bg-warning mr-2" (click)="getDocenteinForm(docente)">Editar</a>
+                                    <a class="btn bg-warning ml-2" data-toggle="modal" data-target="#mimodalejemplo3" (click)="saveDataDocente(docente)">Borrar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <br>
+            </div>
+
+            <div class="contenedor py-3">
+                <form #frmInfoDocente="ngForm">
+                    <h5 class="py-3 text-white text-center">Actualizar Informacion:</h5>
+                    <div class="col-5 mx-auto">
+                        <div class="form-group col">
+                            <div class="form-group">
+                                <label for="inputNombreDocente" class="text-white ">Nombre Profesor</label>
+                                <input type="text" name="nombre_docente" class="form-control col" id="inputNombreDocente"
+                                    placeholder="Nombre" required [(ngModel)]="this.AuthAdminService.selectedDocente.nombre_docente">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputApellidoProfesor" class="text-white ">Apellido Profesor</label>
+                                <input type="text" name="apellido_docente" class="form-control col" id="inputApellidoProfesor"
+                                    placeholder="Apellido" required [(ngModel)]="this.AuthAdminService.selectedDocente.apellido_docente">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCorreo" class="text-white ">Correo Electronico</label>
+                                <input type="text" name="correo_electronico" class="form-control col" id="inputCorreo"
+                                    placeholder="Correo Electronico" required [(ngModel)]="this.AuthAdminService.selectedDocente.correo_electronico">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNombreUsuario" class="text-white ">Nombre Usuario</label>
+                                <input type="text" name="nombre_usuario" class="form-control col" id="inputNombreUsuario"
+                                    placeholder="Usuario" required [(ngModel)]="this.AuthAdminService.selectedDocente.nombre_usuario">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputContrasena" class="text-white ">Contraseña</label>
+                                <input type="text" name="contrasena" class="form-control col" id="inputContrasena"
+                                    placeholder="Contraseña" required [(ngModel)]="this.AuthAdminService.selectedDocente.contrasena">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+        
+                    <!--Boton Actualizar Docente-->
+                    <div class="row">
+                        <div class="mr-2 ml-auto pb-4 justify-content-md-center no-gutters">
+                            <a class="btn bg-success px-5 py-4 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo" (click)="actualizarDocente(frmInfoDocente)">Actualizar</a>
+                        </div>
+                        <div class="ml-2 mr-auto pb-4 justify-content-md-center no-gutters">
+                            <a class="btn bg-success px-5 py-4 font-weight-bold" (click)="resetForm(frmInfoDocente)">Limpiar</a>
+                        </div>
+                    </div>
+                </form>
+                <hr class="style8">
+            </div>
+        </div>
+        
+        <!--Gestion de Estidiantes-->
+        <div>
+            <h3 class="py-3 text-center text-white">Estudiantes</h3>
+            <div class="contenedor mx-3 py-3">
+                <form #frmCrearAreaMateria="ngForm">
+        
+                    
+                </form>
+                <br>
+                <hr class="style8">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Docente Actualizado</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters">
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mimodalejemplo4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Area de Materias Creada</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters">
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters">
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteEstudiante()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mimodalejemplo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters">
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteDocente()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

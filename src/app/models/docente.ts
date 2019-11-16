@@ -20,6 +20,4 @@ export class DocenteI {
     nombre_usuario: string;
     contrasena: string;
     correo_electronico: string;
-    accessToken: string;
-    expiresIn: string;
 }

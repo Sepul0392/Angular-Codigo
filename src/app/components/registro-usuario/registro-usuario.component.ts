@@ -129,8 +129,6 @@ export class RegistroUsuarioComponent implements OnInit {
             nombre_usuario: form.value.nombre_usuario,
             contrasena: form.value.contrasena,
             correo_electronico: form.value.correo_electronico,
-            accessToken: '',
-            expiresIn: ''
           }
 
           const newMateriaActiva = {

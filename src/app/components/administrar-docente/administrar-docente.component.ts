@@ -43,7 +43,7 @@ export class AdministrarDocenteComponent implements OnInit {
     this.getOptions();
     this.idDocente = this.AuthDService.getIdDocente();
     this.nombreApellidoDocente = this.AuthDService.getnombreApellidoDocente();
-    this.getActividadinForm();
+    this.getDocenteinForm();
     this.getInformacionCompleta();
   }
 
@@ -182,7 +182,7 @@ export class AdministrarDocenteComponent implements OnInit {
   }
 
   //Imprimir datos del docente en el Form 
-  getActividadinForm(){
+  getDocenteinForm(){
     this.idDocente = this.AuthDService.getIdDocente();
 
     const infoDocente = {
@@ -196,7 +196,7 @@ export class AdministrarDocenteComponent implements OnInit {
     });
   }
 
-  //Actualizar datos de Login del docente
+  //Actualizar datos Personales del docente
   actualizarInfoPersonalDocente(form: NgForm): void{
     const infoPersonalDocente = {
       id_docente: this.idDocente,
@@ -206,7 +206,7 @@ export class AdministrarDocenteComponent implements OnInit {
 
     this.AuthDService.uploadInfoPersonalDocente(infoPersonalDocente).subscribe(res => {
       console.log(res);
-      this.getActividadinForm();
+      this.getDocenteinForm();
     });
   }
 
@@ -221,7 +221,7 @@ export class AdministrarDocenteComponent implements OnInit {
 
     this.AuthDService.uploadInfoLoginDocente(infoLoginDocente).subscribe(res => {
       console.log(res);
-      this.getActividadinForm();
+      this.getDocenteinForm();
     });
   }
 

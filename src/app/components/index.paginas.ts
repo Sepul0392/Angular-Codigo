@@ -11,3 +11,4 @@ export { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
 export { InfromacionDocenteComponent} from './infromacion-docente/infromacion-docente.component';
 export { AdministrarDocenteComponent} from './administrar-docente/administrar-docente.component';
 export { GestionarCompetenciasAdminComponent } from './Admin/gestionar-competencias-admin/gestionar-competencias-admin.component';
+export { GestionarUsuariosAdminComponent } from './Admin/gestionar-usuarios-admin/gestionar-usuarios-admin.component';

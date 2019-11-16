@@ -27,6 +27,7 @@ import { InicioAdminComponent } from './Admin/inicio-admin/inicio-admin.componen
 import { HeaderAdminComponent } from './Admin/header-admin/header-admin.component';
 import { ActividadService } from '../services/actividad.service';
 import { GestionarCompetenciasAdminComponent } from './Admin/gestionar-competencias-admin/gestionar-competencias-admin.component';
+import { GestionarUsuariosAdminComponent } from './Admin/gestionar-usuarios-admin/gestionar-usuarios-admin.component';
 
 @NgModule({
   declarations:[
@@ -47,7 +48,8 @@ import { GestionarCompetenciasAdminComponent } from './Admin/gestionar-competenc
     AdministrarDocenteComponent,
     InicioAdminComponent,
     HeaderAdminComponent,
-    GestionarCompetenciasAdminComponent
+    GestionarCompetenciasAdminComponent,
+    GestionarUsuariosAdminComponent
   ],
   imports:[
       CommonModule,
@@ -55,6 +57,7 @@ import { GestionarCompetenciasAdminComponent } from './Admin/gestionar-competenc
       FCRoutingModule,
       HttpClientModule
   ],
-  providers:[AuthDService, ContentREAService, ActividadService]
+  providers:[AuthDService, ContentREAService, ActividadService],
+  bootstrap: [AppComponent]
 })
 export class FCModule { }
