@@ -22,7 +22,7 @@
                     <h5 class="py-3 text-white">Buscador:</h5>
                     <div class="form-group">
                         <input type="text" class="form-control col-md-8" id="inputTextoBusquedaDocente"
-                                placeholder="Nombre / Usuario / Correo" [(ngModel)]="palabraClaveSelected" name="palabraClaveSelected">
+                                placeholder="Nombre/ Apellido / Usuario / Correo" [(ngModel)]="palabraClaveSelected" name="palabraClaveSelected">
                     </div>
                                 
                     <!--Resultados-->
@@ -30,7 +30,7 @@
                     <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar" style="width: 95%; height: 450px">
                         <!--Resultado-->
                         <div class="row-1"
-                            *ngFor="let docente of docentes | filterCompetenciaAdmin: nombreCompetenciaSelected:areaMateriaSelected:gradoSelected:gradoInicialC:gradoFinalC">
+                            *ngFor="let docente of docentes | filterDocenteAdmin: palabraClaveSelected">
                             <div class="card mb-4 border-0" style="max-width: 1440px;">
                                 <div class="row no-gutters border border-secondary">
                                     <div class="col" style="max-width: 840px;">
