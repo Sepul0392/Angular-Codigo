@@ -182,7 +182,7 @@ export class AuthAdminService {
   }
 
 
-  //====================================================================================  DOCENTE
+  //====================================================================================  Estudiantes
 
   //Servicio Crear Estudiante
   createEstudiante(estudiante:EstuadianteI){

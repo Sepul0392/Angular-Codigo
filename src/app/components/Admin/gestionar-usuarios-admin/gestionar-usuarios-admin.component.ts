@@ -6,6 +6,7 @@ import { DocenteI } from '../../../models/docente';
 import { EstuadianteI } from '../../../models/estudiante';
 import { ColegioI } from '../../../models/colegio';
 import { GradoI } from '../../../models/grado';
+import { EstuadianteVisualizarI } from '../../../models/estudianteVisualizar';
 
 
 @Component({
@@ -24,6 +25,8 @@ export class GestionarUsuariosAdminComponent implements OnInit {
   resDocente:any;
   resColegio:any;
   resEstudiante:any;
+  cursos:any;
+  estudiantesVisualizar:EstuadianteVisualizarI[];
 
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
 
@@ -34,6 +37,9 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     this.AuthAdminService.selectedEstudiante = new EstuadianteI();
     this.docenteToSave = new DocenteI();
     this.estudianteToSave = new EstuadianteI();
+
+    this.cursos = [ {id_curso:1,nombre_curso:"A"}, {id_curso:2,nombre_curso:"B"}, 
+                    {id_curso:3,nombre_curso:"C"}, {id_curso:4,nombre_curso:"D"} ];
 
     this.getOptions();
   }
@@ -47,6 +53,16 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     });
     this.AuthAdminService.loadAllEstudiantes().subscribe(res => {
       this.estudantes = res as EstuadianteI[];
+      this.estudiantesVisualizar = res as EstuadianteVisualizarI[];
+
+      for(let n=0; n < this.estudantes.length; n++){
+        for(let i=0; i < this.cursos.length; i++){
+          if(this.estudantes[n].curso_estudiante == this.cursos[i].id_curso){
+            this.estudiantesVisualizar[n].curso = this.cursos[i].nombre_curso;
+          }
+        }
+      }
+      console.log("estudiantes visualizar:", this.estudiantesVisualizar);
     });
   }
 
@@ -84,7 +100,7 @@ export class GestionarUsuariosAdminComponent implements OnInit {
 
   //Actualizar datos del Estudiante
   actualizarEstudiante(form: NgForm): void{
-    const infoDocente = {
+    const infoEstudiante = {
       id_estudiante: this.AuthAdminService.selectedEstudiante.id_estudiante,
       nombre_estudiante: form.value.nombre_estudiante,
       apellido_estudiante: form.value.apellido_estudiante,
@@ -94,8 +110,9 @@ export class GestionarUsuariosAdminComponent implements OnInit {
       contrasena: form.value.contrasena,
       correo_electronico: form.value.correo_electronico
     }
+    console.log();
 
-    this.AuthAdminService.uploadEstudiante(infoDocente).subscribe(res => {
+    this.AuthAdminService.uploadEstudiante(infoEstudiante).subscribe(res => {
       console.log(res);
       this.getOptions();
       this.resetForm(form);
@@ -147,6 +164,7 @@ export class GestionarUsuariosAdminComponent implements OnInit {
       this.AuthAdminService.selectedEstudiante = new EstuadianteI();
       this.docenteToSave = new DocenteI();
       this.estudianteToSave = new EstuadianteI();
+      this.getOptions();
     }
   }
 }

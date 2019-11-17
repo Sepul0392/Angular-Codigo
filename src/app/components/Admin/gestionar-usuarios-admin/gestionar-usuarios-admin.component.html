@@ -22,7 +22,7 @@
                     <h5 class="py-3 text-white">Buscador:</h5>
                     <div class="form-group">
                         <input type="text" class="form-control col-md-8" id="inputTextoBusquedaDocente"
-                                placeholder="Nombre/ Apellido / Usuario / Correo" [(ngModel)]="palabraClaveSelected" name="palabraClaveSelected">
+                                placeholder="Nombre/ Apellido / Usuario / Correo" [(ngModel)]="palabraClaveDSelected" name="palabraClaveDSelected">
                     </div>
                                 
                     <!--Resultados-->
@@ -30,7 +30,7 @@
                     <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar" style="width: 95%; height: 450px">
                         <!--Resultado-->
                         <div class="row-1"
-                            *ngFor="let docente of docentes | filterDocenteAdmin: palabraClaveSelected">
+                            *ngFor="let docente of docentes | filterDocenteAdmin: palabraClaveDSelected">
                             <div class="card mb-4 border-0" style="max-width: 1440px;">
                                 <div class="row no-gutters border border-secondary">
                                     <div class="col" style="max-width: 840px;">
@@ -105,15 +105,133 @@
             </div>
         </div>
         
-        <!--Gestion de Estidiantes-->
+        <!--Gestion de Estudiantes-->
         <div>
             <h3 class="py-3 text-center text-white">Estudiantes</h3>
             <div class="contenedor mx-3 py-3">
-                <form #frmCrearAreaMateria="ngForm">
-        
-                    
+                <form #frmBuscarEstudiante="ngForm">
+            
+                    <!--Crear Materias-->
+                    <h5 class="py-3 text-white">Buscador:</h5>
+                    <div class="form-group">
+                        <input type="text" class="form-control col-md-8" id="inputTextoBusquedaEstudiante"
+                                placeholder="Nombre/ Apellido / Usuario / Correo" [(ngModel)]="palabraClaveESelected" name="palabraClaveESelected">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-3">
+                            <label for="inputGrado" class="text-white">Grado</label>
+                            <select [(ngModel)]="gradoSelected" name="gradoSelected" id="inputgrado" class="form-control" ngModel required>
+                                <option selected></option>
+                                <option *ngFor="let grad of grados" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="inputCurso" class="text-white">Curso</label>
+                            <select [(ngModel)]="CursoSelected" name="CursoSelected" id="inputCurso" class="form-control" ngModel required>
+                                <option selected></option>
+                                <option *ngFor="let curso of cursos" [value]="curso.id_curso">{{curso.nombre_curso}}</option>
+                            </select>
+                        </div>
+                    </div>
+                                
+                    <!--Resultados-->
+                    <h5 class="py-3 text-white">Resultados:</h5>
+                    <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar" style="width: 95%; height: 450px">
+                        <!--Resultado-->
+                        <div class="row-1"
+                            *ngFor="let estudante of estudiantesVisualizar | filterDocenteAdmin: palabraClaveSelected">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="row no-gutters border border-secondary">
+                                    <div class="col" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <p class="card-text ">Nombre Estudiante: {{estudante.nombre_estudiante}} {{estudante.apellido_estudiante}}.</p>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Curso: {{estudante.grado_estudiante}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Curso: {{estudante.curso}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Nombre Usuario: {{estudante.nombre_usuario}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Correo Electronico: {{estudante.correo_electronico}}</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Boton Editar y Borrar-->
+                                <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
+                                    <a class="btn bg-warning mr-2" (click)="getEstudianteinForm(estudante)">Editar</a>
+                                    <a class="btn bg-warning ml-2" data-toggle="modal" data-target="#mimodalejemplo3" (click)="saveDataEstudiante(estudante)">Borrar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
                 <br>
+            </div>
+
+            <div class="contenedor py-3">
+                <form #frmInfoEstudiante="ngForm">
+                    <h5 class="py-3 text-white text-center">Actualizar Informacion:</h5>
+                    <div class="col-5 mx-auto">
+                        <div class="form-group col">
+                            <div class="form-group">
+                                <label for="inputNombreEstudiante" class="text-white ">Nombre Estudiante</label>
+                                <input type="text" name="nombre_estudiante" class="form-control col" id="inputNombreEstudiante"
+                                    placeholder="Nombre" required [(ngModel)]="this.AuthAdminService.selectedEstudiante.nombre_estudiante">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputApellidoEstudiante" class="text-white ">Apellido Estudiante</label>
+                                <input type="text" name="apellido_estudiante" class="form-control col" id="inputApellidoEstudiante"
+                                    placeholder="Apellido" required [(ngModel)]="this.AuthAdminService.selectedEstudiante.apellido_estudiante">
+                            </div>
+                            <div class="row">
+                            <div class="form-group col">
+                                    <label for="inputGradoEstudiante" class="text-white">Grado</label>
+                                    <select [(ngModel)]="this.AuthAdminService.selectedEstudiante.grado_estudiante" name="grado_estudiante" id="inputGradoEstudiante" class="form-control" ngModel required>
+                                        <option selected></option>
+                                        <option *ngFor="let grad of grados" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col">
+                                    <label for="inputCursoEstudiante" class="text-white">Curso</label>
+                                    <select [(ngModel)]="this.AuthAdminService.selectedEstudiante.curso_estudiante" name="curso_estudiante" id="inputCursoEstudiante" class="form-control" ngModel required>
+                                        <option selected></option>
+                                        <option *ngFor="let curso of cursos" [value]="curso.id_curso">{{curso.nombre_curso}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCorreoEstudiante" class="text-white ">Correo Electronico</label>
+                                <input type="text" name="correo_electronico" class="form-control col" id="inputCorreoEstudiante"
+                                    placeholder="Correo Electronico" required [(ngModel)]="this.AuthAdminService.selectedEstudiante.correo_electronico">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNombreUsuarioEstudiante" class="text-white ">Nombre Usuario</label>
+                                <input type="text" name="nombre_usuario" class="form-control col" id="inputNombreUsuarioEstudiante"
+                                    placeholder="Usuario" required [(ngModel)]="this.AuthAdminService.selectedEstudiante.nombre_usuario">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputContrasenaEstudiante" class="text-white ">Contraseña</label>
+                                <input type="text" name="contrasena" class="form-control col" id="inputContrasenaEstudiante"
+                                    placeholder="Contraseña" required [(ngModel)]="this.AuthAdminService.selectedEstudiante.contrasena">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+        
+                    <!--Boton Actualizar Docente-->
+                    <div class="row">
+                        <div class="mr-2 ml-auto pb-4 justify-content-md-center no-gutters">
+                            <a class="btn bg-success px-5 py-4 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo4" (click)="actualizarEstudiante(frmInfoEstudiante)">Actualizar</a>
+                        </div>
+                        <div class="ml-2 mr-auto pb-4 justify-content-md-center no-gutters">
+                            <a class="btn bg-success px-5 py-4 font-weight-bold" (click)="resetForm(frmInfoEstudiante)">Limpiar</a>
+                        </div>
+                    </div>
+                </form>
                 <hr class="style8">
             </div>
         </div>
@@ -149,7 +267,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Area de Materias Creada</h4>
+                    <h4 class="modal-title" id="myModalLabel">Estudiante Actualizado</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
