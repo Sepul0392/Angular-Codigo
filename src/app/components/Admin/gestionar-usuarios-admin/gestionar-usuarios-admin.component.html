@@ -22,7 +22,7 @@
                     <h5 class="py-3 text-white">Buscador:</h5>
                     <div class="form-group">
                         <input type="text" class="form-control col-md-8" id="inputTextoBusquedaDocente"
-                                placeholder="Nombre/ Apellido / Usuario / Correo" [(ngModel)]="palabraClaveDSelected" name="palabraClaveDSelected">
+                                placeholder="Nombre / Apellido / Usuario / Correo" [(ngModel)]="palabraClaveDSelected" name="palabraClaveDSelected">
                     </div>
                                 
                     <!--Resultados-->
@@ -35,7 +35,7 @@
                                 <div class="row no-gutters border border-secondary">
                                     <div class="col" style="max-width: 840px;">
                                         <div class="card-body p-2">
-                                            <p class="card-text ">Nombre Docente: {{docente.nombre_docente}} {{docente.apellido_docente}}.</p>
+                                            <p class="card-text ">Nombre Docente: {{docente.nombre_docente}} {{docente.apellido_docente}}</p>
                                             <div>
                                                 <p class="card-text"><small class="text-muted">Nombre Usuario: {{docente.nombre_usuario}}</small></p>
                                             </div>
@@ -59,7 +59,7 @@
 
             <div class="contenedor py-3">
                 <form #frmInfoDocente="ngForm">
-                    <h5 class="py-3 text-white text-center">Actualizar Informacion:</h5>
+                    <h5 class="py-3 text-white text-center">Actualizar Información:</h5>
                     <div class="col-5 mx-auto">
                         <div class="form-group col">
                             <div class="form-group">
@@ -115,7 +115,7 @@
                     <h5 class="py-3 text-white">Buscador:</h5>
                     <div class="form-group">
                         <input type="text" class="form-control col-md-8" id="inputTextoBusquedaEstudiante"
-                                placeholder="Nombre/ Apellido / Usuario / Correo" [(ngModel)]="palabraClaveESelected" name="palabraClaveESelected">
+                                placeholder="Nombre / Apellido / Usuario / Correo" [(ngModel)]="palabraClaveESelected" name="palabraClaveESelected">
                     </div>
                     <div class="row">
                         <div class="form-group col-3">
@@ -127,7 +127,7 @@
                         </div>
                         <div class="form-group col-3">
                             <label for="inputCurso" class="text-white">Curso</label>
-                            <select [(ngModel)]="CursoSelected" name="CursoSelected" id="inputCurso" class="form-control" ngModel required>
+                            <select [(ngModel)]="cursoSelected" name="cursoSelected" id="inputCurso" class="form-control" ngModel required>
                                 <option selected></option>
                                 <option *ngFor="let curso of cursos" [value]="curso.id_curso">{{curso.nombre_curso}}</option>
                             </select>
@@ -139,14 +139,14 @@
                     <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar" style="width: 95%; height: 450px">
                         <!--Resultado-->
                         <div class="row-1"
-                            *ngFor="let estudante of estudiantesVisualizar | filterDocenteAdmin: palabraClaveSelected">
+                            *ngFor="let estudante of estudiantesVisualizar | filterEstudiantesAdmin: palabraClaveESelected:gradoSelected:cursoSelected">
                             <div class="card mb-4 border-0" style="max-width: 1440px;">
                                 <div class="row no-gutters border border-secondary">
                                     <div class="col" style="max-width: 840px;">
                                         <div class="card-body p-2">
-                                            <p class="card-text ">Nombre Estudiante: {{estudante.nombre_estudiante}} {{estudante.apellido_estudiante}}.</p>
+                                            <p class="card-text ">Nombre Estudiante: {{estudante.nombre_estudiante}} {{estudante.apellido_estudiante}}</p>
                                             <div>
-                                                <p class="card-text"><small class="text-muted">Curso: {{estudante.grado_estudiante}}</small></p>
+                                                <p class="card-text"><small class="text-muted">Grado: {{estudante.grado_estudiante}}</small></p>
                                             </div>
                                             <div>
                                                 <p class="card-text"><small class="text-muted">Curso: {{estudante.curso}}</small></p>
@@ -174,7 +174,7 @@
 
             <div class="contenedor py-3">
                 <form #frmInfoEstudiante="ngForm">
-                    <h5 class="py-3 text-white text-center">Actualizar Informacion:</h5>
+                    <h5 class="py-3 text-white text-center">Actualizar Información:</h5>
                     <div class="col-5 mx-auto">
                         <div class="form-group col">
                             <div class="form-group">
@@ -222,7 +222,7 @@
                     </div>
                     <br>
         
-                    <!--Boton Actualizar Docente-->
+                    <!--Boton Actualizar Estudiante-->
                     <div class="row">
                         <div class="mr-2 ml-auto pb-4 justify-content-md-center no-gutters">
                             <a class="btn bg-success px-5 py-4 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo4" (click)="actualizarEstudiante(frmInfoEstudiante)">Actualizar</a>
@@ -331,7 +331,7 @@
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
                 <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteDocente()">Aceptar</button>
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteEstudiante()">Aceptar</button>
                 </div>
             </div>
         </div>

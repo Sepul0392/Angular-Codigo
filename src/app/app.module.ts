@@ -42,6 +42,7 @@ import { GestionarCompetenciasAdminComponent } from './components/Admin/gestiona
 import { FilterCompetenciaAdminPipe } from './pipes/filter-competencia-admin.pipe';
 import { GestionarUsuariosAdminComponent } from './components/Admin/gestionar-usuarios-admin/gestionar-usuarios-admin.component';
 import { FilterDocenteAdminPipe } from './pipes/filter-docente-admin.pipe';
+import { FilterEstudiantesAdminPipe } from './pipes/filter-estudiantes-admin.pipe';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { FilterDocenteAdminPipe } from './pipes/filter-docente-admin.pipe';
     GestionarCompetenciasAdminComponent,
     FilterCompetenciaAdminPipe,
     GestionarUsuariosAdminComponent,
-    FilterDocenteAdminPipe
+    FilterDocenteAdminPipe,
+    FilterEstudiantesAdminPipe
   ],
   imports: [
     BrowserModule,

@@ -201,7 +201,7 @@ export class AuthAdminService {
 
   //Eliminar un Estudiante
   deleteEstudiante(infoID:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteEstidiantes`, infoID);
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteEstudiante`, infoID);
   }
 
   //Modificar Estudiante en MongoDB 

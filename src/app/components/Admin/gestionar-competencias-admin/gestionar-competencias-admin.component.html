@@ -164,16 +164,16 @@
         
                     <!--Borrar Area de Materias-->
                     <h5 class="py-3 text-white">Borrar Area de Materias:</h5>
-                    <div class="col-9 mx-auto rounded-top">
-                        <table class="text-white m-auto rounded table-striped table-wrapper-scroll-y my-custom-scrollbar" style="height: 225px;">
+                    <div class="row mx-auto">
+                        <table class="mx-auto text-white m-auto rounded table-striped table-wrapper-scroll-y my-custom-scrollbar" style="height: 256px;">
                             <thead class="bg-info">
-                                <th class="col pl-3 pr-0 py-2 text-dark">Nombre Area de materias</th>
-                                <th class="col pl-0 pr-4 py-2 text-dark">Accion</th>
+                                <th class="pl-3 pr-5 py-2 text-dark">Nombre Area de materias</th>
+                                <th class="pl-5 pr-4 py-2 text-dark">Accion</th>
                             </thead>
                             <tbody class="bg-light">
                                 <tr mdbTableCol *ngFor="let areaMateria of areasMaterias | slice:1; let i = index">
-                                    <td class="col pl-3 pr-0 py-1 text-dark">{{ areaMateria.nombre_areaMateria }}</td>
-                                    <td class="col pl-0 pr-4 py-1">
+                                    <td class="pl-3 pr-5 py-2 text-dark">{{ areaMateria.nombre_areaMateria }}</td>
+                                    <td class="pl-5 pr-4 py-2">
                                         <a class="btn bg-warning py-0 px-1 text-dark" data-toggle="modal" data-target="#mimodalejemplo2"
                                             (click)="saveDataAreaMateria(areaMateria)">borrar</a>
                                     </td>
