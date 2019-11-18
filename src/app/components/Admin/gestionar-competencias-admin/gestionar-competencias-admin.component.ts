@@ -56,7 +56,7 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
             }
           }
         }
-        //console.log("actividades visualizar:", this.actividadVisualizar)
+        //console.log("actividades visualizar:", this.competenciasVisualizar)
       });
     });
   }

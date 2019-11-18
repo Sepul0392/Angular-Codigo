@@ -12,3 +12,4 @@ export { InfromacionDocenteComponent} from './infromacion-docente/infromacion-do
 export { AdministrarDocenteComponent} from './administrar-docente/administrar-docente.component';
 export { GestionarCompetenciasAdminComponent } from './Admin/gestionar-competencias-admin/gestionar-competencias-admin.component';
 export { GestionarUsuariosAdminComponent } from './Admin/gestionar-usuarios-admin/gestionar-usuarios-admin.component';
+export { GestionarColegioAdminComponent } from './Admin/gestionar-colegio-admin/gestionar-colegio-admin.component';

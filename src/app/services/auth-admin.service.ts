@@ -144,6 +144,24 @@ export class AuthAdminService {
   }
 
 
+  //====================================================================================  MATERIA
+
+  //Crear Materia Activa del profesor
+  createMateria(materiaActiva:MateriaI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/createSubject`, materiaActiva);
+  }
+
+  //Cragar Todas las Materias Activas
+  loadAllMaterias(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjects`);
+  }
+
+  //Eliminar una Actividad Activa
+  deleteMateria(infoID:any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteSubject`, infoID);
+  }
+
+
   //====================================================================================  DOCENTE
 
   //Servicio Crear Docente
@@ -318,6 +336,27 @@ export class AuthAdminService {
   }
 
 
+  //====================================================================================  GRADOS
+
+  //Servicio para crear un grado en Mongo 
+  createGrade(grado:GradoI){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/createGrade`, grado);
+  }
+  
+  //Servicio para llamar todos los grados
+  allGrade() {
+    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllGrades`);
+  }
+  newAllGrades(){
+    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadGrades`);
+  }
+
+  //Servicio para modificar datos del colegio en MongoDB 
+  deleteGrade(infoID: any){
+    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteGrade`, infoID);
+  }
+
+
   //------------------------------------------------------------------------------------ Servicions de Ayuda
 
   //Servicio para llamar todas las materias
@@ -326,14 +365,6 @@ export class AuthAdminService {
   }
   newAllSubjects(){
     return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadSubjects`);
-  }
-
-  //Servicio para llamar todos los grados
-  allGrade() {
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllGrades`);
-  }
-  newAllGrades(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadGrades`);
   }
 
   //Servicio para llamar todos los tipos de Contenidos

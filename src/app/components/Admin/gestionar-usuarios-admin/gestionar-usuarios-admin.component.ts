@@ -22,9 +22,6 @@ export class GestionarUsuariosAdminComponent implements OnInit {
   grados:GradoI[];
   estudianteToSave:EstuadianteI;
   docenteToSave:DocenteI;
-  resDocente:any;
-  resColegio:any;
-  resEstudiante:any;
   cursos:any;
   estudiantesVisualizar:EstuadianteVisualizarI[];
 
