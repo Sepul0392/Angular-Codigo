@@ -24,7 +24,12 @@ export class LoginComponent implements OnInit {
 
   onLoginAdmin(form):void{
     console.log('Login Admin', form.value);
-    this.AuthAdminService.loginAdmin(form.value).subscribe(res => {
+
+    const LoginAdmin = {
+      nombre_usuario: form.value.correo_electronico,
+      contrasena: form.value.contrasena
+    }
+    this.AuthAdminService.loginAdmin(LoginAdmin).subscribe(res => {
       this.router.navigateByUrl('/inicioAdmin');
     })
   }

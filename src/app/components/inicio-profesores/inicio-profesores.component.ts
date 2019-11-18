@@ -14,6 +14,7 @@ export class InicioProfesoresComponent implements OnInit {
   constructor(private AuthDService: AuthDService) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.nombreApellidoDocente = this.AuthDService.getnombreApellidoDocente();
   }
 
