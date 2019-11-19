@@ -29,6 +29,8 @@ import { ActividadService } from '../services/actividad.service';
 import { GestionarCompetenciasAdminComponent } from './Admin/gestionar-competencias-admin/gestionar-competencias-admin.component';
 import { GestionarUsuariosAdminComponent } from './Admin/gestionar-usuarios-admin/gestionar-usuarios-admin.component';
 import { GestionarColegioAdminComponent } from './Admin/gestionar-colegio-admin/gestionar-colegio-admin.component';
+import { BusquedaVisitanteComponent } from './Visitante/busqueda-visitante/busqueda-visitante.component';
+import { HeaderVisitanteComponent } from './Visitante/header-visitante/header-visitante.component';
 
 @NgModule({
   declarations:[
@@ -51,7 +53,9 @@ import { GestionarColegioAdminComponent } from './Admin/gestionar-colegio-admin/
     HeaderAdminComponent,
     GestionarCompetenciasAdminComponent,
     GestionarUsuariosAdminComponent,
-    GestionarColegioAdminComponent
+    GestionarColegioAdminComponent,
+    BusquedaVisitanteComponent,
+    HeaderVisitanteComponent
   ],
   imports:[
       CommonModule,

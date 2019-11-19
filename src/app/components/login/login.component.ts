@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     console.log('login Docente', form.value);
     this.AuthDService.loginDocente(form.value).subscribe(res => {
       this.router.navigateByUrl('/inicioProfesores');
-    })
+    });
   }
 
   onLoginAdmin(form):void{
@@ -31,7 +31,12 @@ export class LoginComponent implements OnInit {
     }
     this.AuthAdminService.loginAdmin(LoginAdmin).subscribe(res => {
       this.router.navigateByUrl('/inicioAdmin');
-    })
+    });
+  }
+
+  onLoginVisitante(){
+    console.log('login Visitante');
+    this.router.navigateByUrl('/busquedaVisitante');
   }
 
 }

@@ -25,7 +25,7 @@
                     <a type="submit" name="button" class="btn registrarce_btn" routerLink="/registroProfesor">Registrarce</a>
                 </div>
                 <div class="d-flex justify-content-center mt-1 login_container">
-                    <a type="submit" name="button" class="btn invitado_btn">Invitado</a>
+                    <a type="submit" name="button" class="btn invitado_btn" (click)="onLoginVisitante()">Visitante</a>
                 </div>
                 <div class="d-flex justify-content-center mt-1 login_container">
                     <a type="submit" name="button" class="btn admin_btn" (click)="onLoginAdmin(frmLogin)">Administrador</a>

@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { ContentREAService } from '../../services/content-rea.service';
-import { contenidoREAI } from '../../models/contenidoREA';
-import { MateriaI } from '../../models/materia';
-import { GradoI } from '../../models/grado';
-import { TipoContenidoI } from '../../models/tipoContenido';
-import { contenidoREAVisualizarI } from '../../models/contenidoREAVisualizar';
-import { CompetenciaI } from '../../models/competencia';
-import { ActividadI } from '../../models/actividad';
-import { DocenteI } from '../../models/docente';
-import { ActividadVisualizaI } from '../../models/actividadVisualizar';
-import { ActividadService } from '../../services/actividad.service';
+import { ContentREAService } from '../../../services/content-rea.service';
+import { contenidoREAI } from '../../../models/contenidoREA';
+import { MateriaI } from '../../../models/materia';
+import { GradoI } from '../../../models/grado';
+import { TipoContenidoI } from '../../../models/tipoContenido';
+import { contenidoREAVisualizarI } from '../../../models/contenidoREAVisualizar';
+import { CompetenciaI } from '../../../models/competencia';
+import { ActividadI } from '../../../models/actividad';
+import { DocenteI } from '../../../models/docente';
+import { ActividadVisualizaI } from '../../../models/actividadVisualizar';
+import { ActividadService } from '../../../services/actividad.service';
 import { NgForm } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-busqueda',
-  templateUrl: './busqueda.component.html',
-  styleUrls: ['./busqueda.component.css']
+  selector: 'app-busqueda-visitante',
+  templateUrl: './busqueda-visitante.component.html',
+  styleUrls: ['./busqueda-visitante.component.css']
 })
-export class BusquedaComponent implements OnInit {
+export class BusquedaVisitanteComponent implements OnInit {
 
   //Elementos de Busqueda de Contenido
   tallerToSave:contenidoREAI;
@@ -51,8 +51,7 @@ export class BusquedaComponent implements OnInit {
   contenidoAct:contenidoREAVisualizarI;
   tallerAct:contenidoREAVisualizarI;
 
-  constructor(private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) {
-   }
+  constructor(private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);

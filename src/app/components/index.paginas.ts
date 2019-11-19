@@ -13,3 +13,4 @@ export { AdministrarDocenteComponent} from './administrar-docente/administrar-do
 export { GestionarCompetenciasAdminComponent } from './Admin/gestionar-competencias-admin/gestionar-competencias-admin.component';
 export { GestionarUsuariosAdminComponent } from './Admin/gestionar-usuarios-admin/gestionar-usuarios-admin.component';
 export { GestionarColegioAdminComponent } from './Admin/gestionar-colegio-admin/gestionar-colegio-admin.component';
+export { BusquedaVisitanteComponent } from './Visitante/busqueda-visitante/busqueda-visitante.component';

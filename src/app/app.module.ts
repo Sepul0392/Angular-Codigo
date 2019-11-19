@@ -44,6 +44,8 @@ import { GestionarUsuariosAdminComponent } from './components/Admin/gestionar-us
 import { FilterDocenteAdminPipe } from './pipes/filter-docente-admin.pipe';
 import { FilterEstudiantesAdminPipe } from './pipes/filter-estudiantes-admin.pipe';
 import { GestionarColegioAdminComponent } from './components/Admin/gestionar-colegio-admin/gestionar-colegio-admin.component';
+import { BusquedaVisitanteComponent } from './components/Visitante/busqueda-visitante/busqueda-visitante.component';
+import { HeaderVisitanteComponent } from './components/Visitante/header-visitante/header-visitante.component';
 
 
 @NgModule({
@@ -75,7 +77,9 @@ import { GestionarColegioAdminComponent } from './components/Admin/gestionar-col
     GestionarUsuariosAdminComponent,
     FilterDocenteAdminPipe,
     FilterEstudiantesAdminPipe,
-    GestionarColegioAdminComponent
+    GestionarColegioAdminComponent,
+    BusquedaVisitanteComponent,
+    HeaderVisitanteComponent
   ],
   imports: [
     BrowserModule,
