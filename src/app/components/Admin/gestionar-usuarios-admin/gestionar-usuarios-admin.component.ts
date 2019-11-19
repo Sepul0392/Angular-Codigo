@@ -59,7 +59,7 @@ export class GestionarUsuariosAdminComponent implements OnInit {
           }
         }
       }
-      console.log("estudiantes visualizar:", this.estudiantesVisualizar);
+      //console.log("estudiantes visualizar:", this.estudiantesVisualizar);
     });
   }
 
@@ -161,7 +161,6 @@ export class GestionarUsuariosAdminComponent implements OnInit {
       this.AuthAdminService.selectedEstudiante = new EstuadianteI();
       this.docenteToSave = new DocenteI();
       this.estudianteToSave = new EstuadianteI();
-      this.getOptions();
     }
   }
 }

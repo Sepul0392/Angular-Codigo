@@ -139,7 +139,7 @@ export class GestionarColegioAdminComponent implements OnInit {
       id_grado: form.value.id_grado,
       nombre_grado: form.value.nombre_grado
     }
-    console.log('datosCompetencia', newGrado);
+    //console.log('datosGrado', newGrado);
 
     this.AuthAdminService.createGrade(newGrado).subscribe(res => {
       console.log(res);

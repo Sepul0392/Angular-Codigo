@@ -97,7 +97,7 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
         gradoInicial: form.value.gradoInicial,
         gradoFinal: form.value.gradoFinal
       }
-      console.log('datosCompetencia', newCompetencia);
+      //console.log('datos NewCompetencia', newCompetencia);
     
       this.AuthAdminService.createCompetencia(newCompetencia).subscribe(res => {
         console.log(res);
@@ -141,7 +141,7 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
         id_areaMateria: this.newID,
         nombre_areaMateria: form.value.nombre_areaMateria
       }
-      console.log('datosCompetencia', newAreaMateria);
+      //console.log('datos NewArea', newAreaMateria);
     
       this.AuthAdminService.createAreaSubject(newAreaMateria).subscribe(res => {
         console.log(res);
@@ -160,8 +160,8 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
   }
   //Almacenar info temporal de una AreaMAteria
   saveDataAreaMateria(areaMateriahtml){
-    this.areaMateriaToSave = areaMateriahtml;
-    //console.log('actividad guardada:', this.competenciaToSave);
+    this.areaMateriaToSave = areaMateriahtml
+    //console.log('actividad guardada:', this.areaMateriaToSave);
   }
 
   //Eliminar Competencia de Mongo
@@ -176,7 +176,7 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
   }
   //Eliminar AreaMateria de Mongo
   deleteAreaMateria(){
-    //console.log("id para eliminar:", this.competenciaToSave.id_competencia);
+    //console.log("id para eliminar:", this.areaMateriaToSave.id_areaMateria);
     this.AuthAdminService.deleteAreaSubject(this.areaMateriaToSave).subscribe(res =>{
       //console.log(res);
       this.AuthAdminService.loadAllAreaSubjects().subscribe(res => {

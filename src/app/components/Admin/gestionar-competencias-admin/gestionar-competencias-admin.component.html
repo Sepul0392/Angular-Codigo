@@ -143,12 +143,12 @@
         
         <!--Gestion de AreaMateria-->
         <div>
-            <h3 class="py-3 text-center text-white">Area de Materias</h3>
+            <h3 class="py-3 text-center text-white">Areas de Materias</h3>
             <div class="contenedor mx-3 py-3">
                 <form #frmCrearAreaMateria="ngForm">
         
                     <!--Crear AreaMaterias-->
-                    <h5 class="py-3 text-white">Crear Area de Materias:</h5>
+                    <h5 class="py-3 text-white">Crear Area:</h5>
                     <div class="row">
                         <div class="form-group col-5  pr-3">
                             <input type="text" name="nombre_areaMateria" class="form-control" id="inputNombreMateriaActiva"
@@ -156,18 +156,18 @@
                         </div>
                         <!--Boton Crear AreaMateria-->
                         <div class="bg-secondary col px-0 justify-content-md-center no-gutters">
-                            <a  class="btn bg-info px-1 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo4" (click)="CrearAreaMateria(frmCrearAreaMateria)">Crear Area de Materia</a>
+                            <a  class="btn bg-info px-1 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo4" (click)="CrearAreaMateria(frmCrearAreaMateria)">Crear Area</a>
                         </div>
                     </div>
                     
                     <br>
         
                     <!--Borrar Area de Materias-->
-                    <h5 class="py-3 text-white">Borrar Area de Materias:</h5>
+                    <h5 class="py-3 text-white">Borrar Area:</h5>
                     <div class="row mx-auto">
                         <table class="mx-auto text-white m-auto rounded table-striped table-wrapper-scroll-y my-custom-scrollbar" style="height: 256px;">
                             <thead class="bg-info">
-                                <th class="pl-3 pr-5 py-2 text-dark">Nombre Area de materias</th>
+                                <th class="pl-3 pr-5 py-2 text-dark">Nombre Area</th>
                                 <th class="pl-5 pr-4 py-2 text-dark">Accion</th>
                             </thead>
                             <tbody class="bg-light">
@@ -192,22 +192,14 @@
     <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-light">
                     <h4 class="modal-title" id="myModalLabel">Competencia Creada</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
+                    Se ha creado una nueva Competencia.
                 </div>
             </div>
         </div>
@@ -217,22 +209,14 @@
     <div class="modal fade" id="mimodalejemplo4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Area de Materias Creada</h4>
+                <div class="modal-header bg-light">
+                    <h4 class="modal-title" id="myModalLabel">Area Creada</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
+                    Se ha creado una nueva Area.
                 </div>
             </div>
         </div>
@@ -242,21 +226,17 @@
     <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-light">
                     <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Para borrar el Area presione aceptar, de lo contrario presione X
+                    para cancelar.
                 </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
+                <div class="modal-footer justify-content-md-center no-gutters bg-light py-1">
                     <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteAreaMateria()">Aceptar</button>
                 </div>
             </div>
@@ -267,21 +247,17 @@
     <div class="modal fade" id="mimodalejemplo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-light">
                     <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Para borrar la Competencia presione aceptar, de lo contrario presione X
+                    para cancelar.
                 </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
+                <div class="modal-footer justify-content-md-center no-gutters bg-light py-1">
                     <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteCompetencia()">Aceptar</button>
                 </div>
             </div>
