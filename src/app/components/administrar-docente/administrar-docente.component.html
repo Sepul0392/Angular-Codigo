@@ -35,8 +35,8 @@
                     <br>
                     
                     <!--Boton Crear Contenido-->
-                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
-                        <button class="btn bg-info px-5 py-4 font-weight-bold" (click)="actualizarInfoPersonalDocente(frmInformacionPersonal)">Actualizar Datos</button>
+                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
+                        <a class="btn bg-info px-5 py-4 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo" (click)="actualizarInfoPersonalDocente(frmInformacionPersonal)">Actualizar Datos</a>
                     </div>
                 </form>
                 <hr class="style4">
@@ -71,8 +71,8 @@
                     <br>
         
                     <!--Boton Actualizar Login Docente-->
-                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
-                        <button class="btn bg-info px-5 py-4 font-weight-bold" (click)="actualizarInfoLoginDocente(frmInformacionLogin)">Actualizar Datos</button>
+                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
+                        <a class="btn bg-info px-5 py-4 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo" (click)="actualizarInfoLoginDocente(frmInformacionLogin)">Actualizar Datos</a>
                     </div>
                 </form>
                 <hr class="style4">
@@ -113,8 +113,8 @@
                     </div>
                     <br>
                     <!--Boton Crear Materia-->
-                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters" data-toggle="modal" data-target="#mimodalejemplo">
-                        <button class="btn bg-info px-5 py-4 font-weight-bold" (click)="CrearMateriaActiva(frmCrearMateria)">Crear Materia</button>
+                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
+                        <a class="btn bg-info px-5 py-4 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo3" (click)="CrearMateriaActiva(frmCrearMateria)">Crear Materia</a>
                     </div>
                     <br>
                     
@@ -133,8 +133,8 @@
                                     <td class="pl-3 pr-4 py-2 text-dark">{{ materiaActiva.nombre_materiaActiva }}</td>
                                     <td class="px-4 py-2 text-center text-dark">{{ materiaActiva.nombre_materia}}</td>
                                     <td class="px-4 py-2 text-center text-dark">{{ materiaActiva.id_grado }}</td>
-                                    <td class="pl-3 pr-3 py-2" data-toggle="modal" data-target="#mimodalejemplo2">
-                                        <a class="btn bg-warning py-0 px-1 text-dark" (click)="saveMateriaActivaData(materiaActiva)">
+                                    <td class="pl-3 pr-3 py-2">
+                                        <a class="btn bg-warning py-0 px-1 text-dark" data-toggle="modal" data-target="#mimodalejemplo2" (click)="saveMateriaActivaData(materiaActiva)">
                                             borrar
                                         </a>
                                     </td>
@@ -150,57 +150,82 @@
 
     </div>
 
-    <!-- Modal -->
+    <!--Modal Infromacion Actualizada-->
     <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Guardado Exitoso</h4>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold"
-                        data-dismiss="modal">Aceptar</button>
+                <div class="modal-body text-info">
+                    Se ha actualizado tu informacion.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
-                    <div class="modal-footer justify-content-md-center no-gutters">
-                        <button type="button" class="btn btn-default bg-warning font-weight-bold" 
-                            data-dismiss="modal" (click)="deleteMateriaActiva()">Aceptar</button>
-                    </div>
+    <!--Modal Confirmar Eliminar MateriaActiva-->
+    <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Confirmar Acción</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Para borrar la Materia presione Aceptar, de lo contrario presione X
+                    para cancelar.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters bg-light py-1">
+                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" data-toggle="modal" data-target="#mimodalejemplo4"
+                        (click)="deleteMateriaActiva()">Aceptar</button>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!--Modal MateriaActiva Eliminada-->
+    <div class="modal fade" id="mimodalejemplo4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-info">
+                    La Materia ha sido Eliminada.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal Confirmar MateriaActiva Creada-->
+    <div class="modal fade" id="mimodalejemplo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-info" *ngIf="correcto">
+                    Tu Materia ha sido creada.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error">
+                    La Materia no se ha podido crear. Verifica que has ingresado todos los 
+                    datos requeridos.
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <app-footer></app-footer>

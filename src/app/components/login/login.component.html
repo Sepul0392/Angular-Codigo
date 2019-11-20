@@ -16,6 +16,10 @@
                         <div class="input-group mb-2">
                             <input type="password" name="contrasena" class="form-control input_pass col-10 mx-auto" value="" placeholder="Contraseña" ngModel required>
                         </div>
+                        <div *ngIf="show">
+                            <div class="text-danger text-center" *ngIf="error1">El correo o la contraseña son incorrectos</div>
+                            <div class="text-danger text-center" *ngIf="error2">El usuario o la contraseña son incorrectos</div>
+                        </div>
                     </form>
                 </div>
                 <div class="d-flex justify-content-center mt-4  login_container">

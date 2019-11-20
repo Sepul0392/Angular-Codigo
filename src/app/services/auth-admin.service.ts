@@ -77,7 +77,7 @@ export class AuthAdminService {
       (res:JwtResponseI) => {
         if(res){
           //this.saveData(res.dataDocente.id_docente, res.dataDocente)
-          console.log('login res:', res);
+          //console.log('login res:', res);
           this.saveSession(res.dataAdmin.id_admin, res.dataAdmin.accessToken, res.dataAdmin.expiresIn, res.dataAdmin.nombre_usuario);
         }
       })

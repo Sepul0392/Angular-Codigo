@@ -28,11 +28,15 @@ export class SubirContenidoComponent implements OnInit {
   newID: number;
   temp: number;
   id_docenteAuth:number;
+  correcto:boolean;
+  error:boolean;
 
   constructor(private AuthDService: AuthDService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.correcto = false;
+    this.error = false;
     
     this.getOptions();
     this.getContenidos();
@@ -61,12 +65,16 @@ export class SubirContenidoComponent implements OnInit {
 
   //Cargar archivo a subir
   onFileChange(e){
+    this.correcto = false;
+    this.error = true;
     /*console.log('archivo', e)*/
     this.uploadedFiles = e.target.files;
   }
 
   //Funcion leer y subir informacion y archivo del formulario a Mongo
   onSubirContenido(form: NgForm):void{
+    this.correcto = false;
+    this.error = true;
     /*console.log('text', form.value);
     console.log('materia seleccionada', this.materiaSelected);
     console.log('grado seleccionado', this.gradoSelected);
@@ -133,6 +141,8 @@ export class SubirContenidoComponent implements OnInit {
 
         this.ContentREAService.createContentREA(newContenidoREA).subscribe(res => {
         //this.router.navigateByUrl('/inicioProfesores')
+        this.correcto = true;
+        this.error = false;
         this.resetForm(form);
         });
       });

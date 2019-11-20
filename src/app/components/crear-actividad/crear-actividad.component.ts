@@ -59,12 +59,16 @@ export class CrearActividadComponent implements OnInit {
   respuestaCorrectaSelected2:number;
   respuestaCorrectaSelected3:number;
   ID_TipoContenido_Taller:number;
+  correcto:boolean;
+  error:boolean;
 
   constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.ID_TipoContenido_Taller = 5;
+    this.correcto = false;
+    this.error = false;
 
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
     this.getOptions();
@@ -116,7 +120,7 @@ export class CrearActividadComponent implements OnInit {
               }
             }
           }
-          console.log("contenido visualizar final:", this.contenidoVisualizar)
+          //console.log("contenido visualizar final:", this.contenidoVisualizar)
         });
       });
     });
@@ -132,12 +136,14 @@ export class CrearActividadComponent implements OnInit {
 
   //Crear Actividad en Mongo
   onCrearActividad(form: NgForm): void {
-    
+    this.correcto = false;
+    this.error = true;
+
     //Generar ID
     this.ActividadService.allActivities().subscribe(res =>{
       //console.log(res);
       this.ActividadService.actividades = res as ActividadI[];
-      console.log('Actividades', this.ActividadService.actividades);
+      //console.log('Actividades', this.ActividadService.actividades);
 
       //Crear ID
       if (this.ActividadService.actividades.length == 0) {
@@ -249,7 +255,7 @@ export class CrearActividadComponent implements OnInit {
         CA3: this.respuestaCorrectaSelected3
       }
 
-      console.log('datosActividad', newActividad);
+      //console.log('datosActividad', newActividad);
 
       this.ActividadService.createActivity(newActividad).subscribe(res => {
         //window.location.reload();
@@ -264,9 +270,11 @@ export class CrearActividadComponent implements OnInit {
         }
 
         this.ContentREAService.uploadEstadoContentREA(contenidoREAInfo).subscribe(res => {
-          console.log(res);
+          //console.log(res);
           this.ContentREAService.uploadEstadoContentREA(tallerInfo).subscribe(res => {
-            console.log(res);
+            //console.log(res);
+            this.correcto = true;
+            this.error = false;
             this.resetForm(form);
           });
         });
@@ -277,13 +285,13 @@ export class CrearActividadComponent implements OnInit {
   //Almacenar info temporal de un Taller
   saveDataTaller(tallerhtml){
     this.tallerToSave = tallerhtml;
-    console.log("taller guardado:", this.tallerToSave);
+    //console.log("taller guardado:", this.tallerToSave);
   }
 
   //Almacenar info temporal de un ContenidoREA
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
-    console.log("contenido guardado:", this.contenidoToSave);
+    //console.log("contenido guardado:", this.contenidoToSave);
   }
 
   //Resetear pagina

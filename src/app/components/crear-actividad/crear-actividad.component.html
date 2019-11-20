@@ -45,8 +45,8 @@
                         <div class="form-group col">
                             <label for="inputDocenteA" class="text-white">Competencia</label>
                             <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaSelectedA" class="form-control" ngModel required>
-                                <option selected></option>
-                                <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA" [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
+                                <option selected [value]=0>Sin Competencia</option>
+                                <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA | slice:1; let i = index" [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
                                 </option>
                             </select>
                             <!--el valor seleccionado es {{competenciaSelectedA}}-->
@@ -443,76 +443,56 @@
         </div>  
     </div>  
 
-    <!-- Modal Guardado-->
+    <!-- Modal Confirmar Actividad Creada-->
     <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Guardado Exitoso</h4>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <div class="modal-body text-info" *ngIf="correcto">
+                    La Actividad ha sido creada.
                 </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <a type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" >Aceptar</a>
+                <div class="modal-body text-danger" *ngIf="error">
+                    La Actividad no se ha podido crear. Verifica que has ingresado todos los 
+                    datos requeridos y has adjuntado el contenido y el taller.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Adjuntar Contenido-->
+    <!--Modal Adjuntar Contenido-->
     <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Contenido Adjuntado</h4>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
+                <div class="modal-body text-info">
+                    El Contenido ha sido adjuntado
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Adjuntar Taller-->
+    <!--Modal Adjuntar Taller-->
     <div class="modal fade" id="mimodalejemplo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Taller Adjuntado</h4>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
+                <div class="modal-body text-info">
+                    El Taller ha sido adjuntado
                 </div>
             </div>
         </div>
