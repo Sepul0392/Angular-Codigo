@@ -47,8 +47,12 @@
                                 </div>
                                 <!--Boton Editar y Borrar-->
                                 <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
-                                    <a class="btn bg-warning mr-2" (click)="getDocenteinForm(docente)">Editar</a>
-                                    <a class="btn bg-warning ml-2" data-toggle="modal" data-target="#mimodalejemplo2" (click)="saveDataDocente(docente)">Borrar</a>
+                                    <div>
+                                        <a class="btn bg-warning mr-2" (click)="getDocenteinForm(docente)">Editar</a>
+                                    </div>
+                                    <div>
+                                        <a class="btn bg-warning ml-2" data-toggle="modal" data-target="#mimodalejemplo2" (click)="saveDataDocente(docente)">Borrar</a>
+                                    </div>  
                                 </div>
                             </div>
                         </div>
@@ -139,31 +143,31 @@
                     <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar" style="width: 95%; height: 450px">
                         <!--Resultado-->
                         <div class="row-1"
-                            *ngFor="let estudante of estudiantesVisualizar | filterEstudiantesAdmin: palabraClaveESelected:gradoSelected:cursoSelected">
+                            *ngFor="let estudiante of estudiantesVisualizar | filterEstudiantesAdmin: palabraClaveESelected:gradoSelected:cursoSelected">
                             <div class="card mb-4 border-0" style="max-width: 1440px;">
                                 <div class="row no-gutters border border-secondary">
                                     <div class="col" style="max-width: 840px;">
                                         <div class="card-body p-2">
-                                            <p class="card-text ">Nombre Estudiante: {{estudante.nombre_estudiante}} {{estudante.apellido_estudiante}}</p>
+                                            <p class="card-text ">Nombre Estudiante: {{estudiante.nombre_estudiante}} {{estudiante.apellido_estudiante}}</p>
                                             <div>
-                                                <p class="card-text"><small class="text-muted">Grado: {{estudante.grado_estudiante}}</small></p>
+                                                <p class="card-text"><small class="text-muted">Grado: {{estudiante.grado_estudiante}}</small></p>
                                             </div>
                                             <div>
-                                                <p class="card-text"><small class="text-muted">Curso: {{estudante.curso}}</small></p>
+                                                <p class="card-text"><small class="text-muted">Curso: {{estudiante.curso}}</small></p>
                                             </div>
                                             <div>
-                                                <p class="card-text"><small class="text-muted">Nombre Usuario: {{estudante.nombre_usuario}}</small></p>
+                                                <p class="card-text"><small class="text-muted">Nombre Usuario: {{estudiante.nombre_usuario}}</small></p>
                                             </div>
                                             <div>
-                                                <p class="card-text"><small class="text-muted">Correo Electronico: {{estudante.correo_electronico}}</small></p>
+                                                <p class="card-text"><small class="text-muted">Correo Electronico: {{estudiante.correo_electronico}}</small></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!--Boton Editar y Borrar-->
                                 <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
-                                    <a class="btn bg-warning mr-2" (click)="getEstudianteinForm(estudante)">Editar</a>
-                                    <a class="btn bg-warning ml-2" data-toggle="modal" data-target="#mimodalejemplo3" (click)="saveDataEstudiante(estudante)">Borrar</a>
+                                    <a class="btn bg-warning mr-2" (click)="getEstudianteinForm(estudiante)">Editar</a>
+                                    <a class="btn bg-warning ml-2" data-toggle="modal" data-target="#mimodalejemplo3" (click)="saveDataEstudiante(estudiante)">Borrar</a>
                                 </div>
                             </div>
                         </div>
@@ -237,47 +241,47 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Datos Docente Actualizados -->
     <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Docente Actualizado</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-info">
                     Se han Actualizado los datos del Docente.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Datos Estudiante Actualizados -->
     <div class="modal fade" id="mimodalejemplo4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Estudiante Actualizado</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-info">
                     Se han Actualizado los datos del Estudiante.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Confirmar Borrar Docente -->
     <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Confirmar Accion</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -285,20 +289,20 @@
                     Para borrar al Docente presione aceptar, de lo contrario presione X
                     para cancelar.
                 </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteDocente()">Aceptar</button>
+                <div class="modal-footer justify-content-md-center no-gutters py-1 bg-light">
+                    <button class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteDocente()">Aceptar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Comfirmar Borrar Estudiante -->
     <div class="modal fade" id="mimodalejemplo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Confirmar Acción</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -306,8 +310,8 @@
                     Para borrar al Estudiante presione aceptar, de lo contrario presione X
                     para cancelar.
                 </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteEstudiante()">Aceptar</button>
+                <div class="modal-footer justify-content-md-center no-gutters py-1 bg-light">
+                    <button class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteEstudiante()">Aceptar</button>
                 </div>
             </div>
         </div>

@@ -22,11 +22,19 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
   areaMateriaToSave:AreaMateriaI;
   newID:number;
   temp:number;
+  correcto1:boolean;
+  correcto2:boolean;
+  error1:boolean;
+  error2:boolean;
 
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.correcto1 = false;
+    this.correcto2 = false;
+    this.error1 = false;
+    this.error2 = false;
 
     this.getOptions();
     this.getCompetencias();
@@ -63,6 +71,9 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
 
   //Crear Competencia en Mongo
   crearCompetencia(form: NgForm): void {
+    this.correcto1 = false;
+    this.error1 = true;
+
     this.AuthAdminService.allCompetencias().subscribe(res => {
       this.AuthAdminService.Competencias = res as CompetenciaI[];
 
@@ -100,16 +111,20 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
       //console.log('datos NewCompetencia', newCompetencia);
     
       this.AuthAdminService.createCompetencia(newCompetencia).subscribe(res => {
-        console.log(res);
+        //console.log(res);
+        this.correcto1 = true;
+        this.error1 = false;
         this.resetForm(form);
         this.getCompetencias();
       });
-
     });
   }
 
   //Crear AreaMateria en Mongo
   CrearAreaMateria(form: NgForm): void {
+    this.correcto2 = false;
+    this.error2 = true;
+
     this.AuthAdminService.loadAllAreaSubjects().subscribe(res => {
       this.AuthAdminService.AreasMaterias = res as AreaMateriaI[];
 
@@ -144,7 +159,9 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
       //console.log('datos NewArea', newAreaMateria);
     
       this.AuthAdminService.createAreaSubject(newAreaMateria).subscribe(res => {
-        console.log(res);
+        //console.log(res);
+        this.correcto2 = true;
+        this.error2 = false;
         this.AuthAdminService.loadAllAreaSubjects().subscribe(res => {
           this.areasMaterias = res as AreaMateriaI[];
           this.resetForm(form);

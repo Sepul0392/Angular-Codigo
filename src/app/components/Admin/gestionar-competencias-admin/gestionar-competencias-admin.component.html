@@ -5,7 +5,7 @@
 
     <!--Titulo pagina-->
     <div class="container m-auto pb-2 bg-info rounded-top">
-        <h1 class="mt-5 pt-4 text-center m ">Gestionar Competencias</h1>
+        <h1 style="cursor:context-menu" class="mt-5 pt-4 text-center m ">Gestionar Competencias</h1>
     </div>
     
     <!--Contenedor Formularios-->
@@ -13,7 +13,7 @@
     
         <!--Gestion de Competencias-->
         <div>
-            <h3 class="py-3 text-center text-white">Competencias</h3>
+            <h3 style="cursor:context-menu" class="py-3 text-center text-white">Competencias</h3>
 
             <div class="contenedor mx-3 py-3">
                 <form #frmBuscarCompetencia="ngForm">
@@ -28,7 +28,7 @@
                     <label for="inputState" class="text-white">Filtros:</label>
                     <div class="form-row">
                         <div class="form-group col-4">
-                            <label for="inputAreaMateri" class="text-white">Area Materia</label>
+                            <label for="inputAreaMateri" class="text-white">Area</label>
                             <select [(ngModel)]="areaMateriaSelected" name="areaMateriaSelected" id="inputAreaMateria" class="form-control" ngModel required>
                                 <option selected></option>
                                 <option *ngFor="let area of areasMaterias | slice:1; let i = index" [value]="area.id_areaMateria">{{area.nombre_areaMateria}}</option>
@@ -72,7 +72,7 @@
                                         <div class="card-body p-2">
                                             <p class="card-text ">Competencia: {{compet.nombre_competencia}}.</p>
                                             <div>
-                                                <p class="card-text"><small class="text-muted">Area de materias: {{compet.areaMateria}}</small></p>
+                                                <p class="card-text"><small class="text-muted">Area: {{compet.areaMateria}}</small></p>
                                             </div>
                                             <div>
                                                 <p class="card-text"><small class="text-muted">Grado Inicial: {{compet.gradoInicial}}</small></p>
@@ -105,7 +105,7 @@
                                     placeholder="Nombre / Descripcion" required [(ngModel)]="nombre_competencia">
                             </div>
                             <div class="form-group">
-                                <label for="inputAreaMateri" class="text-white">Area Materia</label>
+                                <label for="inputAreaMateri" class="text-white">Area</label>
                                 <select [(ngModel)]="id_areaMateria" name="id_areaMateria" id="inputAreaMateria" class="form-control" ngModel required>
                                     <option selected></option>
                                     <option *ngFor="let area of areasMaterias | slice:1; let i = index" [value]="area.id_areaMateria">{{area.nombre_areaMateria}}</option>
@@ -143,7 +143,7 @@
         
         <!--Gestion de AreaMateria-->
         <div>
-            <h3 class="py-3 text-center text-white">Areas de Materias</h3>
+            <h3 style="cursor:context-menu" class="py-3 text-center text-white">Areas de Materias</h3>
             <div class="contenedor mx-3 py-3">
                 <form #frmCrearAreaMateria="ngForm">
         
@@ -188,47 +188,53 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Nueva Competencia -->
     <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
-                    <h4 class="modal-title" id="myModalLabel">Competencia Creada</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 style="cursor:context-menu" class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-info" *ngIf="correcto1">
                     Se ha creado una nueva Competencia.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error1">
+                    La Competencia no se ha podido crear. Revisa que has ingresado todos los datos requeridos.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Nueva AreaMateria -->
     <div class="modal fade" id="mimodalejemplo4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
-                    <h4 class="modal-title" id="myModalLabel">Area Creada</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-info" *ngIf="correcto2">
                     Se ha creado una nueva Area.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error2">
+                    El Area no se ha podido crear. Revisa que has ingresado todos los datos requeridos.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Confirmar Borrar AreaMateria -->
     <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
                     <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -237,19 +243,19 @@
                     para cancelar.
                 </div>
                 <div class="modal-footer justify-content-md-center no-gutters bg-light py-1">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteAreaMateria()">Aceptar</button>
+                    <button class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteAreaMateria()">Aceptar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Confirmar Borrar Competencia -->
     <div class="modal fade" id="mimodalejemplo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
                     <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -258,7 +264,7 @@
                     para cancelar.
                 </div>
                 <div class="modal-footer justify-content-md-center no-gutters bg-light py-1">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteCompetencia()">Aceptar</button>
+                    <button class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteCompetencia()">Aceptar</button>
                 </div>
             </div>
         </div>

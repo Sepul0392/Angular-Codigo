@@ -5,7 +5,7 @@
 
     <!--Titulo pagina-->
     <div class="container m-auto pb-2 bg-danger rounded-top">
-        <h1 class="mt-5 pt-4 text-center m ">Gestionar Colegio</h1>
+        <h1 style="cursor:context-menu" class="mt-5 pt-4 text-center m ">Gestionar Colegio</h1>
     </div>
     
     <!--Contenedor Formularios-->
@@ -13,7 +13,7 @@
     
         <!--Gestion de Competencias-->
         <div>
-            <h3 class="py-3 text-center text-white">Informacion Colegio</h3>
+            <h3 style="cursor:context-menu" class="py-3 text-center text-white">Informacion Colegio</h3>
 
             <!--Informacion Colegio-->
             <div class="contenedor py-3">
@@ -69,7 +69,7 @@
         
         <!--Gestion de Materias-->
         <div>
-            <h3 class="py-3 text-center text-white">Materias</h3>
+            <h3 style="cursor:context-menu" class="py-3 text-center text-white">Materias</h3>
             <div class="contenedor mx-3 py-3">
                 <form #frmCrearMateria="ngForm">
         
@@ -82,7 +82,7 @@
                                 placeholder="Nombre Materia" required [(ngModel)]="nombre_materia">
                         </div>
                         <div class="form-group">
-                            <label for="inputAreaMateri" class="text-white">Area Materia</label>
+                            <label for="inputAreaMateri" class="text-white">Area</label>
                             <select [(ngModel)]="id_areaMateria" name="id_areaMateria" id="inputAreaMateria" class="form-control" ngModel required>
                                 <option selected></option>
                                 <option *ngFor="let area of areasMaterias" [value]="area.id_areaMateria">{{area.nombre_areaMateria}}</option>
@@ -126,7 +126,7 @@
 
         <!--Gestion de Grados-->
         <div>
-            <h3 class="py-3 text-center text-white">Grados</h3>
+            <h3 style="cursor:context-menu" class="py-3 text-center text-white">Grados</h3>
             <div class="contenedor mx-3 py-3">
                 <form #frmCrearGrados="ngForm">
         
@@ -181,47 +181,50 @@
 
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Confirmar Actualizacion Datos Colegio -->
     <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
-                    <h4 class="modal-title" id="myModalLabel">Datos Actualizados</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-info">
                     Se han Actualizado los datos del colegio.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Nueva Materia -->
     <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
-                    <h4 class="modal-title" id="myModalLabel">Materia Creada</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-info" *ngIf="correcto1">
                     Se ha creado una nueva Materia.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error1">
+                    La Materia no se ha podido crear. Revisa que has ingresado todos los datos requeridos.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Confirmacion Borrar Materia -->
     <div class="modal fade" id="mimodalejemplo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
-                    <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="myModalLabel">Confirmar Accion</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -229,37 +232,40 @@
                     Para borrar la Materia presione aceptar, de lo contrario presione X
                     para cancelar.
                 </div>
-                <div class="modal-footer bg-light justify-content-md-center no-gutters py-1">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteMateria()">Aceptar</button>
+                <div class="modal-footer bg-light justify-content-md-center no-gutters py-1 bg-light">
+                    <button class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteMateria()">Aceptar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Nuevo Grado -->
     <div class="modal fade" id="mimodalejemplo4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
-                    <h4 class="modal-title" id="myModalLabel">Grado Creado</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-info" *ngIf="correcto2">
                     Se ha creado un nuevo Grado.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error2">
+                    El Grado no se ha podido crear. Revisa que has ingresado todos los datos requeridos.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Confirmacion Borrar Grado -->
     <div class="modal fade" id="mimodalejemplo5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel5">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
-                    <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="myModalLabel">Confirmar Accion</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -267,8 +273,8 @@
                     Para borrar el Grado presione aceptar, de lo contrario presione X
                     para cancelar.
                 </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteGrado()">Aceptar</button>
+                <div class="modal-footer justify-content-md-center no-gutters py-1 bg-light">
+                    <button class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteGrado()">Aceptar</button>
                 </div>
             </div>
         </div>

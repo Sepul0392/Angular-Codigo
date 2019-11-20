@@ -66,14 +66,12 @@ export class GestionarUsuariosAdminComponent implements OnInit {
   //Imprimir datos del docente en el Form 
   getDocenteinForm(docentehtml){
     this.AuthAdminService.selectedDocente = docentehtml;
-    this.saveDataDocente = docentehtml;
     //console.log('info docente', this.AuthAdminService.selectedDocente);
   }
 
   //Imprimir datos del Estudiante en el Form 
   getEstudianteinForm(estudiantehtml){
     this.AuthAdminService.selectedEstudiante = estudiantehtml;
-    this.saveDataEstudiante = estudiantehtml;
     //console.log('info docente', this.AuthAdminService.selectedEstudiante);
   }
 
@@ -89,7 +87,7 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     }
 
     this.AuthAdminService.uploadDocente(infoDocente).subscribe(res => {
-      console.log(res);
+      //console.log(res);
       this.getOptions();
       this.resetForm(form);
     });
@@ -110,7 +108,7 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     console.log();
 
     this.AuthAdminService.uploadEstudiante(infoEstudiante).subscribe(res => {
-      console.log(res);
+      //console.log(res);
       this.getOptions();
       this.resetForm(form);
     });
@@ -157,6 +155,7 @@ export class GestionarUsuariosAdminComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
+      this.getOptions();
       this.AuthAdminService.selectedDocente = new DocenteI();
       this.AuthAdminService.selectedEstudiante = new EstuadianteI();
       this.docenteToSave = new DocenteI();

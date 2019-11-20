@@ -26,11 +26,19 @@ export class GestionarColegioAdminComponent implements OnInit {
   gradoToSave:GradoI;
   newID:number;
   temp:number;
+  correcto1:boolean;
+  correcto2:boolean;
+  error1:boolean;
+  error2:boolean;
 
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.correcto1 = false;
+    this.correcto2 = false;
+    this.error1 = false;
+    this.error2 = false;
 
     this.getOptions();
   }
@@ -78,9 +86,9 @@ export class GestionarColegioAdminComponent implements OnInit {
       tipo_colegio: form.value.tipo_colegio,
       calendario: form.value.calendario
     }
-    console.log(newInfoColegioL);
+    //console.log(newInfoColegioL);
     this.AuthAdminService.uploadSchool(newInfoColegioL).subscribe(res => {
-      console.log(res);
+      //console.log(res);
       this.getOptions();
       this.resetForm(form);
     });
@@ -88,6 +96,9 @@ export class GestionarColegioAdminComponent implements OnInit {
 
   //Crear Materia en Mongo
   crearMateria(form: NgForm): void {
+    this.correcto1 = false;
+    this.error1 = true;
+
     this.AuthAdminService.allSubject().subscribe(res => {
       this.AuthAdminService.Materias = res as MateriaI[];
 
@@ -126,7 +137,9 @@ export class GestionarColegioAdminComponent implements OnInit {
       //console.log('datos newMateria', newMateria);
     
       this.AuthAdminService.createMateria(newMateria).subscribe(res => {
-        console.log(res);
+        //console.log(res);
+        this.correcto1 = true;
+        this.error1 = false;
         this.resetForm(form);
       });
 
@@ -135,6 +148,9 @@ export class GestionarColegioAdminComponent implements OnInit {
 
   //Crear Grado en Mongo
   CrearGrado(form: NgForm): void {
+    this.correcto2 = false;
+    this.error2 = true;
+
     const newGrado = {
       id_grado: form.value.id_grado,
       nombre_grado: form.value.nombre_grado
@@ -142,7 +158,9 @@ export class GestionarColegioAdminComponent implements OnInit {
     //console.log('datosGrado', newGrado);
 
     this.AuthAdminService.createGrade(newGrado).subscribe(res => {
-      console.log(res);
+      //console.log(res);
+      this.correcto2 = true;
+      this.error2 = false;
       this.resetForm(form);
     });
   }
