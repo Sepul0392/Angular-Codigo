@@ -57,11 +57,20 @@ export class ModificarActividadComponent implements OnInit {
   contenidoRes:any;
   tallerRes:any;
 
+  correcto1:boolean;
+  correcto2:boolean;
+  error1:boolean;
+  error2:boolean;
+
   constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.ID_TipoContenido_Taller = 5;
+    this.correcto1 = false;
+    this.correcto2 = false;
+    this.error1 = false;
+    this.error2 = false;
 
     this.getOptions();
     this.getContenidos();
@@ -165,7 +174,17 @@ export class ModificarActividadComponent implements OnInit {
 
   //Modificar Actividad en Mongo
   onModificarActividad(form: NgForm){
+    this.correcto1 = false;
+    this.correcto2 = false;
+    this.error1 = false;
+    this.error2 = true;
+
+    //Verificar que han seleccionado una Actividad para modificar
     if (this.verificationSaveActividad == true) {
+      this.correcto1 = false;
+      this.correcto2 = false;
+      this.error1 = true;
+      this.error2 = false;
 
       //cambiar informacion de contenido en la Actividad al identificar que se a seleccionado un nuevo contenido
       if (this.verificationSaveContent == true) {
@@ -222,9 +241,9 @@ export class ModificarActividadComponent implements OnInit {
           }
 
           this.ContentREAService.uploadEstadoContentREA(contenidoREANuevoInfo).subscribe(res => {
-            console.log('nuevo contenido', res);
+            //console.log('nuevo contenido', res);
             this.ContentREAService.uploadEstadoContentREA(contenidoREAViejoInfo).subscribe(res => {
-              console.log('viejo contenido', res);
+              //console.log('viejo contenido', res);
             });
           });
         }
@@ -235,7 +254,7 @@ export class ModificarActividadComponent implements OnInit {
           }
 
           this.ContentREAService.uploadEstadoContentREA(contenidoREANuevoInfo).subscribe(res => {
-            console.log('nuevo contenido', res);
+            //console.log('nuevo contenido', res);
           });
         }
 
@@ -249,7 +268,7 @@ export class ModificarActividadComponent implements OnInit {
           }
 
           this.ContentREAService.uploadEstadoContentREA(contenidoREAViejoInfo).subscribe(res => {
-            console.log('viejo contenido', res);
+            //console.log('viejo contenido', res);
           });
         }
       }
@@ -268,9 +287,9 @@ export class ModificarActividadComponent implements OnInit {
           }
 
           this.ContentREAService.uploadEstadoContentREA(tallerNuevoInfo).subscribe(res => {
-            console.log('nuevo contenido', res);
+            //console.log('nuevo contenido', res);
             this.ContentREAService.uploadEstadoContentREA(tallerViejoInfo).subscribe(res => {
-              console.log('viejo contenido', res);
+              //console.log('viejo contenido', res);
             });
           });
         }
@@ -281,7 +300,7 @@ export class ModificarActividadComponent implements OnInit {
           }
 
           this.ContentREAService.uploadEstadoContentREA(tallerNuevoInfo).subscribe(res => {
-            console.log('nuevo contenido', res);
+            //console.log('nuevo contenido', res);
           });
         }
 
@@ -297,7 +316,7 @@ export class ModificarActividadComponent implements OnInit {
           }
 
           this.ContentREAService.uploadEstadoContentREA(tallerViejoInfo).subscribe(res => {
-            console.log('viejo contenido', res);
+            //console.log('viejo contenido', res);
           });
         }
       }
@@ -330,11 +349,16 @@ export class ModificarActividadComponent implements OnInit {
         this.actividadToSave.A34 = form.value.A34;
         this.actividadToSave.CA3 = form.value.CA3;
 
-        console.log('datosActividadModificada', this.actividadToSave);
+        //console.log('datosActividadModificada', this.actividadToSave);
 
         this.ActividadService.uploadActivity(this.actividadToSave).subscribe(res => {
           //window.location.reload();
-          console.log(res);
+          //console.log('prueba', this.actividadToSave);
+          //console.log(res);
+          this.correcto1 = true;
+          this.correcto2 = false;
+          this.error1 = false;
+          this.error2 = false;
           this.resetForm(form);
         })
       }
@@ -396,11 +420,15 @@ export class ModificarActividadComponent implements OnInit {
           this.actividadToSave.A34 = form.value.A34;
           this.actividadToSave.CA3 = form.value.CA3;
 
-          console.log('datosActividadModificada', this.actividadToSave);
+          //console.log('datosActividadModificada', this.actividadToSave);
 
           this.ActividadService.createActivity(this.actividadToSave).subscribe(res => {
             //window.location.reload();
-            console.log("Creada nueva Actividad");
+            //console.log("Creada nueva Actividad");
+            this.correcto1 = false;
+            this.correcto2 = true;
+            this.error1 = false;
+            this.error2 = false;
             this.resetForm(form);
           });
         });
@@ -464,7 +492,7 @@ export class ModificarActividadComponent implements OnInit {
   //Almacenar info temporal de un ContenidoREA
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
-    console.log("contenido guardado:", this.contenidoToSave);
+    //console.log("contenido guardado:", this.contenidoToSave);
     if (this.contenidoRes.content.id_CREA != this.contenidoToSave.id_CREA) {
       this.verificationSaveContent = true;
     }
@@ -475,20 +503,20 @@ export class ModificarActividadComponent implements OnInit {
   //Almacenar info temporal de una Actividad
   saveDataActivity(actividad){
     this.actividadToSave = actividad;
-    console.log("actividad guardada:", this.actividadToSave);
+    //console.log("actividad guardada:", this.actividadToSave);
     this.verificationSaveActividad = true;
   }
   //Almacenar info temporal de un Taller
   saveDataTaller(tallerhtml){
     this.tallerToSave = tallerhtml;
-    console.log("taller guardado:", this.tallerToSave);
+    //console.log("taller guardado:", this.tallerToSave);
     if (this.tallerRes.content.id_CREA != this.tallerToSave.id_CREA) {
       this.verificationSaveTaller = true;
     }
     else{
       this.verificationSaveTaller = false;
     }
-    console.log('bandera',this.verificationSaveTaller)
+    //console.log('bandera',this.verificationSaveTaller)
   }
 
   //Resetear pagina
@@ -512,7 +540,7 @@ export class ModificarActividadComponent implements OnInit {
       this.ActividadService.selectedActividad = new ActividadI();
       this.contenidoAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
       this.tallerAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
-      console.log('reseteo');
+      //console.log('reseteo');
     }
   }
 

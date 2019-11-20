@@ -157,7 +157,7 @@
                                         [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
                                     </option>
                                 </select>
-                                <!--el valor seleccionado es {{competenciaSelectedA}}-->
+                                <!--el valor seleccionado es {{ActividadService.selectedActividad.id_competencia}}-->
                             </div>
                             <div class="form-group col">
                                 <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
@@ -648,26 +648,28 @@
 
     </div>
 
-    <!-- Modal Confirmar accion Modificar -->
+    <!-- Modal Confirmar Actividad Modificada -->
     <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Confirmar Acción</h4>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <div class="modal-body text-info" *ngIf="correcto1">
+                    Tu Actividad ha sido Actualizada correctamente.
                 </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning" data-dismiss="modal">Aceptar</button>
+                <div class="modal-body text-info" *ngIf="correcto2">
+                    La Actividad Se ha modificado y creado como tu Actividad .
+                </div>
+                <div class="modal-body text-danger" *ngIf="error1">
+                    La Actividad no se ha podido modificar. Verifica que has ingresado todos los 
+                    datos requeridos.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error2">
+                    No has seleccionado una Actividad para modificar.
                 </div>
             </div>
         </div>
@@ -677,22 +679,15 @@
     <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Actividad Seleccionada</h4>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning" data-dismiss="modal" >Aceptar</button>
+                    Se ha seleccionando una Activida. Toda la informacion de esta actividad se ha cargado
+                    para que la puedas revisar y modificar.
                 </div>
             </div>
         </div>
@@ -702,47 +697,33 @@
     <div class="modal fade" id="mimodalejemplo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Contenido Cambiado</h4>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning" data-dismiss="modal">Aceptar</button>
+                    Se ha cambiado el Contenido de la Actividad que estas
+                    modificando.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Adjuntar Taller-->
+    <!-- Modal Taller Cambiado-->
     <div class="modal fade" id="mimodalejemplo4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Taller Cambiado</h4>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal">Aceptar</button>
+                    Se ha cambiado el Taller de la Actividad que estas
+                    modificando.
                 </div>
             </div>
         </div>
