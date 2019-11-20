@@ -22,17 +22,17 @@
                         </div>
                     </form>
                 </div>
-                <div class="d-flex justify-content-center mt-4  login_container">
-                    <a type="submit" name="button" class="btn ingresar_btn" (click)="onLoginDocente(frmLogin)">Ingresar</a>
+                <div class="d-flex justify-content-center mt-4 login_container">
+                    <a name="button" style="cursor: pointer" class="btn bg-primary col text-white" (click)="onLoginDocente(frmLogin)">Ingresar</a>
                 </div>
                 <div class="d-flex justify-content-center mt-1 login_container">
-                    <a type="submit" name="button" class="btn registrarce_btn" routerLink="/registroProfesor">Registrarce</a>
+                    <a name="button" class="btn bg-danger col text-white" routerLink="/registroProfesor">Registrarce</a>
                 </div>
                 <div class="d-flex justify-content-center mt-1 login_container">
-                    <a type="submit" name="button" class="btn invitado_btn" (click)="onLoginVisitante()">Visitante</a>
+                    <a name="button" style="cursor: pointer" class="btn bg-warning col text-white" (click)="onLoginVisitante()">Visitante</a>
                 </div>
                 <div class="d-flex justify-content-center mt-1 login_container">
-                    <a type="submit" name="button" class="btn admin_btn" (click)="onLoginAdmin(frmLogin)">Administrador</a>
+                    <a name="button" style="cursor: pointer" class="btn bg-secondary col text-white" (click)="onLoginAdmin(frmLogin)">Administrador</a>
                 </div>
                 <div class="mt-4">
                     <!--<div class="d-flex justify-content-center links">

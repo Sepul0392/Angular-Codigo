@@ -3,14 +3,14 @@
 
     <!--Titulo pagina-->
     <div class="container m-auto pb-2 bg-danger rounded-top">
-        <h1 class="mt-5 pt-4 text-center m ">Registro de nuevo Profesor</h1>
+        <h1 style="cursor:context-menu" class="mt-5 pt-4 text-center m ">Registro de nuevo Profesor</h1>
     </div>
     <!--Contenedor Formulario-->
     <div class="container pt-1 bg-secondary rounded-bottom">
 
         <!--Informacion del contenido-->
         <div>
-            <h3 class="py-3 text-center text-white">Informacion</h3>
+            <h3 style="cursor:context-menu" class="py-3 text-center text-white">Informacion</h3>
             <div class="contenedor py-3">
                 <form #frmRegistroProfesor="ngForm">
                 
@@ -47,7 +47,7 @@
                     <br>
                     <hr class="style5">
                     
-                    <h3 class="py-3 text-center text-white">Crear tu Primera Materia</h3>
+                    <h3 style="cursor:context-menu" class="py-3 text-center text-white">Crear tu Primera Materia</h3>
                     <br>
                     <div class="form-group">
                         <label for="inputNombreMateriaActiva" class="text-white ">Nombre de la Materia</label>
@@ -91,22 +91,14 @@
     <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Guardado Exitoso</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-                <div class="modal-footer justify-content-md-center no-gutters">
-                    <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="resetPage">Aceptar</button>
+                    Profesor Creado.
                 </div>
             </div>
         </div>

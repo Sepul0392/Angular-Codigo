@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.show = true;
     this.error1 = true;
     this.error2 = false;
-    console.log('login Docente', form.value);
+    //console.log('login Docente', form.value);
     this.AuthDService.loginDocente(form.value).subscribe(res => {
       this.show = false;
       this.error1 = false;
@@ -41,13 +41,11 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginAdmin(form):void{
-    console.log('Login Admin', form.value);
-
+    //console.log('Login Admin', form.value);
     const LoginAdmin = {
       nombre_usuario: form.value.correo_electronico,
       contrasena: form.value.contrasena
     }
-
     this.show = true;
     this.error1 = false;
     this.error2 = true;
@@ -61,7 +59,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginVisitante(){
-    console.log('login Visitante');
+    //console.log('login Visitante');
     this.router.navigateByUrl('/busquedaVisitante');
   }
 
