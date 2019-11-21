@@ -50,12 +50,14 @@ export class AuthAdminService {
   selectedAdmin: AdminI;
   Admin: AdminI[];
 
+  IPServer:string;
 
   constructor(private httpClient: HttpClient, private router: Router) {
     //this.localStorageService = sessionStorage;
     this.localStorageService = localStorage;
     //this.currentSession = this.loadSessionData();
-    
+    this.IPServer = '192.168.31.186';
+    //this.IPServer = '192.168.1.53';
     this.selectedMateriaActiva = new MateriaActivaI;
     this.selectedContenidoREA = new contenidoREAI;
     this.selectedCompetencia = new CompetenciaI;

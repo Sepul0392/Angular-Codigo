@@ -11,6 +11,7 @@ import { ActividadI } from '../../../models/actividad';
 import { DocenteI } from '../../../models/docente';
 import { ActividadVisualizaI } from '../../../models/actividadVisualizar';
 import { ActividadService } from '../../../services/actividad.service';
+import { AuthAdminService } from '../../../services/auth-admin.service';
 import { NgForm } from '@angular/forms';
 
 
@@ -51,7 +52,7 @@ export class BusquedaVisitanteComponent implements OnInit {
   contenidoAct:contenidoREAVisualizarI;
   tallerAct:contenidoREAVisualizarI;
 
-  constructor(private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
+  constructor(private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router, private AuthAdminService: AuthAdminService) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -205,7 +206,7 @@ export class BusquedaVisitanteComponent implements OnInit {
   //Abrir nueva ventana con el contenido Buscado
   verContenido(contenidoREAhtml){
     const urlcut = contenidoREAhtml.urlrepositorio.substring(41);
-    const urlLoad = 'http://localhost:3000/repositorio/'+urlcut;
+    const urlLoad = 'http://'+this.AuthAdminService.IPServer+':3000/repositorio/'+urlcut;
     console.log('urlload', urlLoad);
     window.open(urlLoad, "_blank");
   }
@@ -213,7 +214,7 @@ export class BusquedaVisitanteComponent implements OnInit {
   //Abrir nueva ventana con el Contenido de la actividad Buscada
   verContenidoActividad(){
     const urlcut = this.contenidoRes.content.urlrepositorio.substring(41);
-    const urlLoad = 'http://localhost:3000/repositorio/'+urlcut;
+    const urlLoad = 'http://'+this.AuthAdminService.IPServer+':3000/repositorio/'+urlcut;
     console.log('urlload', urlLoad);
     window.open(urlLoad, "_blank");
   }
@@ -221,7 +222,7 @@ export class BusquedaVisitanteComponent implements OnInit {
   //Abrir nueva ventana con el Taller de la actividad Buscada
   verTallerActividad(){
     const urlcut = this.tallerRes.content.urlrepositorio.substring(41);
-    const urlLoad = 'http://localhost:3000/repositorio/'+urlcut;
+    const urlLoad = 'http://'+this.AuthAdminService.IPServer+':3000/repositorio/'+urlcut;
     console.log('urlload', urlLoad);
     window.open(urlLoad, "_blank");
   }
