@@ -56,7 +56,7 @@ export class AuthAdminService {
     //this.localStorageService = sessionStorage;
     this.localStorageService = localStorage;
     //this.currentSession = this.loadSessionData();
-    this.IPServer = '192.168.31.186';
+    //this.IPServer = '192.168.31.186';
     //this.IPServer = '192.168.1.53';
     this.selectedMateriaActiva = new MateriaActivaI;
     this.selectedContenidoREA = new contenidoREAI;
@@ -83,9 +83,9 @@ export class AuthAdminService {
 
   //====================================================================================  LOGIN
 
-  //Sericio Verificacion de Login
+  //Servicio Verificacion de Login
   loginAdmin(login:any): Observable<JwtResponseI> {
-    return this.httpClient.post<JwtResponseI>(`${this.AUTHD_SERVER}/loginAdmin`, 
+    return this.httpClient.post<JwtResponseI>(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loginAdmin`, 
     login).pipe(tap(
       (res:JwtResponseI) => {
         if(res){
@@ -106,7 +106,7 @@ export class AuthAdminService {
     localStorage.removeItem("ACCESS_TOKEN");
     localStorage.removeItem("EXPIRES_IN");
     localStorage.removeItem("NOMBRE_USUARIO");
-    localStorage.clear();
+    //localStorage.clear();
   }
 
   //Guardar Informacion de inicio de Sesion
@@ -144,17 +144,17 @@ export class AuthAdminService {
 
   //Crear Materia Activa del profesor
   createSubjectActive(materiaActiva:MateriaActivaI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createSubjectActive`, materiaActiva);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createSubjectActive`, materiaActiva);
   }
 
   //Cragar Todas las Materias Activas
   loadAllSubjectActives(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjectActives`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllSubjectActives`);
   }
 
   //Eliminar una Actividad Activa
   deleteSubjectActive(materiaActiva:MateriaActivaI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteSubjectActive`, materiaActiva);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteSubjectActive`, materiaActiva);
   }
 
 
@@ -162,17 +162,17 @@ export class AuthAdminService {
 
   //Crear Materia Activa del profesor
   createMateria(materiaActiva:MateriaI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createSubject`, materiaActiva);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createSubject`, materiaActiva);
   }
 
   //Cragar Todas las Materias Activas
   loadAllMaterias(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjects`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllSubjects`);
   }
 
   //Eliminar una Actividad Activa
   deleteMateria(infoID:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteSubject`, infoID);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteSubject`, infoID);
   }
 
 
@@ -180,37 +180,37 @@ export class AuthAdminService {
 
   //Servicio Crear Docente
   createDocente(docente:DocenteI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createDocente`, docente);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createDocente`, docente);
   }
 
   //Buscar un Docente
   loadDocente(infoID:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/loadDocente`, infoID);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadDocente`, infoID);
   }
 
   //Cragar Todos los docentes
   loadAllDocentes(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllDocentes`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllDocentes`);
   }
 
   //Eliminar un Docente
   deleteDocente(InfoID:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteDocente`, InfoID);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteDocente`, InfoID);
   }
 
   //Modificar datos Login del Docente en MongoDB 
   uploadInfoLoginDocente(info:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadInfoLoginDocente`, info);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadInfoLoginDocente`, info);
   }
 
   //Modificar datos Presonales del Docente en MongoDB 
   uploadInfoPersonalDocente(info:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadInfoPersonalDocente`, info);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadInfoPersonalDocente`, info);
   }
 
   //Modificar Docente en MongoDB 
   uploadDocente(info:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadDocente`, info);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadDocente`, info);
   }
 
 
@@ -218,27 +218,27 @@ export class AuthAdminService {
 
   //Servicio Crear Estudiante
   createEstudiante(estudiante:EstuadianteI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createEstudiante`, estudiante);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createEstudiante`, estudiante);
   }
 
   //Buscar un Estudiante
   loadEstudiante(info:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/loadEstudiante`, info);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadEstudiante`, info);
   }
 
   //Cragar Todos los Estudiantes
   loadAllEstudiantes(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllEstudiantes`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllEstudiantes`);
   }
 
   //Eliminar un Estudiante
   deleteEstudiante(infoID:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteEstudiante`, infoID);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteEstudiante`, infoID);
   }
 
   //Modificar Estudiante en MongoDB 
   uploadEstudiante(info:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadEstudiante`, info);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadEstudiante`, info);
   }
 
 
@@ -246,35 +246,35 @@ export class AuthAdminService {
 
   //Servicio para crear el contenido en MongoDB
   createContentREA(contenidoREA:contenidoREAI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createContentREA`, contenidoREA);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createContentREA`, contenidoREA);
   }
 
   //Servicio para cambiar el estado de USO del contenido en Mongo
   uploadEstadoContentREA(data:any){
-    return this.httpClient.post(`http://localhost:3000/uploadEstadoContentREA`, data);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadEstadoContentREA`, data);
   }
 
   //Servicio para subir el contenido al Repositorio ***
   uploadFile(formData){
-    return this.httpClient.post(`http://localhost:3000/subir`, formData);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/subir`, formData);
   }
 
   //Buscar un Contenido
   loadContentREA(data:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/loadContentREA`, data);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadContentREA`, data);
   }
 
   //Servicio para llamar todos los contenidos en MongoDB
   allContent(){
-      return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllcontents`);
+      return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllcontents`);
   }
   newAllContents(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadContentREA`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/newLoadContentREA`);
   }
 
   //Servicio para borrar el contenido de MongoDB
   deleteContentREA(contenidoREA: contenidoREAI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteContentREA/`, contenidoREA)
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteContentREA/`, contenidoREA)
   }
 
 
@@ -282,22 +282,22 @@ export class AuthAdminService {
 
   //Servicio para crear la Actividad en MongoDB
   createActivity(actividad:ActividadI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createActivity`, actividad);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createActivity`, actividad);
   }
 
   //Servicio para llamar todas las ACtividades en MongoDB
   allActivities(){
-      return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllActivities`);
+      return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllActivities`);
   }
 
   //Servicio para modificar datos de la Actividad en MongoDB 
   uploadActivity(actividad: ActividadI){
-      return this.httpClient.post(`${this.AUTHD_SERVER}/uploadActivity`, actividad);
+      return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadActivity`, actividad);
   }
 
   //Servicio para borrar la Actividad de MongoDB
   deleteActivity(actividad: ActividadI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteActivity`, actividad)
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteActivity`, actividad)
   }
 
 
@@ -305,17 +305,17 @@ export class AuthAdminService {
 
   //Servicio para crear la Competencia en MongoDB
   createCompetencia(competencia:CompetenciaI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createCompetencia`, competencia);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createCompetencia`, competencia);
   }
 
   //Servicio para llamar todas las Competencias en Mongo
   allCompetencias() {
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllCompetencias`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllCompetencias`);
   }
 
   //Servicio para borrar la Competencia de MongoDB
   deleteCompetencia(info: any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteCompetencia`, info)
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteCompetencia`, info)
   }
 
 
@@ -323,17 +323,17 @@ export class AuthAdminService {
 
   //Servicio para crear la AreaMateria en MongoDB
   createAreaSubject(areaMateria:AreaMateriaI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createAreaSubject`, areaMateria);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createAreaSubject`, areaMateria);
   }
 
   //Servicio para llamar todas las AreaMaterias en Mongo
   loadAllAreaSubjects() {
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllAreaSubjects`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllAreaSubjects`);
   }
 
   //Servicio para borrar la AreaMateria de MongoDB
   deleteAreaSubject(info: any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteAreaSubject`, info)
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteAreaSubject`, info)
   }
 
 
@@ -346,7 +346,7 @@ export class AuthAdminService {
 
   //Servicio para modificar datos del colegio en MongoDB 
   uploadSchool(infoColegio: any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadSchool`, infoColegio);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadSchool`, infoColegio);
   }
 
 
@@ -354,20 +354,20 @@ export class AuthAdminService {
 
   //Servicio para crear un grado en Mongo 
   createGrade(grado:GradoI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createGrade`, grado);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createGrade`, grado);
   }
   
   //Servicio para llamar todos los grados
   allGrade() {
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllGrades`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllGrades`);
   }
   newAllGrades(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadGrades`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/newLoadGrades`);
   }
 
   //Servicio para modificar datos del colegio en MongoDB 
   deleteGrade(infoID: any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteGrade`, infoID);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteGrade`, infoID);
   }
 
 
@@ -375,17 +375,17 @@ export class AuthAdminService {
 
   //Servicio para llamar todas las materias
   allSubject() {
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjects`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllSubjects`);
   }
   newAllSubjects(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadSubjects`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/newLoadSubjects`);
   }
 
   //Servicio para llamar todos los tipos de Contenidos
   allType() {
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllTypes`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllTypes`);
   }
   newAllTypes(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadTypes`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/newLoadTypes`);
   }
 }

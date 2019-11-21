@@ -39,6 +39,15 @@ export class AuthDService {
     this.selectedColegio = new ColegioI;
   }
 
+
+  //====================================================================================  IPSERVER
+
+  loadIPServer(): string {
+    var IPServer = this.localStorageService.getItem("IPSERVER");
+    return IPServer; 
+  }
+
+
   //------------------------------------------------------------------------------------ DOCENTE
 
   //Servicio Crear Docente

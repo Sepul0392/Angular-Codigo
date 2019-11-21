@@ -51,12 +51,15 @@ export class BusquedaComponent implements OnInit {
   contenidoAct:contenidoREAVisualizarI;
   tallerAct:contenidoREAVisualizarI;
 
+  IPServer:string;
+
   constructor(private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) {
    }
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.ID_TipoContenido_Taller = 5;
+    this.IPServer = this.ContentREAService.loadIPServer();
 
     this.getOptions();
     this.getContenidos();
@@ -206,41 +209,41 @@ export class BusquedaComponent implements OnInit {
   //Abrir nueva ventana con el contenido Buscado
   verContenido(contenidoREAhtml){
     const urlcut = contenidoREAhtml.urlrepositorio.substring(41);
-    const urlLoad = 'http://localhost:3000/repositorio/'+urlcut;
-    console.log('urlload', urlLoad);
+    const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
+    //console.log('urlload', urlLoad);
     window.open(urlLoad, "_blank");
   }
 
   //Abrir nueva ventana con el Contenido de la actividad Buscada
   verContenidoActividad(){
     const urlcut = this.contenidoRes.content.urlrepositorio.substring(41);
-    const urlLoad = 'http://localhost:3000/repositorio/'+urlcut;
-    console.log('urlload', urlLoad);
+    const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
+    //console.log('urlload', urlLoad);
     window.open(urlLoad, "_blank");
   }
 
   //Abrir nueva ventana con el Taller de la actividad Buscada
   verTallerActividad(){
     const urlcut = this.tallerRes.content.urlrepositorio.substring(41);
-    const urlLoad = 'http://localhost:3000/repositorio/'+urlcut;
-    console.log('urlload', urlLoad);
+    const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
+    //console.log('urlload', urlLoad);
     window.open(urlLoad, "_blank");
   }
 
   //Almacenar info temporal de un ContenidoREA
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
-    console.log("contenido guardado:", this.contenidoToSave);
+    //console.log("contenido guardado:", this.contenidoToSave);
   }
   //Almacenar info temporal de una Actividad
   saveDataActivity(actividadhtml){
     this.actividadToSave = actividadhtml;
-    console.log("actividad guardada:", this.actividadToSave);
+    //console.log("actividad guardada:", this.actividadToSave);
   }
   //Almacenar info temporal de un Taller
   saveDataTaller(tallerhtml){
     this.tallerToSave = tallerhtml;
-    console.log("taller guardado:", this.tallerToSave);
+    //console.log("taller guardado:", this.tallerToSave);
   }
 
 

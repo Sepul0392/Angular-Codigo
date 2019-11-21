@@ -9,13 +9,25 @@ import { ActividadI } from '../models/actividad';
 
 @Injectable()
 export class ContentREAService {
+  private localStorageService;
 
   selectedContenidoREA: contenidoREAI;  
   contenidosREA: contenidoREAI[];  
   AUTHD_SERVER: string = "http://localhost:3000";
   constructor(private httpClient: HttpClient) {
-      this.selectedContenidoREA = new contenidoREAI;
+    //this.localStorageService = sessionStorage;
+    this.localStorageService = localStorage;
+
+    this.selectedContenidoREA = new contenidoREAI;
    }
+
+
+  //====================================================================================  IPSERVER
+
+  loadIPServer(): string {
+    var IPServer = this.localStorageService.getItem("IPSERVER");
+    return IPServer; 
+  }
 
 
   //------------------------------------------------------------------------------------ ContenidoREA
