@@ -70,6 +70,17 @@ export class AuthAdminService {
   }
 
 
+  //====================================================================================  IPSERVER
+
+  saveIPServer(ipServer:string){
+    this.localStorageService.setItem("IPSERVER", ipServer);
+  }
+
+  loadIPServer(): string {
+    var IPServer = this.localStorageService.getItem("IPSERVER");
+    return IPServer; 
+  }
+
   //====================================================================================  LOGIN
 
   //Sericio Verificacion de Login
@@ -95,6 +106,7 @@ export class AuthAdminService {
     localStorage.removeItem("ACCESS_TOKEN");
     localStorage.removeItem("EXPIRES_IN");
     localStorage.removeItem("NOMBRE_USUARIO");
+    localStorage.clear();
   }
 
   //Guardar Informacion de inicio de Sesion
@@ -329,7 +341,7 @@ export class AuthAdminService {
 
   //Servicio para obtener la informacion del colegio
   loadColegio(infoColegio:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/loadSchool`, infoColegio);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadSchool`, infoColegio);
   }
 
   //Servicio para modificar datos del colegio en MongoDB 
