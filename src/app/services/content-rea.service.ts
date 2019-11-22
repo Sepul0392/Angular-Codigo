@@ -33,35 +33,35 @@ export class ContentREAService {
   //------------------------------------------------------------------------------------ ContenidoREA
   //Servicio para crear el contenido en MongoDB
   createContentREA(contenidoREA:contenidoREAI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createContentREA`, contenidoREA);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createContentREA`, contenidoREA);
   }
 
   //Servicio para cambiar el estado de USO del contenido en Mongo
   uploadEstadoContentREA(data:any){
-    return this.httpClient.post(`http://localhost:3000/uploadEstadoContentREA`, data);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadEstadoContentREA`, data);
   }
 
   //Servicio para subir el contenido al Repositorio ***
   uploadFile(formData){
-    return this.httpClient.post(`http://localhost:3000/subir`, formData);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/subir`, formData);
   }
 
   //Buscar un Contenido
   loadContentREA(data:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/loadContentREA`, data);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadContentREA`, data);
   }
 
   //Servicio para llamar todos los contenidos en MongoDB
   allContent(){
-      return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllcontents`);
+      return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllcontents`);
   }
   newAllContents(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadContentREA`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/newLoadContentREA`);
   }
 
   //Servicio para borrar el contenido de MongoDB
   deleteContentREA(contenidoREA: contenidoREAI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteContentREA/`, contenidoREA)
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteContentREA/`, contenidoREA)
   }
 
 
@@ -69,26 +69,26 @@ export class ContentREAService {
 
   //Servicio para llamar todas las materias
   allSubject() {
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjects`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllSubjects`);
   }
   newAllSubjects(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadSubjects`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/newLoadSubjects`);
   }
 
   //Servicio para llamar todos los grados
   allGrade() {
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllGrades`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllGrades`);
   }
   newAllGrades(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadGrades`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/newLoadGrades`);
   }
 
   //Servicio para llamar todos los tipos de Contenidos
   allType() {
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllTypes`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllTypes`);
   }
   newAllTypes(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/newLoadTypes`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/newLoadTypes`);
   }
 
 }

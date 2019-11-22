@@ -52,37 +52,37 @@ export class AuthDService {
 
   //Servicio Crear Docente
   createDocente(docente:DocenteI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createDocente`, docente);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createDocente`, docente);
   }
 
   //Buscar un Docente
   loadDocente(info:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/loadDocente`, info);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadDocente`, info);
   }
 
   //Cragar Todos los docentes
   loadAllDocentes(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllDocentes`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllDocentes`);
   }
 
   //Eliminar una Actividad Activa
   deleteDocente(docente:DocenteI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteDocente`, docente);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteDocente`, docente);
   }
 
   //Modificar datos Login del Docente en MongoDB 
   uploadInfoLoginDocente(info:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadInfoLoginDocente`, info);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadInfoLoginDocente`, info);
   }
 
   //Modificar datos Presonales del Docente en MongoDB 
   uploadInfoPersonalDocente(info:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/uploadInfoPersonalDocente`, info);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadInfoPersonalDocente`, info);
   }
 
   //------------------------------------------------------------------------------------ LOGIN
   register(docente:DocenteI): Observable<JwtResponseI> {
-    return this.httpClient.post<JwtResponseI>(`${this.AUTHD_SERVER}/register`,
+    return this.httpClient.post<JwtResponseI>(`http://${this.localStorageService.getItem("IPSERVER")}:3000/register`,
     docente).pipe(tap(
       (res:JwtResponseI) => {
         if(res){
@@ -95,7 +95,7 @@ export class AuthDService {
 
   //Sericio Verificacion de Login
   loginDocente(docente:DocenteI): Observable<JwtResponseI> {
-    return this.httpClient.post<JwtResponseI>(`${this.AUTHD_SERVER}/loginDocente`,
+    return this.httpClient.post<JwtResponseI>(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loginDocente`,
     docente).pipe(tap(
       (res:JwtResponseI) => {
         if(res){
@@ -175,23 +175,23 @@ export class AuthDService {
 
   //Crear Materia Activa del profesor
   createSubjectActive(materiaActiva:MateriaActivaI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/createSubjectActive`, materiaActiva);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createSubjectActive`, materiaActiva);
   }
 
   //Cragar Todas las Materias Activas
   loadAllSubjectActives(){
-    return this.httpClient.get(`${this.AUTHD_SERVER}/loadAllSubjectActives`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllSubjectActives`);
   }
 
   //Eliminar una Actividad Activa
   deleteSubjectActive(materiaActiva:MateriaActivaI){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/deleteSubjectActive`, materiaActiva);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteSubjectActive`, materiaActiva);
   }
 
   //------------------------------------------------------------------------------------ COLEGIO
 
   loadColegio(infoColegio:any){
-    return this.httpClient.post(`${this.AUTHD_SERVER}/loadSchool`, infoColegio);
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadSchool`, infoColegio);
   }
 
 
