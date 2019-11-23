@@ -481,22 +481,22 @@
                         <!--Filtros-->
                         <div class="row">
                             <div class="form-group col">
-                                <label for="inputMateriaA" class="text-white">Materia</label>
-                                <select [(ngModel)]="materiaSelectedA" id="inputMateriaA" name="materiaA" class="form-control" ngModel required>
+                                <label for="inputMateriaMA" class="text-white">Materia</label>
+                                <select [(ngModel)]="materiaSelectedMA" id="inputMateriaMA" name="materiaSelectedMA" class="form-control" ngModel required>
                                     <option selected></option>
                                     <option *ngFor="let mater of materias" [value]="mater.id_materia">{{mater.nombre_materia}}</option>
                                 </select>
                             </div>
                             <div class="form-group col">
-                                <label for="inputGradoA" class="text-white">Grado</label>
-                                <select [(ngModel)]="gradoSelectedA" id="inputGradoA" name="gradoA" class="form-control" ngModel required>
+                                <label for="inputGradoMA" class="text-white">Grado</label>
+                                <select [(ngModel)]="gradoSelectedMA" id="inputGradoMA" name="gradoSelectedMA" class="form-control" ngModel required>
                                     <option selected></option>
                                     <option *ngFor="let grad of grados" [value]="grad.id_grado">{{grad.nombre_grado}}</option>
                                 </select>
                             </div>
                             <div class="form-group col">
-                                <label for="inputDocenteA" class="text-white">Profesor</label>
-                                <select [(ngModel)]="docenteSelectedA" id="inputDocenteA" name="DocenteA" class="form-control" ngModel required>
+                                <label for="inputDocenteMA" class="text-white">Profesor</label>
+                                <select [(ngModel)]="docenteSelectedMA" id="inputDocenteMA" name="docenteSelectedMA" class="form-control" ngModel required>
                                     <option selected></option>
                                     <option *ngFor="let docen of docentes" [value]="docen.id_docente">
                                         {{(docen.nombre_docente+" "+docen.apellido_docente)}}</option>
@@ -504,8 +504,8 @@
                             </div>
                         </div>
                         <div class="form-group col-5 mx-auto">
-                            <label for="inputColegioA" class="text-white">Colegio</label>
-                            <select [(ngModel)]="colegioSelectedA" id="inputColegioA" name="ColegioA" class="form-control" ngModel
+                            <label for="inputColegioMA" class="text-white">Colegio</label>
+                            <select [(ngModel)]="colegioSelectedMA" id="inputColegioMA" name="colegioSelectedMA" class="form-control" ngModel
                                 required>
                                 <option selected></option>
                                 <option *ngFor="let colegio of colegios" [value]="colegio.id_colegio">{{(colegio.nombre_colegio)}}</option>
@@ -519,13 +519,13 @@
                                 style="height: 256px;">
                                 <thead class="bg-danger">
                                     <th class="pl-3 pr-5 py-2 text-dark">Nombre Materia</th>
-                                    <th class="pl-3 pr-3 py-2 text-dark text-center">Materia</th>
+                                    <th class="pl-3 pr-3 py-2 text-dark text-center">Materia Base</th>
                                     <th class="pl-3 pr-3 py-2 text-dark text-center">grado</th>
                                     <th class="pl-3 pr-3 py-2 text-dark text-center">Docente</th>
                                     <th class="pl-3 pr-4 py-2 text-dark text-center">Colegio</th>
                                 </thead>
                                 <tbody class="bg-light">
-                                    <tr mdbTableCol *ngFor="let materiaActiva of MateriaActivaInfo | filterColegioAdmin: nombreColegio:NITColegio">
+                                    <tr mdbTableCol *ngFor="let materiaActiva of MateriaActivaInfo | filterMateriaactivaAdmin: materiaSelectedMA:gradoSelectedMA:docenteSelectedMA:colegioSelectedMA">
                                         <td class="pl-3 pr-5 py-2 text-dark">{{ materiaActiva.nombre_materiaActiva }}</td>
                                         <td class="pl-3 pr-3 py-2 text-dark text-center">{{ materiaActiva.nombre_materia }}</td>
                                         <td class="pl-3 pr-3 py-2 text-dark text-center">{{ materiaActiva.id_grado }}</td>

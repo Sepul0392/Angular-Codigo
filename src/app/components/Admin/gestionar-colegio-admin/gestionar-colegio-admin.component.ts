@@ -107,16 +107,17 @@ export class GestionarColegioAdminComponent implements OnInit {
                 }
               }
               for (let m = 0; m < this.colegios.length; m++) {
-                if (this.AuthAdminService.MateriasActivas[i].id_materia == this.colegios[m].id_colegio) {
+                if (this.AuthAdminService.MateriasActivas[i].id_colegio == this.colegios[m].id_colegio) {
                   this.MateriaActivaInfo[i].colegio = this.colegios[m].nombre_colegio;
                 }
               }
               for (let m = 0; m < this.docentes.length; m++) {
-                if (this.AuthAdminService.MateriasActivas[i].id_materia == this.docentes[m].id_docente) {
+                if (this.AuthAdminService.MateriasActivas[i].id_docente == this.docentes[m].id_docente) {
                   this.MateriaActivaInfo[i].docente = this.docentes[m].nombre_docente+" "+this.docentes[m].apellido_docente;
                 }
               }
             }
+            //console.log('materiaActivaVisualizar', this.MateriaActivaInfo);
           });
         });
       });

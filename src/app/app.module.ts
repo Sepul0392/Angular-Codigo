@@ -47,6 +47,7 @@ import { GestionarColegioAdminComponent } from './components/Admin/gestionar-col
 import { BusquedaVisitanteComponent } from './components/Visitante/busqueda-visitante/busqueda-visitante.component';
 import { HeaderVisitanteComponent } from './components/Visitante/header-visitante/header-visitante.component';
 import { FilterColegioAdminPipe } from './pipes/filter-colegio-admin.pipe';
+import { FilterMateriaactivaAdminPipe } from './pipes/filter-materiaactiva-admin.pipe';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { FilterColegioAdminPipe } from './pipes/filter-colegio-admin.pipe';
     GestionarColegioAdminComponent,
     BusquedaVisitanteComponent,
     HeaderVisitanteComponent,
-    FilterColegioAdminPipe
+    FilterColegioAdminPipe,
+    FilterMateriaactivaAdminPipe
   ],
   imports: [
     BrowserModule,
