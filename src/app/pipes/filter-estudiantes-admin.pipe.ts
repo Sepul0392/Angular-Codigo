@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterEstudiantesAdminPipe implements PipeTransform {
 
   //transform(value: any, ...args: any[]): any {
-  transform(items: any, palabraSearch: string, gradoSearch: number, cursoSearch: number) {
-    //console.log("entradas:", palabraSearch, gradoSearch, cursoSearch);
+  transform(items: any, palabraSearch: string, gradoSearch: number, cursoSearch: number, colegioSearch: number) {
+    //console.log("entradas:", palabraSearch, gradoSearch, cursoSearch, colegioSearch);
     //console.log("item:", items);
 
     if (items && items.length) {
@@ -23,6 +23,9 @@ export class FilterEstudiantesAdminPipe implements PipeTransform {
           return false;
         }
         if (cursoSearch && item.curso_estudiante != cursoSearch) {
+          return false;
+        }
+        if (colegioSearch && item.id_colegio != colegioSearch) {
           return false;
         }
         return true;

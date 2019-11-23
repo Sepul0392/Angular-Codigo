@@ -18,6 +18,7 @@ export class GestionarUsuariosAdminComponent implements OnInit {
 
   colegio:ColegioI;
   docentes:DocenteI[];
+  colegios:ColegioI[];
   estudantes:EstuadianteI[];
   grados:GradoI[];
   estudianteToSave:EstuadianteI;
@@ -48,18 +49,27 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     this.AuthAdminService.loadAllDocentes().subscribe(res => {
       this.docentes = res as DocenteI[];
     });
-    this.AuthAdminService.loadAllEstudiantes().subscribe(res => {
-      this.estudantes = res as EstuadianteI[];
-      this.estudiantesVisualizar = res as EstuadianteVisualizarI[];
+    this.AuthAdminService.loadAllColegios().subscribe(res => {
+      this.colegios = res as ColegioI[];
 
-      for(let n=0; n < this.estudantes.length; n++){
-        for(let i=0; i < this.cursos.length; i++){
-          if(this.estudantes[n].curso_estudiante == this.cursos[i].id_curso){
-            this.estudiantesVisualizar[n].curso = this.cursos[i].nombre_curso;
+      this.AuthAdminService.loadAllEstudiantes().subscribe(res => {
+        this.estudantes = res as EstuadianteI[];
+        this.estudiantesVisualizar = res as EstuadianteVisualizarI[];
+  
+        for(let n=0; n < this.estudantes.length; n++){
+          for(let i=0; i < this.cursos.length; i++){
+            if(this.estudantes[n].curso_estudiante == this.cursos[i].id_curso){
+              this.estudiantesVisualizar[n].curso = this.cursos[i].nombre_curso;
+            }
+          }
+          for(let i=0; i < this.colegios.length; i++){
+            if(this.estudantes[n].id_colegio == this.colegios[i].id_colegio){
+              this.estudiantesVisualizar[n].colegio = this.colegios[i].nombre_colegio;
+            }
           }
         }
-      }
-      //console.log("estudiantes visualizar:", this.estudiantesVisualizar);
+        //console.log("estudiantes visualizar:", this.estudiantesVisualizar);
+      });
     });
   }
 
