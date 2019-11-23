@@ -7,6 +7,9 @@ import { MateriaI } from '../../../models/materia';
 import { AreaMateriaI } from '../../../models/areaMateria';
 import { AuthAdminService } from '../../../services/auth-admin.service';
 import { MateriaVisualizarI } from '../../../models/materiaVisualizar';
+import { DocenteI } from '../../../models/docente';
+import { MateriaActivaI } from '../../../models/materiaActiva';
+import { MateriaActivaVisualizarI } from '../../../models/materiaActivaVisualizar';
 
 
 @Component({
@@ -25,6 +28,8 @@ export class GestionarColegioAdminComponent implements OnInit {
   materiaToSave:MateriaI;
   gradoToSave:GradoI;
   colegioToSave:ColegioI;
+  docentes:DocenteI[];
+  MateriaActivaInfo:MateriaActivaVisualizarI[];
   newID:number;
   temp:number;
   correcto1:boolean;
@@ -52,6 +57,9 @@ export class GestionarColegioAdminComponent implements OnInit {
     this.AuthAdminService.allGrade().subscribe(res => {
       this.grados = res as GradoI[];
     });
+    this.AuthAdminService.loadAllDocentes().subscribe(res => {
+      this.docentes = res as DocenteI[];
+    });
     this.AuthAdminService.loadAllColegios().subscribe(res => {
       this.colegios = res as ColegioI[];
     });
@@ -74,10 +82,50 @@ export class GestionarColegioAdminComponent implements OnInit {
     });
   }
 
+  //Obtener informacion y listado de todas las MateriasActivas
+  getInformacionCompletaMateriasActivas(){
+    this.AuthAdminService.allSubject().subscribe(res => {
+      this.materias = res as MateriaI[];
+      //console.log('info materia',this.materia.length);
+
+      this.AuthAdminService.loadAllDocentes().subscribe(res =>{
+        this.docentes = res as DocenteI[];
+        //console.log('info docente', this.resDocente);
+  
+        this.AuthAdminService.loadAllColegios().subscribe(res =>{
+          this.colegios = res as ColegioI[];
+          //console.log('info colegio', this.resColegio);
+  
+          this.AuthAdminService.loadAllSubjectActives().subscribe(res =>{
+            this.AuthAdminService.MateriasActivas = res as MateriaActivaI[];
+            this.MateriaActivaInfo = res as MateriaActivaVisualizarI[];
+  
+            for (let i = 0; i < this.AuthAdminService.MateriasActivas.length; i++) {
+              for (let m = 0; m < this.materias.length; m++) {
+                if (this.AuthAdminService.MateriasActivas[i].id_materia == this.materias[m].id_materia) {
+                  this.MateriaActivaInfo[i].nombre_materia = this.materias[m].nombre_materia;
+                }
+              }
+              for (let m = 0; m < this.colegios.length; m++) {
+                if (this.AuthAdminService.MateriasActivas[i].id_materia == this.colegios[m].id_colegio) {
+                  this.MateriaActivaInfo[i].colegio = this.colegios[m].nombre_colegio;
+                }
+              }
+              for (let m = 0; m < this.docentes.length; m++) {
+                if (this.AuthAdminService.MateriasActivas[i].id_materia == this.docentes[m].id_docente) {
+                  this.MateriaActivaInfo[i].docente = this.docentes[m].nombre_docente+" "+this.docentes[m].apellido_docente;
+                }
+              }
+            }
+          });
+        });
+      });
+    });
+  }
+
   //Imprimir datos del docente en el Form 
   getColegioinForm(colegiohtml){
     this.AuthAdminService.selectedColegio = colegiohtml;
-    this.saveDataColegio(colegiohtml);
     //console.log('info colegio', this.AuthAdminService.selectedColegio);
   }
 
@@ -111,7 +159,7 @@ export class GestionarColegioAdminComponent implements OnInit {
   //Actualizar datos del Colegio
   actualizarColegio(form: NgForm): void{
     const newInfoColegio = {
-      id_colegio: this.colegioToSave.id_colegio,
+      id_colegio: this.AuthAdminService.selectedColegio.id_colegio,
       NIT: form.value.NIT,
       nombre_colegio: form.value.nombre_colegio,
       ciudad: form.value.ciudad,
