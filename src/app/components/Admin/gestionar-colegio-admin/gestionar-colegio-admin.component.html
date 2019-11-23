@@ -13,7 +13,51 @@
     
         <!--Gestion de Competencias-->
         <div>
-            <h3 style="cursor:context-menu" class="py-3 text-center text-white">Informacion Colegio</h3>
+            <h3 style="cursor:context-menu" class="py-3 text-center text-white">Colegios</h3>
+            <div class="contenedor mx-3 py-3">
+                <!--Buscar-->
+            <h5 class="py-3 text-white">Buscador:</h5>
+            <div class="row">
+                <div class="form-group col-5">
+                    <label for="inputNombreMateri" class="text-white">Nombre Colegio</label>
+                    <input type="text" class="form-control" id="inputTextoBusquedaNombreColegio"
+                        placeholder="Nombre" [(ngModel)]="nombreColegio" name="nombreColegio">
+                </div>
+                <div class="form-group">
+                    <label for="inputNombreMateri" class="text-white">NIT Colegio</label>
+                    <input type="text" class="form-control" id="inputTextoBusquedaNITColegio" 
+                        placeholder="NIT" [(ngModel)]="NITColegio" name="NITColegio">
+                </div>
+            </div>
+
+            
+
+            <!--Resultados-->
+            <h5 class="py-3 text-white">Resultados:</h5>
+            <div class="row mx-auto">
+                <table class="mx-auto text-white m-auto rounded table-striped table-wrapper-scroll-y my-custom-scrollbar" style="height: 256px;">
+                    <thead class="bg-danger">
+                        <th class="pl-3 pr-5 py-2 text-dark">Nombre Colegio</th>
+                        <th class="pl-3 pr-3 py-2 text-dark text-center">NIT</th>
+                        <th class="pl-3 pr-3 py-2 text-dark text-center">Ciudad</th>
+                        <th class="pl-3 pr-4 py-2 text-dark text-center">Accion</th>
+                    </thead>
+                    <tbody class="bg-light">
+                        <tr mdbTableCol *ngFor="let colegio of colegios">
+                            <td class="pl-3 pr-5 py-2 text-dark">{{ colegio.nombre_colegio }}</td>
+                            <td class="pl-3 pr-3 py-2 text-dark text-center">{{ colegio.NIT }}</td>
+                            <td class="pl-3 pr-3 py-2 text-dark text-center">{{ colegio.ciudad }}</td>
+                            <td class="pl-3 pr-4 py-2">
+                                <a class="btn bg-warning py-0 px-1 text-dark" data-toggle="modal" data-target="#mimodalejemplo6"
+                                    (click)="saveDataColegio(grado)">Actualizar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+
+            
 
             <!--Informacion Colegio-->
             <div class="contenedor py-3">
@@ -275,6 +319,26 @@
                 </div>
                 <div class="modal-footer justify-content-md-center no-gutters py-1 bg-light">
                     <button class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteGrado()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nuevo Colegio -->
+    <div class="modal fade" id="mimodalejemplo6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel6">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-info" *ngIf="correcto3">
+                    Se ha creado un nuevo Colegio.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error3">
+                    El Colegio no se ha podido crear. Revisa que has ingresado todos los datos requeridos.
                 </div>
             </div>
         </div>

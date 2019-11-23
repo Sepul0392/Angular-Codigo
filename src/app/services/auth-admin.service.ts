@@ -339,6 +339,16 @@ export class AuthAdminService {
 
   //====================================================================================  COLEGIO
 
+  //Servicio para crear colegio
+  createColegio(newColegio:ColegioI){
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createSchool`, newColegio);
+  }
+
+  //Servicio para obtener todos los colegio
+  loadAllColegios(){
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllSchools`);
+  }
+
   //Servicio para obtener la informacion del colegio
   loadColegio(infoColegio:any){
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadSchool`, infoColegio);

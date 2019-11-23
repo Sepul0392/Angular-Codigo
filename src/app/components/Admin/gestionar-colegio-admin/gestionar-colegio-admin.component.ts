@@ -24,12 +24,15 @@ export class GestionarColegioAdminComponent implements OnInit {
   grados:GradoI[];
   materiaToSave:MateriaI;
   gradoToSave:GradoI;
+  colegioToSave:ColegioI;
   newID:number;
   temp:number;
   correcto1:boolean;
   correcto2:boolean;
+  correcto3:boolean;
   error1:boolean;
   error2:boolean;
+  error3:boolean;
 
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
 
@@ -37,8 +40,10 @@ export class GestionarColegioAdminComponent implements OnInit {
     window.scrollTo(0, 0);
     this.correcto1 = false;
     this.correcto2 = false;
+    this.correcto3 = false;
     this.error1 = false;
     this.error2 = false;
+    this.error3 = false;
 
     this.getOptions();
   }
@@ -46,6 +51,9 @@ export class GestionarColegioAdminComponent implements OnInit {
   getOptions(){
     this.AuthAdminService.allGrade().subscribe(res => {
       this.grados = res as GradoI[];
+    });
+    this.AuthAdminService.loadAllColegios().subscribe(res => {
+      this.colegios = res as ColegioI[];
     });
     this.AuthAdminService.loadAllAreaSubjects().subscribe(res => {
       this.areasMaterias = res as AreaMateriaI[]; 
@@ -64,30 +72,57 @@ export class GestionarColegioAdminComponent implements OnInit {
         //console.log("actividades visualizar:", this.materiasVisualizar)
       });
     });
-
-    const infoColegioL = {
-      id_colegio: 0
-    }
-    this.AuthAdminService.loadColegio(infoColegioL).subscribe(res => {
-      this.resColegio = res as ColegioI;
-      this.AuthAdminService.selectedColegio = this.resColegio.school;
-      //console.log("info Colegio Local:", this.AuthAdminService.selectedColegio);
-    });
   }
 
-  //Actualizar datos del Colegio
-  actualizarColegio(form: NgForm): void{
-    const newInfoColegioL = {
-      id_colegio: 0,
+  //Imprimir datos del docente en el Form 
+  getColegioinForm(colegiohtml){
+    this.AuthAdminService.selectedColegio = colegiohtml;
+    this.saveDataColegio(colegiohtml);
+    //console.log('info colegio', this.AuthAdminService.selectedColegio);
+  }
+
+  //Crear Colegio
+  crearColegio(form: NgForm): void{
+    this.correcto3 = false;
+    this.error3 = true;
+
+    const newColegio = {
+      id_colegio: form.value.NIT,
+      NIT: form.value.NIT,
       nombre_colegio: form.value.nombre_colegio,
       ciudad: form.value.ciudad,
       direccion: form.value.direccion,
       telefono: form.value.telefono,
       tipo_colegio: form.value.tipo_colegio,
-      calendario: form.value.calendario
+      calendario: form.value.calendario,
+      rector: form.value.rector,
+      colegioActivo: 1
+    }
+    //console.log(newColegioL);
+    this.AuthAdminService.createColegio(newColegio).subscribe(res => {
+      //console.log(res);
+      this.correcto3 = true;
+      this.error3 = false;
+      this.getOptions();
+      this.resetForm(form);
+    });
+  }
+
+  //Actualizar datos del Colegio
+  actualizarColegio(form: NgForm): void{
+    const newInfoColegio = {
+      id_colegio: this.colegioToSave.id_colegio,
+      NIT: form.value.NIT,
+      nombre_colegio: form.value.nombre_colegio,
+      ciudad: form.value.ciudad,
+      direccion: form.value.direccion,
+      telefono: form.value.telefono,
+      tipo_colegio: form.value.tipo_colegio,
+      calendario: form.value.calendario,
+      rector: form.value.rector
     }
     //console.log(newInfoColegioL);
-    this.AuthAdminService.uploadSchool(newInfoColegioL).subscribe(res => {
+    this.AuthAdminService.uploadSchool(newInfoColegio).subscribe(res => {
       //console.log(res);
       this.getOptions();
       this.resetForm(form);
@@ -194,6 +229,10 @@ export class GestionarColegioAdminComponent implements OnInit {
   //Almacenar info temporal de una AreaMAteria
   saveDataGrado(gradohtml){
     this.gradoToSave = gradohtml;
+    //console.log('estudiante guardada:', this.gradoToSave);
+  }
+  saveDataColegio(colegiohtml){
+    this.colegioToSave = colegiohtml;
     //console.log('estudiante guardada:', this.gradoToSave);
   }
 
