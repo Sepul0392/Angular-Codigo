@@ -102,7 +102,8 @@ export class AuthDService {
           //this.saveData(res.dataDocente.id_docente, res.dataDocente)
           console.log('login res:', res);
           this.saveSession(res.dataDocente.id_docente, res.dataDocente.nombre_docente, res.dataDocente.apellido_docente,  
-                           res.dataDocente.accessToken, res.dataDocente.expiresIn, res.dataDocente.nombre_usuario);
+                           res.dataDocente.accessToken, res.dataDocente.expiresIn, res.dataDocente.nombre_usuario,
+                           res.dataDocente.id_colegio);
         }
       })
     );
@@ -120,17 +121,19 @@ export class AuthDService {
     localStorage.removeItem("ACCESS_TOKEN");
     localStorage.removeItem("EXPIRES_IN");
     localStorage.removeItem("NOMBRE_USUARIO");
+    localStorage.removeItem("ID_COLEGIO");
   }
 
   //Guardar Informacion de inicio de Sesion
   saveSession(id_docent: number, nombre_docente: string, apellido_docente: string, 
-                    token: string, expiresIn: string, nombre_usuario: string): void{
+              token: string, expiresIn: string, nombre_usuario: string, id_colegio: number): void{
     this.localStorageService.setItem("ID_DOCENTE", id_docent);
     this.localStorageService.setItem("NOMBRE_DOCENTE", nombre_docente);
     this.localStorageService.setItem("APELLIDO_DOCENTE", apellido_docente);
     this.localStorageService.setItem("ACCESS_TOKEN", token);
     this.localStorageService.setItem("EXPIRES_IN", expiresIn);
     this.localStorageService.setItem("NOMBRE_USUARIO", nombre_usuario);
+    this.localStorageService.setItem("ID_COLEGIO", id_colegio);
     this.token = token;
     this.nombreApellido_docenteAuth = nombre_docente+" "+apellido_docente;
     console.log('prueba', this.nombreApellido_docenteAuth);
@@ -157,6 +160,11 @@ export class AuthDService {
   getIdDocente(): number {
     var id_docenteAuthString = this.localStorageService.getItem("ID_DOCENTE");
     return parseInt(id_docenteAuthString, 20);
+  }
+
+  getIdColegioDocente(): number {
+    var id_ColegioAuthString = this.localStorageService.getItem("ID_COLEGIO");
+    return parseInt(id_ColegioAuthString, 20);
   }
 
   getNombreUsuario(): string {
@@ -190,6 +198,12 @@ export class AuthDService {
 
   //------------------------------------------------------------------------------------ COLEGIO
 
+  //Servicio para obtener todos los colegio
+  loadAllColegios(){
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllSchools`);
+  }
+
+  //Servicio para obtener la informacion de un colegio
   loadColegio(infoColegio:any){
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadSchool`, infoColegio);
   }

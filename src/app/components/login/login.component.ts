@@ -76,8 +76,8 @@ export class LoginComponent implements OnInit {
     const Info = {
       id_colegio: 0
     }
-    this.AuthAdminService.loadColegio(Info).subscribe(res => {
-      //console.log('Verificacion Conexion', res);
+    this.AuthAdminService.pruebaIP().subscribe(res => {
+      console.log('Verificacion Conexion', res);
       this.correctoIP = true;
       this.errorIP = false;
     });

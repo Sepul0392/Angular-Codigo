@@ -81,6 +81,10 @@ export class AuthAdminService {
     return IPServer; 
   }
 
+  pruebaIP(){
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/prueba`);
+  }
+  
   //====================================================================================  LOGIN
 
   //Servicio Verificacion de Login
@@ -349,7 +353,7 @@ export class AuthAdminService {
     return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllSchools`);
   }
 
-  //Servicio para obtener la informacion del colegio
+  //Servicio para obtener la informacion de un colegio
   loadColegio(infoColegio:any){
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadSchool`, infoColegio);
   }

@@ -6,6 +6,7 @@ import { AuthDService } from '../../services/auth-d.service';
 import { ContentREAService } from '../../services/content-rea.service';
 import { DocenteI } from '../../models/docente';
 import { MateriaActivaI } from '../../models/materiaActiva';
+import { ColegioI } from '../../models/colegio';
 import { NgModel } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 
@@ -20,7 +21,9 @@ export class RegistroUsuarioComponent implements OnInit {
   //Elementos
   materia:MateriaI[];
   grado:GradoI[];
+  colegios:ColegioI[];
   newIDD: number;
+  newIDGD:number;
   newIDMA: number;
   temp1: number;
   temp2: number;
@@ -42,6 +45,9 @@ export class RegistroUsuarioComponent implements OnInit {
     });
     this.ContentREAService.allGrade().subscribe(res =>{
       this.grado = res as GradoI[];
+    });
+    this.AuthDService.loadAllColegios().subscribe(res =>{
+      this.colegios = res as ColegioI[];
     });
   }
 
@@ -85,6 +91,10 @@ export class RegistroUsuarioComponent implements OnInit {
             }
           }
 
+          // ID Global Docente
+          var idGlobal = ""+form.value.id_colegio+this.newIDD;
+          this.newIDGD = parseInt(idGlobal);
+
           //Crear ID MateriaACtiva
           if (this.AuthDService.MateriasActivas.length == 0) {
             this.newIDMA = 1;
@@ -121,11 +131,12 @@ export class RegistroUsuarioComponent implements OnInit {
           console.log('form', form.value.nombre_materiaActiva);
 
           const newDocente = {
+            id_global_docente: this.newIDGD,
             id_docente: this.newIDD,
             tipo_usuario: 2,
             nombre_docente: form.value.nombre_docente,
             apellido_docente: form.value.apellido_docente,
-            id_colegio: 0,
+            id_colegio: form.value.id_colegio,
             nombre_usuario: form.value.nombre_usuario,
             contrasena: form.value.contrasena,
             correo_electronico: form.value.correo_electronico,
@@ -137,7 +148,7 @@ export class RegistroUsuarioComponent implements OnInit {
             id_materia: form.value.id_materia,
             id_grado: form.value.id_grado,
             id_docente: this.newIDD,
-            id_colegio: 0,
+            id_colegio: form.value.id_colegio,
             url_imagen: this.urlTemp
           }
 

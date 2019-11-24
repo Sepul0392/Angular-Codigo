@@ -27,6 +27,13 @@
                                     placeholder="Apellidos" required [(ngModel)]="AuthDService.selectedDocente.apellido_docente">
                             </div>
                             <div class="form-group">
+                                <label for="inputColegio" class="text-white">Colegio</label>
+                                <select [(ngModel)]="id_colegio" name="id_colegio" id="inputColegio" class="form-control" ngModel required>
+                                    <!--<option selected [value]='0'>- Materia -</option>-->
+                                    <option *ngFor="let colegio of colegios" [value]="colegio.id_colegio">{{colegio.nombre_colegio}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="inputNombreUsuario" class="text-white ">Nombre Usuario</label>
                                 <input type="text" name="nombre_usuario" class="form-control col" id="inputNombreUsuario"
                                     placeholder="Usuario" required [(ngModel)]="AuthDService.selectedDocente.nombre_usuario">

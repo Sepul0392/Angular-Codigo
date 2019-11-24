@@ -37,6 +37,7 @@ export class CrearActividadComponent implements OnInit {
   actividadToSave:ActividadI;
   actividad:ActividadI[];
   docente: DocenteI[];
+  docenteAuth: DocenteI;
   competencia:CompetenciaI[];
   gradoSelectedA:number;
   materiaSelectedA:number;
@@ -91,6 +92,17 @@ export class CrearActividadComponent implements OnInit {
     });
     this.ActividadService.allDocente().subscribe(res =>{
       this.docente = res as DocenteI[];
+    });
+
+    this.id_docenteAuth = this.AuthDService.getIdDocente();
+
+    const infoDocente = {
+      id_docente: this.id_docenteAuth
+    }
+
+    this.AuthDService.loadDocente(infoDocente).subscribe(res =>{
+      this.docenteAuth = res as DocenteI;
+      console.log('prueba2', infoDocente)
     });
   }
 
