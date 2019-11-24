@@ -20,11 +20,9 @@
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <a class="col nav-item nav-link text-center active font-weight-bold text-dark" id="nav-Pregunta1-tab" data-toggle="tab"
-                                    href="#nav-Pregunta1" role="tab" aria-controls="nav-Pregunta1"
-                                    aria-selected="true">Docentes</a>
+                                    href="#nav-Pregunta1" role="tab" aria-controls="nav-Pregunta1" aria-selected="true">Docentes</a>
                                 <a class="col nav-item nav-link text-center font-weight-bold text-dark" id="nav-Pregunta2-tab" data-toggle="tab"
-                                    href="#nav-Pregunta2" role="tab" aria-controls="nav-Pregunta2"
-                                    aria-selected="false">Estudiantes</a>
+                                    href="#nav-Pregunta2" role="tab" aria-controls="nav-Pregunta2" aria-selected="false">Estudiantes</a>
                             </div>
                         </nav>
         
@@ -47,18 +45,29 @@
                                                 <input type="text" class="form-control col-md-8" id="inputTextoBusquedaDocente" placeholder="Nombre / Apellido / Usuario / Correo" [(ngModel)]="palabraClaveDSelected"
                                                     name="palabraClaveDSelected">
                                             </div>
+                                            <div class="row">
+                                                <div class="form-group col-3">
+                                                    <label for="inputColegioD" class="text-white">Colegio</label>
+                                                    <select [(ngModel)]="colegioDSelected" name="colegioDSelected" id="inputColegioD" class="form-control" ngModel required>
+                                                        <option selected></option>
+                                                        <option *ngFor="let colegio of colegios" [value]="colegio.id_colegio">{{colegio.nombre_colegio}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                             
                                             <!--Resultados-->
                                             <h5 class="py-3 text-white">Resultados:</h5>
-                                            <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
-                                                style="width: 95%; height: 450px">
+                                            <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar bg-light" style="width: 95%; height: 450px">
                                                 <!--Resultado-->
-                                                <div class="row-1" *ngFor="let docente of docentes | filterDocenteAdmin: palabraClaveDSelected">
+                                                <div class="row-1" *ngFor="let docente of docenteVisualizar | filterDocenteAdmin: palabraClaveDSelected:colegioDSelected">
                                                     <div class="card mb-4 border-0" style="max-width: 1440px;">
                                                         <div class="row no-gutters border border-secondary">
                                                             <div class="col" style="max-width: 840px;">
                                                                 <div class="card-body p-2">
                                                                     <p class="card-text ">Nombre Docente: {{docente.nombre_docente}} {{docente.apellido_docente}}</p>
+                                                                    <div>
+                                                                        <p class="card-text"><small class="text-muted">Colegio: {{docente.colegio}}</small></p>
+                                                                    </div>
                                                                     <div>
                                                                         <p class="card-text"><small class="text-muted">Nombre Usuario: {{docente.nombre_usuario}}</small></p>
                                                                     </div>

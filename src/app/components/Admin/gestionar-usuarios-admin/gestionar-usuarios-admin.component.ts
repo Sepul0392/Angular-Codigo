@@ -7,6 +7,7 @@ import { EstuadianteI } from '../../../models/estudiante';
 import { ColegioI } from '../../../models/colegio';
 import { GradoI } from '../../../models/grado';
 import { EstuadianteVisualizarI } from '../../../models/estudianteVisualizar';
+import { DocenteVisualizarI } from '../../../models/docenteVisualizar';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class GestionarUsuariosAdminComponent implements OnInit {
   docenteToSave:DocenteI;
   cursos:any;
   estudiantesVisualizar:EstuadianteVisualizarI[];
+  docenteVisualizar:DocenteVisualizarI[];
 
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
 
@@ -46,9 +48,6 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     this.AuthAdminService.allGrade().subscribe(res => {
       this.grados = res as GradoI[];
     });
-    this.AuthAdminService.loadAllDocentes().subscribe(res => {
-      this.docentes = res as DocenteI[];
-    });
     this.AuthAdminService.loadAllColegios().subscribe(res => {
       this.colegios = res as ColegioI[];
 
@@ -69,6 +68,20 @@ export class GestionarUsuariosAdminComponent implements OnInit {
           }
         }
         //console.log("estudiantes visualizar:", this.estudiantesVisualizar);
+
+        this.AuthAdminService.loadAllDocentes().subscribe(res => {
+          this.docentes = res as DocenteI[];
+          this.docenteVisualizar = res as DocenteVisualizarI[];
+
+          for(let n=0; n < this.docentes.length; n++){
+            for(let i=0; i < this.colegios.length; i++){
+              if(this.docentes[n].id_colegio == this.colegios[i].id_colegio){
+                this.docenteVisualizar[n].colegio = this.colegios[i].nombre_colegio;
+              }
+            }
+          }
+          //console.log("docentes visualizar:", this.docenteVisualizar);
+        });
       });
     });
   }
