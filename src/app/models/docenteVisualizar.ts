@@ -1,7 +1,7 @@
 export interface DocenteVisualizarI {
 
-    id_global_docente: number;
     id_docente: number;
+    cont: number;
     nombre_docente: string; 
     apellido_docente: string;
     colegio: string;

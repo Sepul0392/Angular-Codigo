@@ -22,8 +22,8 @@ export class RegistroUsuarioComponent implements OnInit {
   materia:MateriaI[];
   grado:GradoI[];
   colegios:ColegioI[];
-  newIDD: number;
-  newIDGD:number;
+  newContD: number;
+  newIDD:number;
   newIDMA: number;
   temp1: number;
   temp2: number;
@@ -64,28 +64,27 @@ export class RegistroUsuarioComponent implements OnInit {
           this.materia = res as MateriaI[];
           //console.log('info materia',this.materia.length);
 
-          //Crear ID Docente
+          //Crear Cont Docente
           if (this.AuthDService.Docentes.length == 0) {
-            this.newIDD = 1;
+            this.newContD = 1;
           }
           else {
             if (this.AuthDService.Docentes.length) {
-              this.newIDD = 1;
+              this.newContD = 1;
             }
             for (let n = 0; n < this.AuthDService.Docentes.length; n++) {
               for (let i = 0; i < this.AuthDService.Docentes.length; i++) {
-                //console.log('n=', n, 'id_CREA=', this.AuthDService.Docentes[i].id_docente);
                 if(this.AuthDService.Docentes[i].id_colegio == form.value.id_colegio){
                   if (this.AuthDService.Docentes.length) {
-                    this.newIDD = 1;
+                    this.newContD = 1;
                   }
-                  if (n + 1 == this.AuthDService.Docentes[i].id_docente) {
-                    this.newIDD = n + 2;
+                  if (n + 1 == this.AuthDService.Docentes[i].cont) {
+                    this.newContD = n + 2;
                     this.temp1 = 0;
                     i = this.AuthDService.Docentes.length;
                   }
                   else {
-                    this.newIDD = n + 1;
+                    this.newContD = n + 1;
                     this.temp1 = 1;
                   }
                 }
@@ -96,9 +95,9 @@ export class RegistroUsuarioComponent implements OnInit {
             }
           }
 
-          // ID Global Docente
-          var idGlobal = ""+form.value.id_colegio+this.newIDD;
-          this.newIDGD = parseInt(idGlobal);
+          // ID Docente
+          var idGlobal = ""+form.value.id_colegio+this.newContD;
+          this.newIDD = parseInt(idGlobal);
 
           //Crear ID MateriaACtiva
           if (this.AuthDService.MateriasActivas.length == 0) {
@@ -136,8 +135,8 @@ export class RegistroUsuarioComponent implements OnInit {
           console.log('form', form.value.nombre_materiaActiva);
 
           const newDocente = {
-            id_global_docente: this.newIDGD,
             id_docente: this.newIDD,
+            cont: this.newContD,
             tipo_usuario: 2,
             nombre_docente: form.value.nombre_docente,
             apellido_docente: form.value.apellido_docente,
@@ -164,8 +163,8 @@ export class RegistroUsuarioComponent implements OnInit {
             console.log(res);
             this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
               console.log(res);
-              //this.resetForm(form);
-              //this.router.navigateByUrl('/login')
+              this.resetForm(form);
+              this.router.navigateByUrl('/login')
             });
           });
         });
