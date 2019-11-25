@@ -1,6 +1,6 @@
 export class DocenteI {
 
-    constructor(cont: 0, id_docente = 0, tipo_usuario = 2, nombre_docente = '', apellido_docente = '',
+    constructor(id_docente = 0, cont = 0, tipo_usuario = 2, nombre_docente = '', apellido_docente = '',
         id_colegio = 0, nombre_usuario = '', contrasena = '', correo_electronico = ''){
             this.id_docente = id_docente;
             this.cont = cont;

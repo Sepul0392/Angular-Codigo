@@ -132,7 +132,7 @@ export class RegistroUsuarioComponent implements OnInit {
             }
           }
 
-          console.log('form', form.value.nombre_materiaActiva);
+          //console.log('form', form.value.nombre_materiaActiva);
 
           const newDocente = {
             id_docente: this.newIDD,
@@ -156,13 +156,13 @@ export class RegistroUsuarioComponent implements OnInit {
             url_imagen: this.urlTemp
           }
 
-          console.log('datosContenido', newDocente);
-          console.log('datosContenido', newMateriaActiva);
+          //console.log('datosDocente', newDocente);
+          //console.log('datosMateriaActiva', newMateriaActiva);
 
           this.AuthDService.createDocente(newDocente).subscribe(res => {
-            console.log(res);
+            //console.log(res);
             this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
-              console.log(res);
+              //console.log(res);
               this.resetForm(form);
               this.router.navigateByUrl('/login')
             });

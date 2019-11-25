@@ -51,12 +51,12 @@ export class InfromacionDocenteComponent implements OnInit {
       this.AuthDService.loadDocente(infoDocente).subscribe(res =>{
         this.resDocente = res as DocenteI;
         this.DocenteInfo = this.resDocente.teacher; 
-        console.log('info docente', this.resDocente);
+        //console.log('info docente', this.resDocente);
   
         this.AuthDService.loadColegio(this.resDocente.teacher).subscribe(res =>{
           this.resColegio = res as ColegioI;
           this.ColegioInfo = this.resColegio.school;
-          console.log('info colegio', this.resColegio);
+          //console.log('info colegio', this.resColegio);
   
           this.AuthDService.loadAllSubjectActives().subscribe(res =>{
             this.AuthDService.MateriasActivas = res as MateriaActivaI[];

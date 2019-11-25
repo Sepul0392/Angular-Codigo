@@ -100,7 +100,7 @@ export class AuthDService {
       (res:JwtResponseI) => {
         if(res){
           //this.saveData(res.dataDocente.id_docente, res.dataDocente)
-          console.log('login res:', res);
+          //console.log('login res:', res);
           this.saveSession(res.dataDocente.id_docente, res.dataDocente.nombre_docente, res.dataDocente.apellido_docente,  
                            res.dataDocente.accessToken, res.dataDocente.expiresIn, res.dataDocente.nombre_usuario,
                            res.dataDocente.id_colegio);
@@ -159,12 +159,12 @@ export class AuthDService {
 
   getIdDocente(): number {
     var id_docenteAuthString = this.localStorageService.getItem("ID_DOCENTE");
-    return parseInt(id_docenteAuthString, 20);
+    return parseInt(id_docenteAuthString);
   }
 
   getIdColegioDocente(): number {
     var id_ColegioAuthString = this.localStorageService.getItem("ID_COLEGIO");
-    return parseInt(id_ColegioAuthString, 20);
+    return parseInt(id_ColegioAuthString);
   }
 
   getNombreUsuario(): string {

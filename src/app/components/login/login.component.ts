@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
       id_colegio: 0
     }
     this.AuthAdminService.pruebaIP().subscribe(res => {
-      console.log('Verificacion Conexion', res);
+      //console.log('Verificacion Conexion', res);
       this.correctoIP = true;
       this.errorIP = false;
     });

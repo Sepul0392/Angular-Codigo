@@ -131,7 +131,7 @@ export class AuthAdminService {
 
   getIdAdmin(): number {
     var id_adminAuthString = this.localStorageService.getItem("ID_ADMIN");
-    return parseInt(id_adminAuthString, 20);
+    return parseInt(id_adminAuthString);
   }
 
   getNombreUsuario(): string {

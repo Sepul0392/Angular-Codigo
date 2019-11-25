@@ -25,9 +25,11 @@ export class SubirContenidoComponent implements OnInit {
   uploadedFiles: Array <File>;
   urlFinal:string;
   urlSelected:any;
+  newCont: number;
   newID: number;
   temp: number;
   id_docenteAuth:number;
+  id_colegioAuth:number;
   correcto:boolean;
   error:boolean;
 
@@ -41,6 +43,8 @@ export class SubirContenidoComponent implements OnInit {
     this.getOptions();
     this.getContenidos();
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
+    this.id_colegioAuth = this.AuthDService.getIdColegioDocente();
+    //console.log('prueba', this.id_colegioAuth, this.id_docenteAuth);
     this.ContentREAService.selectedContenidoREA = new contenidoREAI();
   }
 
@@ -88,33 +92,38 @@ export class SubirContenidoComponent implements OnInit {
     }
 
     this.ContentREAService.uploadFile(formData).subscribe((res) => {
-      console.log('url-res', res);
+      //console.log('url-res', res);
       this.urlSelected = res;
-      console.log('urlFinal', this.urlSelected.url);
+      //console.log('urlFinal', this.urlSelected.url);
 
       this.ContentREAService.allContent().subscribe(res => {
         //console.log(res);
         this.ContentREAService.contenidosREA = res as contenidoREAI[];
-        //Generar ID
         //console.log('Contenidos',  this.ContentREAService.contenidosREA);
+
+        //Generar Cont
         if(this.ContentREAService.contenidosREA.length == 0){
-          this.newID = 1;
+          this.newCont = 1;
         }
         else {
+          if (this.ContentREAService.contenidosREA.length) {
+            this.newCont = 1;
+          }
           for (let n = 0; n < this.ContentREAService.contenidosREA.length; n++) {
             for (let i = 0; i < this.ContentREAService.contenidosREA.length; i++) {
-              //console.log('n=', n, 'id_CREA=', this.ContentREAService.contenidosREA[i].id_CREA);
-              if (this.ContentREAService.contenidosREA.length) {
-                this.newID = 1;
-              }
-              if (n+1 == this.ContentREAService.contenidosREA[i].id_CREA) {
-                this.newID = n + 2;
-                this.temp = 0;
-                i = this.ContentREAService.contenidosREA.length;
-              }
-              else {
-                this.newID = n + 1;
-                this.temp = 1;
+              if(this.ContentREAService.contenidosREA[i].id_colegio == this.id_colegioAuth){
+                if (this.ContentREAService.contenidosREA.length) {
+                  this.newCont = 1;
+                }
+                if(n + 1 == this.ContentREAService.contenidosREA[i].cont) {
+                  this.newCont = n + 2;
+                  this.temp = 0;
+                  i = this.ContentREAService.contenidosREA.length;
+                }
+                else {
+                  this.newCont = n + 1;
+                  this.temp = 1;
+                }
               }
             }
             if (this.temp == 1) {
@@ -123,27 +132,33 @@ export class SubirContenidoComponent implements OnInit {
           }
         }
 
+        //Generar ID
+        var idGlobal = ""+this.id_colegioAuth+this.newCont;
+        this.newID = parseInt(idGlobal);
+        //console.log('nuevaID y cont', this.newID, this.newCont);
 
         const newContenidoREA = {
           //id_CREA: Math.floor((Math.random() * 100) + 1),
           id_CREA: this.newID,
+          cont: this.newCont,
           tipo_CREA: this.tipoContenidoSelected,
           id_docente: this.id_docenteAuth,
           id_materia: this.materiaSelected,
           id_grado: this.gradoSelected,
+          id_colegio: this.id_colegioAuth,
           nombre_CREA: form.value.nombre_CREA,
           urlrepositorio: this.urlSelected.url,
           descripcion_CREA: form.value.descripcion_CREA,
           en_uso: 0
         }
 
-        console.log('datosContenido', newContenidoREA);
+        //console.log('datosContenido', newContenidoREA);
 
         this.ContentREAService.createContentREA(newContenidoREA).subscribe(res => {
-        //this.router.navigateByUrl('/inicioProfesores')
-        this.correcto = true;
-        this.error = false;
-        this.resetForm(form);
+          //this.router.navigateByUrl('/inicioProfesores')
+          this.correcto = true;
+          this.error = false;
+          this.resetForm(form);
         });
       });
     });

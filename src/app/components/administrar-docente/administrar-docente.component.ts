@@ -19,6 +19,7 @@ export class AdministrarDocenteComponent implements OnInit {
 
   public nombreApellidoDocente:string;
   public idDocente:number;
+  idColegio: number;
   resDocente:any;
   resColegio:any;
   DocenteInfo: DocenteI;
@@ -47,6 +48,7 @@ export class AdministrarDocenteComponent implements OnInit {
     this.getOptions();
     this.idDocente = this.AuthDService.getIdDocente();
     this.nombreApellidoDocente = this.AuthDService.getnombreApellidoDocente();
+    this.idColegio = this.AuthDService.getIdColegioDocente();
     this.getDocenteinForm();
     this.getInformacionCompleta();
   }
@@ -155,7 +157,7 @@ export class AdministrarDocenteComponent implements OnInit {
           id_materia: form.value.id_materia,
           id_grado: form.value.id_grado,
           id_docente: this.idDocente,
-          id_colegio: 0,
+          id_colegio: this.idColegio,
           url_imagen: this.urlTemp
         }
 
