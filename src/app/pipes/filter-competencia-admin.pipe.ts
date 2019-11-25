@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterCompetenciaAdminPipe implements PipeTransform {
 
   //transform(value: any, ...args: any[]): any {
-  transform(items: any, nombreCSearch: string, areaMateriaCSearch: number, gradoCSearch: number, gradoInicialCSearch: number, gradoFinalCSearch: number) {
-    //console.log("entradas:", nombreCSearch,  areaMateriaCSearch, gradoCSearch,  gradoInicialCSearch, gradoFinalCSearch);
+  transform(items: any, nombreCSearch: string, areaMateriaCSearch: number, gradoCSearch: number, gradoInicialCSearch: number, gradoFinalCSearch: number, colegioCSearch: number) {
+    //console.log("entradas:", nombreCSearch,  areaMateriaCSearch, gradoCSearch,  gradoInicialCSearch, gradoFinalCSearch, colegioCSearch);
     //console.log("item:", items);
 
     if (items && items.length) {
@@ -25,6 +25,9 @@ export class FilterCompetenciaAdminPipe implements PipeTransform {
           return false;
         }
         if (gradoCSearch && item.gradoFinal < gradoCSearch) {
+          return false;
+        }
+        if (colegioCSearch && item.id_colegio != colegioCSearch) {
           return false;
         }
         if (item.id_areaMateria == 0) {

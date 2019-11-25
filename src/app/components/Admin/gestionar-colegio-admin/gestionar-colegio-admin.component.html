@@ -154,13 +154,14 @@
                                             </div>
                                             <br>
         
-                                            <!--Boton Actualizar Datos Colegio-->
                                             <div class="row">
+                                                <!--Boton Crear Datos Colegio-->
                                                 <div class="mr-2  ml-auto pb-4 justify-content-md-center no-gutters">
                                                     <a class="btn bg-danger px-5 py-4 font-weight-bold" data-toggle="modal"
                                                         data-target="#mimodalejemplo6"
                                                         (click)="crearColegio(frmInfoColegio)">Crear</a>
                                                 </div>
+                                                <!--Boton Actualizar Datos Colegio-->
                                                 <div class="ml-2 mr-auto pb-4 justify-content-md-center no-gutters">
                                                     <a class="btn bg-danger px-4 py-4 font-weight-bold" data-toggle="modal"
                                                         data-target="#mimodalejemplo"
@@ -190,27 +191,29 @@
                                             <div class="row">
                                                 <div class="form-group col-5  pr-3">
                                                     <label for="inputNombreMateri" class="text-white">Nombre Materia</label>
-                                                    <input type="text" name="nombre_materia" class="form-control"
-                                                        id="inputNombreMateria" placeholder="Nombre Materia" required
+                                                    <input type="text" name="nombre_materia" class="form-control" id="inputNombreMateria" placeholder="Nombre Materia" required
                                                         [(ngModel)]="nombre_materia">
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group col">
                                                     <label for="inputAreaMateri" class="text-white">Area</label>
-                                                    <select [(ngModel)]="id_areaMateria" name="id_areaMateria"
-                                                        id="inputAreaMateria" class="form-control" ngModel required>
+                                                    <select [(ngModel)]="id_areaMateria" name="id_areaMateria" id="inputAreaMateria" class="form-control" ngModel required>
                                                         <option selected></option>
-                                                        <option *ngFor="let area of areasMaterias"
-                                                            [value]="area.id_areaMateria">
-                                                            {{area.nombre_areaMateria}}</option>
+                                                        <option *ngFor="let area of areasMaterias" [value]="area.id_areaMateria">{{area.nombre_areaMateria}}</option>
                                                     </select>
                                                 </div>
-                                                <!--Boton Crear Materia-->
-                                                <div class="bg-secondary col px-0 justify-content-md-center no-gutters">
-                                                    <br>
-                                                    <a class="btn bg-danger px-1 font-weight-bold mt-2 ml-3" data-toggle="modal"
-                                                        data-target="#mimodalejemplo2"
-                                                        (click)="crearMateria(frmCrearMateria)">Crear Materia</a>
+                                                <div class="form-group col">
+                                                    <label for="inputColegioM" class="text-white">Colegio</label>
+                                                    <select [(ngModel)]="id_colegioM" name="id_colegioM" id="inputColegioM" class="form-control" ngModel required>
+                                                        <option selected></option>
+                                                        <option *ngFor="let colegio of colegios" [value]="colegio.id_colegio">{{colegio.nombre_colegio}}</option>
+                                                    </select>
                                                 </div>
+                                            </div>
+                                            
+                                            <!--Boton Crear Materia-->
+                                            <div class="bg-secondary row pb-4 pt-2 justify-content-md-center no-gutters">
+                                                <a class="btn bg-danger px-5 py-2 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo2"
+                                                    (click)="crearMateria(frmCrearMateria)">Crear Materia</a>
                                             </div>
         
                                             <br>

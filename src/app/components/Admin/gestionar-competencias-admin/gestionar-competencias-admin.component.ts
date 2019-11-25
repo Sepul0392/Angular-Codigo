@@ -3,6 +3,7 @@ import { CompetenciaI } from '../../../models/competencia';
 import { AreaMateriaI } from '../../../models/areaMateria';
 import { GradoI } from '../../../models/grado';
 import { CompetenciaVisualizarI } from '../../../models/competenciaVisualizar';
+import { ColegioI } from '../../../models/colegio';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
@@ -18,8 +19,10 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
   competencias:CompetenciaI[];
   areasMaterias:AreaMateriaI[];
   competenciasVisualizar:CompetenciaVisualizarI[];
+  colegios:ColegioI[];
   competenciaToSave:CompetenciaI;
   areaMateriaToSave:AreaMateriaI;
+  newCont:number;
   newID:number;
   temp:number;
   correcto1:boolean;
@@ -46,6 +49,9 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     });
     this.AuthAdminService.loadAllAreaSubjects().subscribe(res => {
       this.areasMaterias = res as AreaMateriaI[];
+    });
+    this.AuthAdminService.loadAllColegios().subscribe(res => {
+      this.colegios = res as ColegioI[];
     });
   }
 
@@ -77,22 +83,26 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     this.AuthAdminService.allCompetencias().subscribe(res => {
       this.AuthAdminService.Competencias = res as CompetenciaI[];
 
-      //crear ID
+      //crear Cont
       if (this.AuthAdminService.Competencias.length == 0) {
-        this.newID = 1;
+        this.newCont = 1;
       }
       else {
+        if (this.AuthAdminService.Competencias.length) {
+          this.newCont = 1;
+        }
         for (let n = 0; n < this.AuthAdminService.Competencias.length; n++) {
           for (let i = 0; i < this.AuthAdminService.Competencias.length; i++) {
-            //console.log('n=', n, 'id_competencia', this.AuthAdminService.Competencias[i].id_competencia);
-            if (n + 1 == this.AuthAdminService.Competencias[i].id_competencia) {
-              this.newID = n + 2;
-              this.temp = 0;
-              i = this.AuthAdminService.Competencias.length;
-            }
-            else {
-              this.newID = n + 1;
-              this.temp = 1;
+            if(this.AuthAdminService.Competencias[i].id_colegio == form.value.id_colegioC){
+              if (n + 1 == this.AuthAdminService.Competencias[i].cont) {
+                this.newCont = n + 2;
+                this.temp = 0;
+                i = this.AuthAdminService.Competencias.length;
+              }
+              else {
+                this.newCont = n + 1;
+                this.temp = 1;
+              }
             }
           }
           if (this.temp == 1) {
@@ -101,8 +111,14 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
         }
       }
 
+      // ID Competencia
+      var idGlobal = ""+form.value.id_colegioC+this.newCont;
+      this.newID = parseInt(idGlobal);
+
       const newCompetencia = {
         id_competencia: this.newID,
+        cont: this.newCont,
+        id_colegio: form.value.id_colegioC,
         nombre_competencia: form.value.nombre_competencia,
         id_areaMateria: form.value.id_areaMateria,
         gradoInicial: form.value.gradoInicial,
@@ -128,32 +144,42 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     this.AuthAdminService.loadAllAreaSubjects().subscribe(res => {
       this.AuthAdminService.AreasMaterias = res as AreaMateriaI[];
 
-      //crear ID
+      //crear Cont
       if (this.AuthAdminService.AreasMaterias.length == 0) {
-        this.newID = 1;
+        this.newCont = 1;
       }
       else {
+        if (this.AuthAdminService.AreasMaterias.length) {
+          this.newCont = 1;
+        }
         for (let n = 0; n < this.AuthAdminService.AreasMaterias.length; n++) {
           for (let i = 0; i < this.AuthAdminService.AreasMaterias.length; i++) {
-            //console.log('n=', n, 'id_competencia', this.AuthAdminService.AreasMaterias[i].id_areaMateria);
-            if (n + 1 == this.AuthAdminService.AreasMaterias[i].id_areaMateria) {
-              this.newID = n + 2;
-              this.temp = 0;
-              i = this.AuthAdminService.AreasMaterias.length;
-            }
-            else {
-              this.newID = n + 1;
-              this.temp = 1;
+            if(this.AuthAdminService.AreasMaterias[i].id_colegio == form.value.id_colegioAM){
+              if (n + 1 == this.AuthAdminService.AreasMaterias[i].cont) {
+                this.newCont = n + 2;
+                this.temp = 0;
+                i = this.AuthAdminService.AreasMaterias.length;
+              }
+              else {
+                this.newCont = n + 1;
+                this.temp = 1;
+              }
             }
           }
           if (this.temp == 1) {
-            n = this.AuthAdminService.Competencias.length + 1;
+            n = this.AuthAdminService.AreasMaterias.length + 1;
           }
         }
       }
 
+      // ID AreaMateria
+      var idGlobal = ""+form.value.id_colegioAM+this.newCont;
+      this.newID = parseInt(idGlobal);
+
       const newAreaMateria = {
         id_areaMateria: this.newID,
+        cont: this.newCont,
+        id_colegio: form.value.id_colegioAM,
         nombre_areaMateria: form.value.nombre_areaMateria
       }
       //console.log('datos NewArea', newAreaMateria);

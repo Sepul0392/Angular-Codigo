@@ -30,6 +30,7 @@ export class GestionarColegioAdminComponent implements OnInit {
   colegioToSave:ColegioI;
   docentes:DocenteI[];
   MateriaActivaInfo:MateriaActivaVisualizarI[];
+  newCont:number;
   newID:number;
   temp:number;
   correcto1:boolean;
@@ -186,22 +187,29 @@ export class GestionarColegioAdminComponent implements OnInit {
     this.AuthAdminService.allSubject().subscribe(res => {
       this.AuthAdminService.Materias = res as MateriaI[];
 
-      //crear ID
+      //crear Cont
       if (this.AuthAdminService.Materias.length == 0) {
-        this.newID = 1;
+        this.newCont = 1;
       }
       else {
+        if (this.AuthAdminService.Materias.length) {
+          this.newCont = 1;
+        }
         for (let n = 0; n < this.AuthAdminService.Materias.length; n++) {
           for (let i = 0; i < this.AuthAdminService.Materias.length; i++) {
-            //console.log('n=', n, 'id_competencia', this.AuthAdminService.Materias[i].id_materia);
-            if (n + 1 == this.AuthAdminService.Materias[i].id_materia) {
-              this.newID = n + 2;
-              this.temp = 0;
-              i = this.AuthAdminService.Materias.length;
-            }
-            else {
-              this.newID = n + 1;
-              this.temp = 1;
+            if(this.AuthAdminService.Materias[i].id_colegio == form.value.id_colegioM){
+              if (this.AuthAdminService.Materias.length) {
+                this.newCont = 1;
+              }
+              if (n + 1 == this.AuthAdminService.Materias[i].cont) {
+                this.newCont = n + 2;
+                this.temp = 0;
+                i = this.AuthAdminService.Materias.length;
+              }
+              else {
+                this.newCont = n + 1;
+                this.temp = 1;
+              }
             }
           }
           if (this.temp == 1) {
@@ -210,10 +218,15 @@ export class GestionarColegioAdminComponent implements OnInit {
         }
       }
 
+      // ID Materia
+      var idGlobal = ""+form.value.id_colegioM+this.newCont;
+      this.newID = parseInt(idGlobal);
+
       const newMateria = {
         id_materia: this.newID,
+        cont: this.newCont,
         nombre_materia: form.value.nombre_materia,
-        id_colegio: 0,
+        id_colegio: form.value.id_colegioM,
         id_areaMateria: form.value.id_areaMateria,
         gradoInicial: form.value.gradoInicial,
         url_imagen: "http://localhost:3000/public/repositorio/materiaPorDefecto.jpg"

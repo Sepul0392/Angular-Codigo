@@ -48,13 +48,25 @@
                                             <!-- Selectores -->
                                             <label for="inputState" class="text-white">Filtros:</label>
                                             <div class="form-row">
-                                                <div class="form-group col-4">
+                                                <div class="form-group col-5">
                                                     <label for="inputAreaMateri" class="text-white">Area</label>
                                                     <select [(ngModel)]="areaMateriaSelected" name="areaMateriaSelected" id="inputAreaMateria" class="form-control" ngModel required>
                                                         <option selected></option>
                                                         <option *ngFor="let area of areasMaterias | slice:1; let i = index" [value]="area.id_areaMateria">{{area.nombre_areaMateria}}</option>
                                                     </select>
                                                 </div>
+                                                <div class="form-group col-5">
+                                                    <label for="inputColegioBusqueda" class="text-white">Colegio</label>
+                                                    <select [(ngModel)]="colegioSelected" name="colegioSelected" id="inputColegioBusqueda" class="form-control" ngModel required>
+                                                        <option selected></option>
+                                                        <option *ngFor="let colegio of colegios" [value]="colegio.id_colegio">{{colegio.nombre_colegio}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col">
+                            
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
                                                 <div class="form-group col">
                                                     <label for="inputGrado" class="text-white">Grado Especifico</label>
                                                     <select [(ngModel)]="gradoSelected" name="gradoSelected" id="inputgrado" class="form-control" ngModel required>
@@ -86,7 +98,7 @@
                                             <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
                                                 style="width: 95%; height: 450px">
                                                 <!--Resultado-->
-                                                <div class="row-1" *ngFor="let compet of competenciasVisualizar | filterCompetenciaAdmin: nombreCompetenciaSelected:areaMateriaSelected:gradoSelected:gradoInicialC:gradoFinalC">
+                                                <div class="row-1" *ngFor="let compet of competenciasVisualizar | filterCompetenciaAdmin: nombreCompetenciaSelected:areaMateriaSelected:gradoSelected:gradoInicialC:gradoFinalC:colegioSelected">
                                                     <div class="card mb-4 border-0" style="max-width: 1440px;">
                                                         <div class="row no-gutters border border-secondary">
                                                             <div class="col" style="max-width: 840px;">
@@ -125,6 +137,13 @@
                                                         <label for="inputNombreCompetencia" class="text-white ">Competencia</label>
                                                         <input type="text" name="nombre_competencia" class="form-control col" id="inputNombreUsuario" placeholder="Nombre / Descripcion" required
                                                             [(ngModel)]="nombre_competencia">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputColegioC" class="text-white">Colegio</label>
+                                                        <select [(ngModel)]="id_colegioC" name="id_colegioC" id="inputColegioC" class="form-control" ngModel required>
+                                                            <option selected></option>
+                                                            <option *ngFor="let colegio of colegios" [value]="colegio.id_colegio">{{colegio.nombre_colegio}}</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputAreaMateri" class="text-white">Area</label>
@@ -175,12 +194,21 @@
                                             <!--Crear AreaMaterias-->
                                             <h5 class="py-3 text-white">Crear Area:</h5>
                                             <div class="row">
-                                                <div class="form-group col-5  pr-3">
-                                                    <input type="text" name="nombre_areaMateria" class="form-control" id="inputNombreMateriaActiva"
-                                                        placeholder="Nombre Area de Materias" required [(ngModel)]="nombre_areaMateria">
+                                                <div class="form-group col-5 pr-3">
+                                                        <label for="inputNombreMateriaActiva" class="text-white">Nombre del Area</label>
+                                                    <input type="text" name="nombre_areaMateria" class="form-control" id="inputNombreMateriaActiva" placeholder="Nombre Area de Materias" required 
+                                                        [(ngModel)]="nombre_areaMateria">
+                                                </div>
+                                                <div class="form-group col-4 pr-3 pl-0">
+                                                    <label for="inputColegioAM" class="text-white">Colegio</label>
+                                                    <select [(ngModel)]="id_colegioAM" name="id_colegioAM" id="inputColegioAM" class="form-control" ngModel required>
+                                                        <option selected></option>
+                                                        <option *ngFor="let colegio of colegios" [value]="colegio.id_colegio">{{colegio.nombre_colegio}}</option>
+                                                    </select>
                                                 </div>
                                                 <!--Boton Crear AreaMateria-->
-                                                <div class="bg-secondary col px-0 justify-content-md-center no-gutters">
+                                                <div class="bg-secondary col px-0 justify-content-md-center no-gutters pt-2">
+                                                    <br>
                                                     <a class="btn bg-info px-1 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo4"
                                                         (click)="CrearAreaMateria(frmCrearAreaMateria)">Crear Area</a>
                                                 </div>

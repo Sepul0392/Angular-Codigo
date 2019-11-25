@@ -77,8 +77,8 @@ export class ModificarActividadComponent implements OnInit {
     this.getActividades();
     this.ActividadService.selectedActividad = new ActividadI();
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
-    this.contenidoAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
-    this.tallerAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
+    this.contenidoAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
+    this.tallerAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
     this.verificationSaveContent = false;
     this.verificationSaveTaller = false;
     this.verificationSaveActividad = false;
@@ -538,8 +538,8 @@ export class ModificarActividadComponent implements OnInit {
       this.actividadToSave = new ActividadI();
       this.tallerToSave = new contenidoREAI();
       this.ActividadService.selectedActividad = new ActividadI();
-      this.contenidoAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
-      this.tallerAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
+      this.contenidoAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
+      this.tallerAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
       //console.log('reseteo');
     }
   }

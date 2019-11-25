@@ -64,8 +64,8 @@ export class BusquedaVisitanteComponent implements OnInit {
     this.getOptions();
     this.getContenidos();
     this.getActividades();
-    this.contenidoAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
-    this.tallerAct = {nombre_CREA:"",id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
+    this.contenidoAct = {nombre_CREA:"", cont:0, id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
+    this.tallerAct = {nombre_CREA:"",cont:0, id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
   }
 
   //Obtener los datos de los Options
