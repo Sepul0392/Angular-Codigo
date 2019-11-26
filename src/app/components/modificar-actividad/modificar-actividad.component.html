@@ -169,7 +169,7 @@
                         </div>
                         <hr class="style1">
         
-                        <!--Contenido de la Actividad-->
+                        <!--Modificacion Contenido de la Actividad-->
                         <div>
                             <h3 style="cursor:context-menu" class="py-3 text-center text-white">Contenido de la Actividad</h3>
                             <div class="contenedor py-3">
@@ -291,7 +291,7 @@
                         </div>
                         <hr class="style1">
         
-                        <!--Creacion del Quiz-->
+                        <!--Modificacion del Quiz-->
                         <div>
                             <h3 style="cursor:context-menu" class="py-3 text-center text-white">Quiz del Contenido</h3>
                             <div class="contenedor py-3">
@@ -520,7 +520,7 @@
                         <hr class="style1">
                         <br>
 
-                        <!--Taller de la Actividad-->
+                        <!--Modificacion Taller de la Actividad-->
                         <div>
                             <h3 style="cursor:context-menu" class="py-3 text-center text-white">Taller de la Actividad</h3>
                             <div class="contenedor py-3">
@@ -634,12 +634,216 @@
                             </div>
                         </div>
                         <hr class="style1">
+                        
+                        <!--Modificacion de la Evaluacion-->
+                        <div>
+                            <h3 style="cursor:context-menu" class="py-3 text-center text-white">Evaluación</h3>
+                            <div class="contenedor py-3">
+                                <div class="form-group">
+                                    <label for="inputDescripcionEvaluacion" class="text-white">Descripcion de la Evaluación</label>
+                                    <textarea class="form-control" name="descripcion_evaluacion" id="inputDescripcionEvaluacion" rows="4"
+                                        required [(ngModel)]="ActividadService.selectedActividad.descripcion_evaluacion" placeholder="Descripcion ..."></textarea>
+                                </div>
+                                <div class="container">
+                                    <!--Tabs-->
+                                    <div>
+                                        <label for="tituloPreguntasEvaluacion" class="text-white">Preguntas de la Evaluación</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="card mt-3 tab-card">
+                                                <div class="card-header tab-card-header">
+                                                    <!--Opcion Tab-->
+                                                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                                                        <li class="nav-item col">
+                                                            <a class="nav-link text-center" id="oneE-tab" data-toggle="tab" href="#pregunta1E" role="tab" aria-controls="pregunta1E"
+                                                                aria-selected="true">Pregunta 1</a>
+                                                        </li>
+                                                        <li class="nav-item col">
+                                                            <a class="nav-link text-center" id="twoE-tab" data-toggle="tab" href="#pregunta2E" role="tab" aria-controls="pregunta2E"
+                                                                aria-selected="false">Pregunta 2</a>
+                                                        </li>
+                                                        <li class="nav-item col">
+                                                            <a class="nav-link text-center" id="threeE-tab" data-toggle="tab" href="#pregunta3E" role="tab" aria-controls="pregunta3E"
+                                                                aria-selected="false">Pregunta 3</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="tab-content" id="myTabContent">
+                                                    <!--Pregunta 1 Tabs-->
+                                                    <div class="tab-pane fade show active p-3" id="pregunta1E" role="tabpanel" aria-labelledby="oneE-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 1</h5>
+                                                            <label for="inputPregunta1E" class="text-dark">Escribir pregunta</label>
+                                                            <textarea class="form-control" name="EQ1" id="inputPregunta1E" rows="3" required [(ngModel)]="ActividadService.selectedActividad.EQ1"
+                                                                placeholder="Pregunta ..."></textarea>
+                                                        </div>
+                                                        <label for="tituloCuatroRespuestasE" class="text-dark">Escribir las cuatro posibles respuestas</label>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE1A" class="col-sm-2 col-form-label">Respuesta A)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA11" id="inputRespuestaE1A" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA11" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE1B" class="col-sm-2 col-form-label">Respuesta B)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA12" id="inputRespuestaE1B" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA12" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE1C" class="col-sm-2 col-form-label">Respuesta C)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA13" id="inputRespuestaE1C" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA13" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE1D" class="col-sm-2 col-form-label">Respuesta D)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA14" id="inputRespuestaE1D" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA14" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <label for="inputSelectPreguntaCorrectaE" class="text-dark">Seleccione la respuesta correcta</label>
+                                                        <div class="form-grup row-1">
+                                                            <div class="form-group col-2">
+                                                                <select [(ngModel)]="ActividadService.selectedActividad.ECA1" name="ECA1" id="inputRespuestaCorrecta1E" class="form-control" ngModel required>
+                                                                    <option [value]=1>A</option>
+                                                                    <option [value]=2>B</option>
+                                                                    <option [value]=3>C</option>
+                                                                    <option [value]=4>D</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!--el valor seleccionado es {{respuestaCorrectaSelected1}}-->
+                                                    </div>
+
+                                                    <!--Pregunta 2 Tabs-->
+                                                    <div class="tab-pane fade p-3" id="pregunta2E" role="tabpanel" aria-labelledby="twoE-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 2</h5>
+                                                            <label for="inputPregunta2E" class="text-dark">Escribir pregunta</label>
+                                                            <textarea class="form-control" name="EQ2" id="inputPregunta2E" rows="3" required [(ngModel)]="ActividadService.selectedActividad.EQ2"
+                                                                placeholder="Pregunta ..."></textarea>
+                                                        </div>
+                                                        <label for="tituloCuatroRespuestasE" class="text-dark">Escribir las cuatro posibles respuestas</label>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE2A"
+                                                                class="col-sm-2 col-form-label">Respuesta A)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA21" id="inputRespuestaE2A" rows="1" required 
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA21" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE2B"
+                                                                class="col-sm-2 col-form-label">Respuesta B)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA22" id="inputRespuestaE2B" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA22" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE2C"
+                                                                class="col-sm-2 col-form-label">Respuesta C)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA23" id="inputRespuestaE2C" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA23" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE2D"
+                                                                class="col-sm-2 col-form-label">Respuesta D)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA24" id="inputRespuestaE2D" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA24" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <label for="inputSelectPreguntaCorrectaE" class="text-dark">Seleccione la respuesta correcta</label>
+                                                        <div class="form-grup row-1">
+                                                            <div class="form-group col-2">
+                                                                <select [(ngModel)]="ActividadService.selectedActividad.ECA2" name="ECA2" id="inputRespuestaCorrecta2E" class="form-control" ngModel required>
+                                                                    <option [value]=1>A</option>
+                                                                    <option [value]=2>B</option>
+                                                                    <option [value]=3>C</option>
+                                                                    <option [value]=4>D</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!--el valor seleccionado es {{respuestaCorrectaSelected1}}-->
+                                                    </div>
+
+                                                    <!--Pregunta 3 Tabs-->
+                                                    <div class="tab-pane fade p-3" id="pregunta3E" role="tabpanel" aria-labelledby="threeE-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 3</h5>
+                                                            <label for="inputPreguntaE3" class="text-dark">Escribir pregunta</label>
+                                                            <textarea class="form-control" name="EQ3" id="inputPreguntaE3"  rows="3" required 
+                                                                [(ngModel)]="ActividadService.selectedActividad.EQ3" placeholder="Pregunta ..."></textarea>
+                                                        </div>
+                                                        <label for="tituloCuatroRespuestasE" class="text-dark">Escribir las cuatro posibles respuestas</label>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE3A"
+                                                                class="col-sm-2 col-form-label">Respuesta A)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA31" id="inputRespuestaE3A" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA31" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE3B"
+                                                                class="col-sm-2 col-form-label">Respuesta B)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA32" id="inputRespuestaE3B" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA32" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE3C"
+                                                                class="col-sm-2 col-form-label">Respuesta C)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA33" id="inputRespuestaE3C" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA33" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="inputRespuestaE3D"
+                                                                class="col-sm-2 col-form-label">Respuesta D)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" name="EA34" id="inputRespuestaE3D" rows="1" required
+                                                                    [(ngModel)]="ActividadService.selectedActividad.EA34" placeholder="respuesta ..."></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <label for="inputSelectPreguntaCorrectaE" class="text-dark">Seleccione la respuesta correcta</label>
+                                                        <div class="form-grup row-1">
+                                                            <div class="form-group col-2">
+                                                                <select [(ngModel)]="ActividadService.selectedActividad.ECA3" name="ECA3" id="inputRespuestaCorrecta3E" class="form-control" ngModel required>
+                                                                    <option [value]=1>A</option>
+                                                                    <option [value]=2>B</option>
+                                                                    <option [value]=3>C</option>
+                                                                    <option [value]=4>D</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!--el valor seleccionado es {{respuestaCorrectaSelected1}}-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="style1">
                         <br>
 
                         <!--Boton Modificar Actividad-->
-                    <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
+                        <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
                             <a class="btn bg-warning px-5 py-4 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo" (click)="onModificarActividad(frmModificarActividad)">Modificar Actividad</a>
-                    </div>
+                        </div>
 
                     </form>
                     <hr class="style1">

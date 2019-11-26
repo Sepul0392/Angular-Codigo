@@ -44,10 +44,12 @@ export class ModificarActividadComponent implements OnInit {
   docenteSelectedA:number;
   competenciaSelectedA:number;
   actividadVisualizar:ActividadVisualizaI[];
+  newCont:number;
   newID:number;
   temp:number;
 
   id_docenteAuth:number;
+  id_colegioAuth:number;
   contenidoAct:contenidoREAVisualizarI;
   tallerAct:contenidoREAVisualizarI;
   verificationSaveContent:boolean;
@@ -77,6 +79,7 @@ export class ModificarActividadComponent implements OnInit {
     this.getActividades();
     this.ActividadService.selectedActividad = new ActividadI();
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
+    this.id_colegioAuth = this.AuthDService.getIdColegioDocente();
     this.contenidoAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
     this.tallerAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
     this.verificationSaveContent = false;
@@ -193,39 +196,39 @@ export class ModificarActividadComponent implements OnInit {
           this.actividadToSave.video = 1;
           this.actividadToSave.urlvideo = this.contenidoToSave.urlrepositorio;
           this.actividadToSave.documento = 0;
-          this.actividadToSave.urldocumento = "";
+          this.actividadToSave.urldocumento = "no";
           this.actividadToSave.audio = 0;
-          this.actividadToSave.urlaudio = "";
+          this.actividadToSave.urlaudio = "no";
           this.actividadToSave.html = 0;
-          this.actividadToSave.urlhtml = "";
+          this.actividadToSave.urlhtml = "no";
         }
         if (this.contenidoToSave.tipo_CREA == 2) {
           this.actividadToSave.video = 0;
-          this.actividadToSave.urlvideo = "";
+          this.actividadToSave.urlvideo = "no";
           this.actividadToSave.documento = 1;
           this.actividadToSave.urldocumento = this.contenidoToSave.urlrepositorio;
           this.actividadToSave.audio = 0;
-          this.actividadToSave.urlaudio = "";
+          this.actividadToSave.urlaudio = "no";
           this.actividadToSave.html = 0;
-          this.actividadToSave.urlhtml = "";
+          this.actividadToSave.urlhtml = "no";
         }
         if (this.contenidoToSave.tipo_CREA == 3) {
           this.actividadToSave.video = 0;
-          this.actividadToSave.urlvideo = "";
+          this.actividadToSave.urlvideo = "no";
           this.actividadToSave.documento = 0;
-          this.actividadToSave.urldocumento = "";
+          this.actividadToSave.urldocumento = "no";
           this.actividadToSave.audio = 1;
           this.actividadToSave.urlaudio = this.contenidoToSave.urlrepositorio;
           this.actividadToSave.html = 0;
-          this.actividadToSave.urlhtml = "";
+          this.actividadToSave.urlhtml = "no";
         }
         if (this.contenidoToSave.tipo_CREA == 4) {
           this.actividadToSave.video = 0;
-          this.actividadToSave.urlvideo = "";
+          this.actividadToSave.urlvideo = "no";
           this.actividadToSave.documento = 0;
-          this.actividadToSave.urldocumento = "";
+          this.actividadToSave.urldocumento = "no";
           this.actividadToSave.audio = 0;
-          this.actividadToSave.urlaudio = "";
+          this.actividadToSave.urlaudio = "no";
           this.actividadToSave.html = 1;
           this.actividadToSave.urlhtml = this.contenidoToSave.urlrepositorio;
         }
@@ -348,6 +351,26 @@ export class ModificarActividadComponent implements OnInit {
         this.actividadToSave.A33 = form.value.A33;
         this.actividadToSave.A34 = form.value.A34;
         this.actividadToSave.CA3 = form.value.CA3;
+        this.actividadToSave.evaluacion = 1;
+        this.actividadToSave.descripcion_evaluacion = form.value.descripcion_evaluacion;
+        this.actividadToSave.EQ1 = form.value.EQ1;
+        this.actividadToSave.EA11 = form.value.EA11;
+        this.actividadToSave.EA12 = form.value.EA12;
+        this.actividadToSave.EA13 = form.value.EA13;
+        this.actividadToSave.EA14 = form.value.EA14;
+        this.actividadToSave.ECA1 = form.value.ECA1;
+        this.actividadToSave.EQ2 = form.value.EQ2;
+        this.actividadToSave.EA21 = form.value.EA21;
+        this.actividadToSave.EA22 = form.value.EA22;
+        this.actividadToSave.EA23 = form.value.EA23;
+        this.actividadToSave.EA24 = form.value.EA24;
+        this.actividadToSave.ECA2 = form.value.ECA2;
+        this.actividadToSave.EQ3 = form.value.EQ3;
+        this.actividadToSave.EA31 = form.value.EA31;
+        this.actividadToSave.EA32 = form.value.EA32;
+        this.actividadToSave.EA33 = form.value.EA33;
+        this.actividadToSave.EA34 = form.value.EA34;
+        this.actividadToSave.ECA3 = form.value.ECA3;
 
         //console.log('datosActividadModificada', this.actividadToSave);
 
@@ -370,21 +393,26 @@ export class ModificarActividadComponent implements OnInit {
           this.ActividadService.actividades = res as ActividadI[];
           //console.log('Actividades', this.ActividadService.actividades);
 
+          //Crear Cont
           if (this.ActividadService.actividades.length == 0) {
-            this.newID = 1;
+            this.newCont = 1;
           }
           else {
+            if (this.ActividadService.actividades.length) {
+              this.newCont = 1;
+            }
             for (let n = 0; n < this.ActividadService.actividades.length; n++) {
               for (let i = 0; i < this.ActividadService.actividades.length; i++) {
-                //console.log('n=', n, 'id_CREA=', this.ActividadService.actividades[i].id_actividad);
-                if (n + 1 == this.ActividadService.actividades[i].id_actividad) {
-                  this.newID = n + 2;
-                  this.temp = 0;
-                  i = this.ActividadService.actividades.length;
-                }
-                else {
-                  this.newID = n + 1;
-                  this.temp = 1;
+                if (this.ActividadService.actividades[i].id_colegio == this.id_colegioAuth) {
+                  if (n + 1 == this.ActividadService.actividades[i].cont) {
+                    this.newCont = n + 2;
+                    this.temp = 0;
+                    i = this.ActividadService.actividades.length;
+                  }
+                  else {
+                    this.newCont = n + 1;
+                    this.temp = 1;
+                  }
                 }
               }
               if (this.temp == 1) {
@@ -392,6 +420,10 @@ export class ModificarActividadComponent implements OnInit {
               }
             }
           }
+
+          // ID Actividad
+          var idGlobal = "" + this.id_colegioAuth + this.newCont;
+          this.newID = parseInt(idGlobal);
 
           this.actividadToSave.id_actividad = this.newID;
           this.actividadToSave.id_docente = this.id_docenteAuth;
@@ -419,6 +451,26 @@ export class ModificarActividadComponent implements OnInit {
           this.actividadToSave.A33 = form.value.A33;
           this.actividadToSave.A34 = form.value.A34;
           this.actividadToSave.CA3 = form.value.CA3;
+          this.actividadToSave.evaluacion = 1;
+          this.actividadToSave.descripcion_evaluacion = form.value.descripcion_evaluacion;
+          this.actividadToSave.EQ1 = form.value.EQ1;
+          this.actividadToSave.EA11 = form.value.EA11;
+          this.actividadToSave.EA12 = form.value.EA12;
+          this.actividadToSave.EA13 = form.value.EA13;
+          this.actividadToSave.EA14 = form.value.EA14;
+          this.actividadToSave.ECA1 = form.value.ECA1;
+          this.actividadToSave.EQ2 = form.value.EQ2;
+          this.actividadToSave.EA21 = form.value.EA21;
+          this.actividadToSave.EA22 = form.value.EA22;
+          this.actividadToSave.EA23 = form.value.EA23;
+          this.actividadToSave.EA24 = form.value.EA24;
+          this.actividadToSave.ECA2 = form.value.ECA2;
+          this.actividadToSave.EQ3 = form.value.EQ3;
+          this.actividadToSave.EA31 = form.value.EA31;
+          this.actividadToSave.EA32 = form.value.EA32;
+          this.actividadToSave.EA33 = form.value.EA33;
+          this.actividadToSave.EA34 = form.value.EA34;
+          this.actividadToSave.ECA3 = form.value.ECA3;
 
           //console.log('datosActividadModificada', this.actividadToSave);
 
@@ -441,6 +493,9 @@ export class ModificarActividadComponent implements OnInit {
 
   //Imprimir datos de la Actividad seleccionanda en el Form 
   getActividadinForm(actividad: ActividadI) {
+    this.verificationSaveContent = false;
+    this.verificationSaveTaller = false;
+
     this.ActividadService.selectedActividad = actividad;
     this.saveDataActivity(actividad);
     //console.log(this.ContentREAService.contenidosREA);

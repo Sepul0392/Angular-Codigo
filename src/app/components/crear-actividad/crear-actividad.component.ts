@@ -73,8 +73,9 @@ export class CrearActividadComponent implements OnInit {
     this.correcto = false;
     this.error = false;
 
-    this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
-    this.id_docenteAuth = this.AuthDService.getIdColegioDocente();
+    this.id_docenteAuth = this.AuthDService.getIdDocente();
+    this.id_colegioAuth = this.AuthDService.getIdColegioDocente();
+    //console.log('prueba', this.id_docenteAuth, this.id_colegioAuth);
     this.getOptions();
     this.getContenidos();
   }
@@ -169,7 +170,7 @@ export class CrearActividadComponent implements OnInit {
         }
         for (let n = 0; n < this.ActividadService.actividades.length; n++) {
           for (let i = 0; i < this.ActividadService.actividades.length; i++) {
-            if(this.ActividadService.actividades[i].id_colegio == this.id_docenteAuth){
+            if(this.ActividadService.actividades[i].id_colegio == this.id_colegioAuth){
               if (n + 1 == this.ActividadService.actividades[i].cont) {
                 this.newCont = n + 2;
                 this.temp = 0;
@@ -195,39 +196,39 @@ export class CrearActividadComponent implements OnInit {
         this.videoOpt = 1;
         this.urlvideoOpt = this.contenidoToSave.urlrepositorio;
         this.documentoOpt = 0;
-        this.urldocumentoOpt = "";
+        this.urldocumentoOpt = "no";
         this.audioOpt = 0;
-        this.urlaudioOpt = "";
+        this.urlaudioOpt = "no";
         this.htmlOpt = 0;
-        this.urlhtmlOpt = "";
+        this.urlhtmlOpt = "no";
       }
       if(this.contenidoToSave.tipo_CREA == 2){
         this.videoOpt = 0;
-        this.urlvideoOpt = "";
+        this.urlvideoOpt = "no";
         this.documentoOpt = 1;
         this.urldocumentoOpt = this.contenidoToSave.urlrepositorio;
         this.audioOpt = 0;
-        this.urlaudioOpt = "";
+        this.urlaudioOpt = "no";
         this.htmlOpt = 0;
-        this.urlhtmlOpt = "";
+        this.urlhtmlOpt = "no";
       }
       if(this.contenidoToSave.tipo_CREA == 3){
         this.videoOpt = 0;
-        this.urlvideoOpt = "";
+        this.urlvideoOpt = "no";
         this.documentoOpt = 0;
-        this.urldocumentoOpt = "";
+        this.urldocumentoOpt = "no";
         this.audioOpt = 1;
         this.urlaudioOpt = this.contenidoToSave.urlrepositorio;
         this.htmlOpt = 0;
-        this.urlhtmlOpt = "";
+        this.urlhtmlOpt = "no";
       }
       if(this.contenidoToSave.tipo_CREA == 4){
         this.videoOpt = 0;
-        this.urlvideoOpt = "";
+        this.urlvideoOpt = "no";
         this.documentoOpt = 0;
-        this.urldocumentoOpt = "";
+        this.urldocumentoOpt = "no";
         this.audioOpt = 0;
-        this.urlaudioOpt = "";
+        this.urlaudioOpt = "no";
         this.htmlOpt = 1;
         this.urlhtmlOpt = this.contenidoToSave.urlrepositorio;
       }
@@ -300,7 +301,7 @@ export class CrearActividadComponent implements OnInit {
 
       console.log('datosActividad', newActividad);
 
-      /*this.ActividadService.createActivity(newActividad).subscribe(res => {
+      this.ActividadService.createActivity(newActividad).subscribe(res => {
         //window.location.reload();
 
         const contenidoREAInfo = {
@@ -321,7 +322,7 @@ export class CrearActividadComponent implements OnInit {
             this.resetForm(form);
           });
         });
-      });*/
+      });
     });
   }
 
