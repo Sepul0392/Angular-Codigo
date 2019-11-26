@@ -38,6 +38,9 @@ export class FilterCompetenciaPipe implements PipeTransform {
           if (materiaCSearch && item.id_areaMateria != this.id_areaMateria) {
             return false;
           }
+          if (item.id_areaMateria == 0) {
+            return false;
+          }
           if (gradoCSearch && item.gradoInicial > gradoCSearch) {
             return false;
           }

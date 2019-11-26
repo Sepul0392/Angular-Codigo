@@ -1,11 +1,12 @@
 export class ActividadI {
 
-    constructor(id_actividad = 0, id_colegio = 0, id_docente = 0, id_materia = 0, id_grado = 0, id_competencia = 0, titulo_actividad = '', 
+    constructor(id_actividad = 0, cont = 0, id_colegio = 0, id_docente = 0, id_materia = 0, id_grado = 0, id_competencia = 0, titulo_actividad = '', 
                 descripcion_actividad = '',id_contenidoREA = 0, video = 0, urlvideo = '', lectura = 0, urllectura = '', html = 0, urlhtml = '',
                 Q1 = '', A11 = '', A12 = '', A13 = '', A14 = '', CA1 = 0, Q2 = '', A21 = '', A22 = '', A23 = '', A24 = '', CA2 = 0,
                 Q3 = '', A31 = '', A32 = '', A33 = '', A34 = '', CA3 = 0, audio = 0, urlaudio = '', descripcion_test = '',
-                id_taller = 0, taller = 0, urltaller = ''){
+                id_taller = 0, taller = 0, urltaller = '', evaluacion = 0, descripcion_evaluacion = ''){
                     this.id_actividad = id_actividad;
+                    this.cont = cont;
                     this.id_colegio = id_colegio;
                     this.id_docente = id_docente;
                     this.id_materia = id_materia;
@@ -44,9 +45,30 @@ export class ActividadI {
                     this.A33 = A33;
                     this.A34 = A34;
                     this.CA3 = CA3;
+                    this.evaluacion = evaluacion;
+                    this.descripcion_evaluacion = descripcion_evaluacion;
+                    this.EQ1 = Q1;
+                    this.EA11 = A11;
+                    this.EA12 = A12;
+                    this.EA13 = A13;
+                    this.EA14 = A14;
+                    this.ECA1 = CA1;
+                    this.EQ2 = Q2;
+                    this.EA21 = A21;
+                    this.EA22 = A22;
+                    this.EA23 = A23;
+                    this.EA24 = A24;
+                    this.ECA2 = CA2;
+                    this.EQ3 = Q3;
+                    this.EA31 = A31;
+                    this.EA32 = A32;
+                    this.EA33 = A33;
+                    this.EA34 = A34;
+                    this.ECA3 = CA3;
     }
 
     id_actividad: number;
+    cont: number;
     id_colegio: number;
     id_docente: number;
     id_materia: number;
@@ -84,5 +106,25 @@ export class ActividadI {
     A32: string;
     A33: string;
     A34: string;
-    CA3: number
+    CA3: number;
+    evaluacion: number;
+    descripcion_evaluacion: string;
+    EQ1: string;
+    EA11: string;
+    EA12: string;
+    EA13: string;
+    EA14: string;
+    ECA1: number;
+    EQ2: string;
+    EA21: string;
+    EA22: string;
+    EA23: string;
+    EA24: string;
+    ECA2: number;
+    EQ3: string;
+    EA31: string;
+    EA32: string;
+    EA33: string;
+    EA34: string;
+    ECA3: number;
 }

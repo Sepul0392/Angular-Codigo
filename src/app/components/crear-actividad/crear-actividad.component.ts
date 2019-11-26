@@ -44,10 +44,12 @@ export class CrearActividadComponent implements OnInit {
   docenteSelectedA:number;
   competenciaSelectedA:number;
   respuestaCorrectaSelected:number;
+  newCont:number;
   newID: number;
   temp: number;
 
   id_docenteAuth:number;
+  id_colegioAuth:number;
   videoOpt:number;
   urlvideoOpt:string;
   documentoOpt:number;
@@ -56,9 +58,9 @@ export class CrearActividadComponent implements OnInit {
   urlaudioOpt:string;
   htmlOpt:number;
   urlhtmlOpt:string;
-  respuestaCorrectaSelected1:number;
-  respuestaCorrectaSelected2:number;
-  respuestaCorrectaSelected3:number;
+  respuestaCorrectaTSelected1:number;
+  respuestaCorrectaTSelected2:number;
+  respuestaCorrectaTSelected3:number;
   ID_TipoContenido_Taller:number;
   correcto:boolean;
   error:boolean;
@@ -72,6 +74,7 @@ export class CrearActividadComponent implements OnInit {
     this.error = false;
 
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
+    this.id_docenteAuth = this.AuthDService.getIdColegioDocente();
     this.getOptions();
     this.getContenidos();
   }
@@ -102,7 +105,7 @@ export class CrearActividadComponent implements OnInit {
 
     this.AuthDService.loadDocente(infoDocente).subscribe(res =>{
       this.docenteAuth = res as DocenteI;
-      console.log('prueba2', infoDocente)
+      //console.log('prueba2', infoDocente)
     });
   }
 
@@ -151,28 +154,31 @@ export class CrearActividadComponent implements OnInit {
     this.correcto = false;
     this.error = true;
 
-    //Generar ID
     this.ActividadService.allActivities().subscribe(res =>{
       //console.log(res);
       this.ActividadService.actividades = res as ActividadI[];
       //console.log('Actividades', this.ActividadService.actividades);
 
-      //Crear ID
+      //Crear Cont
       if (this.ActividadService.actividades.length == 0) {
-        this.newID = 1;
+        this.newCont = 1;
       }
       else{
+        if (this.ActividadService.actividades.length) {
+          this.newCont = 1;
+        }
         for (let n = 0; n < this.ActividadService.actividades.length; n++) {
           for (let i = 0; i < this.ActividadService.actividades.length; i++) {
-            //console.log('n=', n, 'id_CREA=', this.ActividadService.actividades[i].id_actividad);
-            if (n+1 == this.ActividadService.actividades[i].id_actividad) {
-              this.newID = n + 2;
-              this.temp = 0;
-              i = this.ActividadService.actividades.length;
-            }
-            else {
-              this.newID = n+1;
-              this.temp = 1;
+            if(this.ActividadService.actividades[i].id_colegio == this.id_docenteAuth){
+              if (n + 1 == this.ActividadService.actividades[i].cont) {
+                this.newCont = n + 2;
+                this.temp = 0;
+                i = this.ActividadService.actividades.length;
+              }
+              else {
+                this.newCont = n + 1;
+                this.temp = 1;
+              }
             }
           }
           if (this.temp == 1) {
@@ -180,6 +186,10 @@ export class CrearActividadComponent implements OnInit {
           }
         }
       }
+
+      // ID Actividad
+      var idGlobal = ""+this.id_colegioAuth+this.newCont;
+      this.newID = parseInt(idGlobal);
 
       if(this.contenidoToSave.tipo_CREA == 1){
         this.videoOpt = 1;
@@ -227,7 +237,8 @@ export class CrearActividadComponent implements OnInit {
       const newActividad = {
         //id_CREA: Math.floor((Math.random() * 100) + 1),
         id_actividad: this.newID,
-        id_colegio: 0,
+        cont: this.newCont,
+        id_colegio: this.id_colegioAuth,
         id_docente: this.id_docenteAuth,
         id_materia: this.materiaSelectedA,
         id_grado: this.gradoSelectedA,
@@ -252,24 +263,44 @@ export class CrearActividadComponent implements OnInit {
         A12: form.value.respuesta12,
         A13: form.value.respuesta13,
         A14: form.value.respuesta14,
-        CA1: this.respuestaCorrectaSelected1,
+        CA1: this.respuestaCorrectaTSelected1,
         Q2: form.value.preguntaQ2,
         A21: form.value.respuesta21,
         A22: form.value.respuesta22,
         A23: form.value.respuesta23,
         A24: form.value.respuesta24,
-        CA2: this.respuestaCorrectaSelected2,
+        CA2: this.respuestaCorrectaTSelected2,
         Q3: form.value.preguntaQ3,
         A31: form.value.respuesta31,
         A32: form.value.respuesta32,
         A33: form.value.respuesta33,
         A34: form.value.respuesta34,
-        CA3: this.respuestaCorrectaSelected3
+        CA3: this.respuestaCorrectaTSelected3,
+        evaluacion: 1,
+        descripcion_evaluacion: form.value.descripcion_evaluacion,
+        EQ1: form.value.preguntaQ1E,
+        EA11: form.value.respuesta11E,
+        EA12: form.value.respuesta12E,
+        EA13: form.value.respuesta13E,
+        EA14: form.value.respuesta14E,
+        ECA1: form.value.respuestaCorrectaESelected1,
+        EQ2: form.value.preguntaQ2E,
+        EA21: form.value.respuesta21E,
+        EA22: form.value.respuesta22E,
+        EA23: form.value.respuesta23E,
+        EA24: form.value.respuesta24E,
+        ECA2: form.value.respuestaCorrectaESelected2,
+        EQ3: form.value.preguntaQ3E,
+        EA31: form.value.respuesta31E,
+        EA32: form.value.respuesta32E,
+        EA33: form.value.respuesta33E,
+        EA34: form.value.respuesta34E,
+        ECA3: form.value.respuestaCorrectaESelected3
       }
 
-      //console.log('datosActividad', newActividad);
+      console.log('datosActividad', newActividad);
 
-      this.ActividadService.createActivity(newActividad).subscribe(res => {
+      /*this.ActividadService.createActivity(newActividad).subscribe(res => {
         //window.location.reload();
 
         const contenidoREAInfo = {
@@ -290,7 +321,7 @@ export class CrearActividadComponent implements OnInit {
             this.resetForm(form);
           });
         });
-      });
+      });*/
     });
   }
 
@@ -316,6 +347,7 @@ export class CrearActividadComponent implements OnInit {
     if (form) {
       form.reset();
       window.scrollTo(0, 0);
+      this.temp = 0;
     }
   }
   

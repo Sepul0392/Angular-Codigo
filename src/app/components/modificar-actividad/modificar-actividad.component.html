@@ -55,6 +55,7 @@
                             <label for="inputDocenteA" class="text-white">Competencia</label>
                             <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA" class="form-control" ngModel required>
                                 <option selected></option>
+                                <option selected [value]=0>Sin Competencia</option>
                                 <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA" [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
                                 </option>
                             </select>
@@ -63,7 +64,7 @@
                         <div class="form-group col">
                             <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
                             <input type="text" class="form-control col-auto" id="inputTextoBusquedaCompetencia"
-                                placeholder="Ingrese nombre competencia" [(ngModel)]="nombreCompetenciaSelected" name="inputBusquedaCompetencia">
+                                placeholder="Ingrese palabra clave" [(ngModel)]="nombreCompetenciaSelected" name="inputBusquedaCompetencia">
                         </div>
                     </div>
                     <!--Tabla de Resultados-->
@@ -152,8 +153,8 @@
                                 <select id="inputCompetenciaA" name="id_competencia"
                                     class="form-control" ngModel required [(ngModel)]="ActividadService.selectedActividad.id_competencia">
                                     <option selected></option>
-                                    <option
-                                        *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelectedAct:ActividadService.selectedActividad.id_materia:ActividadService.selectedActividad.id_grado"
+                                    <option [value]=0>Sin Competencia</option>
+                                    <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelectedAct:ActividadService.selectedActividad.id_materia:ActividadService.selectedActividad.id_grado"
                                         [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
                                     </option>
                                 </select>
@@ -162,7 +163,7 @@
                             <div class="form-group col">
                                 <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
                                 <input type="text" class="form-control col-auto" id="inputTextoBusquedaCompetencia"
-                                    placeholder="Ingrese nombre competencia" [(ngModel)]="nombreCompetenciaSelectedAct"
+                                    placeholder="Ingrese palabra clave" [(ngModel)]="nombreCompetenciaSelectedAct"
                                     name="nombreCompetenciaSelectedA">
                             </div>
                         </div>
