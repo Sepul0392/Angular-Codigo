@@ -230,7 +230,7 @@ export class AuthAdminService {
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadEstudiante`, info);
   }
 
-  //Cragar Todos los Estudiantes
+  //Cargar Todos los Estudiantes
   loadAllEstudiantes(){
     return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllEstudiantes`);
   }

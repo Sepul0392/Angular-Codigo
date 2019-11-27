@@ -31,6 +31,7 @@ import { GestionarUsuariosAdminComponent } from './Admin/gestionar-usuarios-admi
 import { GestionarColegioAdminComponent } from './Admin/gestionar-colegio-admin/gestionar-colegio-admin.component';
 import { BusquedaVisitanteComponent } from './Visitante/busqueda-visitante/busqueda-visitante.component';
 import { HeaderVisitanteComponent } from './Visitante/header-visitante/header-visitante.component';
+import { DudasComponent } from './dudas/dudas.component';
 
 @NgModule({
   declarations:[
@@ -55,7 +56,8 @@ import { HeaderVisitanteComponent } from './Visitante/header-visitante/header-vi
     GestionarUsuariosAdminComponent,
     GestionarColegioAdminComponent,
     BusquedaVisitanteComponent,
-    HeaderVisitanteComponent
+    HeaderVisitanteComponent,
+    DudasComponent
   ],
   imports:[
       CommonModule,

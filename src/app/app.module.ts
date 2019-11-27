@@ -48,6 +48,7 @@ import { BusquedaVisitanteComponent } from './components/Visitante/busqueda-visi
 import { HeaderVisitanteComponent } from './components/Visitante/header-visitante/header-visitante.component';
 import { FilterColegioAdminPipe } from './pipes/filter-colegio-admin.pipe';
 import { FilterMateriaactivaAdminPipe } from './pipes/filter-materiaactiva-admin.pipe';
+import { DudasComponent } from './components/dudas/dudas.component';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { FilterMateriaactivaAdminPipe } from './pipes/filter-materiaactiva-admin
     BusquedaVisitanteComponent,
     HeaderVisitanteComponent,
     FilterColegioAdminPipe,
-    FilterMateriaactivaAdminPipe
+    FilterMateriaactivaAdminPipe,
+    DudasComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,8 @@ import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { MateriaActivaI } from '../models/materiaActiva';
 import { ColegioI } from '../models/colegio';
+import { DudaI } from '../models/duda';
+import { EstuadianteI } from '../models/estudiante';
 import { Router } from '@angular/router';
 
 
@@ -21,14 +23,15 @@ export class AuthDService {
   private localStorageService;
   //private currentSession : DocenteI = null;
 
-  selectedDocente: DocenteI;
-  Docentes: DocenteI[]; 
-
-  selectedColegio: ColegioI;
-  Colegios: ColegioI[];
-
   selectedMateriaActiva: MateriaActivaI;
   MateriasActivas: MateriaActivaI[];
+  selectedDocente: DocenteI;
+  Docentes: DocenteI[]; 
+  selectedColegio: ColegioI;
+  Colegios: ColegioI[];
+  selectedDuda: DudaI;
+  Dudas: DudaI[];
+  
 
   constructor(private httpClient: HttpClient, private router: Router) {
     //this.localStorageService = sessionStorage;
@@ -37,6 +40,7 @@ export class AuthDService {
     this.selectedDocente = new DocenteI;
     this.selectedMateriaActiva = new MateriaActivaI;
     this.selectedColegio = new ColegioI;
+    this.selectedDuda = new DudaI;
   }
 
 
@@ -206,6 +210,55 @@ export class AuthDService {
   //Servicio para obtener la informacion de un colegio
   loadColegio(infoColegio:any){
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadSchool`, infoColegio);
+  }
+
+
+  //------------------------------------------------------------------------------------ DUDAS
+
+  //Servicio para obtener todos los colegio
+  loadAllDudas(){
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllDudas`);
+  }
+
+  //Ingresar respuesta y estado de la Duda en MongoDB 
+  uploadRespuestaDuda(info:any){
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadRespuestaDuda`, info);
+  }
+
+  //Modificar estado de la Duda en MongoDB 
+  uploadEstadoDuda(info:any){
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadEstadoDuda`, info);
+  }
+
+
+  //====================================================================================  Estudiantes
+
+  //Buscar un Estudiante
+  loadEstudiante(info:any){
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadEstudiante`, info);
+  }
+
+  //Cargar Todos los Estudiantes
+  loadAllEstudiantes(){
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllEstudiantes`);
+  }
+
+
+  //------------------------------------------------------------------------------------ Servicios de Ayuda
+
+  //Servicio para llamar todas las materias
+  allSubject() {
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllSubjects`);
+  }
+
+  //Servicio para llamar todos los grados
+  allGrade() {
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllGrades`);
+  }
+
+  //Servicio para llamar todas las ACtividades en MongoDB
+  allActivities(){
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllActivities`);
   }
 
 

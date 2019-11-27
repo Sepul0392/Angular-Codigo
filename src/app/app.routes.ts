@@ -16,7 +16,8 @@ import {
     GestionarCompetenciasAdminComponent,
     GestionarUsuariosAdminComponent,
     GestionarColegioAdminComponent,
-    BusquedaVisitanteComponent
+    BusquedaVisitanteComponent,
+    DudasComponent
 } from './components/index.paginas';
 
 const app_routes: Routes = [
@@ -36,6 +37,7 @@ const app_routes: Routes = [
     { path: 'gestionarUsuariosAdmin', component: GestionarUsuariosAdminComponent },
     { path: 'gestionarColegioAdmin', component: GestionarColegioAdminComponent },
     { path: 'busquedaVisitante', component: BusquedaVisitanteComponent },
+    { path: 'dudas', component: DudasComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'inicioProfesores'}
 ];
 

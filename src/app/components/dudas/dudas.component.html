@@ -1,0 +1,269 @@
+<app-header></app-header>
+
+<!--Contenedor Contenido Pagina-->
+<div class="contenedor py-3">
+
+    <!--Titulo pagina-->
+    <div class="container m-auto pb-2 bg-info rounded-top">
+        <h1 style="cursor:context-menu" class="mt-5 pt-4 text-center m ">Dudas</h1>
+    </div>
+    
+    <!--Contenedor Formularios-->
+    <div class="container pt-1 bg-secondary rounded-bottom">
+
+        <!--Tabs-->
+        <div class="row">
+            <div class="col">
+                <div class="mt-3">
+                    <div class="card-header tab-card-header">
+                        <!--Opcion Tab-->
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="col nav-item nav-link text-center active font-weight-bold text-dark" id="nav-Pregunta1-tab" data-toggle="tab"
+                                    href="#nav-Pregunta1" role="tab" aria-controls="nav-Pregunta1" aria-selected="true">Sin Resolver</a>
+                                <a class="col nav-item nav-link text-center font-weight-bold text-dark" id="nav-Pregunta2-tab" data-toggle="tab"
+                                    href="#nav-Pregunta2" role="tab" aria-controls="nav-Pregunta2" aria-selected="false">Resueltas</a>
+                            </div>
+                        </nav>
+        
+                        <!--Tabs Resultados-->
+                        <div class="tab-content" id="nav-tabContent">
+                            <br>
+
+                            <!--Tab 1-->
+                            <div class="tab-pane fade show active" id="nav-Pregunta1" role="tabpanel" aria-labelledby="nav-Pregunta1-tab">
+                                <!--Dudas Sin Resolver-->
+                                <div>
+                                    <h3 style="cursor:context-menu" class="py-3 text-center text-white">Dudas Sin Resolver</h3>
+                            
+                                    <div class="contenedor mx-3 py-3">
+                                        <form #frmBuscarCompetencia="ngForm">
+                            
+                                            <!--Buscar-->
+                                            <h5 class="py-3 text-white">Filtros:</h5>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control col-md-8" id="inputNombreActividadSinR" placeholder="Nombre Actividad" 
+                                                    [(ngModel)]="nombreActividadSelectedSinR" name="nombreActividadSelectedSinR">
+                                            </div>
+                                            <!-- Selectores -->
+                                            <div class="form-row">
+                                                <div class="form-group col-4">
+                                                    <label for="inputMateriaSinR" class="text-white">Materia</label>
+                                                    <select [(ngModel)]="materiaSinRSelected" name="materiaSinRSelected" id="inputMateriaSinR" class="form-control" ngModel required>
+                                                        <option selected></option>
+                                                        <option *ngFor="let materia of materias" [value]="materia.id_materia">{{materia.nombre_materia}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-3">
+                                                    <label for="inputGradoSinR" class="text-white">Grado</label>
+                                                    <select [(ngModel)]="gradoSinRSelected" name="gradoSinRSelected" id="inputGradoSinR" class="form-control" ngModel required>
+                                                        <option selected></option>
+                                                        <option *ngFor="let grado of grados" [value]="grado.id_grado">{{grado.nombre_grado}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                            
+                                            <!--Resultados-->
+                                            <h5 class="py-3 text-white">Resultados:</h5>
+                                            <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
+                                                style="width: 95%; height: 450px">
+                                                <!--Resultado-->
+                                                <div class="row-1" *ngFor="let duda of dudasVisualizar">
+                                                    <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                                        <div class="row no-gutters border border-info">
+                                                            <div class="col" style="max-width: 840px;">
+                                                                <div class="card-body p-2">
+                                                                    <p class="card-text">Pregunta: {{duda.pregunta}}.</p>
+                                                                    <div>
+                                                                        <p class="card-text"><small class="text-muted">Actividad: {{duda.nombre_actividad}}</small></p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="card-text"><small class="text-muted">Estudiante: {{duda.estudiante}}</small></p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="card-text"><small class="text-muted">Materia: {{duda.materia}}</small></p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="card-text"><small class="text-muted">Grado: {{duda.grado}}</small></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Boton borrar Actividad-->
+                                                        <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
+                                                            <a class="btn bg-warning" data-toggle="modal" data-target="#mimodalejemplo" (click)="saveDataDuda(duda)">Responder</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <br>
+                                        <hr class="style4">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Tab 2-->
+                            <div class="tab-pane fade" id="nav-Pregunta2" role="tabpanel" aria-labelledby="nav-Pregunta2-tab">
+                                <!--Dudas Resueltas-->
+                                <div>
+                                    <h3 style="cursor:context-menu" class="py-3 text-center text-white">Dudas Resueltas</h3>
+                            
+                                    <div class="contenedor mx-3 py-3">
+                                        <form #frmBuscarCompetencia="ngForm">
+                            
+                                            <!--Buscar-->
+                                            <h5 class="py-3 text-white">Filtros:</h5>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control col-md-8" id="inputNombreActividadSinR" placeholder="Nombre Actividad" 
+                                                    [(ngModel)]="nombreActividadSelectedSinR" name="nombreActividadSelectedSinR">
+                                            </div>
+                                            <!-- Selectores -->
+                                            <div class="form-row">
+                                                <div class="form-group col-4">
+                                                    <label for="inputMateriaSinR" class="text-white">Materia</label>
+                                                    <select [(ngModel)]="materiaSinRSelected" name="materiaSinRSelected" id="inputMateriaSinR" class="form-control" ngModel required>
+                                                        <option selected></option>
+                                                        <option *ngFor="let materia of materias" [value]="materia.id_materia">{{materia.nombre_materia}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-3">
+                                                    <label for="inputGradoSinR" class="text-white">Grado</label>
+                                                    <select [(ngModel)]="gradoSinRSelected" name="gradoSinRSelected" id="inputGradoSinR" class="form-control" ngModel required>
+                                                        <option selected></option>
+                                                        <option *ngFor="let grado of grados" [value]="grado.id_grado">{{grado.nombre_grado}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                            
+                                            <!--Resultados-->
+                                            <h5 class="py-3 text-white">Resultados:</h5>
+                                            <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
+                                                style="width: 95%; height: 450px">
+                                                <!--Resultado-->
+                                                <div class="row-1" *ngFor="let duda of dudasVisualizar">
+                                                    <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                                        <div class="row no-gutters border border-info">
+                                                            <div class="col" style="max-width: 840px;">
+                                                                <div class="card-body p-2">
+                                                                    <p class="card-text">Pregunta: {{duda.pregunta}}.</p>
+                                                                    <div>
+                                                                        <p class="card-text"><small class="text-muted">Actividad: {{duda.nombre_actividad}}</small></p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="card-text"><small class="text-muted">Estudiante: {{duda.estudiante}}</small></p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="card-text"><small class="text-muted">Materia: {{duda.materia}}</small></p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="card-text"><small class="text-muted">Grado: {{duda.grado}}</small></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Boton borrar Actividad-->
+                                                        <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
+                                                            <a class="btn bg-warning" data-toggle="modal" data-target="#mimodalejemplo3" (click)="saveDataDuda(duda)">Responder</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <br>
+                                        <hr class="style4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nueva Competencia -->
+    <div class="modal fade" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 style="cursor:context-menu" class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-info" *ngIf="correcto1">
+                    Se ha creado una nueva Competencia.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error1">
+                    La Competencia no se ha podido crear. Revisa que has ingresado todos los datos requeridos.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nueva AreaMateria -->
+    <div class="modal fade" id="mimodalejemplo4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-info" *ngIf="correcto2">
+                    Se ha creado una nueva Area.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error2">
+                    El Area no se ha podido crear. Revisa que has ingresado todos los datos requeridos.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmar Borrar AreaMateria -->
+    <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Para borrar el Area presione aceptar, de lo contrario presione X
+                    para cancelar.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters bg-light py-1">
+                    <button class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteAreaMateria()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmar Borrar Competencia -->
+    <div class="modal fade" id="mimodalejemplo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h4 class="modal-title" id="myModalLabel">Confirmar Accion</h4>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Para borrar la Competencia presione aceptar, de lo contrario presione X
+                    para cancelar.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters bg-light py-1">
+                    <button class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteCompetencia()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

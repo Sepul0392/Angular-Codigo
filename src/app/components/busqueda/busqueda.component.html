@@ -254,24 +254,34 @@
                         <div>
                             <h3 style="cursor:context-menu" class="text-center bg-warning py-4">{{ActividadService.selectedActividad.titulo_actividad}}</h3>
                         </div>
-                        <div>
-                            <h5 class="">Descripcion: {{ActividadService.selectedActividad.descripcion_actividad}}</h5>
-                        </div>
-                        <div>
-                            <p class="card-text"><small class="text-muted">Materia: {{ActividadService.selectedActividad.materia}}</small>
-                            </p>
-                        </div>
-                        <div>
-                            <p class="card-text"><small class="text-muted">Grado: {{ActividadService.selectedActividad.id_grado}}</small>
-                            </p>
-                        </div>
-                        <div>
-                            <p class="card-text"><small class="text-muted">Competencia:
-                                    {{ActividadService.selectedActividad.competencia}}</small></p>
-                        </div>
-                        <div>
-                            <p class="card-text"><small class="text-muted">Profesor: {{ActividadService.selectedActividad.docente}}</small>
-                            </p>
+                        <div class="row-1">
+                            <div class="card mb-4 border-0" style="max-width: 1440px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-10" style="max-width: 840px;">
+                                        <div class="card-body p-2">
+                                            <div>
+                                                <h5 class="">Descripcion: {{ActividadService.selectedActividad.descripcion_actividad}}</h5>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Materia: {{ActividadService.selectedActividad.materia}}</small>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Grado: {{ActividadService.selectedActividad.id_grado}}</small>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Competencia:
+                                                        {{ActividadService.selectedActividad.competencia}}</small></p>
+                                            </div>
+                                            <div>
+                                                <p class="card-text"><small class="text-muted">Profesor: {{ActividadService.selectedActividad.docente}}</small>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr class="style1b">
 
@@ -346,7 +356,7 @@
                                                                 <label class="">Pregunta: {{ActividadService.selectedActividad.Q1}}</label>
                                                             </div>
                                                         </div>
-                                                        <label class="text-dark">Respuestas:</label>
+                                                        <label class="text-dark">Posibles Respuestas:</label>
                                                         <div class="form-group row">
                                                             <div class="pl-5">
                                                                 <label class="">A) {{ActividadService.selectedActividad.A11}}</label>
@@ -368,6 +378,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <!--Tab 2-->
                                                     <div class="tab-pane fade" id="nav-Pregunta2" role="tabpanel" aria-labelledby="nav-Pregunta2-tab">
                                                         <div class="form-group">
@@ -376,7 +387,7 @@
                                                                 <label class="">Pregunta: {{ActividadService.selectedActividad.Q2}}</label>
                                                             </div>
                                                         </div>
-                                                        <label class="text-dark">Respuestas:</label>
+                                                        <label class="text-dark">Posibles Respuestas:</label>
                                                         <div class="form-group row">
                                                             <div class="pl-5">
                                                                 <label class="">A) {{ActividadService.selectedActividad.A21}}</label>
@@ -398,6 +409,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <!--Tab 3-->
                                                     <div class="tab-pane fade" id="nav-Pregunta3" role="tabpanel" aria-labelledby="nav-Pregunta3-tab">
                                                         <div class="form-group">
@@ -406,7 +418,7 @@
                                                                 <label class="">Pregunta: {{ActividadService.selectedActividad.Q3}}</label>
                                                             </div>
                                                         </div>
-                                                        <label class="text-dark">Respuestas:</label>
+                                                        <label class="text-dark">Posibles Respuestas:</label>
                                                         <div class="form-group row">
                                                             <div class="pl-5">
                                                                 <label class="">A) {{ActividadService.selectedActividad.A31}}</label>
@@ -468,6 +480,139 @@
                                     <a class="btn btn-primary" (click)="verTallerActividad()">Ver</a>
                                 </div>
                             </div> 
+                        </div>
+                        <hr class="style1b">
+
+                        <!--Evaluacion del contenido-->
+                        <div>
+                            <h5 style="cursor:context-menu" class="">Evaluacion:</h5>
+                        </div>
+                        <div class="contenedor py-3">
+                            <div class="">
+                                <label>Descripcion: {{ActividadService.selectedActividad.descripcion_evaluacion}}</label>
+                            </div>
+                            <div class="container">
+                                <!--Tabs-->
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card mt-3 tab-card">
+                                            <div class="card-header tab-card-header bg-light">
+                                                <!--Opcion Tab-->
+                                                <nav>
+                                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                        <a class="col nav-item nav-link text-center active" id="nav-Pregunta1E-tab"
+                                                            data-toggle="tab" href="#nav-Pregunta1E" role="tab" aria-controls="nav-Pregunta1E"
+                                                            aria-selected="true">Pregunta 1</a>
+                                                        <a class="col nav-item nav-link text-center" id="nav-Pregunta2E-tab" data-toggle="tab"
+                                                            href="#nav-Pregunta2E" role="tab" aria-controls="nav-Pregunta2E"
+                                                            aria-selected="false">Pregunta 2</a>
+                                                        <a class="col nav-item nav-link text-center" id="nav-Pregunta3E-tab" data-toggle="tab"
+                                                            href="#nav-Pregunta3E" role="tab" aria-controls="nav-Pregunta3E"
+                                                            aria-selected="false">Pregunta 3</a>
+                                                    </div>
+                                                </nav>
+                        
+                                                <!--Tabs Resultados-->
+                                                <div class="tab-content" id="nav-tabContent">
+                                                    <br>
+                                                    <!--Tab 1-->
+                                                    <div class="tab-pane fade show active" id="nav-Pregunta1E" role="tabpanel" aria-labelledby="nav-Pregunta1E-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 1</h5>
+                                                            <div class="">
+                                                                <label class="">Pregunta: {{ActividadService.selectedActividad.EQ1}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <label class="text-dark">Posibles Respuestas:</label>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">A) {{ActividadService.selectedActividad.EA11}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">B) {{ActividadService.selectedActividad.EA12}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">C) {{ActividadService.selectedActividad.EA13}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">D) {{ActividadService.selectedActividad.EA14}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--Tab 2-->
+                                                    <div class="tab-pane fade" id="nav-Pregunta2E" role="tabpanel" aria-labelledby="nav-Pregunta2E-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 2</h5>
+                                                            <div class="">
+                                                                <label class="">Pregunta: {{ActividadService.selectedActividad.EQ2}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <label class="text-dark">Posibles Respuestas:</label>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">A) {{ActividadService.selectedActividad.EA21}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">B) {{ActividadService.selectedActividad.EA22}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">C) {{ActividadService.selectedActividad.EA23}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">D) {{ActividadService.selectedActividad.EA24}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--Tab 3-->
+                                                    <div class="tab-pane fade" id="nav-Pregunta3E" role="tabpanel" aria-labelledby="nav-Pregunta3E-tab">
+                                                        <div class="form-group">
+                                                            <h5 class="py-1 text-center text-dark">Pregunta 3</h5>
+                                                            <div class="">
+                                                                <label class="">Pregunta: {{ActividadService.selectedActividad.EQ3}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <label class="text-dark">Posibles Respuestas:</label>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">A) {{ActividadService.selectedActividad.EA31}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">B) {{ActividadService.selectedActividad.EA32}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">C) {{ActividadService.selectedActividad.EA33}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="pl-5">
+                                                                <label class="">D) {{ActividadService.selectedActividad.EA34}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr class="style1b">
 
