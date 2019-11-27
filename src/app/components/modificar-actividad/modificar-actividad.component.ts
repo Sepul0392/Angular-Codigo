@@ -56,6 +56,7 @@ export class ModificarActividadComponent implements OnInit {
   verificationSaveTaller:boolean;
   verificationSaveActividad:boolean;
   ID_TipoContenido_Taller:number;
+  id_docente_ActividadSelected:number;
   contenidoRes:any;
   tallerRes:any;
 
@@ -233,99 +234,18 @@ export class ModificarActividadComponent implements OnInit {
           this.actividadToSave.urlhtml = this.contenidoToSave.urlrepositorio;
         }
 
-        if (this.id_docenteAuth == this.actividadToSave.id_docente) {
-          const contenidoREAViejoInfo = {
-            id_CREA: this.contenidoRes.content.id_CREA,
-            en_uso: (this.contenidoRes.content.en_uso - 1)
-          }
-          const contenidoREANuevoInfo = {
-            id_CREA: this.contenidoToSave.id_CREA,
-            en_uso: (this.contenidoToSave.en_uso + 1)
-          }
-
-          this.ContentREAService.uploadEstadoContentREA(contenidoREANuevoInfo).subscribe(res => {
-            //console.log('nuevo contenido', res);
-            this.ContentREAService.uploadEstadoContentREA(contenidoREAViejoInfo).subscribe(res => {
-              //console.log('viejo contenido', res);
-            });
-          });
-        }
-        else {
-          const contenidoREANuevoInfo = {
-            id_CREA: this.contenidoToSave.id_CREA,
-            en_uso: (this.contenidoToSave.en_uso + 1)
-          }
-
-          this.ContentREAService.uploadEstadoContentREA(contenidoREANuevoInfo).subscribe(res => {
-            //console.log('nuevo contenido', res);
-          });
-        }
-
         this.actividadToSave.id_contenidoREA = this.contenidoToSave.id_CREA;
-      }
-      else {
-        if (this.id_docenteAuth != this.actividadToSave.id_docente) {
-          const contenidoREAViejoInfo = {
-            id_CREA: this.contenidoRes.content.id_CREA,
-            en_uso: (this.contenidoRes.content.en_uso + 1)
-          }
-
-          this.ContentREAService.uploadEstadoContentREA(contenidoREAViejoInfo).subscribe(res => {
-            //console.log('viejo contenido', res);
-          });
-        }
       }
 
       //cambiar informacion de taller en la Actividad al identificar que se a seleccionado un nuevo taller
       if (this.verificationSaveTaller == true) {
-
-        if (this.id_docenteAuth == this.actividadToSave.id_docente) {
-          const tallerViejoInfo = {
-            id_CREA: this.tallerRes.content.id_CREA,
-            en_uso: (this.tallerRes.content.en_uso - 1)
-          }
-          const tallerNuevoInfo = {
-            id_CREA: this.tallerToSave.id_CREA,
-            en_uso: (this.tallerToSave.en_uso + 1)
-          }
-
-          this.ContentREAService.uploadEstadoContentREA(tallerNuevoInfo).subscribe(res => {
-            //console.log('nuevo contenido', res);
-            this.ContentREAService.uploadEstadoContentREA(tallerViejoInfo).subscribe(res => {
-              //console.log('viejo contenido', res);
-            });
-          });
-        }
-        else {
-          const tallerNuevoInfo = {
-            id_CREA: this.tallerToSave.id_CREA,
-            en_uso: (this.tallerToSave.en_uso + 1)
-          }
-
-          this.ContentREAService.uploadEstadoContentREA(tallerNuevoInfo).subscribe(res => {
-            //console.log('nuevo contenido', res);
-          });
-        }
-
         this.actividadToSave.id_taller = this.tallerToSave.id_CREA;
         this.actividadToSave.taller = 1;
         this.actividadToSave.urltaller = this.tallerToSave.urlrepositorio;
       }
-      else {
-        if (this.id_docenteAuth != this.actividadToSave.id_docente) {
-          const tallerViejoInfo = {
-            id_CREA: this.tallerRes.content.id_CREA,
-            en_uso: (this.tallerRes.content.en_uso + 1)
-          }
-
-          this.ContentREAService.uploadEstadoContentREA(tallerViejoInfo).subscribe(res => {
-            //console.log('viejo contenido', res);
-          });
-        }
-      }
 
       //Verificar si la Actividad es del docente que la esta modificando
-      if (this.id_docenteAuth == this.actividadToSave.id_docente) {
+      if (this.id_docenteAuth == this.id_docente_ActividadSelected) {
 
         this.actividadToSave.id_materia = form.value.id_materia;
         this.actividadToSave.id_grado = form.value.id_grado;
@@ -351,7 +271,6 @@ export class ModificarActividadComponent implements OnInit {
         this.actividadToSave.A33 = form.value.A33;
         this.actividadToSave.A34 = form.value.A34;
         this.actividadToSave.CA3 = form.value.CA3;
-        this.actividadToSave.evaluacion = 1;
         this.actividadToSave.descripcion_evaluacion = form.value.descripcion_evaluacion;
         this.actividadToSave.EQ1 = form.value.EQ1;
         this.actividadToSave.EA11 = form.value.EA11;
@@ -378,6 +297,42 @@ export class ModificarActividadComponent implements OnInit {
           //window.location.reload();
           //console.log('prueba', this.actividadToSave);
           //console.log(res);
+          if (this.verificationSaveContent == true) {
+            const contenidoREAViejoInfo = {
+              id_CREA: this.contenidoRes.content.id_CREA,
+              en_uso: (this.contenidoRes.content.en_uso - 1)
+            }
+            const contenidoREANuevoInfo = {
+              id_CREA: this.contenidoToSave.id_CREA,
+              en_uso: (this.contenidoToSave.en_uso + 1)
+            }
+  
+            this.ContentREAService.uploadEstadoContentREA(contenidoREANuevoInfo).subscribe(res => {
+              //console.log('nuevo contenido', res);
+              this.ContentREAService.uploadEstadoContentREA(contenidoREAViejoInfo).subscribe(res => {
+                //console.log('viejo contenido', res);
+              });
+            });
+          }
+
+          if (this.verificationSaveTaller == true) {
+            const tallerViejoInfo = {
+              id_CREA: this.tallerRes.content.id_CREA,
+              en_uso: (this.tallerRes.content.en_uso - 1)
+            }
+            const tallerNuevoInfo = {
+              id_CREA: this.tallerToSave.id_CREA,
+              en_uso: (this.tallerToSave.en_uso + 1)
+            }
+  
+            this.ContentREAService.uploadEstadoContentREA(tallerNuevoInfo).subscribe(res => {
+              //console.log('nuevo contenido', res);
+              this.ContentREAService.uploadEstadoContentREA(tallerViejoInfo).subscribe(res => {
+                //console.log('viejo contenido', res);
+              });
+            });
+          }
+
           this.correcto1 = true;
           this.correcto2 = false;
           this.error1 = false;
@@ -387,7 +342,6 @@ export class ModificarActividadComponent implements OnInit {
       }
       else {
 
-        //Generar ID
         this.ActividadService.allActivities().subscribe(res => {
           //console.log(res);
           this.ActividadService.actividades = res as ActividadI[];
@@ -426,7 +380,9 @@ export class ModificarActividadComponent implements OnInit {
           this.newID = parseInt(idGlobal);
 
           this.actividadToSave.id_actividad = this.newID;
+          this.actividadToSave.cont = this.newCont;
           this.actividadToSave.id_docente = this.id_docenteAuth;
+          this.actividadToSave.id_colegio = this.id_colegioAuth;
           this.actividadToSave.id_materia = form.value.id_materia;
           this.actividadToSave.id_grado = form.value.id_grado;
           this.actividadToSave.id_competencia = form.value.id_competencia;
@@ -451,7 +407,6 @@ export class ModificarActividadComponent implements OnInit {
           this.actividadToSave.A33 = form.value.A33;
           this.actividadToSave.A34 = form.value.A34;
           this.actividadToSave.CA3 = form.value.CA3;
-          this.actividadToSave.evaluacion = 1;
           this.actividadToSave.descripcion_evaluacion = form.value.descripcion_evaluacion;
           this.actividadToSave.EQ1 = form.value.EQ1;
           this.actividadToSave.EA11 = form.value.EA11;
@@ -477,6 +432,49 @@ export class ModificarActividadComponent implements OnInit {
           this.ActividadService.createActivity(this.actividadToSave).subscribe(res => {
             //window.location.reload();
             //console.log("Creada nueva Actividad");
+
+            if (this.verificationSaveContent == true) {
+              const contenidoREANuevoInfo = {
+                id_CREA: this.contenidoToSave.id_CREA,
+                en_uso: (this.contenidoToSave.en_uso + 1)
+              }
+    
+              this.ContentREAService.uploadEstadoContentREA(contenidoREANuevoInfo).subscribe(res => {
+                //console.log('nuevo contenido', res);
+              });
+            }
+            else{
+              const contenidoREAViejoInfo = {
+                id_CREA: this.contenidoRes.content.id_CREA,
+                en_uso: (this.contenidoRes.content.en_uso + 1)
+              }
+    
+              this.ContentREAService.uploadEstadoContentREA(contenidoREAViejoInfo).subscribe(res => {
+                //console.log('viejo contenido', res);
+              });
+            }
+  
+            if (this.verificationSaveTaller == true) {
+              const tallerNuevoInfo = {
+                id_CREA: this.tallerToSave.id_CREA,
+                en_uso: (this.tallerToSave.en_uso + 1)
+              }
+    
+              this.ContentREAService.uploadEstadoContentREA(tallerNuevoInfo).subscribe(res => {
+                //console.log('nuevo contenido', res);
+              });
+            }
+            else{
+              const tallerViejoInfo = {
+                id_CREA: this.tallerRes.content.id_CREA,
+                en_uso: (this.tallerRes.content.en_uso + 1)
+              }
+    
+              this.ContentREAService.uploadEstadoContentREA(tallerViejoInfo).subscribe(res => {
+                //console.log('viejo contenido', res);
+              });
+            }
+
             this.correcto1 = false;
             this.correcto2 = true;
             this.error1 = false;
@@ -559,6 +557,7 @@ export class ModificarActividadComponent implements OnInit {
   saveDataActivity(actividad){
     this.actividadToSave = actividad;
     //console.log("actividad guardada:", this.actividadToSave);
+    this.id_docente_ActividadSelected = this.actividadToSave.id_docente;
     this.verificationSaveActividad = true;
   }
   //Almacenar info temporal de un Taller
@@ -589,9 +588,9 @@ export class ModificarActividadComponent implements OnInit {
       this.verificationSaveContent = false;
       this.verificationSaveTaller = false;
       this.verificationSaveActividad = false;
-      this.contenidoToSave = new contenidoREAI();
+      //this.contenidoToSave = new contenidoREAI();
       this.actividadToSave = new ActividadI();
-      this.tallerToSave = new contenidoREAI();
+      //this.tallerToSave = new contenidoREAI();
       this.ActividadService.selectedActividad = new ActividadI();
       this.contenidoAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
       this.tallerAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
