@@ -9,14 +9,24 @@ import { Router } from "@angular/router";
 })
 export class HeaderAdminComponent implements OnInit {
 
+  IPServer:string;
+
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
 
   ngOnInit() {
+    this.IPServer = this.AuthAdminService.loadIPServer();
   }
 
   logOut(){
     this.AuthAdminService.logout();
     this.router.navigateByUrl('/login')
+  }
+
+  //Abrir nueva ventana para ver el Manual
+  verManual(){
+    const urlLoad = 'http://'+this.IPServer+':3000/repositorio/manual.pdf';
+    //console.log('urlload', urlLoad);
+    window.open(urlLoad, "_blank");
   }
 
 }

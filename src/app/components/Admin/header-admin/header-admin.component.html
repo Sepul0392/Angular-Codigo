@@ -1,9 +1,9 @@
 <header>
-    <div class="container p-5">
+    <div class="container py-4">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top pt-4 pb-3">
                 <div class="container">
-                    <a class="navbar-brand font-weight-bold " routerLink="/inicioAdmin">Plataforma FC</a>
+                    <a class="navbar-brand font-weight-bold " routerLink="/inicioAdmin">Smart FC</a>
                     <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse"
                         data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -21,14 +21,14 @@
                                 <a class="nav-link bg-info text-dark text-center font-weight-bold rounded" routerLink="/gestionarCompetenciasAdmin">Gestionar Competencias</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link px-4 py-2 mb-1 text-center bg-secondary text-dark font-weight-bold rounded dropdown-toggle"
+                                <a class="nav-link px-4 py-2 mb-1 text-center bg-light text-dark font-weight-bold rounded dropdown-toggle"
                                     href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false" data-target="#navbarDropdownPerfil">
                                     Perfil
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right bg-secondary text-dark" id="navbarDropdownPerfil" aria-labelledby="navbarDropdownPerfil">
                                     <a class="dropdown-item btn text-center" routerLink (click)="logOut()">Cerrar sesión</a>
-                                    <a class="dropdown-item text-center" routerLink="/inicioAdmin">Ayuda</a>
+                                    <a class="dropdown-item text-center" style="cursor: pointer" (click)="verManual()">Ayuda</a>
                                 </div>
                             </li>
                         </ul>

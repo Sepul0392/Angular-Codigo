@@ -38,7 +38,8 @@ const app_routes: Routes = [
     { path: 'gestionarColegioAdmin', component: GestionarColegioAdminComponent },
     { path: 'busquedaVisitante', component: BusquedaVisitanteComponent },
     { path: 'dudas', component: DudasComponent },
-    { path: '**', pathMatch: 'full', redirectTo: 'inicioProfesores'}
+    { path: '**', pathMatch: 'full', redirectTo: 'login'},
+    { path: '', pathMatch: 'full', redirectTo: 'login'}
 ];
 
 export const app_routing = RouterModule.forRoot(app_routes, {useHash:true});
