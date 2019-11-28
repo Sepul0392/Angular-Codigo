@@ -24,6 +24,11 @@ export class ActividadService {
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/createActivity`, actividad);
   }
 
+  //Servicio llamar una Actividad en MongoDB
+  loadActivity(id:any){
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadActivity`, id);
+  }
+
   //Servicio para llamar todas las ACtividades en MongoDB
   allActivities(){
       return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllActivities`);
