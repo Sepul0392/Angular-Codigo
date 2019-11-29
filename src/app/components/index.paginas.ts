@@ -15,3 +15,4 @@ export { GestionarUsuariosAdminComponent } from './Admin/gestionar-usuarios-admi
 export { GestionarColegioAdminComponent } from './Admin/gestionar-colegio-admin/gestionar-colegio-admin.component';
 export { BusquedaVisitanteComponent } from './Visitante/busqueda-visitante/busqueda-visitante.component';
 export { DudasComponent } from './dudas/dudas.component';
+export { MetricasComponent } from './metricas/metricas.component';

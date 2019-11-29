@@ -32,6 +32,7 @@ import { GestionarColegioAdminComponent } from './Admin/gestionar-colegio-admin/
 import { BusquedaVisitanteComponent } from './Visitante/busqueda-visitante/busqueda-visitante.component';
 import { HeaderVisitanteComponent } from './Visitante/header-visitante/header-visitante.component';
 import { DudasComponent } from './dudas/dudas.component';
+import { MetricasComponent } from './metricas/metricas.component';
 
 @NgModule({
   declarations:[
@@ -57,7 +58,8 @@ import { DudasComponent } from './dudas/dudas.component';
     GestionarColegioAdminComponent,
     BusquedaVisitanteComponent,
     HeaderVisitanteComponent,
-    DudasComponent
+    DudasComponent,
+    MetricasComponent
   ],
   imports:[
       CommonModule,
