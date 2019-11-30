@@ -52,7 +52,7 @@ export class AuthDService {
   }
 
 
-  //------------------------------------------------------------------------------------ DOCENTE
+  //====================================================================================  DOCENTE
 
   //Servicio Crear Docente
   createDocente(docente:DocenteI){
@@ -84,7 +84,7 @@ export class AuthDService {
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadInfoPersonalDocente`, info);
   }
 
-  //------------------------------------------------------------------------------------ LOGIN
+  //====================================================================================  LOGIN
   register(docente:DocenteI): Observable<JwtResponseI> {
     return this.httpClient.post<JwtResponseI>(`http://${this.localStorageService.getItem("IPSERVER")}:3000/register`,
     docente).pipe(tap(
@@ -183,7 +183,7 @@ export class AuthDService {
     return (this.getToken() != null) ? true : false;
   };
 
-  //------------------------------------------------------------------------------------ MATERIAACTIVA
+  //====================================================================================  MATERIAACTIVA
 
   //Crear Materia Activa del profesor
   createSubjectActive(materiaActiva:MateriaActivaI){
@@ -200,7 +200,7 @@ export class AuthDService {
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteSubjectActive`, materiaActiva);
   }
 
-  //------------------------------------------------------------------------------------ COLEGIO
+  //====================================================================================  COLEGIO
 
   //Servicio para obtener todos los colegio
   loadAllColegios(){
@@ -213,7 +213,7 @@ export class AuthDService {
   }
 
 
-  //------------------------------------------------------------------------------------ DUDAS
+  //====================================================================================  DUDAS
 
   //Servicio para obtener todos los colegio
   loadAllDudas(){
@@ -231,6 +231,19 @@ export class AuthDService {
   }
 
 
+  //====================================================================================  EVENTOS
+
+  //Servicio para obtener todos los Eventos
+  loadAllEvento(){
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/allEventos`);
+  }
+
+  //Ingresar respuesta y estado de la Duda en MongoDB 
+  loadEvento(info:any){
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadEvento`, info);
+  }
+
+
   //====================================================================================  Estudiantes
 
   //Buscar un Estudiante
@@ -244,7 +257,7 @@ export class AuthDService {
   }
 
 
-  //------------------------------------------------------------------------------------ Servicios de Ayuda
+  //====================================================================================  Servicios de Ayuda
 
   //Servicio para llamar todas las materias
   allSubject() {
@@ -261,7 +274,9 @@ export class AuthDService {
     return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllActivities`);
   }
 
-
+  allType() {
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllTypes`);
+  }
 
 
 

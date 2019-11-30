@@ -403,6 +403,10 @@ hr.style9{
   border-top: 6px double #f7f7f7;
 	text-align: center;
 }
+hr.style10{
+  border-top: 6px double #5cb85c;
+	text-align: center;
+}
 hr.styleOtro {
 	height: 10px;
 	border: 0;
