@@ -1,12 +1,11 @@
 export class MetricaActividadI {
     
-    constructor(id_metrica = 0, actividad = '', id_actividad = 0,
-                nota_quiz = 0, nota_evaluacion = 0, nota_final = 0, inicio = '', 
-                contenido = '', quiz = '', taller = '', evaluacion = '') {
+    constructor(id_metrica = 0, inicio = 0, id_actividad = 0,
+                nota_quiz = 0, nota_evaluacion = 0, nota_final = 0,  
+                contenido = 0, quiz = 0, taller = 0, evaluacion = 0) {
 
         this.id_metrica = id_metrica;
         this.id_actividad = id_actividad;
-        this.actividad = actividad;
         this.nota_quiz = nota_quiz;
         this.nota_evaluacion = nota_evaluacion;
         this.nota_final = nota_final;
@@ -20,13 +19,12 @@ export class MetricaActividadI {
 
     id_metrica: number;
     id_actividad: number;
-    actividad: string;
     nota_quiz: number;
     nota_evaluacion: number;
     nota_final: number;
-    inicio: string;
-    contenido: string;
-    quiz: string;
-    taller: string;
-    evaluacion: string;
+    inicio: number;
+    contenido: number;
+    quiz: number;
+    taller: number;
+    evaluacion: number;
 }

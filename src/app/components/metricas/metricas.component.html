@@ -104,7 +104,7 @@
                                                     </div>
                                                     <!--Boton ver Metricas Actividad-->
                                                     <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
-                                                        <a class="btn bg-warning" data-toggle="modal" data-target="#mimodalejemplo2" (click)="getActividadinModal(actividad)">Seleccionar</a>
+                                                        <a class="btn bg-warning" data-toggle="modal" data-target="#mimodalejemplo" (click)="getActividadinModal(actividad)">Seleccionar</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -177,24 +177,24 @@
                                         <div class="card-body p-2">
                                             <p class="card-text mb-1 ml-2">Acciones</p>
                                             <div>
-                                                <a class="card-text"><small class="text-muted">Cuantos estudiantes iniciaron la Actividad: </small></a>
-                                                <a> {{metricasGeneral.check_inicio}}</a>
+                                                <a class="card-text"><small class="text-muted">Estudiantes que iniciaron la Actividad: </small></a>
+                                                <a> {{metricasActividad.inicio}}</a>
                                             </div>
                                             <div>
-                                                <a class="card-text"><small class="text-muted">Cuantos estudiantes vieron el Contenido: </small></a>
-                                                <a> {{metricasGeneral.check_contenido}}</a>
+                                                <a class="card-text"><small class="text-muted">Estudiantes que vieron el Contenido: </small></a>
+                                                <a> {{metricasActividad.contenido}}</a>
                                             </div>
                                             <div>
-                                                <a class="card-text"><small class="text-muted">Cuantos estudiantes hicieron el Quiz: </small></a>
-                                                <a> {{metricasGeneral.check_quiz}}</a>
+                                                <a class="card-text"><small class="text-muted">Estudiantes que hicieron el Quiz: </small></a>
+                                                <a> {{metricasActividad.quiz}}</a>
                                             </div>
                                             <div>
-                                                <a class="card-text"><small class="text-muted">Cuantos estudiantes hicieron el Taller: </small></a>
-                                                <a> {{metricasGeneral.check_taller}}</a>
+                                                <a class="card-text"><small class="text-muted">Estudiantes que hicieron el Taller: </small></a>
+                                                <a> {{metricasActividad.taller}}</a>
                                             </div>
                                             <div>
-                                                <a class="card-text"><small class="text-muted">Cuantos estudiantes hicieron la Evaluación: </small></a>
-                                                <a> {{metricasGeneral.check_evaluacion}}</a>
+                                                <a class="card-text"><small class="text-muted">Estudiantes que hicieron la Evaluación: </small></a>
+                                                <a> {{metricasActividad.evaluacion}}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -203,15 +203,15 @@
                                             <p class="card-text mb-1 ml-2">Notas</p>
                                             <div>
                                                 <a class="card-text"><small class="text-muted">Promedio Nota Quiz de todos los estudiantes: </small></a>
-                                                <a> {{metricasGeneral.nota_quiz}}</a>
+                                                <a> {{metricasActividad.nota_quiz}}</a>
                                             </div>
                                             <div>
                                                 <a class="card-text"><small class="text-muted">Promedio Nota Evaluacion de todos los estudiantes: </small></a>
-                                                <a> {{metricasGeneral.nota_evaluacion}}</a>
+                                                <a> {{metricasActividad.nota_evaluacion}}</a>
                                             </div>
                                             <div>
                                                 <a class="card-text"><small class="text-muted">Promedio Nota Final de todos los estudiantes: </small></a>
-                                                <a> {{metricasGeneral.nota_final}}</a>
+                                                <a> {{metricasActividad.nota_final}}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -237,13 +237,11 @@
                                 style="height: 256px;">
                                 <thead class="bg-secondary">
                                     <th class="pl-3 pr-5 py-2 text-white">Nombre Estudiante</th>
-                                    <th class="pl-3 pr-3 py-2 text-white">Grado</th>
                                     <th class="pl-4 pr-4 py-2 text-white">Accion</th>
                                 </thead>
                                 <tbody class="bg-light">
                                     <tr mdbTableCol *ngFor="let metrica of metricasVisualizar">
                                         <td class="pl-3 pr-5 py-2 text-dark">{{ metrica.estudiante }}</td>
-                                        <td class="pl-3 pr-3 py-2 text-dark">{{ metrica.curso }}</td>
                                         <td class="pl-4 pr-4 py-2"> 
                                             <a class="btn bg-warning py-0 px-1 text-dark" data-toggle="modal" data-target="#mimodalejemplo2"
                                                 (click)="saveDataMateria(materia)">ver Metricas</a>
@@ -263,7 +261,7 @@
         </div>
     </div>
 
-    <!-- Modal Responder Duda -->
+    <!-- Modal Metricas Estudiante -->
     <div class="modal fade" id="mimodalejemplo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -276,7 +274,7 @@
                 <div class="modal-body bg-light">
                     <!--Metricas Globales Actividad-->
                     <div class="pb-2">
-                        <h5 style="cursor:context-menu" class="">Estudiante: {{ metricaToSave.estudiante }}</h5>
+                        <h5 style="cursor:context-menu" class="">Estudiante: {{ metricaVisualizarToSave.estudiante }}</h5>
                     </div>
                     <div class="pb-1 row">
                         <h6 style="cursor:context-menu" class="col-3">Progreso Actividad: </h6>
@@ -306,24 +304,24 @@
                                         <p class="card-text mb-1 ml-2">Acciones</p>
                                         <div>
                                             <a class="card-text"><small class="text-muted">El estudiante inico la Actividad: </small></a>
-                                            <a> {{metricaToSave.inicio}}</a>
+                                            <a> {{metricaVisualizarToSave.inicio}}</a>
                                         </div>
                                         <div>
                                             <a class="card-text"><small class="text-muted">El estudiante vio el Contenido: </small></a>
-                                            <a> {{metricaToSave.contenido}}</a>
+                                            <a> {{metricaVisualizarToSave.contenido}}</a>
                                         </div>
                                         <div>
                                             <a class="card-text"><small class="text-muted">El estudiante hizo el Quiz: </small></a>
-                                            <a> {{metricaToSave.quiz}}</a>
+                                            <a> {{metricaVisualizarToSave.quiz}}</a>
                                         </div>
                                         <div>
                                             <a class="card-text"><small class="text-muted">El estudiantes hizo el Taller:
                                                 </small></a>
-                                            <a> {{metricaToSave.taller}}</a>
+                                            <a> {{metricaVisualizarToSave.taller}}</a>
                                         </div>
                                         <div>
                                             <a class="card-text"><small class="text-muted">El estudiantes hizo la Evaluación: </small></a>
-                                            <a> {{metricaToSave.evaluacion}}</a>
+                                            <a> {{metricaVisualizarToSave.evaluacion}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -332,15 +330,15 @@
                                         <p class="card-text mb-1 ml-2">Notas</p>
                                         <div>
                                             <a class="card-text"><small class="text-muted">Nota Quiz del estudiante: </small></a>
-                                            <a> {{metricaToSave.nota_quiz}}</a>
+                                            <a> {{metricaVisualizarToSave.nota_quiz}}</a>
                                         </div>
                                         <div>
                                             <a class="card-text"><small class="text-muted">Nota Evaluacion del estudiante: </small></a>
-                                            <a> {{metricaToSave.nota_evaluacion}}</a>
+                                            <a> {{metricaVisualizarToSave.nota_evaluacion}}</a>
                                         </div>
                                         <div>
                                             <a class="card-text"><small class="text-muted">Nota Final del estudiante: </small></a>
-                                            <a> {{metricaToSave.nota_final}}</a>
+                                            <a> {{metricaVisualizarToSave.nota_final}}</a>
                                         </div>
                                     </div>
                                 </div>

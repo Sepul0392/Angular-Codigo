@@ -235,7 +235,7 @@ export class AuthDService {
 
   //Servicio para obtener todos los Eventos
   loadAllEvento(){
-    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/allEventos`);
+    return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllEvento`);
   }
 
   //Ingresar respuesta y estado de la Duda en MongoDB 
