@@ -28,6 +28,7 @@ export class MetricasComponent implements OnInit {
   grados:GradoI[];
   eventos:EventoI[];
   metricas:MetricaI[];
+  metrica:MetricaI;
   metricasVisualizar:MetricaVisualizarI[];
   competencias:CompetenciaI[];
   tipoContenidos:TipoContenidoI[];
@@ -126,7 +127,7 @@ export class MetricasComponent implements OnInit {
   }
 
   getAvanceEstudianteModal(metricaEstudiante){
-    this.saveDataMetrica(metricaEstudiante);
+    this.saveDataMetricaVisualizar(metricaEstudiante);
 
     this.bar20 = false;
     this.bar40 = false;
@@ -165,6 +166,9 @@ export class MetricasComponent implements OnInit {
     this.saveDataActivity(actividad);
     this.metricasActividad = new MetricaActividadI; 
 
+    this.metricas = new Array;
+    this.metricasVisualizar = new Array;
+
     this.contInicio = 0;
     this.contContenido = 0;
     this.contQuiz = 0;
@@ -185,30 +189,29 @@ export class MetricasComponent implements OnInit {
 
       this.AuthDService.loadAllEvento().subscribe(res =>{
         this.eventos = res as EventoI[];
-  
+        console.log(this.eventos.length);
+        
+
         if(this.eventos.length){
           for(let n=0; n < this.eventos.length; n++){
             if(this.eventos[n].id_actividad == this.actividadToSave.id_actividad){
               this.divisorCont = this.divisorCont + 1;
-  
-              //pasar datos del evento a metricas
-              this.metricas[n].id_metrica = this.eventos[n].id_evento;
-              this.metricas[n].id_evento = this.eventos[n].id_evento;
-              this.metricas[n].id_actividad = this.actividadToSave.id_actividad;
-              this.metricas[n].id_estudiante = this.eventos[n].id_estudiante;
-              this.metricas[n].check_inicio = this.eventos[n].check_inicio;
-              this.metricas[n].check_contenido = this.eventos[n].check_video;
-              this.metricas[n].check_quiz = this.eventos[n].check_answer;
-              this.metricas[n].check_taller = this.eventos[n].check_download;
+
+              var check_evaluacionTemp = 0;
+
+              //Consultar si el estudiante hizo la evaluacion
               if(this.eventos[n].check_Ea1 && 0 < this.eventos[n].check_Ea1){
-                this.metricas[n].check_evaluacion = 1;
+                check_evaluacionTemp = 1;
+              }
+              else{
+                check_evaluacionTemp = 0;
               }
               
               //contadores
-              this.contInicio = this.contInicio + this.eventos[n].check_fin;
+              this.contInicio = this.contInicio + this.eventos[n].check_inicio;
               this.contContenido = this.contContenido + this.eventos[n].check_video;
               this.contQuiz = this.contQuiz + this.eventos[n].check_answer;
-              this.contTaller = this.contTaller + this.eventos[n].check_documento;
+              this.contTaller = this.contTaller + this.eventos[n].check_download;
               if(this.eventos[n].check_Ea1 && 0 < this.eventos[n].check_Ea1){
                 this.contEvaluacion = this.contEvaluacion + 1; 
               }
@@ -233,66 +236,79 @@ export class MetricasComponent implements OnInit {
                 this.notaEA1 = 5;
               }
   
-              this.metricas[n].nota_quiz = (this.notaA1 + this.notaA2 + this.notaA3)/3;
-              this.metricas[n].nota_evaluacion = (this.notaEA1 + this.notaEA2 + this.notaEA3)/3;
-              this.metricas[n].nota_final = (this.metricas[n].nota_quiz + this.metricas[n].nota_evaluacion)/2; 
+              var nota_quizTemp = parseFloat(((this.notaA1 + this.notaA2 + this.notaA3)/3).toFixed(2));
+              var nota_evaluacionTemp = parseFloat(((this.notaEA1 + this.notaEA2 + this.notaEA3)/3).toFixed(2));
+              var nota_finalTemp = parseFloat(((nota_quizTemp + nota_evaluacionTemp)/2).toFixed(2)); 
   
-              this.contNotaQuiz = this.contNotaQuiz + this.metricas[n].nota_quiz;
-              this.contNotaEvaluacion = this.contNotaEvaluacion + this.metricas[n].nota_evaluacion;
-              this.contNotaFinal = this.contNotaFinal + this.metricas[n].nota_final;
+              this.contNotaQuiz = this.contNotaQuiz + nota_quizTemp;
+              this.contNotaEvaluacion = this.contNotaEvaluacion + nota_evaluacionTemp;
+              this.contNotaFinal = this.contNotaFinal + nota_finalTemp;
+
+              //pasar datos del evento a metricas
+              this.metricas.push({id_metrica:this.eventos[n].id_evento, id_evento:this.eventos[n].id_evento, 
+                  id_actividad:this.actividadToSave.id_actividad, id_estudiante:this.eventos[n].id_estudiante, 
+                  check_inicio:this.eventos[n].check_inicio, check_contenido: this.eventos[n].check_video,
+                  check_quiz:this.eventos[n].check_answer, check_evaluacion:check_evaluacionTemp, check_taller: this.eventos[n].check_download,
+                  nota_quiz:nota_quizTemp, nota_evaluacion:nota_evaluacionTemp, nota_final:nota_finalTemp});
+
             }
           }
   
-          this.metricasActividad.nota_quiz = this.contNotaQuiz/this.divisorCont;
-          this.metricasActividad.nota_evaluacion = this.contNotaEvaluacion/this.divisorCont;
-          this.metricasActividad.nota_final = this.contNotaFinal/this.divisorCont;
+          //Ingresar datos de los contadores a la Metricas de la Actividade
+          this.metricasActividad.nota_quiz = parseFloat((this.contNotaQuiz/this.divisorCont).toFixed(2));
+          this.metricasActividad.nota_evaluacion = parseFloat((this.contNotaEvaluacion/this.divisorCont).toFixed(2));
+          this.metricasActividad.nota_final = parseFloat((this.contNotaFinal/this.divisorCont).toFixed(2));
           this.metricasActividad.inicio = this.contInicio;
           this.metricasActividad.contenido = this.contContenido;
           this.metricasActividad.quiz = this.contQuiz;
           this.metricasActividad.taller = this.contTaller;
           this.metricasActividad.evaluacion = this.contEvaluacion;
   
+          console.log('metricasActividad', this.metricasActividad);
+          console.log('metricas', this.metricas);
+
           //Creacion Metricas para Visualizar
-          this.metricasVisualizar = this.metricas as MetricaVisualizarI[];
-  
-          for(let x; x < this.metricas.length; x++){
-            this.metricasVisualizar[x].actividad = this.actividadToSave.titulo_actividad;
-            for(let m; m < this.estudiantes.length; m++){
-              if(this.metricasVisualizar[x].id_estudiante == this.estudiantes[m].id_estudiante){
-                this.metricasVisualizar[x].estudiante = this.estudiantes[m].nombre_estudiante+" "+this.estudiantes[m].apellido_estudiante;
+          for(let y=0; y < this.metricas.length; y++){
+
+            var nombre_estudianteTemp = "";
+            for (let m=0; m < this.estudiantes.length; m++) {
+              if (this.metricas[y].id_estudiante == this.estudiantes[m].id_estudiante) {
+                nombre_estudianteTemp = this.estudiantes[m].nombre_estudiante + " " + this.estudiantes[m].apellido_estudiante;
               }
             }
-            if(this.metricasVisualizar[x].check_inicio == 1){
-              this.metricasVisualizar[x].inicio = "Si";
+
+            var accionInicio = "No";
+            var accionContenido = "No";
+            var accionTaller = "No";
+            var accionQuiz = "No";
+            var accionEvaluacion = "No"
+
+            if (this.metricas[y].check_inicio == 1) {
+              accionInicio = "Si";
             }
-            else{
-              this.metricasVisualizar[x].inicio = "No"
+            if (this.metricas[y].check_contenido == 1) {
+              accionContenido = "Si";
             }
-            if(this.metricasVisualizar[x].check_contenido == 1){
-              this.metricasVisualizar[x].contenido = "Si";
+            if (this.metricas[y].check_quiz == 1) {
+              accionQuiz = "Si";
             }
-            else{
-              this.metricasVisualizar[x].contenido = "No"
+
+            if (this.metricas[y].check_taller == 1) {
+              accionTaller = "Si";
             }
-            if(this.metricasVisualizar[x].check_quiz == 1){
-              this.metricasVisualizar[x].quiz = "Si";
+            if (this.metricas[y].check_evaluacion == 1) {
+              accionEvaluacion = "Si";
             }
-            else{
-              this.metricasVisualizar[x].quiz = "No"
-            }
-            if(this.metricasVisualizar[x].check_taller == 1){
-              this.metricasVisualizar[x].taller = "Si";
-            }
-            else{
-              this.metricasVisualizar[x].taller = "No"
-            }
-            if(this.metricasVisualizar[x].check_evaluacion == 1){
-              this.metricasVisualizar[x].evaluacion = "Si";
-            }
-            else{
-              this.metricasVisualizar[x].evaluacion = "No"
-            }
+
+            this.metricasVisualizar.push({id_metrica:this.eventos[y].id_evento, id_evento:this.eventos[y].id_evento, 
+                id_actividad:this.actividadToSave.id_actividad, id_estudiante:this.eventos[y].id_estudiante, 
+                check_inicio:this.eventos[y].check_inicio, check_contenido: this.eventos[y].check_video,
+                check_quiz:this.eventos[y].check_answer, check_evaluacion:check_evaluacionTemp, check_taller: this.eventos[y].check_download,
+                nota_quiz:nota_quizTemp, nota_evaluacion:nota_evaluacionTemp, nota_final:nota_finalTemp, actividad: this.actividadToSave.titulo_actividad,
+                estudiante:nombre_estudianteTemp, inicio:accionInicio, contenido:accionContenido, quiz:accionQuiz, taller:accionTaller, evaluacion:accionEvaluacion});
+          
           }
+          console.log('metricasVisualizar', this.metricasVisualizar);
         }
       });
     });

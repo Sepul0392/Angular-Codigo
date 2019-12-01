@@ -104,7 +104,7 @@
                                                     </div>
                                                     <!--Boton ver Metricas Actividad-->
                                                     <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
-                                                        <a class="btn bg-warning" data-toggle="modal" data-target="#mimodalejemplo" (click)="getActividadinModal(actividad)">Seleccionar</a>
+                                                        <a class="btn bg-warning" data-toggle="modal" data-target="#mimodalejemplo" (click)="getActividadinModal(actividad)">Ver Metricas</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,7 +122,7 @@
     </div>
 
     <!-- Modal Actividad Seleccionada -->
-    <div class="modal fade col" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade col" id="mimodalejemplo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow-y: scroll;">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content ">
                 <div class="modal-header bg-light">
@@ -170,16 +170,13 @@
                         <div>
                             <h5 style="cursor:context-menu" class="">Metricas General:</h5>
                         </div>
+                        <p class="card-text mb-1 ml-2">Estudiantes participando en la Actividad: {{metricasActividad.inicio}} </p>
                         <div class="row-1">
                             <div class="card mb-4 border-0" style="max-width: 1440px;">
                                 <div class="row no-gutters ">
                                     <div class="col" style="max-width: 840px;">
                                         <div class="card-body p-2">
                                             <p class="card-text mb-1 ml-2">Acciones</p>
-                                            <div>
-                                                <a class="card-text"><small class="text-muted">Estudiantes que iniciaron la Actividad: </small></a>
-                                                <a> {{metricasActividad.inicio}}</a>
-                                            </div>
                                             <div>
                                                 <a class="card-text"><small class="text-muted">Estudiantes que vieron el Contenido: </small></a>
                                                 <a> {{metricasActividad.contenido}}</a>
@@ -237,14 +234,13 @@
                                 style="height: 256px;">
                                 <thead class="bg-secondary">
                                     <th class="pl-3 pr-5 py-2 text-white">Nombre Estudiante</th>
-                                    <th class="pl-4 pr-4 py-2 text-white">Accion</th>
+                                    <th class="pl-4 pr-4 py-2 text-white text-center">Accion</th>
                                 </thead>
                                 <tbody class="bg-light">
                                     <tr mdbTableCol *ngFor="let metrica of metricasVisualizar">
                                         <td class="pl-3 pr-5 py-2 text-dark">{{ metrica.estudiante }}</td>
                                         <td class="pl-4 pr-4 py-2"> 
-                                            <a class="btn bg-warning py-0 px-1 text-dark" data-toggle="modal" data-target="#mimodalejemplo2"
-                                                (click)="saveDataMateria(materia)">ver Metricas</a>
+                                            <a class="btn bg-warning py-0 px-1 text-dark" data-toggle="modal" data-target="#mimodalejemplo2" (click)="getAvanceEstudianteModal(metrica)">ver Metricas</a>
                                         </td>
                                     </tr>
                                 </tbody>
