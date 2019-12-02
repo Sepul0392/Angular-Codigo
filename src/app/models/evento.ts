@@ -20,5 +20,6 @@ export interface EventoI {
     check_profile: number,
     check_Ea1: number,
     check_Ea2: number,
-    check_Ea3: number
+    check_Ea3: number,
+    oculto: number
 }

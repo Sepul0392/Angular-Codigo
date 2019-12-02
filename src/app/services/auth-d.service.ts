@@ -256,6 +256,16 @@ export class AuthDService {
     return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllEstudiantes`);
   }
 
+  //Actualizar datos de evento en MongoDB 
+  uploadEvento(info:any){
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadEvento`, info);
+  }
+
+  //Actualizar datos de evento en MongoDB 
+  uploadEstadoEvento(info:any){
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadEstadoEvento`, info);
+  }
+
 
   //====================================================================================  Servicios de Ayuda
 

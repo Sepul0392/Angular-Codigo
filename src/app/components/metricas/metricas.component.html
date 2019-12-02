@@ -104,7 +104,7 @@
                                                     </div>
                                                     <!--Boton ver Metricas Actividad-->
                                                     <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
-                                                        <a class="btn bg-warning" data-toggle="modal" data-target="#mimodalejemplo" (click)="getActividadinModal(actividad)">Ver Metricas</a>
+                                                        <a class="btn bg-success font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo" (click)="getActividadinModal(actividad)">Ver Metricas</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -247,11 +247,26 @@
                                     <tr mdbTableCol *ngFor="let metrica of metricasVisualizar | filterEstudianteMetricas: palabraClaveESelected:optionSelected">
                                         <td class="pl-3 pr-5 py-2 text-dark">{{ metrica.estudiante }}</td>
                                         <td class="pl-4 pr-4 py-2"> 
-                                            <a class="btn bg-warning py-0 px-1 text-dark" data-toggle="modal" data-target="#mimodalejemplo2" (click)="getAvanceEstudianteModal(metrica)">ver Metricas</a>
+                                            <a class="btn bg-success py-0 px-1 text-dark font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo2" (click)="getAvanceEstudianteModal(metrica)">ver Metricas</a>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <hr class="style10">
+
+                        <!--Opcion de Reinicio de Actividad-->
+                        <div>
+                            <h5 style="cursor:context-menu" class="">Reinicio de Actividad:</h5>
+                        </div>
+                        <label class="pt-2">Al reiniciar la actividad, los datos actuales de los estudiantes que se han almacenado
+                            ya no seran tomados encuentas en esta Actividad para generar sus Metricas. Las nuevas Metricas de la
+                            actividad seran generadas con los nuevos datos que se obtengan en adelante de los actuales estudiantes
+                            o de los nuevos estudiantes.
+                        </label>
+                        <!--Boton Reiniciar Actividad-->
+                        <div class="row pt-3 justify-content-md-center no-gutters bg-light">
+                            <button type="button" class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" data-toggle="modal" data-target="#mimodalejemplo3">Reiniciar Actividad</button>
                         </div>
                         <hr class="style10">
 
@@ -348,6 +363,28 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal Confirmar Reiniciar Actividad -->
+    <div class="modal fade" id="mimodalejemplo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Confirmar Acción</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Para reiniciar la Actividad presione Aceptar, de lo contrario presione X
+                    para cancelar.
+                </div>
+                <div class="modal-footer justify-content-md-center no-gutters bg-light py-1">
+                    <button class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal"
+                        (click)="reiniciarActividad()">Aceptar</button>
                 </div>
             </div>
         </div>
