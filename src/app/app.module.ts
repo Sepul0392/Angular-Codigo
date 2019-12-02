@@ -51,6 +51,7 @@ import { FilterMateriaactivaAdminPipe } from './pipes/filter-materiaactiva-admin
 import { DudasComponent } from './components/dudas/dudas.component';
 import { FilterDudaPipe } from './pipes/filter-duda.pipe';
 import { MetricasComponent } from './components/metricas/metricas.component';
+import { FilterEstudianteMetricasPipe } from './pipes/filter-estudiante-metricas.pipe';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { MetricasComponent } from './components/metricas/metricas.component';
     FilterMateriaactivaAdminPipe,
     DudasComponent,
     FilterDudaPipe,
-    MetricasComponent
+    MetricasComponent,
+    FilterEstudianteMetricasPipe
   ],
   imports: [
     BrowserModule,

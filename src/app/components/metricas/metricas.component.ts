@@ -38,6 +38,7 @@ export class MetricasComponent implements OnInit {
   metricaToSave:MetricaI;
   metricaVisualizarToSave:MetricaVisualizarI;
   metricasActividad:MetricaActividadI;
+  options:any;
 
   id_docenteAuth:number;
   nombre_docenteAuth:string;
@@ -75,8 +76,15 @@ export class MetricasComponent implements OnInit {
     this.contNotaEvaluacion = 0;
     this.contNotaFinal = 0;
 
+    
     this.metricasActividad = {id_metrica:0, id_actividad:0, nota_quiz:0, nota_evaluacion:0, 
                               nota_final:0, inicio:0, contenido:0, quiz:0, taller:0, evaluacion:0};
+    this.options = [
+      {valor:1, opcion:"SI vieron el Contenido"},     {valor:5, opcion:"NO vieron el Contenido"},
+      {valor:2, opcion:"SI hicieron el Quiz"},        {valor:6, opcion:"NO hicieron el Quiz"},
+      {valor:3, opcion:"SI hicieron el Taller"},      {valor:7, opcion:"NO hicieron el Taller"},
+      {valor:4, opcion:"SI hicieron la Evaluacion"},  {valor:8, opcion:"NO hicieron la Evaluacion"}
+    ];
     this.metricaVisualizarToSave = new MetricaVisualizarI;
 
     this.getOptions();
@@ -179,8 +187,6 @@ export class MetricasComponent implements OnInit {
     this.contNotaFinal = 0;
     this.divisorCont = 0;
 
-    this.notaA1 = 0; this.notaA2 = 0; this.notaA3 = 0; this.notaEA1 = 0; this.notaEA2 = 0; this.notaEA3 = 0;
-
     this.metricasActividad.id_metrica = this.actividadToSave.id_actividad;
     this.metricasActividad.id_actividad = this.actividadToSave.id_actividad;
 
@@ -189,9 +195,7 @@ export class MetricasComponent implements OnInit {
 
       this.AuthDService.loadAllEvento().subscribe(res =>{
         this.eventos = res as EventoI[];
-        console.log(this.eventos.length);
         
-
         if(this.eventos.length){
           for(let n=0; n < this.eventos.length; n++){
             if(this.eventos[n].id_actividad == this.actividadToSave.id_actividad){
@@ -215,6 +219,8 @@ export class MetricasComponent implements OnInit {
               if(this.eventos[n].check_Ea1 && 0 < this.eventos[n].check_Ea1){
                 this.contEvaluacion = this.contEvaluacion + 1; 
               }
+
+              this.notaA1 = 0; this.notaA2 = 0; this.notaA3 = 0; this.notaEA1 = 0; this.notaEA2 = 0; this.notaEA3 = 0;
   
               //Evaluar respuestas del evento
               if(this.eventos[n].check_a1 == this.actividadToSave.CA1){
@@ -250,8 +256,11 @@ export class MetricasComponent implements OnInit {
                   check_inicio:this.eventos[n].check_inicio, check_contenido: this.eventos[n].check_video,
                   check_quiz:this.eventos[n].check_answer, check_evaluacion:check_evaluacionTemp, check_taller: this.eventos[n].check_download,
                   nota_quiz:nota_quizTemp, nota_evaluacion:nota_evaluacionTemp, nota_final:nota_finalTemp});
-
             }
+          }
+
+          if(this.divisorCont == 0){
+            this.divisorCont = 1;
           }
   
           //Ingresar datos de los contadores a la Metricas de la Actividade
@@ -264,8 +273,8 @@ export class MetricasComponent implements OnInit {
           this.metricasActividad.taller = this.contTaller;
           this.metricasActividad.evaluacion = this.contEvaluacion;
   
-          console.log('metricasActividad', this.metricasActividad);
-          console.log('metricas', this.metricas);
+          //console.log('metricasActividad', this.metricasActividad);
+          //console.log('metricas', this.metricas);
 
           //Creacion Metricas para Visualizar
           for(let y=0; y < this.metricas.length; y++){
@@ -292,7 +301,6 @@ export class MetricasComponent implements OnInit {
             if (this.metricas[y].check_quiz == 1) {
               accionQuiz = "Si";
             }
-
             if (this.metricas[y].check_taller == 1) {
               accionTaller = "Si";
             }
@@ -300,15 +308,15 @@ export class MetricasComponent implements OnInit {
               accionEvaluacion = "Si";
             }
 
-            this.metricasVisualizar.push({id_metrica:this.eventos[y].id_evento, id_evento:this.eventos[y].id_evento, 
-                id_actividad:this.actividadToSave.id_actividad, id_estudiante:this.eventos[y].id_estudiante, 
-                check_inicio:this.eventos[y].check_inicio, check_contenido: this.eventos[y].check_video,
-                check_quiz:this.eventos[y].check_answer, check_evaluacion:check_evaluacionTemp, check_taller: this.eventos[y].check_download,
-                nota_quiz:nota_quizTemp, nota_evaluacion:nota_evaluacionTemp, nota_final:nota_finalTemp, actividad: this.actividadToSave.titulo_actividad,
+            this.metricasVisualizar.push({id_metrica:this.metricas[y].id_evento, id_evento:this.metricas[y].id_evento, 
+                id_actividad:this.metricas[y].id_actividad, id_estudiante:this.metricas[y].id_estudiante, 
+                check_inicio:this.metricas[y].check_inicio, check_contenido: this.metricas[y].check_contenido,
+                check_quiz:this.metricas[y].check_quiz, check_evaluacion:this.metricas[y].check_evaluacion, check_taller: this.metricas[y].check_taller,
+                nota_quiz:this.metricas[y].nota_quiz, nota_evaluacion:this.metricas[y].nota_evaluacion, nota_final:this.metricas[y].nota_final, actividad: this.actividadToSave.titulo_actividad,
                 estudiante:nombre_estudianteTemp, inicio:accionInicio, contenido:accionContenido, quiz:accionQuiz, taller:accionTaller, evaluacion:accionEvaluacion});
           
           }
-          console.log('metricasVisualizar', this.metricasVisualizar);
+          //console.log('metricasVisualizar', this.metricasVisualizar);
         }
       });
     });
