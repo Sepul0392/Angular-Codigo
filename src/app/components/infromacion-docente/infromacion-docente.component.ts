@@ -28,6 +28,7 @@ export class InfromacionDocenteComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
     
     this.DocenteInfo = new DocenteI;
     this.ColegioInfo = new ColegioI;
@@ -73,6 +74,15 @@ export class InfromacionDocenteComponent implements OnInit {
         });
       });
     });
+  }
+
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 
 }

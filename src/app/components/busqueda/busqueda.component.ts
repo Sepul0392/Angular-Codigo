@@ -11,6 +11,7 @@ import { ActividadI } from '../../models/actividad';
 import { DocenteI } from '../../models/docente';
 import { ActividadVisualizaI } from '../../models/actividadVisualizar';
 import { ActividadService } from '../../services/actividad.service';
+import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
 
 
@@ -53,11 +54,12 @@ export class BusquedaComponent implements OnInit {
 
   IPServer:string;
 
-  constructor(private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) {
+  constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) {
    }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
     this.ID_TipoContenido_Taller = 5;
     this.IPServer = this.ContentREAService.loadIPServer();
 
@@ -246,5 +248,13 @@ export class BusquedaComponent implements OnInit {
     //console.log("taller guardado:", this.tallerToSave);
   }
 
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
 
 }

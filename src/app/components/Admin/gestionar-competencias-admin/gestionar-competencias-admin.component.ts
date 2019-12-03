@@ -34,6 +34,8 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
+    
     this.correcto1 = false;
     this.correcto2 = false;
     this.error1 = false;
@@ -241,6 +243,15 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
       form.reset();
       this.newID = 1;
       this.temp = 0;
+    }
+  }
+
+  comprobacionLogin(){
+    if (this.AuthAdminService.getIdAdmin()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
     }
   }
 

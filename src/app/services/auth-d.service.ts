@@ -9,6 +9,7 @@ import { ColegioI } from '../models/colegio';
 import { DudaI } from '../models/duda';
 import { EstuadianteI } from '../models/estudiante';
 import { Router } from '@angular/router';
+import { isNullOrUndefined } from 'util';
 
 
 @Injectable()
@@ -140,7 +141,7 @@ export class AuthDService {
     this.localStorageService.setItem("ID_COLEGIO", id_colegio);
     this.token = token;
     this.nombreApellido_docenteAuth = nombre_docente+" "+apellido_docente;
-    console.log('prueba', this.nombreApellido_docenteAuth);
+    //console.log('prueba', this.nombreApellido_docenteAuth);
     this.id_docenteAuth = id_docent;
     this.nombre_usuarioAuth = nombre_usuario;
   }
@@ -163,7 +164,12 @@ export class AuthDService {
 
   getIdDocente(): number {
     var id_docenteAuthString = this.localStorageService.getItem("ID_DOCENTE");
-    return parseInt(id_docenteAuthString);
+    //console.log('prueba',id_docenteAuthString);
+    if(!isNullOrUndefined(id_docenteAuthString)){
+      return parseInt(id_docenteAuthString);
+    } else {
+      return null;
+    }
   }
 
   getIdColegioDocente(): number {

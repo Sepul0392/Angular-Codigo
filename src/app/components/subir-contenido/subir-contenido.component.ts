@@ -37,6 +37,8 @@ export class SubirContenidoComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
+
     this.correcto = false;
     this.error = false;
     
@@ -174,6 +176,15 @@ export class SubirContenidoComponent implements OnInit {
       this.ContentREAService.selectedContenidoREA = new contenidoREAI();
       window.scrollTo(0, 0);
       //this.ContentREAService.selectedContenidoREA = new contenidoREAI();
+    }
+  }
+
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
     }
   }
   

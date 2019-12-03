@@ -6,6 +6,7 @@ import { MateriaI } from '../../models/materia';
 import { GradoI } from '../../models/grado';
 import { TipoContenidoI } from '../../models/tipoContenido';
 import { contenidoREAVisualizarI } from '../../models/contenidoREAVisualizar';
+import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
 
 
@@ -27,12 +28,13 @@ export class BorrarContenidoComponent implements OnInit {
   tipoContenidoSelected:number;
   contenidoVisualizar:contenidoREAVisualizarI[];
 
-  constructor(private ContentREAService: ContentREAService, private router: Router) { 
+  constructor(private AuthDService: AuthDService, private ContentREAService: ContentREAService, private router: Router) { 
     //this.getOptions();
   }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
 
     this.getOptions();
     this.getContenidos();
@@ -82,7 +84,7 @@ export class BorrarContenidoComponent implements OnInit {
               }
             }
           }
-          console.log("contenido visualizar final:", this.contenidoVisualizar)
+          //console.log("contenido visualizar final:", this.contenidoVisualizar)
         });
       });
     });
@@ -91,17 +93,26 @@ export class BorrarContenidoComponent implements OnInit {
   //Almacenar info temporal de un ContenidoREA
   saveData(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
-    console.log("contenido guardado:", this.contenidoToSave);
+    //console.log("contenido guardado:", this.contenidoToSave);
   }
 
   //Eliminar contenidoREA de Mongo
   deleteContenido(){
     //console.log("id para eliminar:", this.contenidoToSave.id_CREA);
     this.ContentREAService.deleteContentREA(this.contenidoToSave).subscribe(res =>{
-      console.log(res);
+      //console.log(res);
     });
     this.getContenidos();
     //window.location.reload();
+  }
+
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 
 }

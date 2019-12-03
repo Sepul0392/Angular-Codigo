@@ -32,6 +32,7 @@ export class GestionarUsuariosAdminComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
 
     this.AuthAdminService.selectedDocente = new DocenteI();
     this.AuthAdminService.selectedEstudiante = new EstuadianteI();
@@ -185,4 +186,14 @@ export class GestionarUsuariosAdminComponent implements OnInit {
       this.estudianteToSave = new EstuadianteI();
     }
   }
+
+  comprobacionLogin(){
+    if (this.AuthAdminService.getIdAdmin()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
+
 }

@@ -69,6 +69,7 @@ export class CrearActividadComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
     this.ID_TipoContenido_Taller = 5;
     this.correcto = false;
     this.error = false;
@@ -349,6 +350,15 @@ export class CrearActividadComponent implements OnInit {
       form.reset();
       window.scrollTo(0, 0);
       this.temp = 0;
+    }
+  }
+
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
     }
   }
   

@@ -44,6 +44,8 @@ export class GestionarColegioAdminComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
+    
     this.correcto1 = false;
     this.correcto2 = false;
     this.correcto3 = false;
@@ -313,4 +315,14 @@ export class GestionarColegioAdminComponent implements OnInit {
       this.getOptions();
     }
   }
+
+  comprobacionLogin(){
+    if (this.AuthAdminService.getIdAdmin()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
+
 }

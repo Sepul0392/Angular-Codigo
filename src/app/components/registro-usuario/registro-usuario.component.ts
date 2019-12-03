@@ -164,7 +164,7 @@ export class RegistroUsuarioComponent implements OnInit {
             this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
               //console.log(res);
               this.resetForm(form);
-              this.router.navigateByUrl('/login')
+              this.router.navigate(['/login']);
             });
           });
         });

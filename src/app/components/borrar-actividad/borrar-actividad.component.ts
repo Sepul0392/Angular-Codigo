@@ -42,6 +42,7 @@ export class BorrarActividadComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
 
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
     this.getOptions();
@@ -138,6 +139,15 @@ export class BorrarActividadComponent implements OnInit {
     });
     this.getActividades();
     //window.location.reload();
+  }
+
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 
 }

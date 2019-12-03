@@ -69,6 +69,8 @@ export class ModificarActividadComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
+    
     this.ID_TipoContenido_Taller = 5;
     this.correcto1 = false;
     this.correcto2 = false;
@@ -595,6 +597,15 @@ export class ModificarActividadComponent implements OnInit {
       this.contenidoAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
       this.tallerAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
       //console.log('reseteo');
+    }
+  }
+
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
     }
   }
 

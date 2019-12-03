@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.AuthDService.loginDocente(form.value).subscribe(res => {
       this.error1 = false;
       this.error2 = false;
-      this.router.navigateByUrl('/inicioProfesores');
+      this.router.navigate(['/inicioProfesores']);
     });
   }
 
@@ -53,13 +53,13 @@ export class LoginComponent implements OnInit {
     this.AuthAdminService.loginAdmin(LoginAdmin).subscribe(res => {
       this.error1 = false;
       this.error2 = false;
-      this.router.navigateByUrl('/inicioAdmin');
+      this.router.navigate(['/inicioAdmin']);
     });
   }
 
   onLoginVisitante(){
     //console.log('login Visitante');
-    this.router.navigateByUrl('/busquedaVisitante');
+    this.router.navigate(['/busquedaVisitante']);
   }
 
   actualizarIPServer(form: NgForm){

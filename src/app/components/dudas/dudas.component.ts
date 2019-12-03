@@ -58,6 +58,8 @@ export class DudasComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
+    
     this.correcto1 = false;
     this.correcto2 = false;
     this.error1 = false;
@@ -258,6 +260,15 @@ export class DudasComponent implements OnInit {
   saveDataDuda(dudahtml){
     this.dudaToSave = dudahtml;
     //console.log('duda guardada:', this.dudaToSave);
+  }
+
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 
 }

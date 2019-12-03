@@ -39,6 +39,7 @@ export class AdministrarDocenteComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
     this.correcto = false;
     this.error = false;
 
@@ -242,6 +243,15 @@ export class AdministrarDocenteComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
+    }
+  }
+
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
     }
   }
 

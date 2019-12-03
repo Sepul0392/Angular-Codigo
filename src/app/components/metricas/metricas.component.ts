@@ -12,8 +12,8 @@ import { EventoI } from '../../models/evento';
 import { MetricaI } from '../../models/metrica';
 import { MetricaVisualizarI } from '../../models/metricaVisualizar';
 import { MetricaActividadI } from '../../models/metricaActividad';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-
 
 @Component({
   selector: 'app-metricas',
@@ -54,10 +54,11 @@ export class MetricasComponent implements OnInit {
   notaA1:number; notaA2:number; notaA3:number; notaEA1:number; notaEA2:number; notaEA3:number;
   bar20:boolean; bar40:boolean; bar60:boolean; bar80:boolean; bar100:boolean; 
 
-  constructor(private AuthDService: AuthDService, private ActividadService: ActividadService) { }
+  constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.comprobacionLogin();
     this.id_docenteAuth = this.AuthDService.getIdDocente();
     this.nombre_docenteAuth = this.AuthDService.getnombreApellidoDocente();
 
@@ -363,6 +364,15 @@ export class MetricasComponent implements OnInit {
 
   resetPage(){
     window.location.reload();
+  }
+
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 
 }

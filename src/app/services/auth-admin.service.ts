@@ -15,6 +15,7 @@ import { AdminI } from '../models/admin';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { EstuadianteI } from '../models/estudiante';
+import { isNullOrUndefined } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -131,7 +132,12 @@ export class AuthAdminService {
 
   getIdAdmin(): number {
     var id_adminAuthString = this.localStorageService.getItem("ID_ADMIN");
-    return parseInt(id_adminAuthString);
+    if(!isNullOrUndefined(id_adminAuthString)){
+      //console.log('prueba',id_adminAuthString);
+      return parseInt(id_adminAuthString);
+    } else {
+      return null;
+    }
   }
 
   getNombreUsuario(): string {
