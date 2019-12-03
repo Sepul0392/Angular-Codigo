@@ -136,6 +136,7 @@ export class BusquedaComponent implements OnInit {
           //console.log(this.ActividadService.actividades.length);
 
           for (let i = 0; i < this.ActividadService.actividades.length; i++) {
+            this.actividadVisualizar[i].autor == this.ActividadService.actividades[i].autor;
             for (let n = 0; n < this.competencia.length; n++) {
               if (this.ActividadService.actividades[i].id_competencia == this.competencia[n].id_competencia) {
                 this.actividadVisualizar[i].competencia = this.competencia[n].nombre_competencia;

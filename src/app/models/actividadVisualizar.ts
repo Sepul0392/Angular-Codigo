@@ -8,4 +8,5 @@ export interface ActividadVisualizaI {
     id_grado: number;
     competencia: string;
     docente: string;
+    autor: string;
 }

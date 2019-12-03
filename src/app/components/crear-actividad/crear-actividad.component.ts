@@ -297,7 +297,9 @@ export class CrearActividadComponent implements OnInit {
         EA32: form.value.respuesta32E,
         EA33: form.value.respuesta33E,
         EA34: form.value.respuesta34E,
-        ECA3: form.value.respuestaCorrectaESelected3
+        ECA3: form.value.respuestaCorrectaESelected3,
+        autor: this.AuthDService.getnombreApellidoDocente(),
+        id_autor: this.id_docenteAuth
       }
 
       console.log('datosActividad', newActividad);

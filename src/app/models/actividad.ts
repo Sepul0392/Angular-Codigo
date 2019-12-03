@@ -4,7 +4,7 @@ export class ActividadI {
                 descripcion_actividad = '',id_contenidoREA = 0, video = 0, urlvideo = '', lectura = 0, urllectura = '', html = 0, urlhtml = '',
                 Q1 = '', A11 = '', A12 = '', A13 = '', A14 = '', CA1 = 0, Q2 = '', A21 = '', A22 = '', A23 = '', A24 = '', CA2 = 0,
                 Q3 = '', A31 = '', A32 = '', A33 = '', A34 = '', CA3 = 0, audio = 0, urlaudio = '', descripcion_test = '',
-                id_taller = 0, taller = 0, urltaller = '', evaluacion = 0, descripcion_evaluacion = ''){
+                id_taller = 0, taller = 0, urltaller = '', evaluacion = 0, descripcion_evaluacion = '', autor = '', id_autor = 0){
                     this.id_actividad = id_actividad;
                     this.cont = cont;
                     this.id_colegio = id_colegio;
@@ -65,6 +65,8 @@ export class ActividadI {
                     this.EA33 = A33;
                     this.EA34 = A34;
                     this.ECA3 = CA3;
+                    this.autor = autor;
+                    this.id_autor = id_autor;
     }
 
     id_actividad: number;
@@ -127,4 +129,6 @@ export class ActividadI {
     EA33: string;
     EA34: string;
     ECA3: number;
+    autor: string;
+    id_autor: number;
 }
