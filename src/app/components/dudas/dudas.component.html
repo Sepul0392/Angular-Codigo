@@ -45,6 +45,10 @@
                                                 <input type="text" class="form-control col-md-8" id="inputNombreActividadSinR" placeholder="Nombre Actividad" 
                                                     [(ngModel)]="nombreActividadSelectedSinR" name="nombreActividadSelectedSinR">
                                             </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control col-md-6" id="inputNombreEstudianteSinR" placeholder="Nombre Estudiante" 
+                                                    [(ngModel)]="nombreEstudianteSelectedSinR" name="nombreEstudianteSelectedSinR">
+                                            </div>
                                             <!-- Selectores -->
                                             <div class="form-row">
                                                 <div class="form-group col-4">
@@ -68,7 +72,7 @@
                                             <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
                                                 style="width: 95%; height: 450px">
                                                 <!--Resultado-->
-                                                <div class="row-1" *ngFor="let duda of dudasVisualizar | filterDuda: nombreActividadSelectedSinR:materiaSinRSelected:gradoSinRSelected:id_docenteAuth:SinROption">
+                                                <div class="row-1" *ngFor="let duda of dudasVisualizar | filterDuda: nombreActividadSelectedSinR:materiaSinRSelected:gradoSinRSelected:id_docenteAuth:SinROption:nombreEstudianteSelectedSinR">
                                                     <div class="card mb-4 border-0" style="max-width: 1440px;">
                                                         <div class="row no-gutters border border-info">
                                                             <div class="col" style="max-width: 840px;">
@@ -115,21 +119,25 @@
                                             <!--Buscar-->
                                             <h5 class="py-3 text-white">Filtros:</h5>
                                             <div class="form-group">
-                                                <input type="text" class="form-control col-md-8" id="inputNombreActividadSinR" placeholder="Nombre Actividad" 
-                                                    [(ngModel)]="nombreActividadSelectedSinR" name="nombreActividadSelectedSinR">
+                                                <input type="text" class="form-control col-md-8" id="inputNombreActividadR" placeholder="Nombre Actividad" 
+                                                    [(ngModel)]="nombreActividadSelectedR" name="nombreActividadSelectedR">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control col-md-6" id="inputNombreEstudianteR" placeholder="Nombre Estudiante" 
+                                                    [(ngModel)]="nombreEstudianteSelectedR" name="nombreEstudianteSelectedR">
                                             </div>
                                             <!-- Selectores -->
                                             <div class="form-row">
                                                 <div class="form-group col-4">
-                                                    <label for="inputMateriaSinR" class="text-white">Materia</label>
-                                                    <select [(ngModel)]="materiaSinRSelected" name="materiaSinRSelected" id="inputMateriaSinR" class="form-control" ngModel required>
+                                                    <label for="inputMateriaR" class="text-white">Materia</label>
+                                                    <select [(ngModel)]="materiaRSelected" name="materiaRSelected" id="inputMateriaR" class="form-control" ngModel required>
                                                         <option selected></option>
                                                         <option *ngFor="let materia of materias" [value]="materia.id_materia">{{materia.nombre_materia}}</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-3">
-                                                    <label for="inputGradoSinR" class="text-white">Grado</label>
-                                                    <select [(ngModel)]="gradoSinRSelected" name="gradoSinRSelected" id="inputGradoSinR" class="form-control" ngModel required>
+                                                    <label for="inputGradoR" class="text-white">Grado</label>
+                                                    <select [(ngModel)]="gradoRSelected" name="gradoRSelected" id="inputGradoR" class="form-control" ngModel required>
                                                         <option selected></option>
                                                         <option *ngFor="let grado of grados" [value]="grado.id_grado">{{grado.nombre_grado}}
                                                         </option>
@@ -142,7 +150,7 @@
                                             <div class="col container p-4 my bg-light rounded table-wrapper-scroll-y my-custom-scrollbar"
                                                 style="width: 95%; height: 450px">
                                                 <!--Resultado-->
-                                                <div class="row-1" *ngFor="let dudaR of dudasVisualizar | filterDuda: nombreActividadSelectedSinR:materiaSinRSelected:gradoSinRSelected:id_docenteAuth:ROption">
+                                                <div class="row-1" *ngFor="let dudaR of dudasVisualizar | filterDuda: nombreActividadSelectedR:materiaRSelected:gradoRSelected:id_docenteAuth:ROption:nombreEstudianteSelectedR">
                                                     <div class="card mb-4 border-0" style="max-width: 1440px;">
                                                         <div class="row no-gutters border border-info">
                                                             <div class="col-md-10" style="max-width: 840px;">

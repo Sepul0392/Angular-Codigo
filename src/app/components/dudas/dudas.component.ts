@@ -71,7 +71,7 @@ export class DudasComponent implements OnInit {
     this.IPServer = this.AuthAdminService.loadIPServer();
     this.id_docenteAuth = this.AuthDService.getIdDocente();
     this.getOptions();
-    this.actividadVisualizar = {id_actividad:0,cont:0,titulo_actividad:"",descripcion_actividad:"",materia:"",id_grado:0,competencia:"",docente:""}
+    this.actividadVisualizar = {id_actividad:0,cont:0,titulo_actividad:"",descripcion_actividad:"",materia:"",id_grado:0,competencia:"",docente:"",autor:""}
     this.dudaToSave = {id_duda:0,id_actividad:0,id_estudiante:0,pregunta:"",respuesta:"",estado_duda:0}
     this.contenidoAct = {nombre_CREA:"", cont:0, id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
     this.tallerAct = {nombre_CREA:"",cont:0, id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};

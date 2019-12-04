@@ -6,12 +6,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterDudaPipe implements PipeTransform {
 
   //transform(value: any, ...args: any[]): any {
-  transform(items: any, nombreSearch: string, materiaSearch: number, gradoSearch: number, docenteSearch: number, estadoDuda: number) {
-    //console.log("entradas:", nombreSearch,  materiaSearch, gradoSearch, docenteSearch, estadoDuda);
+  transform(items: any, nombreSearch: string, materiaSearch: number, gradoSearch: number, docenteSearch: number, estadoDuda: number, nombreEstudianteSearch: string) {
+    //console.log("entradas:", nombreSearch, nombreEstudianteSearch,  materiaSearch, gradoSearch, docenteSearch, estadoDuda);
     //console.log("item:", items);
     if (items && items.length) {
       return items.filter(item => {
         if (nombreSearch && item.nombre_actividad.toLowerCase().indexOf(nombreSearch.toLowerCase()) === -1) {
+          return false;
+        }
+        if (nombreEstudianteSearch && item.estudiante.toLowerCase().indexOf(nombreEstudianteSearch.toLowerCase()) === -1) {
           return false;
         }
         if (materiaSearch && item.id_materia != materiaSearch) {
