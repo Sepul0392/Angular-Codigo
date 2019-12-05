@@ -91,10 +91,10 @@
                                                             <div class="form-row pb-3">
                                                                 <div class="form-group col">
                                                                     <label for="inputDocenteA" class="text-white">Competencia</label>
-                                                                    <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA" class="form-control" onfocus='if(this.options.length > 2){ this.size = 8; }' onblur='this.size=1;' onchange='this.size=1; this.blur();'ngModel required>
-                                                                        <option selected></option>
-                                                                        <option selected [value]=0>Sin Competencia</option>
-                                                                        <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA"
+                                                                    <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA" class="form-control" onfocus='if(this.options.length > 2){ this.size = 8; }' onblur='this.size=1;' onchange='this.size=1; this.blur();' ngModel required>
+                                                                        <option class="col-auto px-0" selected></option>
+                                                                        <option class="col-auto px-0" selected [value]=0>Sin Competencia</option>
+                                                                        <option class="col-auto px-0" *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA"
                                                                             [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
                                                                         </option>
                                                                     </select>

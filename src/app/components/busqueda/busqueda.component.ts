@@ -220,8 +220,8 @@ export class BusquedaComponent implements OnInit {
   //Abrir nueva ventana con el Contenido de la actividad Buscada
   verContenidoActividad(){
     const urlcut = this.contenidoRes.content.urlrepositorio.substring(41);
-    const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
-    //console.log('urlload', urlLoad);
+    const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut
+    //console.log('urlload', urlLoad, 'urlcut', urlcut, 'urlrepositorio', this.contenidoRes.content.urlrepositorio);
     window.open(urlLoad, "_blank");
   }
 

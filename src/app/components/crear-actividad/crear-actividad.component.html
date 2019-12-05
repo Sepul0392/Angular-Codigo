@@ -41,20 +41,22 @@
                         </div>
                     </div>
                     <!--Filtro Competencia-->
+                    <div class="form-group col px-0">
+                        <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
+                        <input type="text" class="form-control col-5" id="inputTextoBusquedaCompetencia" placeholder="Ingrese palabra clave" [(ngModel)]="nombreCompetenciaSelected"
+                            name="inputBusquedaCompetencia">
+                    </div>
                     <div class="form-row pb-3">
                         <div class="form-group col">
                             <label for="inputDocenteA" class="text-white">Competencia</label>
-                            <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaSelectedA" class="form-control" ngModel required>
-                                <option selected [value]=0>Sin Competencia</option>
-                                <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelectedA:materiaSelectedA:gradoSelectedA" [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
+                            <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA" class="form-control" onfocus='if(this.options.length > 2){ this.size = 8; }' onblur='this.size=1;' onchange='this.size=1; this.blur();'ngModel required>
+                                <option class="col-auto px-0" selected></option>
+                                <option class="col-auto px-0" selected [value]=0>Sin Competencia</option>
+                                <option class="col-auto px-0" *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA"
+                                    [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
                                 </option>
                             </select>
                             <!--el valor seleccionado es {{competenciaSelectedA}}-->
-                        </div>
-                        <div class="form-group col">
-                            <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
-                            <input type="text" class="form-control col-auto" id="inputTextoBusquedaCompetencia"
-                                placeholder="Ingrese palabra clave" [(ngModel)]="nombreCompetenciaSelectedA" name="nombreCompetenciaSelectedA">
                         </div>
                     </div>
                     <hr class="style1">
