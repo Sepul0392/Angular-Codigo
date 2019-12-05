@@ -569,5 +569,38 @@ html{
 /** Scroll **/
 select {
   max-height: 300px;
-  overflow-y: scroll;
+  overflow-x: auto;
+  overflow-y: auto;
 }
+option{
+  max-width:250px;  
+}
+
+/* class="scrollmenu" */
+div.scrollmenu {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #777;
+}
+
+/* class="scroller" */
+.scroller {
+  width: 300px;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
+}
+

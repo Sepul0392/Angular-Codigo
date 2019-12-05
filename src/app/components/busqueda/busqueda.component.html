@@ -43,12 +43,11 @@
                                                 <div>
                                                     <div class="contenedor py-3">
                                                         <form #frmBuscarActividad="ngForm" (ngSubmit)="saveDataActividad(frmBuscarActvidad)">
-                                                            <div class="form-group">
+                                                            <div class="form-group px-0">
                                                                 <!--Barra busqueda-->
                                                                 <br>
                                                                 <div class="form-inline">
-                                                                    <input type="text" class="form-control col-md-8" id="inputTextoBusquedaActividad"
-                                                                        placeholder="Busqueda por nombre de la Actividad" [(ngModel)]="nombreActividadSelected"
+                                                                    <input type="text" class="form-control col-md-8" id="inputTextoBusquedaActividad" placeholder="Busqueda por nombre de la Actividad" [(ngModel)]="nombreActividadSelected"
                                                                         name="inputBusquedaActividad">
                                                                 </div>
                                                             </div>
@@ -84,25 +83,22 @@
                                                                 </div>
                                                             </div>
                                                             <!--Filtro Competencia-->
+                                                            <div class="form-group col px-0">
+                                                                <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
+                                                                <input type="text" class="form-control col-5" id="inputTextoBusquedaCompetencia" placeholder="Ingrese palabra clave" [(ngModel)]="nombreCompetenciaSelected"
+                                                                    name="inputBusquedaCompetencia">
+                                                            </div>
                                                             <div class="form-row pb-3">
                                                                 <div class="form-group col">
                                                                     <label for="inputDocenteA" class="text-white">Competencia</label>
-                                                                    <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA"
-                                                                        class="form-control" ngModel required>
+                                                                    <select [(ngModel)]="competenciaSelectedA" id="inputCompetenciaA" name="competenciaA" class="form-control" onfocus='if(this.options.length > 2){ this.size = 8; }' onblur='this.size=1;' onchange='this.size=1; this.blur();'ngModel required>
                                                                         <option selected></option>
                                                                         <option selected [value]=0>Sin Competencia</option>
-                                                                        <option
-                                                                            *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA"
+                                                                        <option *ngFor="let compe of competencia | filterCompetencia: nombreCompetenciaSelected:materiaSelectedA:gradoSelectedA"
                                                                             [value]="compe.id_competencia">{{(compe.nombre_competencia)}}
                                                                         </option>
                                                                     </select>
                                                                     <!--el valor seleccionado es {{competenciaSelectedA}}-->
-                                                                </div>
-                                                                <div class="form-group col">
-                                                                    <label for="inputDocenteA" class="text-white">Buscador Competencia</label>
-                                                                    <input type="text" class="form-control col-auto" id="inputTextoBusquedaCompetencia"
-                                                                        placeholder="Ingrese palabra clave" [(ngModel)]="nombreCompetenciaSelected"
-                                                                        name="inputBusquedaCompetencia">
                                                                 </div>
                                                             </div>
                                                             <!--Tabla de Resultados-->
@@ -121,20 +117,16 @@
                                                                                 <div class="card-body p-2">
                                                                                     <p class="card-text ">Descripcion: {{actividad.descripcion_actividad}}.</p>
                                                                                     <div>
-                                                                                        <p class="card-text"><small class="text-muted">Materia:
-                                                                                                {{actividad.materia}}</small></p>
+                                                                                        <p class="card-text"><small class="text-muted">Materia: {{actividad.materia}}</small></p>
                                                                                     </div>
                                                                                     <div>
-                                                                                        <p class="card-text"><small class="text-muted">Grado:
-                                                                                                {{actividad.id_grado}}</small></p>
+                                                                                        <p class="card-text"><small class="text-muted">Grado: {{actividad.id_grado}}</small></p>
                                                                                     </div>
                                                                                     <div>
-                                                                                        <p class="card-text"><small class="text-muted">Competencia:
-                                                                                                {{actividad.competencia}}</small></p>
+                                                                                        <p class="card-text"><small class="text-muted">Competencia: {{actividad.competencia}}</small></p>
                                                                                     </div>
                                                                                     <div>
-                                                                                        <p class="card-text"><small class="text-muted">Profesor:
-                                                                                                {{actividad.docente}}</small></p>
+                                                                                        <p class="card-text"><small class="text-muted">Profesor: {{actividad.docente}}</small></p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -193,21 +185,16 @@
                                                                 </div>
                                                                 <div class="form-group col">
                                                                     <label for="inputDocente" class="text-white">Profesor</label>
-                                                                    <select [(ngModel)]="docenteSelected" id="inputDocente" name="Docente" class="form-control"
-                                                                        ngModel required>
+                                                                    <select [(ngModel)]="docenteSelected" id="inputDocente" name="Docente" class="form-control" ngModel required>
                                                                         <option selected></option>
-                                                                        <option *ngFor="let docen of docente" [value]="docen.id_docente">
-                                                                            {{(docen.nombre_docente+" "+docen.apellido_docente)}}</option>
+                                                                        <option *ngFor="let docen of docente" [value]="docen.id_docente">{{(docen.nombre_docente+" "+docen.apellido_docente)}}</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group col">
                                                                     <label for="inputGrado" class="text-white">Tipo de Contenido</label>
-                                                                    <select [(ngModel)]="tipoContenidoSelected" id="inputGrado" name="tipoContenido"
-                                                                        class="form-control" ngModel required>
+                                                                    <select [(ngModel)]="tipoContenidoSelected" id="inputGrado" name="tipoContenido" class="form-control" ngModel required>
                                                                         <option selected></option>
-                                                                        <option *ngFor="let tipCon of tipoContenido" [value]="tipCon.id_tipoContenido">
-                                                                            {{tipCon.nombre_tipoContenido}}
-                                                                        </option>
+                                                                        <option *ngFor="let tipCon of tipoContenido" [value]="tipCon.id_tipoContenido">{{tipCon.nombre_tipoContenido}}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
