@@ -34,6 +34,7 @@ export class RegistroUsuarioComponent implements OnInit {
   ngOnInit() {
     window.scrollTo(0, 0);
 
+    this.AuthDService.selectedDocente = new DocenteI;
     this.getOptions();
   }
 
