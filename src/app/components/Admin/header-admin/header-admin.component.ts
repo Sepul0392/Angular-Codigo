@@ -1,6 +1,7 @@
 import { AuthAdminService } from '../../../services/auth-admin.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-header-admin',
@@ -10,11 +11,15 @@ import { Router } from "@angular/router";
 export class HeaderAdminComponent implements OnInit {
 
   IPServer:string;
+  cambioCorrecto:boolean;
+  cambioError:boolean;
 
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
 
   ngOnInit() {
     this.IPServer = this.AuthAdminService.loadIPServer();
+    this.cambioCorrecto = false;
+    this.cambioError = false;
   }
 
   logOut(){
@@ -27,6 +32,20 @@ export class HeaderAdminComponent implements OnInit {
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/manual.pdf';
     //console.log('urlload', urlLoad);
     window.open(urlLoad, "_blank");
+  }
+
+  actualizarContrasena(form: NgForm): void {
+    this.cambioCorrecto = false;
+    this.cambioError = true;
+    const newC = {
+      id_admin: this.AuthAdminService.getIdAdmin(),
+      contrasena: form.value.contrasena
+    }
+    this.AuthAdminService.uploadInfoLoginAdmin(newC).subscribe(res =>{
+      //console.log(res);
+      this.cambioCorrecto = true;
+      this.cambioError = false;
+    });
   }
 
 }

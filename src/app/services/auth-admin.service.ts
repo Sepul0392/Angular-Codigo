@@ -411,4 +411,9 @@ export class AuthAdminService {
   newAllTypes(){
     return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/newLoadTypes`);
   }
+
+  //Servicio para cambiar contraseña de Administrador en MongoDB 
+  uploadInfoLoginAdmin(infoC: any){
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadInfoLoginAdmin`, infoC);
+  }
 }

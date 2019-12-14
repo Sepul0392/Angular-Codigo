@@ -41,8 +41,8 @@
                             </select>
                         </div>
                         <div class="form-group col">
-                            <label for="inputGrado" class="text-white">Tipo de Contenido</label>
-                            <select [(ngModel)]="tipoContenidoSelected" name="tipoContenido" id="inputGrado" class="form-control" ngModel required>
+                            <label for="inputType" class="text-white">Tipo de Contenido</label>
+                            <select [(ngModel)]="tipoContenidoSelected" name="tipoContenido" id="inputType" class="form-control" ngModel required>
                                 <option *ngFor="let tipCon of tipoContenido" [value]="tipCon.id_tipoContenido">{{tipCon.nombre_tipoContenido}}</option>
                             </select>
                         </div>
