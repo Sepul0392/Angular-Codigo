@@ -36,6 +36,7 @@ export class ModificarActividadComponent implements OnInit {
 
   //Elementos de Busqueda de Actividad
   actividadToSave:ActividadI;
+  actividadToSave2:ActividadI;
   actividad:ActividadI[];
   docente:DocenteI[];
   competencia:CompetenciaI[];
@@ -64,6 +65,10 @@ export class ModificarActividadComponent implements OnInit {
   correcto2:boolean;
   error1:boolean;
   error2:boolean;
+  tallerActivado:boolean;
+  evaluacionActivado:boolean;
+  tallerDesactivado:boolean;
+  evaluacionDesactivado:boolean;
 
   constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
@@ -76,6 +81,10 @@ export class ModificarActividadComponent implements OnInit {
     this.correcto2 = false;
     this.error1 = false;
     this.error2 = false;
+    this.tallerActivado = false;
+    this.evaluacionActivado = false;
+    this.tallerDesactivado = false;
+    this.evaluacionDesactivado = false;
 
     this.getOptions();
     this.getContenidos();
@@ -83,6 +92,7 @@ export class ModificarActividadComponent implements OnInit {
     this.ActividadService.selectedActividad = new ActividadI();
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
     this.id_colegioAuth = this.AuthDService.getIdColegioDocente();
+    this.actividadToSave2 = new ActividadI();
     this.contenidoAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
     this.tallerAct = {nombre_CREA:"",cont:0,id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
     this.verificationSaveContent = false;
@@ -171,6 +181,10 @@ export class ModificarActividadComponent implements OnInit {
               if (this.ActividadService.actividades[i].id_materia == this.materia[p].id_materia) {
                 this.actividadVisualizar[i].materia = this.materia[p].nombre_materia;
               }
+            }
+
+            if(this.actividadToSave2.id_actividad == this.actividadVisualizar[i].id_actividad){
+              this.seccionActivity(this.actividadVisualizar[i]);
             }
           }
           //console.log("actividades visualizar final:", this.actividadVisualizar)
@@ -392,6 +406,7 @@ export class ModificarActividadComponent implements OnInit {
           this.actividadToSave.titulo_actividad = form.value.titulo_actividad;
           this.actividadToSave.descripcion_actividad = form.value.descripcion_actividad;
           this.actividadToSave.descripcion_test = form.value.descripcion_test;
+          this.actividadToSave.taller = 0;
           this.actividadToSave.Q1 = form.value.Q1;
           this.actividadToSave.A11 = form.value.A11;
           this.actividadToSave.A12 = form.value.A12;
@@ -410,6 +425,7 @@ export class ModificarActividadComponent implements OnInit {
           this.actividadToSave.A33 = form.value.A33;
           this.actividadToSave.A34 = form.value.A34;
           this.actividadToSave.CA3 = form.value.CA3;
+          this.actividadToSave.evaluacion = 0;
           this.actividadToSave.descripcion_evaluacion = form.value.descripcion_evaluacion;
           this.actividadToSave.EQ1 = form.value.EQ1;
           this.actividadToSave.EA11 = form.value.EA11;
@@ -574,6 +590,81 @@ export class ModificarActividadComponent implements OnInit {
       this.verificationSaveTaller = false;
     }
     //console.log('bandera',this.verificationSaveTaller)
+  }
+
+  //Almacenar info temporal de una Actividad
+  seccionActivity(actividad){
+    this.actividadToSave2 = actividad;
+    //console.log("actividad guardada:", this.actividadToSave2);
+
+    if(this.actividadToSave2.taller == 1){
+      this.tallerActivado = true;
+      this.tallerDesactivado = false;
+    }
+    else{
+      this.tallerActivado = false;
+      this.tallerDesactivado = true;
+    }
+
+    if(this.actividadToSave2.evaluacion == 1){
+      this.evaluacionActivado = true;
+      this.evaluacionDesactivado = false;
+    }
+    else{
+      this.evaluacionActivado = false;
+      this.evaluacionDesactivado = true;
+    }
+    //console.log(this.tallerActivado,this.tallerDesactivado,this.evaluacionActivado,this.evaluacionDesactivado);
+  }
+
+  //Activar o Desactivar Secciones de la Actividad
+  activarTaller(){
+    const newSeccionActividad = {
+      id_actividad: this.actividadToSave2.id_actividad,
+      taller: 1,
+      evaluacion: this.actividadToSave2.evaluacion
+    }
+
+    this.ActividadService.uploadSectionsActivity(newSeccionActividad).subscribe(res =>{
+      //console.log(res);
+      this.getActividades();
+    });
+  }
+  desactivarTaller(){
+    const newSeccionActividad = {
+      id_actividad: this.actividadToSave2.id_actividad,
+      taller: 0,
+      evaluacion: this.actividadToSave2.evaluacion
+    }
+
+    this.ActividadService.uploadSectionsActivity(newSeccionActividad).subscribe(res =>{
+      //console.log(res);
+      this.getActividades();
+    });
+  }
+  activarEvaluacion(){
+    const newSeccionActividad = {
+      id_actividad: this.actividadToSave2.id_actividad,
+      taller: this.actividadToSave2.taller,
+      evaluacion: 1
+    }
+
+    this.ActividadService.uploadSectionsActivity(newSeccionActividad).subscribe(res =>{
+      //console.log(res);
+      this.getActividades();
+    });
+  }
+  desactivarEvaluacion(){
+    const newSeccionActividad = {
+      id_actividad: this.actividadToSave2.id_actividad,
+      taller: this.actividadToSave2.taller,
+      evaluacion: 0
+    }
+
+    this.ActividadService.uploadSectionsActivity(newSeccionActividad).subscribe(res =>{
+      //console.log(res);
+      this.getActividades();
+    });
   }
 
   //Resetear pagina

@@ -39,6 +39,11 @@ export class ActividadService {
       return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadActivity`, actividad);
   }
 
+  //Servicio para modificar Secciones de la Actividad en MongoDB 
+  uploadSectionsActivity(infoSections: any){
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadSectionsActivity`, infoSections);
+}
+
   //Servicio para borrar la Actividad de MongoDB
   deleteActivity(actividad: ActividadI){
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteActivity`, actividad)
