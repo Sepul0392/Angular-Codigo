@@ -41,6 +41,11 @@ export class ContentREAService {
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadEstadoContentREA`, data);
   }
 
+  //Servicio para cambiar la URL del contenido en Mongo
+  uploadURLContentREA(data:any){
+    return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/uploadURLContentREA`, data);
+  }
+
   //Servicio para subir el contenido al Repositorio ***
   uploadFile(formData){
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/subir`, formData);

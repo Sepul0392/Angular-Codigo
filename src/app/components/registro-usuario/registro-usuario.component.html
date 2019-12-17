@@ -87,7 +87,7 @@
                     <br>
                     <!--Boton Crear Materia-->
                     <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">
-                        <button class="btn bg-danger px-5 py-4 font-weight-bold" (click)="onCrearDocente(frmRegistroProfesor)">Crear Profesor</button>
+                        <button class="btn bg-danger px-5 py-4 font-weight-bold" data-toggle="modal" data-target="#mimodalejemplo" (click)="onCrearDocente(frmRegistroProfesor)">Crear Profesor</button>
                     </div>
                 </form>
                 <hr class="style5">
@@ -107,7 +107,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Profesor Creado.
+                    <div class="text-danger text-center" *ngIf="error1">No se pudo Crear el Docente. El Usuario o Correo puenden estar en uso. Verifique haber ingresado todos los datos.</div>
                 </div>
             </div>
         </div>

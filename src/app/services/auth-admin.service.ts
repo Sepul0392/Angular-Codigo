@@ -54,6 +54,8 @@ export class AuthAdminService {
   IPServer:string;
   IPGlobal:string;
 
+  temp:any;
+
   constructor(private httpClient: HttpClient, private router: Router) {
     //this.localStorageService = sessionStorage;
     this.localStorageService = localStorage;
@@ -99,7 +101,10 @@ export class AuthAdminService {
         if(res){
           //this.saveData(res.dataDocente.id_docente, res.dataDocente)
           //console.log('login res:', res);
-          this.saveSession(res.dataAdmin.id_admin, res.dataAdmin.accessToken, res.dataAdmin.expiresIn, res.dataAdmin.nombre_usuario);
+          this.temp = res;
+          if(this.temp.Estado != "Error Servidor" && this.temp.Estado != "Error Login"){
+            this.saveSession(res.dataAdmin.id_admin, res.dataAdmin.accessToken, res.dataAdmin.expiresIn, res.dataAdmin.nombre_usuario);
+          }
         }
       })
     );

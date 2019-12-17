@@ -52,7 +52,7 @@
                     <div class="input-group">
                         <div class="custom-file col-md-8">
                             <input type="file" class="custom-file-input" id="inputGroupFileContenido" aria-describedby="inputGroupFileAddon01" (change)="onFileChange($event)">
-                            <label class="custom-file-label" for="inputGroupFile01">...</label>
+                            <label class="custom-file-label" for="inputGroupFile01">{{nombreContenido}}</label>
                         </div>
                     </div>
                     <br>
@@ -83,7 +83,13 @@
                 </div>
                 <div class="modal-body text-danger" *ngIf="error">
                     El contenido no se ha podido subir. Verifica que has ingresado todos los 
-                    datos requeridos y seleccionado el contenido a subir.
+                    datos requeridos.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error2">
+                    El contenido no se ha podido subir. Verifica que has seleccionado el contenido a subir.
+                </div>
+                <div class="modal-body" *ngIf="subiendo">
+                    Se esta subiendo el contenido. Espere por favor.
                 </div>
             </div>
         </div>

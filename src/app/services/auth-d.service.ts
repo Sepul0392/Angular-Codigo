@@ -33,6 +33,7 @@ export class AuthDService {
   selectedDuda: DudaI;
   Dudas: DudaI[];
   
+  temp:any;
 
   constructor(private httpClient: HttpClient, private router: Router) {
     //this.localStorageService = sessionStorage;
@@ -106,9 +107,12 @@ export class AuthDService {
         if(res){
           //this.saveData(res.dataDocente.id_docente, res.dataDocente)
           //console.log('login res:', res);
-          this.saveSession(res.dataDocente.id_docente, res.dataDocente.nombre_docente, res.dataDocente.apellido_docente,  
+          this.temp = res;
+          if(this.temp.Estado != "Error Servidor" && this.temp.Estado != "Error Login"){
+            this.saveSession(res.dataDocente.id_docente, res.dataDocente.nombre_docente, res.dataDocente.apellido_docente,  
                            res.dataDocente.accessToken, res.dataDocente.expiresIn, res.dataDocente.nombre_usuario,
                            res.dataDocente.id_colegio);
+          }
         }
       })
     );

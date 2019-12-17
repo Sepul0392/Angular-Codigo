@@ -29,10 +29,15 @@ export class RegistroUsuarioComponent implements OnInit {
   temp2: number;
   urlTemp:string;
 
+  error1:boolean;
+  temp:any;
+
   constructor(private ContentREAService: ContentREAService, private AuthDService: AuthDService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+
+    this.error1 = false;
 
     this.AuthDService.selectedDocente = new DocenteI;
     this.getOptions();
@@ -162,6 +167,11 @@ export class RegistroUsuarioComponent implements OnInit {
 
           this.AuthDService.createDocente(newDocente).subscribe(res => {
             //console.log(res);
+            this.temp = res;
+            if(this.temp.Estado == "Error Crear Docente"){
+              this.error1 = true;
+            }
+
             this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
               //console.log(res);
               this.resetForm(form);

@@ -13,9 +13,11 @@ export class LoginComponent implements OnInit {
 
   error1:boolean;
   error2:boolean;
+  error3:boolean;
   correctoIP:boolean;
   errorIP:boolean;
   temp:string;
+  temp2:any;
 
   constructor(private AuthAdminService: AuthAdminService, private AuthDService: AuthDService, private router: Router) { }
 
@@ -31,13 +33,31 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginDocente(form):void{
-    this.error1 = true;
-    this.error2 = false;
     //console.log('login Docente', form.value);
+    this.error1 = false;
+    this.error2 = false;
+    this.error3 = false;
+
     this.AuthDService.loginDocente(form.value).subscribe(res => {
+      //console.log('login Docente', res);
+      this.temp2 = res;
+
+      if(this.temp2.Estado == "Error Servidor"){
       this.error1 = false;
       this.error2 = false;
-      this.router.navigate(['/inicioProfesores']);
+      this.error3 = true;
+      }
+      if(this.temp2.Estado == "Error Login"){
+        this.error1 = true;
+        this.error2 = false;
+        this.error3 = false;
+      }
+      if(this.temp2.Estado != "Error Servidor" && this.temp2.Estado != "Error Login"){
+        this.error1 = false;
+        this.error2 = false;
+        this.error3 = false;
+        this.router.navigate(['/inicioProfesores']);
+      }
     });
   }
 
@@ -48,12 +68,29 @@ export class LoginComponent implements OnInit {
       contrasena: form.value.contrasena
     }
     this.error1 = false;
-    this.error2 = true;
+    this.error2 = false;
+    this.error3 = false;
 
     this.AuthAdminService.loginAdmin(LoginAdmin).subscribe(res => {
+      //console.log('login Docente', res);
+      this.temp2 = res;
+
+      if(this.temp2.Estado == "Error Servidor"){
       this.error1 = false;
       this.error2 = false;
-      this.router.navigate(['/inicioAdmin']);
+      this.error3 = true;
+      }
+      if(this.temp2.Estado == "Error Login"){
+        this.error1 = false;
+        this.error2 = true;
+        this.error3 = false;
+      }
+      if(this.temp2.Estado != "Error Servidor" && this.temp2.Estado != "Error Login"){
+        this.error1 = false;
+        this.error2 = false;
+        this.error3 = false;
+        this.router.navigate(['/inicioAdmin']);
+      }
     });
   }
 
