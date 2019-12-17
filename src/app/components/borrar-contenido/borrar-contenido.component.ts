@@ -28,6 +28,9 @@ export class BorrarContenidoComponent implements OnInit {
   tipoContenidoSelected:number;
   contenidoVisualizar:contenidoREAVisualizarI[];
 
+  correcto:boolean;
+  mensaje:boolean;
+
   constructor(private AuthDService: AuthDService, private ContentREAService: ContentREAService, private router: Router) { 
     //this.getOptions();
   }
@@ -35,6 +38,9 @@ export class BorrarContenidoComponent implements OnInit {
   ngOnInit() {
     window.scrollTo(0, 0);
     this.comprobacionLogin();
+
+    this.correcto = false;
+    this.mensaje = false;
 
     this.getOptions();
     this.getContenidos();
@@ -98,11 +104,15 @@ export class BorrarContenidoComponent implements OnInit {
 
   //Eliminar contenidoREA de Mongo
   deleteContenido(){
+    this.correcto = false;
+    this.mensaje = true;
     //console.log("id para eliminar:", this.contenidoToSave.id_CREA);
     this.ContentREAService.deleteContentREA(this.contenidoToSave).subscribe(res =>{
       //console.log(res);
+      this.correcto = true;
+      this.mensaje = false;
+      this.getContenidos();
     });
-    this.getContenidos();
     //window.location.reload();
   }
 

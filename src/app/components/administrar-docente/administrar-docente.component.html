@@ -202,8 +202,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body text-info">
-                    Se ha actualizado tu informacion.
+                <div class="modal-body">
+                    <div class="" *ngIf="mensajeInfo">Actualizando Informacion.</div>
+                    <div class="text-info" *ngIf="correctoInfo">Se ha actualizado tu informacion.</div>
                 </div>
             </div>
         </div>
@@ -241,8 +242,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body text-info">
-                    La Materia ha sido Eliminada.
+                <div class="modal-body">
+                    <div class="" *ngIf="mensajeInfo">Eliminando Materia.</div>
+                    <div class="text-info" *ngIf="correctoInfo">La Materia ha sido Eliminada.</div>
                 </div>
             </div>
         </div>
@@ -257,6 +259,9 @@
                     <button class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                </div>
+                <div class="modal-body" *ngIf="mensaje">
+                    Creando Tu Materia.
                 </div>
                 <div class="modal-body text-info" *ngIf="correcto">
                     Tu Materia ha sido creada.

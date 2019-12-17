@@ -32,16 +32,23 @@ export class AdministrarDocenteComponent implements OnInit {
 
   materiaActivaToSave:MateriaActivaI;
   urlTemp:string;
+  mensaje:boolean;
   correcto:boolean;
   error:boolean;
+  correctoInfo:boolean;
+  mensajeInfo:boolean;
+  temp2:any;
 
   constructor(private ContentREAService: ContentREAService, private AuthDService: AuthDService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.comprobacionLogin();
+    this.mensaje = false;
     this.correcto = false;
     this.error = false;
+    this.correctoInfo = false;
+    this.mensajeInfo = false;
 
     this.DocenteInfo = new DocenteI;
     this.ColegioInfo = new ColegioI;
@@ -106,8 +113,9 @@ export class AdministrarDocenteComponent implements OnInit {
 
   //Crear una MateriaActiva
   CrearMateriaActiva(form: NgForm): void {
+    this.mensaje = true;
     this.correcto = false;
-    this.error = true;
+    this.error = false;
     
     this.AuthDService.loadAllSubjectActives().subscribe(res => {
       this.AuthDService.MateriasActivas = res as MateriaActivaI[];
@@ -166,12 +174,21 @@ export class AdministrarDocenteComponent implements OnInit {
 
         this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
           //console.log(res);
-          this.resetForm(form);
-          this.getInformacionCompleta();
-          this.correcto = true;
-          this.error = false;
-        });
+          this.temp2 = res;
 
+          if(this.temp2.Estado ==  "Error Crear Materia Activa"){
+            this.mensaje = false;
+            this.correcto = false;
+            this.error = true;
+          }
+          if(this.temp2.Estado ==  'Materia Activa Creada'){
+            this.mensaje = false;
+            this.correcto = true;
+            this.error = false;
+            this.getInformacionCompleta();
+            this.resetForm(form);
+          }
+        });
       });
     });
   }
@@ -185,11 +202,15 @@ export class AdministrarDocenteComponent implements OnInit {
   //Eliminar materiaActiva de Mongo
   deleteMateriaActiva(){
     //console.log("id para eliminar:", this.materiaActivaToSave.id_materiaActiva);
+    this.correctoInfo = false;
+    this.mensajeInfo = true;
     this.AuthDService.deleteSubjectActive(this.materiaActivaToSave).subscribe(res =>{
       //console.log(res);
+      this.correctoInfo = true;
+      this.mensajeInfo = false;
+      this.getInformacionCompleta();
+      //window.location.reload();
     });
-    this.getInformacionCompleta();
-    //window.location.reload();
   }
 
   //Imprimir datos del docente en el Form 
@@ -214,9 +235,13 @@ export class AdministrarDocenteComponent implements OnInit {
       nombre_docente: form.value.nombre_docente,
       apellido_docente: form.value.apellido_docente
     }
+    this.correctoInfo = false;
+    this.mensajeInfo = true;
 
     this.AuthDService.uploadInfoPersonalDocente(infoPersonalDocente).subscribe(res => {
       //console.log(res);
+      this.correctoInfo = true;
+      this.mensajeInfo = false;
       this.getDocenteinForm();
     });
   }
@@ -229,9 +254,13 @@ export class AdministrarDocenteComponent implements OnInit {
       correo_electronico: form.value.correo_electronico,
       contrasena: form.value.contrasena
     }
+    this.correctoInfo = false;
+    this.mensajeInfo = true;
 
     this.AuthDService.uploadInfoLoginDocente(infoLoginDocente).subscribe(res => {
       //console.log(res);
+      this.correctoInfo = true;
+      this.mensajeInfo = false;
       this.getDocenteinForm();
     });
   }
