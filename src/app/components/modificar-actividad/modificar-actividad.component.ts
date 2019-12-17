@@ -65,6 +65,8 @@ export class ModificarActividadComponent implements OnInit {
   correcto2:boolean;
   error1:boolean;
   error2:boolean;
+  subiendo:boolean;
+  temp2:any;
   tallerActivado:boolean;
   evaluacionActivado:boolean;
   tallerDesactivado:boolean;
@@ -131,6 +133,7 @@ export class ModificarActividadComponent implements OnInit {
           //console.log(res);
           this.ContentREAService.contenidosREA = res as contenidoREAI[];
           this.contenidoVisualizar = res as contenidoREAVisualizarI[];
+          this.contenidoVisualizar.reverse();
           //console.log(this.ContentREAService.contenidosREA.length);
 
           for (let i = 0; i < this.ContentREAService.contenidosREA.length; i++) {
@@ -163,6 +166,7 @@ export class ModificarActividadComponent implements OnInit {
           //console.log(res);
           this.ActividadService.actividades = res as ActividadI[];
           this.actividadVisualizar = res as ActividadVisualizaI[];
+          this.actividadVisualizar.reverse();
           //console.log(this.ActividadService.actividades.length);
 
           for (let i = 0; i < this.ActividadService.actividades.length; i++) {
@@ -199,13 +203,12 @@ export class ModificarActividadComponent implements OnInit {
     this.correcto2 = false;
     this.error1 = false;
     this.error2 = true;
+    this.subiendo = false;
 
     //Verificar que han seleccionado una Actividad para modificar
     if (this.verificationSaveActividad == true) {
-      this.correcto1 = false;
-      this.correcto2 = false;
-      this.error1 = true;
       this.error2 = false;
+      this.subiendo = true;
 
       //cambiar informacion de contenido en la Actividad al identificar que se a seleccionado un nuevo contenido
       if (this.verificationSaveContent == true) {
@@ -354,6 +357,7 @@ export class ModificarActividadComponent implements OnInit {
           this.correcto2 = false;
           this.error1 = false;
           this.error2 = false;
+          this.subiendo = false;
           this.resetForm(form);
         })
       }
@@ -451,54 +455,64 @@ export class ModificarActividadComponent implements OnInit {
           this.ActividadService.createActivity(this.actividadToSave).subscribe(res => {
             //window.location.reload();
             //console.log("Creada nueva Actividad");
+            this.temp2 = res;
+            
+            if(this.temp2 == "Error Crear Actividad"){
+              this.correcto1 = false;
+              this.correcto2 = false;
+              this.error1 = true;
+              this.error2 = false;
+              this.subiendo = false;
+            } else {
+              if (this.verificationSaveContent == true) {
+                const contenidoREANuevoInfo = {
+                  id_CREA: this.contenidoToSave.id_CREA,
+                  en_uso: (this.contenidoToSave.en_uso + 1)
+                }
 
-            if (this.verificationSaveContent == true) {
-              const contenidoREANuevoInfo = {
-                id_CREA: this.contenidoToSave.id_CREA,
-                en_uso: (this.contenidoToSave.en_uso + 1)
+                this.ContentREAService.uploadEstadoContentREA(contenidoREANuevoInfo).subscribe(res => {
+                  //console.log('nuevo contenido', res);
+                });
               }
-    
-              this.ContentREAService.uploadEstadoContentREA(contenidoREANuevoInfo).subscribe(res => {
-                //console.log('nuevo contenido', res);
-              });
-            }
-            else{
-              const contenidoREAViejoInfo = {
-                id_CREA: this.contenidoRes.content.id_CREA,
-                en_uso: (this.contenidoRes.content.en_uso + 1)
-              }
-    
-              this.ContentREAService.uploadEstadoContentREA(contenidoREAViejoInfo).subscribe(res => {
-                //console.log('viejo contenido', res);
-              });
-            }
-  
-            if (this.verificationSaveTaller == true) {
-              const tallerNuevoInfo = {
-                id_CREA: this.tallerToSave.id_CREA,
-                en_uso: (this.tallerToSave.en_uso + 1)
-              }
-    
-              this.ContentREAService.uploadEstadoContentREA(tallerNuevoInfo).subscribe(res => {
-                //console.log('nuevo contenido', res);
-              });
-            }
-            else{
-              const tallerViejoInfo = {
-                id_CREA: this.tallerRes.content.id_CREA,
-                en_uso: (this.tallerRes.content.en_uso + 1)
-              }
-    
-              this.ContentREAService.uploadEstadoContentREA(tallerViejoInfo).subscribe(res => {
-                //console.log('viejo contenido', res);
-              });
-            }
+              else {
+                const contenidoREAViejoInfo = {
+                  id_CREA: this.contenidoRes.content.id_CREA,
+                  en_uso: (this.contenidoRes.content.en_uso + 1)
+                }
 
-            this.correcto1 = false;
-            this.correcto2 = true;
-            this.error1 = false;
-            this.error2 = false;
-            this.resetForm(form);
+                this.ContentREAService.uploadEstadoContentREA(contenidoREAViejoInfo).subscribe(res => {
+                  //console.log('viejo contenido', res);
+                });
+              }
+
+              if (this.verificationSaveTaller == true) {
+                const tallerNuevoInfo = {
+                  id_CREA: this.tallerToSave.id_CREA,
+                  en_uso: (this.tallerToSave.en_uso + 1)
+                }
+
+                this.ContentREAService.uploadEstadoContentREA(tallerNuevoInfo).subscribe(res => {
+                  //console.log('nuevo contenido', res);
+                });
+              }
+              else {
+                const tallerViejoInfo = {
+                  id_CREA: this.tallerRes.content.id_CREA,
+                  en_uso: (this.tallerRes.content.en_uso + 1)
+                }
+
+                this.ContentREAService.uploadEstadoContentREA(tallerViejoInfo).subscribe(res => {
+                  //console.log('viejo contenido', res);
+                });
+              }
+
+              this.correcto1 = false;
+              this.correcto2 = true;
+              this.error1 = false;
+              this.error2 = false;
+              this.subiendo = false;
+              this.resetForm(form);
+            }
           });
         });
       }

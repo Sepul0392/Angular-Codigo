@@ -99,6 +99,7 @@ export class BusquedaVisitanteComponent implements OnInit {
           //console.log(res);
           this.ContentREAService.contenidosREA = res as contenidoREAI[];
           this.contenidoVisualizar = res as contenidoREAVisualizarI[];
+          this.contenidoVisualizar.reverse();
           //console.log(this.ContentREAService.contenidosREA.length);
 
           for (let i = 0; i < this.ContentREAService.contenidosREA.length; i++) {
@@ -131,6 +132,7 @@ export class BusquedaVisitanteComponent implements OnInit {
           //console.log(res);
           this.ActividadService.actividades = res as ActividadI[];
           this.actividadVisualizar = res as ActividadVisualizaI[];
+          this.actividadVisualizar.reverse();
           //console.log(this.ActividadService.actividades.length);
 
           for (let i = 0; i < this.ActividadService.actividades.length; i++) {

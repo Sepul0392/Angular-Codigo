@@ -174,8 +174,12 @@ export class RegistroUsuarioComponent implements OnInit {
 
             this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
               //console.log(res);
-              this.resetForm(form);
-              this.router.navigate(['/login']);
+              if(this.temp.Estado == "Error Crear Docente"){
+                this.error1 = true;
+              } else {
+                this.resetForm(form);
+                this.router.navigate(['/login']);
+              }
             });
           });
         });

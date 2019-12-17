@@ -131,8 +131,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body text-info">
-                    La Actividad ha sido Eliminado.
+                <div class="modal-body">
+                    <div class="" *ngIf="mensaje">Eliminando Actividad.</div>
+                    <div class="text-info" *ngIf="correcto">La Actividad ha sido Eliminado.</div>
                 </div>
             </div>
         </div>

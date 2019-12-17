@@ -37,12 +37,17 @@ export class BorrarActividadComponent implements OnInit {
   actividadVisualizar:ActividadVisualizaI[];
 
   id_docenteAuth:number;
+  correcto:boolean;
+  mensaje:boolean;
 
   constructor(private AuthDService: AuthDService, private ActividadService: ActividadService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.comprobacionLogin();
+
+    this.correcto = false;
+    this.mensaje = false;
 
     this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
     this.getOptions();
@@ -77,6 +82,7 @@ export class BorrarActividadComponent implements OnInit {
           //console.log(res);
           this.ActividadService.actividades = res as ActividadI[];
           this.actividadVisualizar = res as ActividadVisualizaI[];
+          this.actividadVisualizar.reverse();
           //console.log(this.ActividadService.actividades.length);
 
           for (let i = 0; i < this.ActividadService.actividades.length; i++) {
@@ -130,14 +136,18 @@ export class BorrarActividadComponent implements OnInit {
 
   //Eliminar Actividad de Mongo
   deleteActividad(){
+    this.correcto = false;
+    this.mensaje = true;
     //console.log("id para eliminar:", this.actividadToSave.id_actividad);
     this.BusquedaYCambioEstadoContent(this.actividadToSave.id_contenidoREA);
     this.BusquedaYCambioEstadoContent(this.actividadToSave.id_taller);
 
     this.ActividadService.deleteActivity(this.actividadToSave).subscribe(res =>{
       //console.log(res);
+      this.correcto = true;
+      this.mensaje = false;
+      this.getActividades();
     });
-    this.getActividades();
     //window.location.reload();
   }
 

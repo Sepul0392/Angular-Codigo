@@ -100,6 +100,7 @@ export class DudasComponent implements OnInit {
           this.AuthDService.loadAllDudas().subscribe(res => {
             this.AuthDService.Dudas = res as DudaI[];
             this.dudasVisualizar = res as DudaVisualizarI[];
+            this.dudasVisualizar.reverse();
           
             for (let i = 0; i < this.AuthDService.Dudas.length; i++) {
               for (let n = 0; n < this.estudiantes.length; n++) {
