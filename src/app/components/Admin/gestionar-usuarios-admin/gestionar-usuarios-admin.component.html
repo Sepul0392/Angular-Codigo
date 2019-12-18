@@ -80,7 +80,8 @@
                                                         <!--Boton Editar y Borrar-->
                                                         <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
                                                             <div>
-                                                                <a class="btn bg-warning mr-2" (click)="getDocenteinForm(docente)">Editar</a>
+                                                                <a class="btn bg-warning mr-2" data-toggle="modal" data-target="#mimodalejemplo5"
+                                                                    (click)="getDocenteinForm(docente)">Editar</a>
                                                             </div>
                                                             <div>
                                                                 <a class="btn bg-warning ml-2" data-toggle="modal" data-target="#mimodalejemplo2"
@@ -120,8 +121,8 @@
                                                             [(ngModel)]="this.AuthAdminService.selectedDocente.nombre_usuario">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="inputContrasena" class="text-white ">Contraseña</label>
-                                                        <input type="text" name="contrasena" class="form-control col" id="inputContrasena" placeholder="Contraseña" required
+                                                        <label for="inputContrasenaD" class="text-white ">Contraseña</label>
+                                                        <input type="text" name="contrasena" class="form-control col" id="inputContrasenaD" placeholder="Contraseña" required
                                                             [(ngModel)]="this.AuthAdminService.selectedDocente.contrasena">
                                                     </div>
                                                 </div>
@@ -214,7 +215,8 @@
                                                         </div>
                                                         <!--Boton Editar y Borrar-->
                                                         <div class="card-footer bg-secondary row justify-content-md-center no-gutters p-1">
-                                                            <a class="btn bg-warning mr-2" (click)="getEstudianteinForm(estudiante)">Editar</a>
+                                                            <a class="btn bg-warning mr-2" data-toggle="modal" data-target="#mimodalejemplo6"
+                                                                (click)="getEstudianteinForm(estudiante)">Editar</a>
                                                             <a class="btn bg-warning ml-2" data-toggle="modal" data-target="#mimodalejemplo3"
                                                                 (click)="saveDataEstudiante(estudiante)">Borrar</a>
                                                         </div>
@@ -310,8 +312,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body text-info">
+                <div class="modal-body text-info" *ngIf="error1 == false">
                     Se han Actualizado los datos del Docente.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error1 == true">
+                    No ha seleccionado un Docente para Actualizar.
                 </div>
             </div>
         </div>
@@ -327,8 +332,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body text-info">
+                <div class="modal-body text-info" *ngIf="error2 == false">
                     Se han Actualizado los datos del Estudiante.
+                </div>
+                <div class="modal-body text-danger" *ngIf="error2 == true">
+                    No ha seleccionado un Estudiante para Actualizar.
                 </div>
             </div>
         </div>
@@ -371,6 +379,40 @@
                 </div>
                 <div class="modal-footer justify-content-md-center no-gutters py-1 bg-light">
                     <button class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="deleteEstudiante()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmacion Docente Seleccionado -->
+    <div class="modal fade" id="mimodalejemplo5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel5">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Ha sido seleccionado un Docente. Los datos han sido cargados para revisar y modificar.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmacion Estudiante Seleccionado -->
+    <div class="modal fade" id="mimodalejemplo6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel6">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="myModalLabel">Mensaje</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Ha sido seleccionado un Estudiante. Los datos han sido cargados para revisar y modificar.
                 </div>
             </div>
         </div>

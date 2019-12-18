@@ -28,11 +28,22 @@ export class GestionarUsuariosAdminComponent implements OnInit {
   estudiantesVisualizar:EstuadianteVisualizarI[];
   docenteVisualizar:DocenteVisualizarI[];
 
+  profesorSelected:boolean;
+  estudianteSelected:boolean;
+  error1:boolean;
+  error2:boolean;
+  temp:any;
+
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.comprobacionLogin();
+
+    this.error1 = false;
+    this.error2 = false;
+    this.profesorSelected = false;
+    this.estudianteSelected = false;
 
     this.AuthAdminService.selectedDocente = new DocenteI();
     this.AuthAdminService.selectedEstudiante = new EstuadianteI();
@@ -91,51 +102,63 @@ export class GestionarUsuariosAdminComponent implements OnInit {
   getDocenteinForm(docentehtml){
     this.AuthAdminService.selectedDocente = docentehtml;
     //console.log('info docente', this.AuthAdminService.selectedDocente);
+    this.profesorSelected = true;
   }
 
   //Imprimir datos del Estudiante en el Form 
   getEstudianteinForm(estudiantehtml){
     this.AuthAdminService.selectedEstudiante = estudiantehtml;
     //console.log('info docente', this.AuthAdminService.selectedEstudiante);
+    this.estudianteSelected = true;
   }
 
   //Actualizar datos del docente
   actualizarDocente(form: NgForm): void{
-    const infoDocente = {
-      id_docente: this.AuthAdminService.selectedDocente.id_docente,
-      nombre_docente: form.value.nombre_docente,
-      apellido_docente: form.value.apellido_docente,
-      nombre_usuario: form.value.nombre_usuario,
-      correo_electronico: form.value.correo_electronico,
-      contrasena: form.value.contrasena
-    }
+    this.error1 = true;
 
-    this.AuthAdminService.uploadDocente(infoDocente).subscribe(res => {
-      //console.log(res);
-      this.getOptions();
-      this.resetForm(form);
-    });
+    if(this.profesorSelected){
+      this.error1 = false;
+      const infoDocente = {
+        id_docente: this.AuthAdminService.selectedDocente.id_docente,
+        nombre_docente: form.value.nombre_docente,
+        apellido_docente: form.value.apellido_docente,
+        nombre_usuario: form.value.nombre_usuario,
+        correo_electronico: form.value.correo_electronico,
+        contrasena: form.value.contrasena
+      }
+  
+      this.AuthAdminService.uploadDocente(infoDocente).subscribe(res => {
+        //console.log(res);
+        this.getOptions();
+        this.resetForm(form);
+      });
+    }
   }
 
   //Actualizar datos del Estudiante
   actualizarEstudiante(form: NgForm): void{
-    const infoEstudiante = {
-      id_estudiante: this.AuthAdminService.selectedEstudiante.id_estudiante,
-      nombre_estudiante: form.value.nombre_estudiante,
-      apellido_estudiante: form.value.apellido_estudiante,
-      grado_estudiante: form.value.grado_estudiante,
-      curso_estudiante: form.value.curso_estudiante,
-      nombre_usuario: form.value.nombre_usuario,
-      contrasena: form.value.contrasena,
-      correo_electronico: form.value.correo_electronico
-    }
-    console.log();
+    this.error2 = true;
 
-    this.AuthAdminService.uploadEstudiante(infoEstudiante).subscribe(res => {
-      //console.log(res);
-      this.getOptions();
-      this.resetForm(form);
-    });
+    if(this.estudianteSelected){
+      this.error2 = false;
+      const infoEstudiante = {
+        id_estudiante: this.AuthAdminService.selectedEstudiante.id_estudiante,
+        nombre_estudiante: form.value.nombre_estudiante,
+        apellido_estudiante: form.value.apellido_estudiante,
+        grado_estudiante: form.value.grado_estudiante,
+        curso_estudiante: form.value.curso_estudiante,
+        nombre_usuario: form.value.nombre_usuario,
+        contrasena: form.value.contrasena,
+        correo_electronico: form.value.correo_electronico
+      }
+      console.log();
+  
+      this.AuthAdminService.uploadEstudiante(infoEstudiante).subscribe(res => {
+        //console.log(res);
+        this.getOptions();
+        this.resetForm(form);
+      });
+    }
   }
 
   //Eliminar Docente de Mongo
@@ -184,6 +207,8 @@ export class GestionarUsuariosAdminComponent implements OnInit {
       this.AuthAdminService.selectedEstudiante = new EstuadianteI();
       this.docenteToSave = new DocenteI();
       this.estudianteToSave = new EstuadianteI();
+      this.profesorSelected = false;
+      this.estudianteSelected = false;
     }
   }
 
