@@ -71,16 +71,14 @@
                                                     <th class="pl-3 pr-4 py-2 text-dark text-center">Accion</th>
                                                 </thead>
                                                 <tbody class="bg-light">
-                                                    <tr mdbTableCol
-                                                        *ngFor="let colegio of colegios | filterColegioAdmin: nombreColegio:NITColegio">
+                                                    <tr mdbTableCol *ngFor="let colegio of colegios | filterColegioAdmin: nombreColegio:NITColegio">
                                                         <td class="pl-3 pr-5 py-2 text-dark">{{ colegio.nombre_colegio }}</td>
                                                         <td class="pl-3 pr-3 py-2 text-dark text-center">{{ colegio.NIT }}</td>
                                                         <td class="pl-3 pr-3 py-2 text-dark text-center">{{ colegio.ciudad }}
                                                         </td>
                                                         <td class="pl-3 pr-4 py-2">
                                                             <a class="btn bg-warning py-0 px-1 text-dark" data-toggle="modal"
-                                                                data-target="#mimodalejemplo7"
-                                                                (click)="getColegioinForm(colegio)">Actualizar</a>
+                                                                data-target="#mimodalejemplo7" (click)="getColegioinForm(colegio)">Actualizar</a>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -98,20 +96,17 @@
                                                         <label for="inputNombreColegio" class="text-white ">Nombre
                                                             Colegio</label>
                                                         <input type="text" name="nombre_colegio" class="form-control col"
-                                                            id="inputNombreColegio" placeholder="Nombre Colegio" required
-                                                            [(ngModel)]="this.AuthAdminService.selectedColegio.nombre_colegio">
+                                                            id="inputNombreColegio" placeholder="Nombre Colegio" required [(ngModel)]="this.AuthAdminService.selectedColegio.nombre_colegio">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputNombreRector" class="text-white ">Nombre Rector</label>
                                                         <input type="text" name="rector" class="form-control col"
-                                                            id="inputNombreRector" placeholder="Nombre Rector" required
-                                                            [(ngModel)]="this.AuthAdminService.selectedColegio.rector">
+                                                            id="inputNombreRector" placeholder="Nombre Rector" required [(ngModel)]="this.AuthAdminService.selectedColegio.rector">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputNIT" class="text-white ">NIT Colegio</label>
                                                         <input type="number" name="NIT" class="form-control col-7" id="inputNIT"
-                                                            placeholder="NIT Colegio" required
-                                                            [(ngModel)]="this.AuthAdminService.selectedColegio.NIT">
+                                                            placeholder="NIT Colegio" required [(ngModel)]="this.AuthAdminService.selectedColegio.NIT">
                                                     </div>
                                                     <div class="row">
                                                         <div class="form-group col">
@@ -164,8 +159,7 @@
                                                 <!--Boton Actualizar Datos Colegio-->
                                                 <div class="ml-2 mr-auto pb-4 justify-content-md-center no-gutters">
                                                     <a class="btn bg-danger px-4 py-4 font-weight-bold" data-toggle="modal"
-                                                        data-target="#mimodalejemplo"
-                                                        (click)="actualizarColegio(frmInfoColegio)">Actualizar</a>
+                                                        data-target="#mimodalejemplo" (click)="actualizarColegio(frmInfoColegio)">Actualizar</a>
                                                 </div>
                                             </div>
                                             <div class="bg-secondary row pb-4 justify-content-md-center no-gutters">

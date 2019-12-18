@@ -39,6 +39,7 @@ export class GestionarColegioAdminComponent implements OnInit {
   error1:boolean;
   error2:boolean;
   error3:boolean;
+  subiendo:boolean;
 
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
 
@@ -52,6 +53,7 @@ export class GestionarColegioAdminComponent implements OnInit {
     this.error1 = false;
     this.error2 = false;
     this.error3 = false;
+    this.subiendo = false;
 
     this.getOptions();
   }
@@ -175,7 +177,7 @@ export class GestionarColegioAdminComponent implements OnInit {
     }
     //console.log(newInfoColegioL);
     this.AuthAdminService.uploadSchool(newInfoColegio).subscribe(res => {
-      //console.log(res);
+      console.log(res);
       this.getOptions();
       this.resetForm(form);
     });
@@ -311,6 +313,7 @@ export class GestionarColegioAdminComponent implements OnInit {
       form.reset();
       this.newID = 0;
       this.temp = 0;
+      this.AuthAdminService.selectedColegio = new ColegioI();
 
       this.getOptions();
     }
