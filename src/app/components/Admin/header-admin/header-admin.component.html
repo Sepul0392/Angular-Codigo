@@ -27,7 +27,7 @@
                                     Perfil
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right bg-secondary text-dark" id="navbarDropdownPerfil" aria-labelledby="navbarDropdownPerfil">
-                                    <a class="dropdown-item btn text-center" style="cursor: pointer" data-toggle="modal" data-target="#mimodalejemplo8">Cambiar Contraseña</a>
+                                    <a class="dropdown-item btn text-center" style="cursor: pointer" data-toggle="modal" data-target="#mimodalejemplo10">Cambiar Contraseña</a>
                                     <a class="dropdown-item btn text-center" routerLink (click)="logOut()">Cerrar sesión</a>
                                     <a class="dropdown-item text-center" style="cursor: pointer" (click)="verManual()">Ayuda</a>
                                 </div>
@@ -40,7 +40,7 @@
     </div>
 
     <!--Modal Cambiar Contraseña-->
-    <div class="modal fade" id="mimodalejemplo8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel8">
+    <div class="modal fade" id="mimodalejemplo10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel10">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
@@ -63,14 +63,14 @@
                     </div>
                 </form>
                 <div class="modal-footer justify-content-md-center no-gutters bg-light py-1">
-                    <a class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" data-toggle="modal" data-target="#mimodalejemplo9" (click)="actualizarContrasena(frmContrasena)">Cambiar Contraseña</a>
+                    <a class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" data-toggle="modal" data-target="#mimodalejemplo11" (click)="actualizarContrasena(frmContrasena)">Cambiar Contraseña</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modal Confirmar Cambio Contraseña -->
-    <div class="modal fade" id="mimodalejemplo9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel9">
+    <div class="modal fade" id="mimodalejemplo11" tabindex="-1" role="dialog" aria-labelledby="myModalLabel11">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
@@ -82,8 +82,8 @@
                 <div class="modal-body text-info" *ngIf="cambioCorrecto">
                     Se ha actualizado la contraseña.
                 </div>
-                <div class="modal-body text-danger" *ngIf="cambioError">
-                    No ha sido posible actualizar la contraseña.
+                <div class="modal-body text-danger" *ngIf="cambiando">
+                    Actualizando la contraseña. Espere por favor.
                 </div>
             </div>
         </div>

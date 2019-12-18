@@ -29,6 +29,8 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
   correcto2:boolean;
   error1:boolean;
   error2:boolean;
+  subiendo:boolean;
+  temp2:any;
 
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
 
@@ -40,6 +42,7 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     this.correcto2 = false;
     this.error1 = false;
     this.error2 = false;
+    this.subiendo = false;
 
     this.getOptions();
     this.getCompetencias();
@@ -80,7 +83,8 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
   //Crear Competencia en Mongo
   crearCompetencia(form: NgForm): void {
     this.correcto1 = false;
-    this.error1 = true;
+    this.error1 = false;
+    this.subiendo = true;
 
     this.AuthAdminService.allCompetencias().subscribe(res => {
       this.AuthAdminService.Competencias = res as CompetenciaI[];
@@ -130,10 +134,19 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     
       this.AuthAdminService.createCompetencia(newCompetencia).subscribe(res => {
         //console.log(res);
-        this.correcto1 = true;
-        this.error1 = false;
-        this.resetForm(form);
-        this.getCompetencias();
+        this.temp2 = res;
+
+        if(this.temp2.Estado == "Error Crear Competencia"){
+          this.correcto1 = false;
+          this.error1 = true;
+          this.subiendo = false;
+        } else {
+          this.correcto1 = true;
+          this.error1 = false;
+          this.subiendo = false;
+          this.resetForm(form);
+          this.getCompetencias();
+        }
       });
     });
   }
@@ -141,7 +154,8 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
   //Crear AreaMateria en Mongo
   CrearAreaMateria(form: NgForm): void {
     this.correcto2 = false;
-    this.error2 = true;
+    this.error2 = false;
+    this.subiendo = true;
 
     this.AuthAdminService.loadAllAreaSubjects().subscribe(res => {
       this.AuthAdminService.AreasMaterias = res as AreaMateriaI[];
@@ -188,12 +202,19 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     
       this.AuthAdminService.createAreaSubject(newAreaMateria).subscribe(res => {
         //console.log(res);
-        this.correcto2 = true;
-        this.error2 = false;
-        this.AuthAdminService.loadAllAreaSubjects().subscribe(res => {
-          this.areasMaterias = res as AreaMateriaI[];
+        this.temp2 = res;
+
+        if(this.temp2.Estado == "Error Crear Area"){
+          this.correcto2 = false;
+          this.error2 = true;
+          this.subiendo = false;
+        } else {
+          this.correcto2 = true;
+          this.error2 = false;
+          this.subiendo = false;
+          this.getOptions();
           this.resetForm(form);
-        });
+        }
       });
     });
   }

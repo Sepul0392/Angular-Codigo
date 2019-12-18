@@ -264,6 +264,9 @@
                 <div class="modal-body text-danger" *ngIf="error1">
                     La Competencia no se ha podido crear. Revisa que has ingresado todos los datos requeridos.
                 </div>
+                <div class="modal-body" *ngIf="subiendo">
+                    Creando Competencia. Espere por favor.
+                </div>
             </div>
         </div>
     </div>
@@ -283,6 +286,9 @@
                 </div>
                 <div class="modal-body text-danger" *ngIf="error2">
                     El Area no se ha podido crear. Revisa que has ingresado todos los datos requeridos.
+                </div>
+                <div class="modal-body" *ngIf="subiendo">
+                    Creando Area. Espere por favor.
                 </div>
             </div>
         </div>

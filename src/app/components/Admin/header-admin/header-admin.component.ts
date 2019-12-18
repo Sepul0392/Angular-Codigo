@@ -12,14 +12,14 @@ export class HeaderAdminComponent implements OnInit {
 
   IPServer:string;
   cambioCorrecto:boolean;
-  cambioError:boolean;
+  cambiando:boolean;
 
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
 
   ngOnInit() {
     this.IPServer = this.AuthAdminService.loadIPServer();
     this.cambioCorrecto = false;
-    this.cambioError = false;
+    this.cambiando = false;
   }
 
   logOut(){
@@ -36,7 +36,7 @@ export class HeaderAdminComponent implements OnInit {
 
   actualizarContrasena(form: NgForm): void {
     this.cambioCorrecto = false;
-    this.cambioError = true;
+    this.cambiando = true;
     const newC = {
       id_admin: this.AuthAdminService.getIdAdmin(),
       contrasena: form.value.contrasena
@@ -44,7 +44,7 @@ export class HeaderAdminComponent implements OnInit {
     this.AuthAdminService.uploadInfoLoginAdmin(newC).subscribe(res =>{
       //console.log(res);
       this.cambioCorrecto = true;
-      this.cambioError = false;
+      this.cambiando = false;
     });
   }
 
