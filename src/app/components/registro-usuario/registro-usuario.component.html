@@ -107,14 +107,14 @@
                     </button>
                 </div>
                 <div class="modal-body text-danger" *ngIf="error1">
-                    El profesor no se ha podido crear. El Usuario o Correo puenden estar en uso,
+                    El profesor no se ha podido registrar. El Usuario o Correo puenden estar en uso,
                     o verifique haber ingresado todos los datos.
                 </div>
                 <div class="modal-body text-info" *ngIf="correcto">
                     El profesor ha sido registrado.
                 </div>
                 <div class="modal-body" *ngIf="subiendo">
-                    Creando el nuevo profesor. Espere por favor.
+                    Registrando el nuevo profesor. Espere por favor.
                 </div>
                 <div class="modal-footer justify-content-md-center no-gutters bg-light py-1" *ngIf="correcto">
                     <a class="btn btn-default bg-warning font-weight-bold" data-dismiss="modal" (click)="goToLogin()">Terminar Registro</a>
