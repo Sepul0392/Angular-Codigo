@@ -30,6 +30,8 @@ export class RegistroUsuarioComponent implements OnInit {
   urlTemp:string;
 
   error1:boolean;
+  correcto:boolean;
+  subiendo:boolean;
   temp:any;
 
   constructor(private ContentREAService: ContentREAService, private AuthDService: AuthDService, private router: Router) { }
@@ -38,6 +40,8 @@ export class RegistroUsuarioComponent implements OnInit {
     window.scrollTo(0, 0);
 
     this.error1 = false;
+    this.correcto = false;
+    this.subiendo = false;
 
     this.AuthDService.selectedDocente = new DocenteI;
     this.getOptions();
@@ -59,6 +63,10 @@ export class RegistroUsuarioComponent implements OnInit {
 
   //Crear Docente y una MateriaActiva
   onCrearDocente(form:NgForm):void {
+
+    this.error1 = false;
+    this.correcto = false;
+    this.subiendo = true;
 
     this.AuthDService.loadAllSubjectActives().subscribe(res => {
       this.AuthDService.MateriasActivas = res as MateriaActivaI[];
@@ -170,21 +178,31 @@ export class RegistroUsuarioComponent implements OnInit {
             this.temp = res;
             if(this.temp.Estado == "Error Crear Docente"){
               this.error1 = true;
+              this.correcto = false;
+              this.subiendo = false;
             }
 
             this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
               //console.log(res);
               if(this.temp.Estado == "Error Crear Docente"){
                 this.error1 = true;
+                this.correcto = false;
+                this.subiendo = false;
               } else {
                 this.resetForm(form);
-                this.router.navigate(['/login']);
+                this.error1 = false;
+                this.correcto = true;
+                this.subiendo = false;
               }
             });
           });
         });
       });
     });
+  }
+
+  goToLogin(){
+    this.router.navigate(['/login']);
   }
 
   resetPage(){
