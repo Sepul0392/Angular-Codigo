@@ -8,6 +8,9 @@ import { ColegioI } from '../../../models/colegio';
 import { GradoI } from '../../../models/grado';
 import { EstuadianteVisualizarI } from '../../../models/estudianteVisualizar';
 import { DocenteVisualizarI } from '../../../models/docenteVisualizar';
+import { MateriaActivaI } from '../../../models/materiaActiva';
+import { Subject } from 'rxjs';
+
 
 
 @Component({
@@ -22,6 +25,7 @@ export class GestionarUsuariosAdminComponent implements OnInit {
   colegios:ColegioI[];
   estudantes:EstuadianteI[];
   grados:GradoI[];
+  MateriaActiva:MateriaActivaI[];
   estudianteToSave:EstuadianteI;
   docenteToSave:DocenteI;
   cursos:any;
@@ -166,8 +170,19 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     //console.log("id para eliminar:", this.docenteToSave.id_docente);
     this.AuthAdminService.deleteDocente(this.docenteToSave).subscribe(res =>{
       //console.log(res);
-      this.getOptions();
-      this.docenteToSave = new DocenteI();
+      this.AuthAdminService.loadAllSubjectActives().subscribe(res => {
+        this.MateriaActiva = res as MateriaActivaI[];
+
+        for(let a=0; a < this.MateriaActiva.length; a++){
+          if(this.MateriaActiva[a].id_docente == this.docenteToSave.id_docente){
+            this.AuthAdminService.deleteSubjectActive(this.MateriaActiva[a]).subscribe(res => {
+              //console.log(res);
+            });
+          }
+        }
+        this.getOptions();
+        this.docenteToSave = new DocenteI();
+      });
     });
     //window.location.reload();
   }
