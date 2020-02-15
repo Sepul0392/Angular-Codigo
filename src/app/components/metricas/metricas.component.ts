@@ -242,7 +242,7 @@ export class MetricasComponent implements OnInit {
                   this.notaEA2 = 5;
                 }
                 if(this.eventos[n].check_Ea3 == this.actividadToSave.ECA3){
-                  this.notaEA1 = 5;
+                  this.notaEA3 = 5;
                 }
     
                 var nota_quizTemp = parseFloat(((this.notaA1 + this.notaA2 + this.notaA3)/3).toFixed(2));

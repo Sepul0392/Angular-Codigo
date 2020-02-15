@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   errorIP:boolean;
   temp:string;
   temp2:any;
+  IPServer:string;
 
   constructor(private AuthAdminService: AuthAdminService, private AuthDService: AuthDService, private router: Router) { }
 
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     this.correctoIP = false;
     this.errorIP = false;
 
+    this.IPServer = this.AuthAdminService.loadIPServer();
     this.temp = this.AuthAdminService.loadIPServer();
     console.log('IPServer Actual',this.temp);
     this.comprobarConeccion();
@@ -118,6 +120,12 @@ export class LoginComponent implements OnInit {
       this.correctoIP = true;
       this.errorIP = false;
     });
+  }
+
+  downloadApp(){
+    console.log('Descargando');
+    const urlLoad = 'http://'+this.IPServer+':3000/repositorio/SmartFC-App.apk';
+    window.open(urlLoad, "_blank");
   }
 
   resetForm(form?: NgForm) {
