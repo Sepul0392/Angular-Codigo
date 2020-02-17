@@ -15,6 +15,10 @@ import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
+/**
+* Contiene todos los metodos necesarios para la modificacion de actividades por parte del profesor.
+*/
+
 @Component({
   selector: 'app-modificar-actividad',
   templateUrl: './modificar-actividad.component.html',
@@ -102,7 +106,9 @@ export class ModificarActividadComponent implements OnInit {
     this.verificationSaveActividad = false;
   }
 
-  //Obtener los datos de los Options
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.ContentREAService.allSubject().subscribe(res =>{
       this.materia = res as MateriaI[];
@@ -121,7 +127,9 @@ export class ModificarActividadComponent implements OnInit {
     });
   }
 
-  //consultar todos los ContenidosREA y verificar el nombre de la materia y contenido con sus respectivos ID´s
+  /**
+  * Permite obtener la informacion y listado de todos los ContenidosREA
+  */
   getContenidos() {
     this.ContentREAService.allSubject().subscribe(res => {
       this.materia = res as MateriaI[];
@@ -154,7 +162,9 @@ export class ModificarActividadComponent implements OnInit {
     });
   }
 
-  //consultar todos las Actividades y verificar el nombre de la materia, competencia y profesor con sus respectivos ID´s
+  /**
+  * Permite obtener la informacion y listado de todas las Actividades
+  */
   getActividades() {
     this.ActividadService.allCompetencias().subscribe(res => {
       this.competencia = res as CompetenciaI[];
@@ -197,7 +207,9 @@ export class ModificarActividadComponent implements OnInit {
     });
   }
 
-  //Modificar Actividad en Mongo
+  /**
+  * Permite modificar una Actividad
+  */
   onModificarActividad(form: NgForm){
     this.correcto1 = false;
     this.correcto2 = false;
@@ -522,7 +534,9 @@ export class ModificarActividadComponent implements OnInit {
     }
   }
 
-  //Imprimir datos de la Actividad seleccionanda en el Form 
+  /**
+  * Permite imprimir todos los datos de la Actividad seleccionada en el formulario
+  */
   getActividadinForm(actividad: ActividadI) {
     this.verificationSaveContent = false;
     this.verificationSaveTaller = false;
@@ -575,7 +589,9 @@ export class ModificarActividadComponent implements OnInit {
     })
   }
 
-  //Almacenar info temporal de un ContenidoREA
+  /**
+  * Permite almacenar la informacion de un ContenidoREA de forma temporal
+  */
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
     //console.log("contenido guardado:", this.contenidoToSave);
@@ -586,14 +602,20 @@ export class ModificarActividadComponent implements OnInit {
       this.verificationSaveContent = false;
     }
   }
-  //Almacenar info temporal de una Actividad
+
+  /**
+  * Permite almacenar la infromacion de una Actividad de forma temporal
+  */
   saveDataActivity(actividad){
     this.actividadToSave = actividad;
     //console.log("actividad guardada:", this.actividadToSave);
     this.id_docente_ActividadSelected = this.actividadToSave.id_docente;
     this.verificationSaveActividad = true;
   }
-  //Almacenar info temporal de un Taller
+
+  /**
+  * Permite almacenar la infromacion de un Taller de forma temporal
+  */
   saveDataTaller(tallerhtml){
     this.tallerToSave = tallerhtml;
     //console.log("taller guardado:", this.tallerToSave);
@@ -606,7 +628,9 @@ export class ModificarActividadComponent implements OnInit {
     //console.log('bandera',this.verificationSaveTaller)
   }
 
-  //Almacenar info temporal de una Actividad
+  /**
+  * Permite almacenar la informacion de una segunda Actividad de forma temporal
+  */
   seccionActivity(actividad){
     this.actividadToSave2 = actividad;
     //console.log("actividad guardada:", this.actividadToSave2);
@@ -631,7 +655,9 @@ export class ModificarActividadComponent implements OnInit {
     //console.log(this.tallerActivado,this.tallerDesactivado,this.evaluacionActivado,this.evaluacionDesactivado);
   }
 
-  //Activar o Desactivar Secciones de la Actividad
+  /**
+  * Permite activar la seccion Taller de la Actividad
+  */
   activarTaller(){
     const newSeccionActividad = {
       id_actividad: this.actividadToSave2.id_actividad,
@@ -644,6 +670,10 @@ export class ModificarActividadComponent implements OnInit {
       this.getActividades();
     });
   }
+
+  /**
+  * Permite desactivar la seccion Taller de la Actividad
+  */
   desactivarTaller(){
     const newSeccionActividad = {
       id_actividad: this.actividadToSave2.id_actividad,
@@ -656,6 +686,10 @@ export class ModificarActividadComponent implements OnInit {
       this.getActividades();
     });
   }
+
+  /**
+  * Permite activar la seccion Evaluacion de la Actividad
+  */
   activarEvaluacion(){
     const newSeccionActividad = {
       id_actividad: this.actividadToSave2.id_actividad,
@@ -668,6 +702,10 @@ export class ModificarActividadComponent implements OnInit {
       this.getActividades();
     });
   }
+
+  /**
+  * Permite desactivar la seccion Evaluacion de la Actividad
+  */
   desactivarEvaluacion(){
     const newSeccionActividad = {
       id_actividad: this.actividadToSave2.id_actividad,
@@ -681,12 +719,16 @@ export class ModificarActividadComponent implements OnInit {
     });
   }
 
-  //Resetear pagina
+  /**
+  * Permite recargar la pagina actual
+  */
   resetPage(){
     window.location.reload();
   }
 
-  //Resetear formulario
+  /**
+  * Permite limpiar toda la informacion que se encuentra en el formulario
+  */
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
@@ -706,6 +748,9 @@ export class ModificarActividadComponent implements OnInit {
     }
   }
 
+  /**
+  * Permite comprobar que el profesor se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthDService.getIdDocente()){
       return true;

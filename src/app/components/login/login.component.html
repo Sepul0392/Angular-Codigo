@@ -1,7 +1,7 @@
 <div class="container">
     <div class="container h-100">
         <div class="d-flex justify-content-center pt-5">
-            <div class="container user_card" style="height: 485px;">
+            <div class="container user_card" style="height: 490px;">
                 <div class="d-flex justify-content-center mb-5">
                     <div class="brand_logo_container">
                         <img src="assets/img/login2.png"
@@ -23,7 +23,7 @@
                             <div class="text-danger text-center" *ngIf="error3">Error Servidor</div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center mt-1 login_container">
+                <div class="d-flex justify-content-center mt-2 login_container">
                     <a name="button" style="cursor: pointer" class="btn bg-primary col text-white" (click)="onLoginDocente(frmLogin)">Ingresar</a>
                 </div>
                 <div class="d-flex justify-content-center mt-1 login_container">
@@ -39,10 +39,12 @@
                     <!--<div class="d-flex justify-content-center links">
                         <a href="#">Olvidastes tu contraseña?</a>
                     </div>-->
-                    <div class="row">
-                        <div class="col-2"><span class="text-white pl-1" style="cursor: pointer" data-toggle="modal" data-target="#mimodalejemplo">Servidor:</span></div>
-                        <span class="text-info col-auto pl-4" *ngIf="correctoIP">Conectado</span>
-                        <span class="text-danger col-auto pl-4" *ngIf="errorIP">Desconectado</span>
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-2"><span class="text-white" style="cursor: pointer" data-toggle="modal" data-target="#mimodalejemplo">Servidor:</span>
+                            <span class="text-info pl-1" *ngIf="correctoIP">Conectado</span>
+                            <span class="text-danger pl-1" *ngIf="errorIP">Desconectado</span>
+                        </div>
+                        <img src="assets/img/downloadApp1.png" class="" width=45% height=45% class="rounded float-right pr-1" alt="Logo" style="cursor: pointer" (click)="downloadApp()">
                     </div>
                 </div>
             </div>

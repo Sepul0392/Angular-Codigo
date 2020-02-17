@@ -10,6 +10,9 @@ import { ContentREAService } from '../../services/content-rea.service';
 import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 
+/**
+  * Contiene todas los metodos necesarios para la administracion de la informacion del docente.
+  */
 @Component({
   selector: 'app-administrar-docente',
   templateUrl: './administrar-docente.component.html',
@@ -61,7 +64,9 @@ export class AdministrarDocenteComponent implements OnInit {
     this.getInformacionCompleta();
   }
 
-  //Obtener los datos de los options
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.ContentREAService.allSubject().subscribe(res =>{
       this.materia = res as MateriaI[];
@@ -72,7 +77,9 @@ export class AdministrarDocenteComponent implements OnInit {
     });
   }
 
-  //Obtener informacion y listado de todas las MateriasActivas
+  /**
+  * //Permite obtener la informacion y listado de todas las MateriasActivas
+  */
   getInformacionCompleta(){
     this.idDocente = this.AuthDService.getIdDocente();
 
@@ -111,7 +118,9 @@ export class AdministrarDocenteComponent implements OnInit {
     });
   }
 
-  //Crear una MateriaActiva
+  /**
+  * Permite crea una nueva MateriaActiva
+  */
   CrearMateriaActiva(form: NgForm): void {
     this.mensaje = true;
     this.correcto = false;
@@ -193,13 +202,17 @@ export class AdministrarDocenteComponent implements OnInit {
     });
   }
 
-  //Almacenar info temporal de una materiaActiva
+  /**
+  * //Permite almacenar la informacion de una materiaActiva de forma temporal
+  */
   saveMateriaActivaData(materiaActivahtml){
     this.materiaActivaToSave = materiaActivahtml;
     //console.log("contenido guardado:", this.materiaActivaToSave);
   }
 
-  //Eliminar materiaActiva de Mongo
+  /**
+  * //Permite eliminar una materiaActiva seleccionada
+  */
   deleteMateriaActiva(){
     //console.log("id para eliminar:", this.materiaActivaToSave.id_materiaActiva);
     this.correctoInfo = false;
@@ -213,7 +226,9 @@ export class AdministrarDocenteComponent implements OnInit {
     });
   }
 
-  //Imprimir datos del docente en el Form 
+  /**
+  * //Permite imprimir los datos del docente en el formulario
+  */
   getDocenteinForm(){
     this.idDocente = this.AuthDService.getIdDocente();
 
@@ -228,7 +243,9 @@ export class AdministrarDocenteComponent implements OnInit {
     });
   }
 
-  //Actualizar datos Personales del docente
+  /**
+  * //Permite actualizar los datos personales del docente
+  */
   actualizarInfoPersonalDocente(form: NgForm): void{
     const infoPersonalDocente = {
       id_docente: this.idDocente,
@@ -246,7 +263,9 @@ export class AdministrarDocenteComponent implements OnInit {
     });
   }
 
-  //Actualizar datos de Login del docente
+  /**
+  * //Permite actualizar los datos de Login del docente
+  */
   actualizarInfoLoginDocente(form: NgForm): void{
     const infoLoginDocente = {
       id_docente: this.idDocente,
@@ -265,16 +284,25 @@ export class AdministrarDocenteComponent implements OnInit {
     });
   }
 
+  /**
+  * //Permite recargar la pagina actual
+  */
   resetPage(){
     window.location.reload();
   }
 
+  /**
+  * //Permite limpiar toda la informacion que se encuentra en el formulario
+  */
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
     }
   }
 
+  /**
+  * //Permite comprobar que el profesor se encuentre logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthDService.getIdDocente()){
       return true;

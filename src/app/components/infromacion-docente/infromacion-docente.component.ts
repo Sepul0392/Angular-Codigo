@@ -8,6 +8,10 @@ import { MateriaActivaVisualizarI } from '../../models/materiaActivaVisualizar';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
+/**
+* Contiene todos los metodos necesarios para la visualizacion de la informacion completa del profesor que se encuentra logueado.
+*/
+
 @Component({
   selector: 'app-infromacion-docente',
   templateUrl: './infromacion-docente.component.html',
@@ -38,6 +42,9 @@ export class InfromacionDocenteComponent implements OnInit {
     this.getInformacionCompleta();
   }
 
+  /**
+  * Permite obtener la informacion completa del profesor que se encuentra logueado en el sistema
+  */
   getInformacionCompleta(){
     this.idDocente = this.AuthDService.getIdDocente();
 
@@ -76,6 +83,9 @@ export class InfromacionDocenteComponent implements OnInit {
     });
   }
 
+  /**
+  * Permite comprobar que el administrador se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthDService.getIdDocente()){
       return true;

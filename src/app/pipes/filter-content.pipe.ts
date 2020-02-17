@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+* Permite filtrar todos los Contenidos respecto a su nombre, materia, grado, docente y tipo de contenido. Se listaran los Contenidos que coincidan con los datos.
+*/
 @Pipe({
   name: 'filterContent'
 })

@@ -8,6 +8,10 @@ import { TipoContenidoI } from '../../models/tipoContenido';
 import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
 
+/**
+* Contiene todos los metodos necesarios para subir un contenido REA en el sistema.
+*/
+
 @Component({
   selector: 'app-subir-contenido',
   templateUrl: './subir-contenido.component.html',
@@ -59,6 +63,9 @@ export class SubirContenidoComponent implements OnInit {
     this.ContentREAService.selectedContenidoREA = new contenidoREAI();
   }
 
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.ContentREAService.allSubject().subscribe(res =>{
       this.materia = res as MateriaI[];
@@ -71,6 +78,9 @@ export class SubirContenidoComponent implements OnInit {
     });
   }
 
+  /**
+  * Permite obtener la informacion y listado de ContenidosREA
+  */
   getContenidos(){
     this.ContentREAService.allContent().subscribe(res =>{
       //console.log(res);
@@ -78,7 +88,9 @@ export class SubirContenidoComponent implements OnInit {
     });
   }
 
-  //Cargar archivo a subir
+  /**
+  * Permite cargar los archivos a subir
+  */
   onFileChange(e){
     this.correcto = false;
     this.error = true;
@@ -88,7 +100,9 @@ export class SubirContenidoComponent implements OnInit {
     this.contenidoSeleccionado = true;
   }
 
-  //Funcion leer y subir informacion y archivo del formulario a Mongo
+  /**
+  * Permite subir un nuevo contenido
+  */
   onSubirContenido(form: NgForm):void{
     this.correcto = false;
     this.error = false;
@@ -205,10 +219,16 @@ export class SubirContenidoComponent implements OnInit {
     }
   }
 
+  /**
+  * Permite recargar la pagina actual
+  */
   resetPage(){
     window.location.reload();
   }
 
+  /**
+  * Permite limpiar toda la informacion que se encuentra en el formulario
+  */
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
@@ -220,6 +240,9 @@ export class SubirContenidoComponent implements OnInit {
     }
   }
 
+  /**
+  * Permite comprobar que el administrador se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthDService.getIdDocente()){
       return true;

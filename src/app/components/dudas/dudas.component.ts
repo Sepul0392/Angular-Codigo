@@ -17,6 +17,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
 
+/**
+* Contiene todos los metodos necesarios para la visualizacion y solucion de dudas enviadas por los estudiantes.
+*/
 
 @Component({
   selector: 'app-dudas',
@@ -77,6 +80,9 @@ export class DudasComponent implements OnInit {
     this.tallerAct = {nombre_CREA:"",cont:0, id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
   }
 
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.AuthDService.allGrade().subscribe(res => {
       this.grados = res as GradoI[];
@@ -131,7 +137,9 @@ export class DudasComponent implements OnInit {
     });
   }
 
-  // Ocultar Dudas Resueltas
+  /**
+  * Permite cambiar el estado de una Duda a "Oculta"
+  */
   ocultarDuda(){
     const estadoDuda = {
       id_duda: this.dudaToSave.id_duda,
@@ -143,7 +151,9 @@ export class DudasComponent implements OnInit {
     });
   }
 
-  // Actualizar la Duda con la respuesta y estado de la duda
+  /**
+  * Permite agregar una respuesta al campo correspondiente de la Duda selecionada y cambia su estado a "Resuelta"
+  */
   responderPregunta(form:NgForm){
     const respuestaDuda = {
       id_duda: this.dudaToSave.id_duda,
@@ -156,7 +166,9 @@ export class DudasComponent implements OnInit {
     });
   }
 
-  //Imprimir datos de la Actividad seleccionanda en el Modal 
+  /**
+  * Permite imprimir toda la informacion de una Actividad en un Modal
+  */ 
   getActividadinModal() {
     const IdActividad = {
       id_actividad: this.dudaToSave.id_actividad
@@ -227,7 +239,9 @@ export class DudasComponent implements OnInit {
     });
   }
 
-  //Abrir nueva ventana con el contenido Buscado
+  /**
+  * Permite visualizar el Contenido en una nueva ventana del navegador
+  */
   verContenido(contenidoREAhtml){
     const urlcut = contenidoREAhtml.urlrepositorio.substring(41);
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
@@ -235,7 +249,9 @@ export class DudasComponent implements OnInit {
     window.open(urlLoad, "_blank");
   }
 
-  //Abrir nueva ventana con el Contenido de la actividad Buscada
+  /**
+  * Permite visualizar el Contenido de la Actividad en una nueva ventana del navegador
+  */
   verContenidoActividad(){
     const urlcut = this.contenidoRes.content.urlrepositorio.substring(41);
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
@@ -243,7 +259,9 @@ export class DudasComponent implements OnInit {
     window.open(urlLoad, "_blank");
   }
 
-  //Abrir nueva ventana con el Taller de la actividad Buscada
+  /**
+  * Permite visualizar el Taller de la actividad en una nueva ventana del navegador
+  */
   verTallerActividad(){
     const urlcut = this.tallerRes.content.urlrepositorio.substring(41);
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
@@ -251,18 +269,25 @@ export class DudasComponent implements OnInit {
     window.open(urlLoad, "_blank");
   }
 
-
-  //Almacenar info temporal de una Actividad
+  /**
+  * Permite almacenar la informacion de una Actividad de forma temporal
+  */
   saveDataActivity(actividadhtml){
     this.actividadToSave = actividadhtml;
     //console.log("actividad guardada:", this.actividadToSave);
   }
-  //Almacenar info temporal de una Duda
+
+  /**
+  * Permite Almacenar la informacion de una Duda de forma temporal
+  */
   saveDataDuda(dudahtml){
     this.dudaToSave = dudahtml;
     //console.log('duda guardada:', this.dudaToSave);
   }
 
+  /**
+  * Permite comprobar que el profesor se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthDService.getIdDocente()){
       return true;

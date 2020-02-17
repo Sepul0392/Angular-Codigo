@@ -15,6 +15,10 @@ import { MetricaActividadI } from '../../models/metricaActividad';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
+/**
+* Contiene todos los metodos necesarios para el analisis de eventos y presentacion de metricas de actvidades y estudiantes.
+*/
+
 @Component({
   selector: 'app-metricas',
   templateUrl: './metricas.component.html',
@@ -92,6 +96,9 @@ export class MetricasComponent implements OnInit {
     this.getActividades();
   }
 
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.AuthDService.allSubject().subscribe(res =>{
       this.materias = res as MateriaI[];
@@ -104,7 +111,9 @@ export class MetricasComponent implements OnInit {
     });
   }
 
-  //consultar todos las Actividades y verificar el nombre de la materia, competencia y profesor con sus respectivos ID´s
+  /**
+  * Permite obtener la informacion y listado de todas las Actividades
+  */
   getActividades() {
     this.ActividadService.allCompetencias().subscribe(res => {
       this.competencias = res as CompetenciaI[];
@@ -135,6 +144,9 @@ export class MetricasComponent implements OnInit {
     });
   }
 
+  /**
+  * Permite establecer el avance del estudiante en la actividad
+  */
   getAvanceEstudianteModal(metricaEstudiante){
     this.saveDataMetricaVisualizar(metricaEstudiante);
 
@@ -169,7 +181,9 @@ export class MetricasComponent implements OnInit {
     }
   }
 
-  //Imprimir Metricas de la Actividad seleccionanda en el Modal 
+  /**
+  * Permite imprimir la informacion de las metricas de la Actividad en el modal
+  */
   getActividadinModal(actividad: ActividadI) {
     this.ActividadService.selectedActividad = actividad;
     this.saveDataActivity(actividad);
@@ -242,7 +256,7 @@ export class MetricasComponent implements OnInit {
                   this.notaEA2 = 5;
                 }
                 if(this.eventos[n].check_Ea3 == this.actividadToSave.ECA3){
-                  this.notaEA1 = 5;
+                  this.notaEA3 = 5;
                 }
     
                 var nota_quizTemp = parseFloat(((this.notaA1 + this.notaA2 + this.notaA3)/3).toFixed(2));
@@ -326,6 +340,9 @@ export class MetricasComponent implements OnInit {
     });
   }
 
+  /**
+  * Permite modificar el estado de los ultimos eventos para que no sean tomados encuenta para las metricas
+  */
   reiniciarActividad(){
     this.AuthDService.loadAllEvento().subscribe(res => {
       this.eventos = res as EventoI[];
@@ -346,26 +363,41 @@ export class MetricasComponent implements OnInit {
     });
   }
 
-  //Almacenar info temporal de una Actividad
+  /**
+  * Permite almacenar la informacion de una Actividad de forma temporal
+  */
   saveDataActivity(actividadhtml){
     this.actividadToSave = actividadhtml;
     //console.log("actividad guardada:", this.actividadToSave);
   }
-  //Almacenar info temporal de una Actividad
+
+  /**
+  * Permite almacenar la informacion de una Metrica de forma temporal
+  */
   saveDataMetrica(metricahtml){
     this.metricaToSave = metricahtml;
     //console.log("actividad guardada:", this.actividadToSave);
   }
+
+  /**
+  * Permite almacenar la informacion de una metricaVisualizar de forma temporal
+  */
   //Almacenar info temporal de una Actividad
   saveDataMetricaVisualizar(metricavisualizarhtml){
     this.metricaVisualizarToSave = metricavisualizarhtml;
     //console.log("actividad guardada:", this.actividadToSave);
   }
 
+  /**
+  * Permite recargar la pagina actual
+  */
   resetPage(){
     window.location.reload();
   }
 
+  /**
+  * Permite comprobar que el administrador se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthDService.getIdDocente()){
       return true;

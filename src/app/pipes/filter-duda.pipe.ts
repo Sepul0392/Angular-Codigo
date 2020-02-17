@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+* Permite filtrar todas las Dudas respecto a su actividad, estudiante, materia, grado, docente y estado de la duda. Se listaran las Dudas que coincidan con los datos.
+*/
 @Pipe({
   name: 'filterDuda'
 })

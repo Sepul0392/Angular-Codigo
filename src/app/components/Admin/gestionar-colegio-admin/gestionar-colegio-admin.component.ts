@@ -11,6 +11,9 @@ import { DocenteI } from '../../../models/docente';
 import { MateriaActivaI } from '../../../models/materiaActiva';
 import { MateriaActivaVisualizarI } from '../../../models/materiaActivaVisualizar';
 
+/**
+  * Contiene todos los metodos necesarios para administra materias, grados o informacion de los colegios.
+  */
 
 @Component({
   selector: 'app-gestionar-colegio-admin',
@@ -65,6 +68,9 @@ export class GestionarColegioAdminComponent implements OnInit {
     this.getOptions();
   }
 
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.AuthAdminService.allGrade().subscribe(res => {
       this.grados = res as GradoI[];
@@ -94,7 +100,9 @@ export class GestionarColegioAdminComponent implements OnInit {
     });
   }
 
-  //Obtener informacion y listado de todas las MateriasActivas
+  /**
+  * Permite obtener la informacion y listado de todas las MateriasActivas
+  */
   getInformacionCompletaMateriasActivas(){
     this.AuthAdminService.allSubject().subscribe(res => {
       this.materias = res as MateriaI[];
@@ -136,14 +144,18 @@ export class GestionarColegioAdminComponent implements OnInit {
     });
   }
 
-  //Imprimir datos del docente en el Form 
+  /**
+  * Permite imprimir los datos del colegio en el formulario
+  */
   getColegioinForm(colegiohtml){
     this.AuthAdminService.selectedColegio = colegiohtml;
     this.colegioSelected = true;
     //console.log('info colegio', this.AuthAdminService.selectedColegio);
   }
 
-  //Crear Colegio
+  /**
+  * Permite crear un nuevo Colegio a partir de los datos ingresados en el formulario
+  */
   crearColegio(form: NgForm): void{
     this.correcto3 = false;
     this.error3 = false;
@@ -180,7 +192,9 @@ export class GestionarColegioAdminComponent implements OnInit {
     });
   }
 
-  //Actualizar datos del Colegio
+  /**
+  * Permite actualizar los nuevos datos ingresados en el formulario del colegio seleccionado
+  */
   actualizarColegio(form: NgForm): void{
     this.correcto = false
     this.error = true;
@@ -208,7 +222,9 @@ export class GestionarColegioAdminComponent implements OnInit {
     }
   }
 
-  //Crear Materia en Mongo
+  /**
+  * Permite crear una nueva Materia a partir de los datos ingresados en el formulario
+  */
   crearMateria(form: NgForm): void {
     this.correcto1 = false;
     this.error1 = false;
@@ -281,7 +297,9 @@ export class GestionarColegioAdminComponent implements OnInit {
     });
   }
 
-  //Crear Grado en Mongo
+  /**
+  * Permite crear un nuevo Grado a partir de los datos ingresados en el formulario
+  */
   CrearGrado(form: NgForm): void {
     this.correcto2 = false;
     this.error2 = false;
@@ -310,7 +328,9 @@ export class GestionarColegioAdminComponent implements OnInit {
     });
   }
 
-  //Eliminar Materia de Mongo
+  /**
+  * Permite eliminar la Materia seleccionada
+  */
   deleteMateria(){
     //console.log("id para eliminar:", this.materiaToSave.id_materia);
     this.AuthAdminService.deleteMateria(this.materiaToSave).subscribe(res =>{
@@ -320,7 +340,9 @@ export class GestionarColegioAdminComponent implements OnInit {
     });
     //window.location.reload();
   }
-  //Eliminar Grado de Mongo
+  /**
+  * Permite eliminar el Grado seleccionado
+  */
   deleteGrado(){
     //console.log("id para eliminar:", this.gradoToSave.id_competencia);
     this.AuthAdminService.deleteGrade(this.gradoToSave).subscribe(res =>{
@@ -331,27 +353,40 @@ export class GestionarColegioAdminComponent implements OnInit {
     //window.location.reload();
   }
 
-  //Almacenar info temporal de una Competencia
+  /**
+  * Permite almacenar la informacion de una Materia de forma temporal
+  */
   saveDataMateria(materiahtml){
     this.materiaToSave = materiahtml;
     //console.log('docente guardada:', this.materiaToSave);
   }
-  //Almacenar info temporal de una AreaMAteria
+
+  /**
+  * Permite almacenar la informacion de una AreaMateria de forma temporal
+  */
   saveDataGrado(gradohtml){
     this.gradoToSave = gradohtml;
     //console.log('estudiante guardada:', this.gradoToSave);
   }
+
+  /**
+  * Permite almacenar la informacion de un Colegio de forma temporal
+  */
   saveDataColegio(colegiohtml){
     this.colegioToSave = colegiohtml;
     //console.log('estudiante guardada:', this.gradoToSave);
   }
 
-  //Resetear pagina
+  /**
+  * Permite recargar la pagina actual
+  */
   resetPage(){
     window.location.reload();
   }
 
-  //resetear Formulario
+  /**
+  * Permite limpiar toda la informacion que se encuentra en el formulario
+  */
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
@@ -363,6 +398,9 @@ export class GestionarColegioAdminComponent implements OnInit {
     }
   }
 
+  /**
+  * Permite comprobar que el administrador se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthAdminService.getIdAdmin()){
       return true;

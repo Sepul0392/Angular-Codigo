@@ -20,6 +20,9 @@ export class InicioProfesoresComponent implements OnInit {
     this.nombreApellidoDocente = this.AuthDService.getnombreApellidoDocente();
   }
 
+  /**
+  * Permite comprobar que el administrador se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthDService.getIdDocente()){
       return true;

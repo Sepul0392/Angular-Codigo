@@ -19,12 +19,17 @@ export class HeaderComponent implements OnInit {
     this.IPServer = this.AuthAdminService.loadIPServer();
   }
 
+  /**
+  * Permite realizar el LogOut del profesor en el sistema
+  */
   logOut(){
     this.AuthDService.logout();
     this.router.navigateByUrl('/login')
   }
 
-  //Abrir nueva ventana para ver el Manual
+  /**
+  * Permite visualizar el manual en una nueva ventana del navegador
+  */
   verManual(){
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/manual.pdf';
     //console.log('urlload', urlLoad);

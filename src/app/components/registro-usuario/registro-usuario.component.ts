@@ -10,6 +10,9 @@ import { ColegioI } from '../../models/colegio';
 import { NgModel } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 
+/**
+* Contiene todos los metodos necesarios para el registro de nuevos profesores en el sistema.
+*/
 
 @Component({
   selector: 'app-registro-usuario',
@@ -30,6 +33,8 @@ export class RegistroUsuarioComponent implements OnInit {
   urlTemp:string;
 
   error1:boolean;
+  correcto:boolean;
+  subiendo:boolean;
   temp:any;
 
   constructor(private ContentREAService: ContentREAService, private AuthDService: AuthDService, private router: Router) { }
@@ -38,12 +43,16 @@ export class RegistroUsuarioComponent implements OnInit {
     window.scrollTo(0, 0);
 
     this.error1 = false;
+    this.correcto = false;
+    this.subiendo = false;
 
     this.AuthDService.selectedDocente = new DocenteI;
     this.getOptions();
   }
 
-  //Obtener los datos de los options
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.ContentREAService.allSubject().subscribe(res =>{
       this.materia = res as MateriaI[];
@@ -57,8 +66,14 @@ export class RegistroUsuarioComponent implements OnInit {
     });
   }
 
-  //Crear Docente y una MateriaActiva
+  /**
+  * Permite crear un nuevo profesor
+  */
   onCrearDocente(form:NgForm):void {
+
+    this.error1 = false;
+    this.correcto = false;
+    this.subiendo = true;
 
     this.AuthDService.loadAllSubjectActives().subscribe(res => {
       this.AuthDService.MateriasActivas = res as MateriaActivaI[];
@@ -170,15 +185,21 @@ export class RegistroUsuarioComponent implements OnInit {
             this.temp = res;
             if(this.temp.Estado == "Error Crear Docente"){
               this.error1 = true;
+              this.correcto = false;
+              this.subiendo = false;
             }
 
             this.AuthDService.createSubjectActive(newMateriaActiva).subscribe(res => {
               //console.log(res);
               if(this.temp.Estado == "Error Crear Docente"){
                 this.error1 = true;
+                this.correcto = false;
+                this.subiendo = false;
               } else {
                 this.resetForm(form);
-                this.router.navigate(['/login']);
+                this.error1 = false;
+                this.correcto = true;
+                this.subiendo = false;
               }
             });
           });
@@ -187,10 +208,23 @@ export class RegistroUsuarioComponent implements OnInit {
     });
   }
 
+  /**
+  * Permite redirigir al usuario a la pagina de Login
+  */
+  goToLogin(){
+    this.router.navigate(['/login']);
+  }
+
+  /**
+  * Permite recargar la pagina actual
+  */
   resetPage(){
     window.location.reload();
   }
 
+  /**
+  * Permite limpiar toda la informacion que se encuentra en el formulario
+  */
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();

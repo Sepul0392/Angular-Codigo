@@ -2,6 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { ContentREAService } from '../services/content-rea.service';
 import { MateriaI } from '../models/materia';
 
+/**
+* Permite filtrar todas las Competencias respecto a su nombre, area materia, grado inicial, grado final y colegio. Se listaran las Competencias que coincidan con los datos.
+*/
 @Pipe({
   name: 'filterCompetencia'
 })

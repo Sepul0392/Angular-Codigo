@@ -4,6 +4,10 @@ import { AuthDService } from "../../services/auth-d.service";
 import { AuthAdminService } from '../../services/auth-admin.service';
 import { NgForm } from '@angular/forms';
 
+/**
+* Contiene todos los metodos necesarios para la verificacion de informacion de login y el acceso de los profesores y administradores. 
+*/
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,6 +22,7 @@ export class LoginComponent implements OnInit {
   errorIP:boolean;
   temp:string;
   temp2:any;
+  IPServer:string;
 
   constructor(private AuthAdminService: AuthAdminService, private AuthDService: AuthDService, private router: Router) { }
 
@@ -27,11 +32,15 @@ export class LoginComponent implements OnInit {
     this.correctoIP = false;
     this.errorIP = false;
 
+    this.IPServer = this.AuthAdminService.loadIPServer();
     this.temp = this.AuthAdminService.loadIPServer();
     console.log('IPServer Actual',this.temp);
     this.comprobarConeccion();
   }
 
+  /**
+  * Permite verificar la informacion ingresada por el usuario, y permite o rechaza el acceso como profesor
+  */
   onLoginDocente(form):void{
     //console.log('login Docente', form.value);
     this.error1 = false;
@@ -61,6 +70,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+  * Permite verificar la informacion ingresada por el usuario, y permite o rechaza el acceso como administrador
+  */
   onLoginAdmin(form):void{
     //console.log('Login Admin', form.value);
     const LoginAdmin = {
@@ -94,11 +106,17 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+  * Permite redirigir al usuario a la pagina de "Busqueda Visitantes"
+  */
   onLoginVisitante(){
     //console.log('login Visitante');
     this.router.navigate(['/busquedaVisitante']);
   }
 
+  /**
+  * Permite almacenar la IP del servidor
+  */
   actualizarIPServer(form: NgForm){
     this.AuthAdminService.saveIPServer(form.value.IPServer);
     this.temp = this.AuthAdminService.loadIPServer();
@@ -107,6 +125,9 @@ export class LoginComponent implements OnInit {
     this.resetForm(form);
   }
 
+  /**
+  * Permite comprobar si hay coneccion con el servidor
+  */
   comprobarConeccion(){
     this.correctoIP = false;
     this.errorIP = true;
@@ -120,6 +141,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+  * Permite descargar la apk de la aplicaccion de estudiantes
+  */
+  downloadApp(){
+    console.log('Descargando');
+    const urlLoad = 'http://'+this.IPServer+':3000/repositorio/SmartFC-App.apk';
+    window.open(urlLoad, "_blank");
+  }
+
+  /**
+  * Permite limpiar toda la informacion que se encuentra en el formulario
+  */
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();

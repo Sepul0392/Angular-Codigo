@@ -14,6 +14,9 @@ import { ActividadService } from '../../services/actividad.service';
 import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
 
+/**
+  * Contiene todos los metodos necesarios para la busqueda y visualizacion de actividades y contenidos rea por parte del profesor.
+  */
 
 @Component({
   selector: 'app-busqueda',
@@ -70,7 +73,9 @@ export class BusquedaComponent implements OnInit {
     this.tallerAct = {nombre_CREA:"", cont:0, id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
   }
 
-  //Obtener los datos de los Options
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.ContentREAService.allSubject().subscribe(res =>{
       this.materia = res as MateriaI[];
@@ -89,7 +94,9 @@ export class BusquedaComponent implements OnInit {
     });
   }
 
-  //consultar todos los ContenidosREA y verificar el nombre de la materia y contenido con sus respectivos ID´s
+  /**
+  * Permite obtener la informacion y listado de todos los ContenidosREA
+  */
   getContenidos() {
     this.ContentREAService.allSubject().subscribe(res => {
       this.materia = res as MateriaI[];
@@ -122,7 +129,9 @@ export class BusquedaComponent implements OnInit {
     });
   }
 
-  //consultar todos las Actividades y verificar el nombre de la materia, competencia y profesor con sus respectivos ID´s
+  /**
+  * Permite obtener la informacion y listado de todas las Actividades
+  */
   getActividades() {
     this.ActividadService.allCompetencias().subscribe(res => {
       this.competencia = res as CompetenciaI[];
@@ -161,7 +170,9 @@ export class BusquedaComponent implements OnInit {
     });
   }
 
-  //Imprimir datos de la Actividad seleccionanda en el Modal 
+  /**
+  * Permite imprimir toda la informacion de la Actividad seleccionada en el Modal
+  */
   getActividadinModal(actividad: ActividadI) {
     this.ActividadService.selectedActividad = actividad;
     this.saveDataActivity(actividad);
@@ -211,7 +222,9 @@ export class BusquedaComponent implements OnInit {
     })
   }
 
-  //Abrir nueva ventana con el contenido Buscado
+  /**
+  * Permite desplegar el Contenido seleccionado en una nueva ventana del navegador
+  */
   verContenido(contenidoREAhtml){
     const urlcut = contenidoREAhtml.urlrepositorio.substring(41);
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
@@ -219,7 +232,9 @@ export class BusquedaComponent implements OnInit {
     window.open(urlLoad, "_blank");
   }
 
-  //Abrir nueva ventana con el Contenido de la actividad Buscada
+  /**
+  * Permite desplegar el Contenido de la Actividad en una nueva ventana del navegador
+  */
   verContenidoActividad(){
     const urlcut = this.contenidoRes.content.urlrepositorio.substring(41);
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut
@@ -227,7 +242,9 @@ export class BusquedaComponent implements OnInit {
     window.open(urlLoad, "_blank");
   }
 
-  //Abrir nueva ventana con el Taller de la actividad Buscada
+  /**
+  * Permite desplegar el Taller de la Actividad en una nueva ventana del navegador
+  */
   verTallerActividad(){
     const urlcut = this.tallerRes.content.urlrepositorio.substring(41);
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
@@ -235,22 +252,33 @@ export class BusquedaComponent implements OnInit {
     window.open(urlLoad, "_blank");
   }
 
-  //Almacenar info temporal de un ContenidoREA
+  /**
+  * Permite almacenar la informacion de un ContenidoREA de forma temporal
+  */
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
     //console.log("contenido guardado:", this.contenidoToSave);
   }
-  //Almacenar info temporal de una Actividad
+
+  /**
+  * Permite almacenar la informacion de una Actividad de forma temporal
+  */
   saveDataActivity(actividadhtml){
     this.actividadToSave = actividadhtml;
     //console.log("actividad guardada:", this.actividadToSave);
   }
-  //Almacenar info temporal de un Taller
+
+  /**
+  * Permite almacenar la informacion de un Taller de forma temporal
+  */
   saveDataTaller(tallerhtml){
     this.tallerToSave = tallerhtml;
     //console.log("taller guardado:", this.tallerToSave);
   }
 
+  /**
+  * Permite comprobar que el administrador se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthDService.getIdDocente()){
       return true;

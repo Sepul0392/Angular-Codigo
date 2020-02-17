@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+* Permite filtrar todos los Colegios respecto a su nombre y NIT. Se listaran los Colegios que coincidan con los datos.
+*/
 @Pipe({
   name: 'filterColegioAdmin'
 })

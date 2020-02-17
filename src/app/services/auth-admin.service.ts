@@ -170,7 +170,7 @@ export class AuthAdminService {
     return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllSubjectActives`);
   }
 
-  //Eliminar una Actividad Activa
+  //Eliminar una Materia Activa
   deleteSubjectActive(materiaActiva:MateriaActivaI){
     return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteSubjectActive`, materiaActiva);
   }

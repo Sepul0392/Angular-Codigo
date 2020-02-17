@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+* Permite filtrar todos los Eventos respecto a las acciones realizadas por el estudiante. Se listaran los Eventos que coincidan con los datos.
+*/
 @Pipe({
   name: 'filterEstudianteMetricas'
 })

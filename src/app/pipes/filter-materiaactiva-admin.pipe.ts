@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+* Permite filtrar todas las MateriasActivas respecto a su materia, grado, docente y colegio. Se listaran las MateriasActivas que coincidan con los datos.
+*/
 @Pipe({
   name: 'filterMateriaactivaAdmin'
 })

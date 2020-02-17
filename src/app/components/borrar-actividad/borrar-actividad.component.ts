@@ -12,6 +12,9 @@ import { AuthDService } from '../../services/auth-d.service';
 import { contenidoREAI } from '../../models/contenidoREA';
 import { NgForm } from '@angular/forms';
 
+/**
+  * Contiene todos los metodos necesarios para la busqueda y eliminacion de actividades.
+  */
 
 @Component({
   selector: 'app-borrar-actividad',
@@ -54,7 +57,9 @@ export class BorrarActividadComponent implements OnInit {
     this.getActividades();
   }
 
-  //Obtener los datos de los options
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.ContentREAService.allSubject().subscribe(res =>{
       this.materia = res as MateriaI[];
@@ -70,7 +75,9 @@ export class BorrarActividadComponent implements OnInit {
     });
   }
 
-  //consultar todos las Actividades y verificar el nombre de la materia, competencia y profesor con sus respectivos ID´s
+  /**
+  * Permite obtener la informacion y listado de todas las Actividades
+  */
   getActividades() {
     this.ActividadService.allCompetencias().subscribe(res => {
       this.competencia = res as CompetenciaI[];
@@ -108,13 +115,17 @@ export class BorrarActividadComponent implements OnInit {
     });
   }
 
-  //Almacenar info temporal de una Actividad
+  /**
+  * Permite almacenar la informacion de una Actividad de forma temporal
+  */
   saveDataActivity(actividadhtml){
     this.actividadToSave = actividadhtml;
     //console.log('actividad guardada:', this.actividadToSave);
   }
 
-  //Buscar y guardar info de 
+  /**
+  * Permite desvincular el Contenido de la Actividad que se eliminara
+  */
   BusquedaYCambioEstadoContent(id_contenido){
     const id_contenidoBusqueda = {
       id_contenidoREA: id_contenido
@@ -134,7 +145,9 @@ export class BorrarActividadComponent implements OnInit {
     });
   }
 
-  //Eliminar Actividad de Mongo
+  /**
+  * Permite eliminar una Actividad
+  */
   deleteActividad(){
     this.correcto = false;
     this.mensaje = true;
@@ -151,6 +164,9 @@ export class BorrarActividadComponent implements OnInit {
     //window.location.reload();
   }
 
+  /**
+  * Permite comprobar que el profesor se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthDService.getIdDocente()){
       return true;

@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+* Permite filtrar todas las Actividades respecto a su nombre, materia, grado, docente y competencia. Se listaran las Actividades que coincidan con los datos.
+*/
 @Pipe({
   name: 'filterActividad'
 })

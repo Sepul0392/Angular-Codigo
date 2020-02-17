@@ -22,18 +22,26 @@ export class HeaderAdminComponent implements OnInit {
     this.cambiando = false;
   }
 
+  /**
+  * Permite realizar el LogOut del adminsitrador en el sistema
+  */
   logOut(){
     this.AuthAdminService.logout();
     this.router.navigateByUrl('/login')
   }
 
-  //Abrir nueva ventana para ver el Manual
+  /**
+  * Permite abrir una nueva ventana con el manual
+  */
   verManual(){
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/manual.pdf';
     //console.log('urlload', urlLoad);
     window.open(urlLoad, "_blank");
   }
 
+  /**
+  * Permite actualizar la contraseña del administrador
+  */
   actualizarContrasena(form: NgForm): void {
     this.cambioCorrecto = false;
     this.cambiando = true;

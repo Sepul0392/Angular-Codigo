@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+* Permite filtrar todos los Estudiantes respecto a su nombre, apellido, nombre de usuario, correo electronico, grado, curso y colegio. Se listaran los Estudiantes que coincidan con los datos.
+*/
 @Pipe({
   name: 'filterEstudiantesAdmin'
 })

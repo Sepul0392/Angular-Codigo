@@ -8,7 +8,11 @@ import { ColegioI } from '../../../models/colegio';
 import { GradoI } from '../../../models/grado';
 import { EstuadianteVisualizarI } from '../../../models/estudianteVisualizar';
 import { DocenteVisualizarI } from '../../../models/docenteVisualizar';
+import { MateriaActivaI } from '../../../models/materiaActiva';
 
+/**
+  * Contiene todos los metodos necesarios para administrar la informacion de los usuarios registrados en el sistema. 
+  */
 
 @Component({
   selector: 'app-gestionar-usuarios-admin',
@@ -21,6 +25,7 @@ export class GestionarUsuariosAdminComponent implements OnInit {
   docentes:DocenteI[];
   colegios:ColegioI[];
   estudantes:EstuadianteI[];
+  MateriaActiva:MateriaActivaI[];
   grados:GradoI[];
   estudianteToSave:EstuadianteI;
   docenteToSave:DocenteI;
@@ -56,6 +61,9 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     this.getOptions();
   }
 
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.AuthAdminService.allGrade().subscribe(res => {
       this.grados = res as GradoI[];
@@ -98,21 +106,27 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     });
   }
 
-  //Imprimir datos del docente en el Form 
+  /**
+  * Permite imprimir los datos del Docente en el formulario
+  */
   getDocenteinForm(docentehtml){
     this.AuthAdminService.selectedDocente = docentehtml;
     //console.log('info docente', this.AuthAdminService.selectedDocente);
     this.profesorSelected = true;
   }
 
-  //Imprimir datos del Estudiante en el Form 
+  /**
+  * Permite imprimir los detos del estudiante en el formulario
+  */
   getEstudianteinForm(estudiantehtml){
     this.AuthAdminService.selectedEstudiante = estudiantehtml;
     //console.log('info docente', this.AuthAdminService.selectedEstudiante);
     this.estudianteSelected = true;
   }
 
-  //Actualizar datos del docente
+  /**
+  * Permite actualizar los datos del Docente
+  */
   actualizarDocente(form: NgForm): void{
     this.error1 = true;
 
@@ -135,7 +149,9 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     }
   }
 
-  //Actualizar datos del Estudiante
+  /**
+  * Permite actualizar los datos del Estudiante
+  */
   actualizarEstudiante(form: NgForm): void{
     this.error2 = true;
 
@@ -161,17 +177,33 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     }
   }
 
-  //Eliminar Docente de Mongo
+  /**
+  * Permite eliminar un Docente
+  */
   deleteDocente(){
     //console.log("id para eliminar:", this.docenteToSave.id_docente);
     this.AuthAdminService.deleteDocente(this.docenteToSave).subscribe(res =>{
       //console.log(res);
-      this.getOptions();
-      this.docenteToSave = new DocenteI();
+      this.AuthAdminService.loadAllSubjectActives().subscribe(res => {
+        this.MateriaActiva = res as MateriaActivaI[];
+
+        for(let a=0; a < this.MateriaActiva.length; a++){
+          if(this.MateriaActiva[a].id_docente == this.docenteToSave.id_docente){
+            this.AuthAdminService.deleteSubjectActive(this.MateriaActiva[a]).subscribe(res => {
+              //console.log(res);
+            });
+          }
+        }
+        this.getOptions();
+        this.docenteToSave = new DocenteI();
+      });
     });
     //window.location.reload();
   }
-  //Eliminar Estudiante de Mongo
+
+  /**
+  * Permite eliminar un Estudiante
+  */
   deleteEstudiante(){
     //console.log("id para eliminar:", this.competenciaToSave.id_competencia);
     this.AuthAdminService.deleteEstudiante(this.estudianteToSave).subscribe(res =>{
@@ -182,23 +214,32 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     //window.location.reload();
   }
 
-  //Almacenar info temporal de una Competencia
+  /**
+  * Permite almacenar la informacion de un Docente de forma temporal
+  */
   saveDataDocente(docentehtml){
     this.docenteToSave = docentehtml as DocenteI;
     //console.log('docente guardada:', this.docenteToSave);
   }
-  //Almacenar info temporal de una AreaMAteria
+
+  /**
+  * Permite almacenar la infromacion de un Estudiante de forma temporal
+  */
   saveDataEstudiante(estudiantehtml){
     this.estudianteToSave = estudiantehtml;
     //console.log('estudiante guardada:', this.estudianteToSave);
   }
 
-  //Resetear pagina
+  /**
+  * Permite recargar la pagina actual
+  */
   resetPage(){
     window.location.reload();
   }
 
-  //resetear Formulario
+  /**
+  * Permite limpiar la informacion que se encuentra en el formulario
+  */
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
@@ -212,6 +253,9 @@ export class GestionarUsuariosAdminComponent implements OnInit {
     }
   }
 
+  /**
+  * Permite comprobar que el administrador se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthAdminService.getIdAdmin()){
       return true;

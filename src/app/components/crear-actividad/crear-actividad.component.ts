@@ -13,6 +13,10 @@ import { ActividadService } from '../../services/actividad.service';
 import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
 
+/**
+* Contiene todos los metodos necesarios para la creacion de una actividad.
+*/
+
 @Component({
   selector: 'app-crear-actividad',
   templateUrl: './crear-actividad.component.html',
@@ -88,7 +92,9 @@ export class CrearActividadComponent implements OnInit {
     this.getContenidos();
   }
 
-  //Obtener los datos de los Options
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.ContentREAService.allSubject().subscribe(res =>{
       this.materia = res as MateriaI[];
@@ -118,7 +124,9 @@ export class CrearActividadComponent implements OnInit {
     });
   }
 
-  //consultar todos los ContenidosREA y verificar el nombre de la materia y contenido con sus respectivos ID´s
+  /**
+  * Permite obtener la informacion y listado de todos los ContenidosREA
+  */
   getContenidos() {
     this.ContentREAService.allSubject().subscribe(res => {
       this.materia = res as MateriaI[];
@@ -151,7 +159,9 @@ export class CrearActividadComponent implements OnInit {
     });
   }
 
-  //Consultar todas las actividades en Mongo
+  /**
+  * Permite obtener la informacion y listado de todas las Actividades
+  */
   getActividades(){
     this.ActividadService.allActivities().subscribe(res =>{
       //console.log(res);
@@ -159,7 +169,9 @@ export class CrearActividadComponent implements OnInit {
     });
   }
 
-  //Crear Actividad en Mongo
+  /**
+  * Permite crear una nueva Actividad
+  */
   onCrearActividad(form: NgForm): void {
     this.correcto = false;
     this.error = false;
@@ -354,26 +366,34 @@ export class CrearActividadComponent implements OnInit {
     }
   }
 
-  //Almacenar info temporal de un Taller
+  /**
+  * Permite almacenar la informacion de un Taller de forma temporal
+  */
   saveDataTaller(tallerhtml){
     this.tallerToSave = tallerhtml;
     this.tallerVerificacion = true;
     //console.log("taller guardado:", this.tallerToSave);
   }
 
-  //Almacenar info temporal de un ContenidoREA
+  /**
+  * Permite almacenar la informacion de un ContenidoREA de forma temporal
+  */
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
     this.contenidoVerificacion = true;
     //console.log("contenido guardado:", this.contenidoToSave);
   }
 
-  //Resetear pagina
+  /**
+  * Permite recargar la pagina actual
+  */
   resetPage(){
     window.location.reload();
   }
 
-  //resetear Formulario
+  /**
+  * Permite limpiar toda la informacion que se encuentra en el formulario 
+  */
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
@@ -382,6 +402,9 @@ export class CrearActividadComponent implements OnInit {
     }
   }
 
+  /**
+  * Permite comprobar que el profesor se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthDService.getIdDocente()){
       return true;

@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+* Permite filtrar todas las Competencias respecto a su nombre, area materia, grado inicial, grado final, grado en especifico y colegio. Se listaran las Competencias que coincidan con los datos.
+*/
 @Pipe({
   name: 'filterCompetenciaAdmin'
 })

@@ -14,6 +14,9 @@ import { ActividadService } from '../../../services/actividad.service';
 import { AuthAdminService } from '../../../services/auth-admin.service';
 import { NgForm } from '@angular/forms';
 
+/**
+* Contiene todos los metodos necesarios para la busqueda y visualizacion de actividades y contenidos REA por parte de usuarios no registrados.
+*/
 
 @Component({
   selector: 'app-busqueda-visitante',
@@ -68,7 +71,9 @@ export class BusquedaVisitanteComponent implements OnInit {
     this.tallerAct = {nombre_CREA:"",cont:0, id_CREA:0,nombre_tipo_CREA:"",id_grado:0,materia:"",descripcion_CREA:""};
   }
 
-  //Obtener los datos de los Options
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.ContentREAService.allSubject().subscribe(res =>{
       this.materia = res as MateriaI[];
@@ -87,7 +92,9 @@ export class BusquedaVisitanteComponent implements OnInit {
     });
   }
 
-  //consultar todos los ContenidosREA y verificar el nombre de la materia y contenido con sus respectivos ID´s
+  /**
+  * Permite obtener la informacion y listado de ContenidosREA
+  */
   getContenidos() {
     this.ContentREAService.allSubject().subscribe(res => {
       this.materia = res as MateriaI[];
@@ -120,7 +127,9 @@ export class BusquedaVisitanteComponent implements OnInit {
     });
   }
 
-  //consultar todos las Actividades y verificar el nombre de la materia, competencia y profesor con sus respectivos ID´s
+  /**
+  * Permite obtener la informacion y listado de Actividades
+  */
   getActividades() {
     this.ActividadService.allCompetencias().subscribe(res => {
       this.competencia = res as CompetenciaI[];
@@ -159,7 +168,9 @@ export class BusquedaVisitanteComponent implements OnInit {
     });
   }
 
-  //Imprimir datos de la Actividad seleccionanda en el Modal 
+  /**
+  * Permite imprimir los datos de la Actividad seleccionada en el modal
+  */
   getActividadinModal(actividad: ActividadI) {
     this.ActividadService.selectedActividad = actividad;
     this.saveDataActivity(actividad);
@@ -209,7 +220,9 @@ export class BusquedaVisitanteComponent implements OnInit {
     })
   }
 
-  //Abrir nueva ventana con el contenido Buscado
+  /**
+  * Permite visualizar el Contenido en una nueva ventana del navegador
+  */
   verContenido(contenidoREAhtml){
     const urlcut = contenidoREAhtml.urlrepositorio.substring(41);
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
@@ -217,7 +230,9 @@ export class BusquedaVisitanteComponent implements OnInit {
     window.open(urlLoad, "_blank");
   }
 
-  //Abrir nueva ventana con el Contenido de la actividad Buscada
+  /**
+  * Permite visualizar el Contenido de una Actividad en una nueva ventana del navegador
+  */
   verContenidoActividad(){
     const urlcut = this.contenidoRes.content.urlrepositorio.substring(41);
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
@@ -225,7 +240,9 @@ export class BusquedaVisitanteComponent implements OnInit {
     window.open(urlLoad, "_blank");
   }
 
-  //Abrir nueva ventana con el Taller de la actividad Buscada
+  /**
+  * Permite visualizar el Taller de una Actividad en una nueva ventana del navegador
+  */
   verTallerActividad(){
     const urlcut = this.tallerRes.content.urlrepositorio.substring(41);
     const urlLoad = 'http://'+this.IPServer+':3000/repositorio/'+urlcut;
@@ -233,16 +250,25 @@ export class BusquedaVisitanteComponent implements OnInit {
     window.open(urlLoad, "_blank");
   }
 
-  //Almacenar info temporal de un ContenidoREA
+  /**
+  * Permite almacenar la informacion de un ContenidoREA de forma temporal
+  */
   saveDataContent(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
     //console.log("contenido guardado:", this.contenidoToSave);
   }
-  //Almacenar info temporal de una Actividad
+
+  /**
+  * Permite almacenar la informacion de una Actividad de forma temporal
+  */
   saveDataActivity(actividadhtml){
     this.actividadToSave = actividadhtml;
     //console.log("actividad guardada:", this.actividadToSave);
   }
+
+  /**
+  * Permite almacenar la informacion de un Taller de forma temporal
+  */
   //Almacenar info temporal de un Taller
   saveDataTaller(tallerhtml){
     this.tallerToSave = tallerhtml;

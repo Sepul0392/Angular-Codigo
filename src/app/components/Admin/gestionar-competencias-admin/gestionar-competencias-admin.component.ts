@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
 
+/**
+  * Contiene todos los metodos necesarios para crear o eliminar competencias como areas de materias.
+  */
+
 @Component({
   selector: 'app-gestionar-competencias-admin',
   templateUrl: './gestionar-competencias-admin.component.html',
@@ -48,6 +52,9 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     this.getCompetencias();
   }
 
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.AuthAdminService.allGrade().subscribe(res => {
       this.grados = res as GradoI[];
@@ -80,7 +87,9 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     });
   }
 
-  //Crear Competencia en Mongo
+  /**
+  * Permite crear una nueva Competencia
+  */
   crearCompetencia(form: NgForm): void {
     this.correcto1 = false;
     this.error1 = false;
@@ -151,7 +160,9 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     });
   }
 
-  //Crear AreaMateria en Mongo
+  /**
+  * Permite crear una nueva AreaMateria
+  */
   CrearAreaMateria(form: NgForm): void {
     this.correcto2 = false;
     this.error2 = false;
@@ -219,18 +230,25 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     });
   }
 
-  //Almacenar info temporal de una Competencia
+  /**
+  * Permite almacenar la informacion de una Competnecia de forma temporal
+  */
   saveDataCompetencia(competenciahtml){
     this.competenciaToSave = competenciahtml;
     //console.log('actividad guardada:', this.competenciaToSave);
   }
-  //Almacenar info temporal de una AreaMAteria
+
+  /**
+  * Permite almacenar la informacion de una AreaMateria de forma temporal
+  */
   saveDataAreaMateria(areaMateriahtml){
     this.areaMateriaToSave = areaMateriahtml
     //console.log('actividad guardada:', this.areaMateriaToSave);
   }
 
-  //Eliminar Competencia de Mongo
+  /**
+  * Permite eliminar una Competencia
+  */
   deleteCompetencia(){
     //console.log("id para eliminar:", this.competenciaToSave.id_competencia);
     this.AuthAdminService.deleteCompetencia(this.competenciaToSave).subscribe(res =>{
@@ -240,7 +258,10 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     });
     //window.location.reload();
   }
-  //Eliminar AreaMateria de Mongo
+
+  /**
+  * Permite eliminar una AreaMateria
+  */
   deleteAreaMateria(){
     //console.log("id para eliminar:", this.areaMateriaToSave.id_areaMateria);
     this.AuthAdminService.deleteAreaSubject(this.areaMateriaToSave).subscribe(res =>{
@@ -253,12 +274,16 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     //window.location.reload();
   }
 
-  //Resetear pagina
+  /**
+  * Permite recargar la pagina actual
+  */
   resetPage(){
     window.location.reload();
   }
 
-  //resetear Formulario
+  /**
+  * Permite limpiar toda la informacion que se encuentre en el formulario
+  */
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
@@ -267,6 +292,9 @@ export class GestionarCompetenciasAdminComponent implements OnInit {
     }
   }
 
+  /**
+  * Permite comprobar que el administrador se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthAdminService.getIdAdmin()){
       return true;

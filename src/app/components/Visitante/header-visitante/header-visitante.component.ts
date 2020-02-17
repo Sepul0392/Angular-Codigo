@@ -13,6 +13,9 @@ export class HeaderVisitanteComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+  * Permite redirigir al usuario a la pagina de Login
+  */
   salirBusquedaVisitante(){
     console.log('logout Visitante');
     this.router.navigateByUrl('/login');

@@ -9,6 +9,9 @@ import { contenidoREAVisualizarI } from '../../models/contenidoREAVisualizar';
 import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
 
+/**
+  * Contiene todos los metodos necesarios para la busqueda y eliminacion de contenidos en el sistema.
+  */
 
 @Component({
   selector: 'app-borrar-contenido',
@@ -46,7 +49,9 @@ export class BorrarContenidoComponent implements OnInit {
     this.getContenidos();
   }
 
-  //Obtener los datos de los options
+  /**
+  * Permite obtener los datos de todos los options
+  */
   getOptions(){
     this.ContentREAService.allSubject().subscribe(res =>{
       this.materia = res as MateriaI[];
@@ -61,7 +66,9 @@ export class BorrarContenidoComponent implements OnInit {
     });
   }
 
-  //consultar todos los ContenidosREA y verificar el nombre de la materia y contenido con sus respectivos ID´s
+  /**
+  * Permite obtener la informacion y listado de todos los ContenidosREA
+  */
   getContenidos() {
     this.ContentREAService.allSubject().subscribe(res => {
       this.materia = res as MateriaI[];
@@ -97,13 +104,17 @@ export class BorrarContenidoComponent implements OnInit {
     });
   }
 
-  //Almacenar info temporal de un ContenidoREA
+  /**
+  * Permite almacenar la informacion de un ContenidoREA de forma temporal
+  */
   saveData(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
     //console.log("contenido guardado:", this.contenidoToSave);
   }
 
-  //Eliminar contenidoREA de Mongo
+  /**
+  * Permite eliminar un ContenidoREA
+  */
   deleteContenido(){
     this.correcto = false;
     this.mensaje = true;
@@ -117,6 +128,9 @@ export class BorrarContenidoComponent implements OnInit {
     //window.location.reload();
   }
 
+  /**
+  * Permite comprobar que el administrador se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthDService.getIdDocente()){
       return true;

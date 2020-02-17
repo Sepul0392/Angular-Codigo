@@ -17,6 +17,9 @@ export class InicioAdminComponent implements OnInit {
     this.comprobacionLogin();
   }
 
+  /**
+  * Permite comprobar que el administrador se encuentra logueado en el sistema al ingresar a la pagina
+  */
   comprobacionLogin(){
     if (this.AuthAdminService.getIdAdmin()){
       return true;

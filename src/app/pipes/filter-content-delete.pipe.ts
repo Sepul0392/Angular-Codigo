@@ -2,6 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DocenteI } from '../models/docente';
 import { AuthDService } from '../services/auth-d.service';
 
+/**
+* Permite filtrar todos los Contenidos REA y listar solo los que pertenecen al profesor que se encuentre logueado y no esten siendo usados por una Actividad.
+*/
 @Pipe({
   name: 'filterContentDelete'
 })

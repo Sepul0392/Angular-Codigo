@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+* Permite filtrar todas las MateriasActivas y listar solo las que pertenecen al profesor que se encuentre logueado.
+*/
 @Pipe({
   name: 'filterTableMateriaDocente'
 })
