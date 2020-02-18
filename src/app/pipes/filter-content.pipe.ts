@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterContentPipe implements PipeTransform {
 
   //transform(value: any, ...args: any[]): any {
-  transform(items: any, nombreSearch: string, materiaSearch: string, gradoSearch: number, docenteSearch: number, tipoContenidoSearch: number) {
-    //console.log("entradas:", nombreSearch,  materiaSearch, gradoSearch, docenteSearch, tipoContenidoSearch);
+  transform(items: any, nombreSearch: string, materiaSearch: number, gradoSearch: number, docenteSearch: number, tipoContenidoSearch: number, id_taller: number) {
+    //console.log("entradas:", nombreSearch,  materiaSearch, gradoSearch, docenteSearch, tipoContenidoSearch, id_taller);
     //console.log("item:", items);
     if (items && items.length) {
       return items.filter(item => {
@@ -24,6 +24,9 @@ export class FilterContentPipe implements PipeTransform {
           return false;
         }
         if (tipoContenidoSearch && item.tipo_CREA != tipoContenidoSearch) {
+          return false;
+        }
+        if (id_taller && item.tipo_CREA == id_taller) {
           return false;
         }
         return true;

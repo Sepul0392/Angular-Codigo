@@ -11,6 +11,7 @@ import { ActividadI } from '../../models/actividad';
 import { DocenteI } from '../../models/docente';
 import { ActividadService } from '../../services/actividad.service';
 import { AuthDService } from '../../services/auth-d.service';
+import { MateriaActivaI } from '../../models/materiaActiva';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -26,6 +27,7 @@ export class CrearActividadComponent implements OnInit {
   contenidos:contenidoREAI[];
   materia:MateriaI[];
   grado:GradoI[];
+  materiaActiva:MateriaActivaI[];
   tipoContenido:TipoContenidoI[];
   materiaSelected:number;
   gradoSelected:number;
@@ -40,6 +42,7 @@ export class CrearActividadComponent implements OnInit {
   docenteAuth: DocenteI;
   competencia:CompetenciaI[];
   gradoSelectedA:number;
+  miMateriaSelectedA:number;
   materiaSelectedA:number;
   docenteSelectedA:number;
   competenciaSelectedA:number;
@@ -104,6 +107,9 @@ export class CrearActividadComponent implements OnInit {
     });
     this.ActividadService.allDocente().subscribe(res =>{
       this.docente = res as DocenteI[];
+    });
+    this.AuthDService.loadAllSubjectActives().subscribe(res =>{
+      this.materiaActiva = res as MateriaActivaI[];
     });
 
     this.id_docenteAuth = this.AuthDService.getIdDocente();
@@ -260,6 +266,7 @@ export class CrearActividadComponent implements OnInit {
           id_docente: this.id_docenteAuth,
           id_materia: this.materiaSelectedA,
           id_grado: this.gradoSelectedA,
+          id_materiaActiva: this.miMateriaSelectedA,
           id_competencia: this.competenciaSelectedA,
           titulo_actividad: form.value.nombre_actividad,
           descripcion_actividad: form.value.descripcion_actividad,

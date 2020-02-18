@@ -23,6 +23,7 @@ export class RegistroUsuarioComponent implements OnInit {
   grado:GradoI[];
   colegios:ColegioI[];
   newContD: number;
+  newContMA: number;
   newIDD:number;
   newIDMA: number;
   temp1: number;
@@ -113,25 +114,29 @@ export class RegistroUsuarioComponent implements OnInit {
           var idGlobal = ""+form.value.id_colegio+this.newContD;
           this.newIDD = parseInt(idGlobal);
 
-          //Crear ID MateriaACtiva
+          //Crear Cont MateriaACtiva
           if (this.AuthDService.MateriasActivas.length == 0) {
-            this.newIDMA = 1;
+            this.newContMA = 1;
           }
           else {
+            if (this.AuthDService.MateriasActivas.length) {
+              this.newContMA = 1;
+            }
             for (let n = 0; n < this.AuthDService.MateriasActivas.length; n++) {
               for (let i = 0; i < this.AuthDService.MateriasActivas.length; i++) {
-                //console.log('n=', n, 'id_CREA=', this.AuthDService.MateriasActivas[i].id_materiaActiva);
-                if (this.AuthDService.MateriasActivas.length) {
-                  this.newIDMA = 1;
-                }
-                if (n + 1 == this.AuthDService.MateriasActivas[i].id_materiaActiva) {
-                  this.newIDMA = n + 2;
-                  this.temp2 = 0;
-                  i = this.AuthDService.MateriasActivas.length;
-                }
-                else {
-                  this.newIDMA = n + 1;
-                  this.temp2 = 1;
+                if(this.AuthDService.MateriasActivas[i].id_docente == this.newIDD){
+                  if (this.AuthDService.MateriasActivas.length) {
+                    this.newContMA = 1;
+                  }
+                  if (n + 1 == this.AuthDService.MateriasActivas[i].cont) {
+                    this.newContMA = n + 2;
+                    this.temp2 = 0;
+                    i = this.AuthDService.MateriasActivas.length;
+                  }
+                  else {
+                    this.newContMA = n + 1;
+                    this.temp2 = 1;
+                  }
                 }
               }
               if (this.temp2 == 1) {
@@ -139,6 +144,10 @@ export class RegistroUsuarioComponent implements OnInit {
               }
             }
           }
+
+          // ID materiaActiva
+          var idGlobalMA = ""+this.newIDD+this.newContMA;
+          this.newIDMA = parseInt(idGlobalMA);
 
           for (let x = 0; x < this.materia.length; x++) {
             if (this.materia[x].id_materia == form.value.id_materia) {
@@ -162,6 +171,7 @@ export class RegistroUsuarioComponent implements OnInit {
 
           const newMateriaActiva = {
             id_materiaActiva: this.newIDMA,
+            cont: this.newContMA,
             nombre_materiaActiva: form.value.nombre_materiaActiva,
             id_materia: form.value.id_materia,
             id_grado: form.value.id_grado,

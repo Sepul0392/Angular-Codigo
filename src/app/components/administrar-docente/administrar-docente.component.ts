@@ -28,6 +28,7 @@ export class AdministrarDocenteComponent implements OnInit {
   materia:MateriaI[];
   grado:GradoI[];
   newIDMA:number;
+  newContMA: number;
   temp:number;
 
   materiaActivaToSave:MateriaActivaI;
@@ -124,25 +125,29 @@ export class AdministrarDocenteComponent implements OnInit {
         this.materia = res as MateriaI[];
         //console.log('info materia',this.materia.length);
 
-        //Crear ID MateriaACtiva
+        //Crear Cont MateriaACtiva
         if (this.AuthDService.MateriasActivas.length == 0) {
-          this.newIDMA = 1;
+          this.newContMA = 1;
         }
         else {
+          if (this.AuthDService.MateriasActivas.length) {
+            this.newContMA = 1;
+          }
           for (let n = 0; n < this.AuthDService.MateriasActivas.length; n++) {
             for (let i = 0; i < this.AuthDService.MateriasActivas.length; i++) {
-              //console.log('n=', n, 'id_CREA=', this.AuthDService.MateriasActivas[i].id_materiaActiva);
-              if (this.AuthDService.MateriasActivas.length) {
-                this.newIDMA = 1;
-              }
-              if (n + 1 == this.AuthDService.MateriasActivas[i].id_materiaActiva) {
-                this.newIDMA = n + 2;
-                this.temp = 0;
-                i = this.AuthDService.MateriasActivas.length;
-              }
-              else {
-                this.newIDMA = n + 1;
-                this.temp = 1;
+              if(this.AuthDService.MateriasActivas[i].id_docente == this.idDocente){
+                if (this.AuthDService.MateriasActivas.length) {
+                  this.newContMA = 1;
+                }
+                if (n + 1 == this.AuthDService.MateriasActivas[i].cont) {
+                  this.newContMA = n + 2;
+                  this.temp = 0;
+                  i = this.AuthDService.MateriasActivas.length;
+                }
+                else {
+                  this.newContMA = n + 1;
+                  this.temp = 1;
+                }
               }
             }
             if (this.temp == 1) {
@@ -150,6 +155,10 @@ export class AdministrarDocenteComponent implements OnInit {
             }
           }
         }
+
+        // ID materiaActiva
+        var idGlobalMA = ""+this.idDocente+this.newContMA;
+        this.newIDMA = parseInt(idGlobalMA);
 
         for(let x=0; x < this.materia.length; x++)
         {
@@ -162,6 +171,7 @@ export class AdministrarDocenteComponent implements OnInit {
         
         const newMateriaActiva = {
           id_materiaActiva: this.newIDMA,
+          cont: this.newContMA,
           nombre_materiaActiva: form.value.nombre_materiaActiva,
           id_materia: form.value.id_materia,
           id_grado: form.value.id_grado,

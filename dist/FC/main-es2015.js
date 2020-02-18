@@ -1620,8 +1620,18 @@ let GestionarUsuariosAdminComponent = class GestionarUsuariosAdminComponent {
         //console.log("id para eliminar:", this.docenteToSave.id_docente);
         this.AuthAdminService.deleteDocente(this.docenteToSave).subscribe(res => {
             //console.log(res);
-            this.getOptions();
-            this.docenteToSave = new _models_docente__WEBPACK_IMPORTED_MODULE_4__["DocenteI"]();
+            this.AuthAdminService.loadAllSubjectActives().subscribe(res => {
+                this.MateriaActiva = res;
+                for (let a = 0; a < this.MateriaActiva.length; a++) {
+                    if (this.MateriaActiva[a].id_docente == this.docenteToSave.id_docente) {
+                        this.AuthAdminService.deleteSubjectActive(this.MateriaActiva[a]).subscribe(res => {
+                            //console.log(res);
+                        });
+                    }
+                }
+                this.getOptions();
+                this.docenteToSave = new _models_docente__WEBPACK_IMPORTED_MODULE_4__["DocenteI"]();
+            });
         });
         //window.location.reload();
     }
@@ -7247,7 +7257,7 @@ let AuthDService = class AuthDService {
     loadAllSubjectActives() {
         return this.httpClient.get(`http://${this.localStorageService.getItem("IPSERVER")}:3000/loadAllSubjectActives`);
     }
-    //Eliminar una Actividad Activa
+    //Eliminar una Materia Activa
     deleteSubjectActive(materiaActiva) {
         return this.httpClient.post(`http://${this.localStorageService.getItem("IPSERVER")}:3000/deleteSubjectActive`, materiaActiva);
     }

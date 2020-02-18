@@ -2685,9 +2685,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           //console.log("id para eliminar:", this.docenteToSave.id_docente);
           this.AuthAdminService.deleteDocente(this.docenteToSave).subscribe(function (res) {
             //console.log(res);
-            _this18.getOptions();
+            _this18.AuthAdminService.loadAllSubjectActives().subscribe(function (res) {
+              _this18.MateriaActiva = res;
 
-            _this18.docenteToSave = new _models_docente__WEBPACK_IMPORTED_MODULE_4__["DocenteI"]();
+              for (var a = 0; a < _this18.MateriaActiva.length; a++) {
+                if (_this18.MateriaActiva[a].id_docente == _this18.docenteToSave.id_docente) {
+                  _this18.AuthAdminService.deleteSubjectActive(_this18.MateriaActiva[a]).subscribe(function (res) {//console.log(res);
+                  });
+                }
+              }
+
+              _this18.getOptions();
+
+              _this18.docenteToSave = new _models_docente__WEBPACK_IMPORTED_MODULE_4__["DocenteI"]();
+            });
           }); //window.location.reload();
         } //Eliminar Estudiante de Mongo
 
@@ -11205,7 +11216,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "loadAllSubjectActives",
         value: function loadAllSubjectActives() {
           return this.httpClient.get("http://".concat(this.localStorageService.getItem("IPSERVER"), ":3000/loadAllSubjectActives"));
-        } //Eliminar una Actividad Activa
+        } //Eliminar una Materia Activa
 
       }, {
         key: "deleteSubjectActive",
