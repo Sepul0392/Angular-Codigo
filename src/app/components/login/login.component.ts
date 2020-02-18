@@ -146,7 +146,7 @@ export class LoginComponent implements OnInit {
   */
   downloadApp(){
     console.log('Descargando');
-    const urlLoad = 'http://'+this.IPServer+':3000/repositorio/SmartFC-App.apk';
+    const urlLoad = 'assets/img/SmartFC-App.apk';
     window.open(urlLoad, "_blank");
   }
 

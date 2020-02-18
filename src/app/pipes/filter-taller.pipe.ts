@@ -1,16 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
-* Permite filtrar todos los Contenidos respecto a su nombre, materia, grado, docente y tipo de contenido. Se listaran los Contenidos que coincidan con los datos.
+* Permite filtrar todos los Contenidos de tipo taller respecto a su nombre, materia, grado y docente. Se listaran los Talleres que coincidan con los datos.
 */
 @Pipe({
-  name: 'filterContent'
+  name: 'filterTaller'
 })
-export class FilterContentPipe implements PipeTransform {
+export class FilterTallerPipe implements PipeTransform {
 
   //transform(value: any, ...args: any[]): any {
-  transform(items: any, nombreSearch: string, materiaSearch: number, gradoSearch: number, docenteSearch: number, tipoContenidoSearch: number, id_taller: number) {
-    //console.log("entradas:", nombreSearch,  materiaSearch, gradoSearch, docenteSearch, tipoContenidoSearch, id_taller);
+  transform(items: any, nombreSearch: string, materiaSearch: string, gradoSearch: number, docenteSearch: number, tipoContenidoSearch: number) {
+    //console.log("entradas:", nombreSearch,  materiaSearch, gradoSearch, docenteSearch, tipoContenidoSearch);
     //console.log("item:", items);
     if (items && items.length) {
       return items.filter(item => {
@@ -27,9 +27,6 @@ export class FilterContentPipe implements PipeTransform {
           return false;
         }
         if (tipoContenidoSearch && item.tipo_CREA != tipoContenidoSearch) {
-          return false;
-        }
-        if (id_taller && item.tipo_CREA == id_taller) {
           return false;
         }
         return true;

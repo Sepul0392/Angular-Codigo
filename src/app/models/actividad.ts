@@ -1,6 +1,6 @@
 export class ActividadI {
 
-    constructor(id_actividad = 0, cont = 0, id_colegio = 0, id_docente = 0, id_materia = 0, id_grado = 0, id_competencia = 0, titulo_actividad = '', 
+    constructor(id_actividad = 0, cont = 0, id_colegio = 0, id_docente = 0, id_materia = 0, id_grado = 0, id_materiaActiva = 0, id_competencia = 0, titulo_actividad = '', 
                 descripcion_actividad = '',id_contenidoREA = 0, video = 0, urlvideo = '', lectura = 0, urllectura = '', html = 0, urlhtml = '',
                 Q1 = '', A11 = '', A12 = '', A13 = '', A14 = '', CA1 = 0, Q2 = '', A21 = '', A22 = '', A23 = '', A24 = '', CA2 = 0,
                 Q3 = '', A31 = '', A32 = '', A33 = '', A34 = '', CA3 = 0, audio = 0, urlaudio = '', descripcion_test = '',
@@ -11,6 +11,7 @@ export class ActividadI {
                     this.id_docente = id_docente;
                     this.id_materia = id_materia;
                     this.id_grado = id_grado;
+                    this.id_materiaActiva = id_materiaActiva;
                     this.id_competencia = id_competencia;
                     this.titulo_actividad = titulo_actividad;
                     this.descripcion_actividad = descripcion_actividad;
@@ -75,6 +76,7 @@ export class ActividadI {
     id_docente: number;
     id_materia: number;
     id_grado: number;
+    id_materiaActiva: number;
     id_competencia: number;
     titulo_actividad: string;
     descripcion_actividad: string;

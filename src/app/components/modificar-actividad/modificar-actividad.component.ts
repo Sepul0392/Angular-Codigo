@@ -13,6 +13,7 @@ import { ActividadVisualizaI } from '../../models/actividadVisualizar';
 import { ActividadService } from '../../services/actividad.service';
 import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
+import { MateriaActivaI } from '../../models/materiaActiva';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 /**
@@ -32,6 +33,7 @@ export class ModificarActividadComponent implements OnInit {
   contenidos:contenidoREAI[];
   materia:MateriaI[];
   grado:GradoI[];
+  materiaActiva:MateriaActivaI[];
   tipoContenido:TipoContenidoI[];
   materiaSelected:number;
   gradoSelected:number;
@@ -45,7 +47,10 @@ export class ModificarActividadComponent implements OnInit {
   docente:DocenteI[];
   competencia:CompetenciaI[];
   gradoSelecteA:number;
+  gradoSelecteAM:number;
+  miMateriaSelectedA:number;
   materiaSelectedA:number;
+  materiaSelectedAM:number;
   docenteSelectedA:number;
   competenciaSelectedA:number;
   actividadVisualizar:ActividadVisualizaI[];
@@ -124,6 +129,9 @@ export class ModificarActividadComponent implements OnInit {
     });
     this.ActividadService.allDocente().subscribe(res =>{
       this.docente = res as DocenteI[];
+    });
+    this.AuthDService.loadAllSubjectActives().subscribe(res =>{
+      this.materiaActiva = res as MateriaActivaI[];
     });
   }
 
@@ -281,6 +289,7 @@ export class ModificarActividadComponent implements OnInit {
 
         this.actividadToSave.id_materia = form.value.id_materia;
         this.actividadToSave.id_grado = form.value.id_grado;
+        this.actividadToSave.id_materiaActiva = form.value.id_materiaActiva;
         this.actividadToSave.id_competencia = form.value.id_competencia;
         this.actividadToSave.titulo_actividad = form.value.titulo_actividad;
         this.actividadToSave.descripcion_actividad = form.value.descripcion_actividad;
@@ -418,6 +427,7 @@ export class ModificarActividadComponent implements OnInit {
           this.actividadToSave.id_colegio = this.id_colegioAuth;
           this.actividadToSave.id_materia = form.value.id_materia;
           this.actividadToSave.id_grado = form.value.id_grado;
+          this.actividadToSave.id_materiaActiva = form.value.id_materiaActiva;
           this.actividadToSave.id_competencia = form.value.id_competencia;
           this.actividadToSave.titulo_actividad = form.value.titulo_actividad;
           this.actividadToSave.descripcion_actividad = form.value.descripcion_actividad;
@@ -467,9 +477,10 @@ export class ModificarActividadComponent implements OnInit {
           this.ActividadService.createActivity(this.actividadToSave).subscribe(res => {
             //window.location.reload();
             //console.log("Creada nueva Actividad");
+            //console.log(res);
             this.temp2 = res;
             
-            if(this.temp2 == "Error Crear Actividad"){
+            if(this.temp2.Estado == "Error Crear Actividad"){
               this.correcto1 = false;
               this.correcto2 = false;
               this.error1 = true;
@@ -543,6 +554,9 @@ export class ModificarActividadComponent implements OnInit {
 
     this.ActividadService.selectedActividad = actividad;
     this.saveDataActivity(actividad);
+    this.materiaSelectedAM = this.actividadToSave.id_materia;
+    this.gradoSelecteAM = this.actividadToSave.id_grado;
+    //console.log(this.materiaSelectedAM, this.gradoSelecteAM);
     //console.log(this.ContentREAService.contenidosREA);
     const TallerInfo = {
       id_contenidoREA: this.ActividadService.selectedActividad.id_taller,

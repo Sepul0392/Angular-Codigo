@@ -10,6 +10,7 @@ import { MateriaVisualizarI } from '../../../models/materiaVisualizar';
 import { DocenteI } from '../../../models/docente';
 import { MateriaActivaI } from '../../../models/materiaActiva';
 import { MateriaActivaVisualizarI } from '../../../models/materiaActivaVisualizar';
+import String from '../../../../../dist/FC/polyfills-es5';
 
 /**
   * Contiene todos los metodos necesarios para administra materias, grados o informacion de los colegios.
@@ -46,6 +47,7 @@ export class GestionarColegioAdminComponent implements OnInit {
   error3:boolean;
   subiendo:boolean;
   temp2:any;
+  urlTemp: string;
   colegioSelected:boolean;
 
   constructor(private router: Router, private AuthAdminService: AuthAdminService) { }
@@ -268,6 +270,23 @@ export class GestionarColegioAdminComponent implements OnInit {
       var idGlobal = ""+form.value.id_colegioM+this.newCont;
       this.newID = parseInt(idGlobal);
 
+      // Imagen
+      if(form.value.id_areaMateria == 0 || form.value.id_areaMateria > 4){
+        this.urlTemp = "http://localhost:3000/public/repositorio/materiaPorDefecto.jpg"
+      }
+      if(form.value.id_areaMateria == 1){
+        this.urlTemp = "http://localhost:3000/public/repositorio/lenguajeImagen.jpg"
+      }
+      if(form.value.id_areaMateria == 2){
+        this.urlTemp = "http://localhost:3000/public/repositorio/matematicasImagen.jpg"
+      }
+      if(form.value.id_areaMateria == 3){
+        this.urlTemp = "http://localhost:3000/public/repositorio/cienciasSocialesImagen.jpg"
+      }
+      if(form.value.id_areaMateria == 4){
+        this.urlTemp = "http://localhost:3000/public/repositorio/cienciasNaturalesImagen.jpg"
+      }
+
       const newMateria = {
         id_materia: this.newID,
         cont: this.newCont,
@@ -275,7 +294,7 @@ export class GestionarColegioAdminComponent implements OnInit {
         id_colegio: form.value.id_colegioM,
         id_areaMateria: form.value.id_areaMateria,
         gradoInicial: form.value.gradoInicial,
-        url_imagen: "http://localhost:3000/public/repositorio/materiaPorDefecto.jpg"
+        url_imagen: this.urlTemp
       }
       //console.log('datos newMateria', newMateria);
     
