@@ -6473,7 +6473,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "downloadApp",
         value: function downloadApp() {
           console.log('Descargando');
-          var urlLoad = 'assets/img/SmartFC-App.apk';
+          var urlLoad = 'assets/SmartFC-App.apk';
           window.open(urlLoad, "_blank");
         }
       }, {
