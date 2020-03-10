@@ -3431,18 +3431,18 @@ let DudasComponent = class DudasComponent {
                                     n = this.estudiantes.length;
                                 }
                             }
-                            for (let n = 0; n < this.actividades.length; n++) {
-                                if (this.AuthDService.Dudas[i].id_actividad == this.actividades[n].id_actividad) {
+                            for (let s = 0; s < this.actividades.length; s++) {
+                                if (this.AuthDService.Dudas[i].id_actividad == this.actividades[s].id_actividad) {
                                     for (let o = 0; o < this.materias.length; o++) {
-                                        if (this.actividades[n].id_materia == this.materias[o].id_materia) {
+                                        if (this.actividades[s].id_materia == this.materias[o].id_materia) {
                                             this.dudasVisualizar[i].materia = this.materias[o].nombre_materia;
                                             this.dudasVisualizar[i].id_materia = this.materias[o].id_materia;
                                         }
                                     }
-                                    this.dudasVisualizar[i].nombre_actividad = this.actividades[n].titulo_actividad;
-                                    this.dudasVisualizar[i].id_grado = this.actividades[n].id_grado;
-                                    this.dudasVisualizar[i].id_docente = this.actividades[n].id_docente;
-                                    n = this.estudiantes.length;
+                                    this.dudasVisualizar[i].nombre_actividad = this.actividades[s].titulo_actividad;
+                                    this.dudasVisualizar[i].id_grado = this.actividades[s].id_grado;
+                                    this.dudasVisualizar[i].id_docente = this.actividades[s].id_docente;
+                                    s = this.actividades.length;
                                 }
                             }
                         }

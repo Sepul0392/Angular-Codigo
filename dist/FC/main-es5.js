@@ -5351,19 +5351,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }
                     }
 
-                    for (var _n2 = 0; _n2 < _this47.actividades.length; _n2++) {
-                      if (_this47.AuthDService.Dudas[i].id_actividad == _this47.actividades[_n2].id_actividad) {
+                    for (var s = 0; s < _this47.actividades.length; s++) {
+                      if (_this47.AuthDService.Dudas[i].id_actividad == _this47.actividades[s].id_actividad) {
                         for (var o = 0; o < _this47.materias.length; o++) {
-                          if (_this47.actividades[_n2].id_materia == _this47.materias[o].id_materia) {
+                          if (_this47.actividades[s].id_materia == _this47.materias[o].id_materia) {
                             _this47.dudasVisualizar[i].materia = _this47.materias[o].nombre_materia;
                             _this47.dudasVisualizar[i].id_materia = _this47.materias[o].id_materia;
                           }
                         }
 
-                        _this47.dudasVisualizar[i].nombre_actividad = _this47.actividades[_n2].titulo_actividad;
-                        _this47.dudasVisualizar[i].id_grado = _this47.actividades[_n2].id_grado;
-                        _this47.dudasVisualizar[i].id_docente = _this47.actividades[_n2].id_docente;
-                        _n2 = _this47.estudiantes.length;
+                        _this47.dudasVisualizar[i].nombre_actividad = _this47.actividades[s].titulo_actividad;
+                        _this47.dudasVisualizar[i].id_grado = _this47.actividades[s].id_grado;
+                        _this47.dudasVisualizar[i].id_docente = _this47.actividades[s].id_docente;
+                        s = _this47.actividades.length;
                       }
                     }
                   } //console.log('prueba',this.dudasVisualizar);
@@ -8010,26 +8010,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _this69.newContMA = 1;
                   }
 
-                  for (var _n3 = 0; _n3 < _this69.AuthDService.MateriasActivas.length; _n3++) {
+                  for (var _n2 = 0; _n2 < _this69.AuthDService.MateriasActivas.length; _n2++) {
                     for (var _i3 = 0; _i3 < _this69.AuthDService.MateriasActivas.length; _i3++) {
                       if (_this69.AuthDService.MateriasActivas[_i3].id_docente == _this69.newIDD) {
                         if (_this69.AuthDService.MateriasActivas.length) {
                           _this69.newContMA = 1;
                         }
 
-                        if (_n3 + 1 == _this69.AuthDService.MateriasActivas[_i3].cont) {
-                          _this69.newContMA = _n3 + 2;
+                        if (_n2 + 1 == _this69.AuthDService.MateriasActivas[_i3].cont) {
+                          _this69.newContMA = _n2 + 2;
                           _this69.temp2 = 0;
                           _i3 = _this69.AuthDService.MateriasActivas.length;
                         } else {
-                          _this69.newContMA = _n3 + 1;
+                          _this69.newContMA = _n2 + 1;
                           _this69.temp2 = 1;
                         }
                       }
                     }
 
                     if (_this69.temp2 == 1) {
-                      _n3 = _this69.AuthDService.MateriasActivas.length + 1;
+                      _n2 = _this69.AuthDService.MateriasActivas.length + 1;
                     }
                   }
                 } // ID materiaActiva
