@@ -26,6 +26,34 @@ import { AuthDService } from './services/auth-d.service';
 import { ContentREAService } from './services/content-rea.service';
 import { CommonModule } from '@angular/common';
 import { FilterContentPipe } from './pipes/filter-content.pipe';
+import { FilterCompetenciaPipe } from './pipes/filter-competencia.pipe';
+import { FilterActividadPipe } from './pipes/filter-actividad.pipe';
+import { ActividadService } from './services/actividad.service';
+import { FilterContentDeletePipe } from './pipes/filter-content-delete.pipe';
+import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
+import { InfromacionDocenteComponent } from './components/infromacion-docente/infromacion-docente.component';
+import { AdministrarDocenteComponent } from './components/administrar-docente/administrar-docente.component';
+import { FilterTableMateriaDocentePipe } from './pipes/filter-table-materia-docente.pipe';
+import { FilterActividadDeletePipe } from './pipes/filter-actividad-delete.pipe';
+
+import { InicioAdminComponent } from './components/Admin/inicio-admin/inicio-admin.component';
+import { HeaderAdminComponent } from './components/Admin/header-admin/header-admin.component';
+import { GestionarCompetenciasAdminComponent } from './components/Admin/gestionar-competencias-admin/gestionar-competencias-admin.component';
+import { FilterCompetenciaAdminPipe } from './pipes/filter-competencia-admin.pipe';
+import { GestionarUsuariosAdminComponent } from './components/Admin/gestionar-usuarios-admin/gestionar-usuarios-admin.component';
+import { FilterDocenteAdminPipe } from './pipes/filter-docente-admin.pipe';
+import { FilterEstudiantesAdminPipe } from './pipes/filter-estudiantes-admin.pipe';
+import { GestionarColegioAdminComponent } from './components/Admin/gestionar-colegio-admin/gestionar-colegio-admin.component';
+import { BusquedaVisitanteComponent } from './components/Visitante/busqueda-visitante/busqueda-visitante.component';
+import { HeaderVisitanteComponent } from './components/Visitante/header-visitante/header-visitante.component';
+import { FilterColegioAdminPipe } from './pipes/filter-colegio-admin.pipe';
+import { FilterMateriaactivaAdminPipe } from './pipes/filter-materiaactiva-admin.pipe';
+import { DudasComponent } from './components/dudas/dudas.component';
+import { FilterDudaPipe } from './pipes/filter-duda.pipe';
+import { MetricasComponent } from './components/metricas/metricas.component';
+import { FilterEstudianteMetricasPipe } from './pipes/filter-estudiante-metricas.pipe';
+import { FilterMiMateriasPipe } from './pipes/filter-mi-materias.pipe';
+import { FilterTallerPipe } from './pipes/filter-taller.pipe';
 
 
 @NgModule({
@@ -42,6 +70,32 @@ import { FilterContentPipe } from './pipes/filter-content.pipe';
     BusquedaComponent,
     LoginComponent,
     FilterContentPipe,
+    FilterCompetenciaPipe,
+    FilterActividadPipe,
+    FilterContentDeletePipe,
+    RegistroUsuarioComponent,
+    InfromacionDocenteComponent,
+    AdministrarDocenteComponent,
+    FilterTableMateriaDocentePipe,
+    FilterActividadDeletePipe,
+    InicioAdminComponent,
+    HeaderAdminComponent,
+    GestionarCompetenciasAdminComponent,
+    FilterCompetenciaAdminPipe,
+    GestionarUsuariosAdminComponent,
+    FilterDocenteAdminPipe,
+    FilterEstudiantesAdminPipe,
+    GestionarColegioAdminComponent,
+    BusquedaVisitanteComponent,
+    HeaderVisitanteComponent,
+    FilterColegioAdminPipe,
+    FilterMateriaactivaAdminPipe,
+    DudasComponent,
+    FilterDudaPipe,
+    MetricasComponent,
+    FilterEstudianteMetricasPipe,
+    FilterMiMateriasPipe,
+    FilterTallerPipe
   ],
   imports: [
     BrowserModule,
@@ -51,7 +105,7 @@ import { FilterContentPipe } from './pipes/filter-content.pipe';
     FormsModule,
     CommonModule
   ],
-  providers: [AuthDService, ContentREAService],
+  providers: [AuthDService, ContentREAService, ActividadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

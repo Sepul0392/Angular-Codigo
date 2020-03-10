@@ -6,7 +6,9 @@ import { MateriaI } from '../../models/materia';
 import { GradoI } from '../../models/grado';
 import { TipoContenidoI } from '../../models/tipoContenido';
 import { contenidoREAVisualizarI } from '../../models/contenidoREAVisualizar';
+import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-borrar-contenido',
@@ -15,6 +17,7 @@ import { NgForm } from '@angular/forms';
 })
 export class BorrarContenidoComponent implements OnInit {
 
+  //Elementos de Busqueda de Contenido
   contenidoToSave:contenidoREAI;
   contenidos:contenidoREAI[];
   materia:MateriaI[];
@@ -25,72 +28,102 @@ export class BorrarContenidoComponent implements OnInit {
   tipoContenidoSelected:number;
   contenidoVisualizar:contenidoREAVisualizarI[];
 
-  constructor(private ContentREAService: ContentREAService, private router: Router) { }
+  correcto:boolean;
+  mensaje:boolean;
 
-  //filterContenido = "";
+  constructor(private AuthDService: AuthDService, private ContentREAService: ContentREAService, private router: Router) { 
+    //this.getOptions();
+  }
 
   ngOnInit() {
-    this.materia = [
-      {id_materia:1,nombre_materia:"Matematicas"},
-      {id_materia:2,nombre_materia:"Español"},
-      {id_materia:3,nombre_materia:"Ingles"},
-      {id_materia:4,nombre_materia:"Sociales"},
-      {id_materia:5,nombre_materia:"Fisica"},
-      {id_materia:6,nombre_materia:"Biologia"},
-      {id_materia:7,nombre_materia:"Quimica"}
-    ];
-    /*this.materiaSelected=3;*/
-    this.grado = [
-      {id_grado:11,nombre_grado:"Once"},
-      {id_grado:10,nombre_grado:"Decimo"},
-      {id_grado:9,nombre_grado:"Noveno"},
-      {id_grado:8,nombre_grado:"Octavo"},
-      {id_grado:7,nombre_grado:"Septimo"},
-      {id_grado:6,nombre_grado:"Sexto"},
-    ]
+    window.scrollTo(0, 0);
+    this.comprobacionLogin();
 
-    this.tipoContenido = [
-      {id_tipoContenido:1,nombre_tipoContenido:"Video"},
-      {id_tipoContenido:2,nombre_tipoContenido:"Documento"},
-      {id_tipoContenido:3,nombre_tipoContenido:"Audio"}
-    ]
+    this.correcto = false;
+    this.mensaje = false;
 
+    this.getOptions();
     this.getContenidos();
   }
 
-  getContenidos(){
-    this.ContentREAService.allContent().subscribe(res =>{
-      console.log(res);
-      this.ContentREAService.contenidosREA = res as contenidoREAI[];
-      this.contenidoVisualizar = res as contenidoREAVisualizarI[];
-      
-      for (let i=0; i < this.ContentREAService.contenidosREA.length; i++){
-        for (let n=0; n < this.tipoContenido.length; n++){
-          if(this.ContentREAService.contenidosREA[i].tipo_CREA == this.tipoContenido[n].id_tipoContenido){
-            this.contenidoVisualizar[i].nombre_tipo_CREA = this.tipoContenido[n].nombre_tipoContenido;
-          }
-        }
-        for (let m=0; m < this.materia.length; m++){
-          if(this.ContentREAService.contenidosREA[i].id_materia == this.materia[m].id_materia){
-            this.contenidoVisualizar[i].materia = this.materia[m].nombre_materia;
-          }
-        }
-      }
-      console.log("contenido visualizar:", this.contenidoVisualizar)
+  //Obtener los datos de los options
+  getOptions(){
+    this.ContentREAService.allSubject().subscribe(res =>{
+      this.materia = res as MateriaI[];
+      //console.log("1:",this.materia.length);
+    });
+    this.ContentREAService.allGrade().subscribe(res =>{
+      this.grado = res as GradoI[];
+    });
+    this.ContentREAService.allType().subscribe(res =>{
+      this.tipoContenido = res as TipoContenidoI[];
+      //console.log("2:",this.tipoContenido.length);
     });
   }
 
+  //consultar todos los ContenidosREA y verificar el nombre de la materia y contenido con sus respectivos ID´s
+  getContenidos() {
+    this.ContentREAService.allSubject().subscribe(res => {
+      this.materia = res as MateriaI[];
+      //console.log("1:",this.materia.length);
+
+      this.ContentREAService.allType().subscribe(res => {
+        this.tipoContenido = res as TipoContenidoI[];
+        //console.log("2:",this.tipoContenido.length);
+
+        this.ContentREAService.allContent().subscribe(res => {
+          //console.log(res);
+          this.ContentREAService.contenidosREA = res as contenidoREAI[];
+          this.contenidoVisualizar = res as contenidoREAVisualizarI[];
+          this.contenidoVisualizar.reverse();
+          //console.log(this.ContentREAService.contenidosREA.length);
+          //console.log("contenido visualizar:", this.contenidoVisualizar);
+
+          for (let i = 0; i < this.ContentREAService.contenidosREA.length; i++) {
+            for (let n = 0; n < this.tipoContenido.length; n++) {
+              if (this.ContentREAService.contenidosREA[i].tipo_CREA == this.tipoContenido[n].id_tipoContenido) {
+                this.contenidoVisualizar[i].nombre_tipo_CREA = this.tipoContenido[n].nombre_tipoContenido;
+              }
+            }
+            for (let m = 0; m < this.materia.length; m++) {
+              if (this.ContentREAService.contenidosREA[i].id_materia == this.materia[m].id_materia) {
+                this.contenidoVisualizar[i].materia = this.materia[m].nombre_materia;
+              }
+            }
+          }
+          //console.log("contenido visualizar final:", this.contenidoVisualizar)
+        });
+      });
+    });
+  }
+
+  //Almacenar info temporal de un ContenidoREA
   saveData(contenidoREAhtml){
     this.contenidoToSave = contenidoREAhtml;
-    console.log("contenido guardado:", this.contenidoToSave);
+    //console.log("contenido guardado:", this.contenidoToSave);
   }
 
+  //Eliminar contenidoREA de Mongo
   deleteContenido(){
-    console.log("id para eliminar:", this.contenidoToSave.id_CREA);
+    this.correcto = false;
+    this.mensaje = true;
+    //console.log("id para eliminar:", this.contenidoToSave.id_CREA);
     this.ContentREAService.deleteContentREA(this.contenidoToSave).subscribe(res =>{
-      console.log(res);
+      //console.log(res);
+      this.correcto = true;
+      this.mensaje = false;
+      this.getContenidos();
     });
-    window.location.reload();
+    //window.location.reload();
+  }
+
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 
 }

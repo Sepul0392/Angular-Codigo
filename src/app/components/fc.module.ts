@@ -20,6 +20,19 @@ import { from } from 'rxjs';
 import { LoginComponent } from './login/login.component';
 import { AuthDService } from '../services/auth-d.service';
 import { ContentREAService } from '../services/content-rea.service';
+import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
+import { InfromacionDocenteComponent } from './infromacion-docente/infromacion-docente.component';
+import { AdministrarDocenteComponent } from './administrar-docente/administrar-docente.component';
+import { InicioAdminComponent } from './Admin/inicio-admin/inicio-admin.component';
+import { HeaderAdminComponent } from './Admin/header-admin/header-admin.component';
+import { ActividadService } from '../services/actividad.service';
+import { GestionarCompetenciasAdminComponent } from './Admin/gestionar-competencias-admin/gestionar-competencias-admin.component';
+import { GestionarUsuariosAdminComponent } from './Admin/gestionar-usuarios-admin/gestionar-usuarios-admin.component';
+import { GestionarColegioAdminComponent } from './Admin/gestionar-colegio-admin/gestionar-colegio-admin.component';
+import { BusquedaVisitanteComponent } from './Visitante/busqueda-visitante/busqueda-visitante.component';
+import { HeaderVisitanteComponent } from './Visitante/header-visitante/header-visitante.component';
+import { DudasComponent } from './dudas/dudas.component';
+import { MetricasComponent } from './metricas/metricas.component';
 
 @NgModule({
   declarations:[
@@ -34,7 +47,19 @@ import { ContentREAService } from '../services/content-rea.service';
     BorrarContenidoComponent,
     BusquedaComponent,
     LoginComponent,
-    AuthDService
+    AuthDService,
+    RegistroUsuarioComponent,
+    InfromacionDocenteComponent,
+    AdministrarDocenteComponent,
+    InicioAdminComponent,
+    HeaderAdminComponent,
+    GestionarCompetenciasAdminComponent,
+    GestionarUsuariosAdminComponent,
+    GestionarColegioAdminComponent,
+    BusquedaVisitanteComponent,
+    HeaderVisitanteComponent,
+    DudasComponent,
+    MetricasComponent
   ],
   imports:[
       CommonModule,
@@ -42,6 +67,7 @@ import { ContentREAService } from '../services/content-rea.service';
       FCRoutingModule,
       HttpClientModule
   ],
-  providers:[AuthDService, ContentREAService]
+  providers:[AuthDService, ContentREAService, ActividadService],
+  bootstrap: [AppComponent]
 })
 export class FCModule { }

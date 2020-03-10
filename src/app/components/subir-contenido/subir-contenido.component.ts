@@ -5,6 +5,7 @@ import { contenidoREAI } from '../../models/contenidoREA';
 import { MateriaI } from '../../models/materia';
 import { GradoI } from '../../models/grado';
 import { TipoContenidoI } from '../../models/tipoContenido';
+import { AuthDService } from '../../services/auth-d.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -24,87 +25,207 @@ export class SubirContenidoComponent implements OnInit {
   uploadedFiles: Array <File>;
   urlFinal:string;
   urlSelected:any;
+  newCont: number;
+  newID: number;
+  temp: number;
+  id_docenteAuth:number;
+  id_colegioAuth:number;
+  correcto:boolean;
+  error:boolean;
+  error2:boolean;
+  subiendo:boolean;
+  temp2:any;
+  nombreContenido:String;
+  contenidoSeleccionado:boolean;
 
-  constructor(private ContentREAService: ContentREAService, private router: Router) { }
+  constructor(private AuthDService: AuthDService, private ContentREAService: ContentREAService, private router: Router) { }
 
   ngOnInit() {
-    this.materia = [
-      {id_materia:1,nombre_materia:"Matematicas"},
-      {id_materia:2,nombre_materia:"Español"},
-      {id_materia:3,nombre_materia:"Ingles"},
-      {id_materia:4,nombre_materia:"Sociales"},
-      {id_materia:5,nombre_materia:"Fisica"},
-      {id_materia:6,nombre_materia:"Biologia"},
-      {id_materia:7,nombre_materia:"Quimica"}
-    ];
-    /*this.materiaSelected=3;*/
-    this.grado = [
-      {id_grado:11,nombre_grado:"Once"},
-      {id_grado:10,nombre_grado:"Decimo"},
-      {id_grado:9,nombre_grado:"Noveno"},
-      {id_grado:8,nombre_grado:"Octavo"},
-      {id_grado:7,nombre_grado:"Septimo"},
-      {id_grado:6,nombre_grado:"Sexto"},
-    ]
+    window.scrollTo(0, 0);
+    this.comprobacionLogin();
 
-    this.tipoContenido = [
-      {id_tipoContenido:1,nombre_tipoContenido:"Video"},
-      {id_tipoContenido:2,nombre_tipoContenido:"Documento"},
-      {id_tipoContenido:3,nombre_tipoContenido:"Audio"}
-    ]
+    this.correcto = false;
+    this.error = false;
+    this.error2 = false;
+    this.subiendo = false;
+    this.contenidoSeleccionado = false;
+    
+    this.nombreContenido = '...';
+    this.getOptions();
+    this.getContenidos();
+    this.id_docenteAuth = this.AuthDService.getIdDocente() as number;
+    this.id_colegioAuth = this.AuthDService.getIdColegioDocente();
+    //console.log('prueba', this.id_colegioAuth, this.id_docenteAuth);
+    this.ContentREAService.selectedContenidoREA = new contenidoREAI();
+  }
+
+  getOptions(){
+    this.ContentREAService.allSubject().subscribe(res =>{
+      this.materia = res as MateriaI[];
+    });
+    this.ContentREAService.allGrade().subscribe(res =>{
+      this.grado = res as GradoI[];
+    });
+    this.ContentREAService.allType().subscribe(res =>{
+      this.tipoContenido = res as TipoContenidoI[];
+    });
+  }
+
+  getContenidos(){
+    this.ContentREAService.allContent().subscribe(res =>{
+      //console.log(res);
+      this.ContentREAService.contenidosREA = res as contenidoREAI[];
+    });
   }
 
   //Cargar archivo a subir
   onFileChange(e){
-    /*console.log('archivo', e)*/
+    this.correcto = false;
+    this.error = true;
+    //console.log('archivo', e)
     this.uploadedFiles = e.target.files;
+    this.nombreContenido = e.target.files[0].name;
+    this.contenidoSeleccionado = true;
   }
 
   //Funcion leer y subir informacion y archivo del formulario a Mongo
   onSubirContenido(form: NgForm):void{
-    /*console.log('text', form.value);
-    console.log('materia seleccionada', this.materiaSelected);
-    console.log('grado seleccionado', this.gradoSelected);
-    console.log('tipoContenido seleccionado', this.tipoContenidoSelected);
-    */
+    this.correcto = false;
+    this.error = false;
+    this.error2 = true;
+    this.subiendo = false;
 
-    const nombre_CREA:any = form.value.nombre_CREA;
-    const descripcion_CREA:any = form.value.descripcion_CREA;
+    //console.log('urlFinal', this.urlSelected.url);
+    if (this.contenidoSeleccionado == true) {
+      this.ContentREAService.allContent().subscribe(res => {
+        //console.log(res);
+        this.ContentREAService.contenidosREA = res as contenidoREAI[];
+        //console.log('Contenidos',  this.ContentREAService.contenidosREA);
 
-    /*para subir multiples archivos*/
-    let formData = new FormData();
-    for (let i=0; i < this.uploadedFiles.length; i++){
-      formData.append("uploads[]",this.uploadedFiles[i], this.uploadedFiles[i].name)
+        //Generar Cont
+        if (this.ContentREAService.contenidosREA.length == 0) {
+          this.newCont = 1;
+        }
+        else {
+          if (this.ContentREAService.contenidosREA.length) {
+            this.newCont = 1;
+          }
+          for (let n = 0; n < this.ContentREAService.contenidosREA.length; n++) {
+            for (let i = 0; i < this.ContentREAService.contenidosREA.length; i++) {
+              if (this.ContentREAService.contenidosREA[i].id_colegio == this.id_colegioAuth) {
+                if (this.ContentREAService.contenidosREA.length) {
+                  this.newCont = 1;
+                }
+                if (n + 1 == this.ContentREAService.contenidosREA[i].cont) {
+                  this.newCont = n + 2;
+                  this.temp = 0;
+                  i = this.ContentREAService.contenidosREA.length;
+                }
+                else {
+                  this.newCont = n + 1;
+                  this.temp = 1;
+                }
+              }
+            }
+            if (this.temp == 1) {
+              n = this.ContentREAService.contenidosREA.length + 1;
+            }
+          }
+        }
+
+        //Generar ID
+        var idGlobal = "" + this.id_colegioAuth + this.newCont;
+        this.newID = parseInt(idGlobal);
+        //console.log('nuevaID y cont', this.newID, this.newCont);
+
+        const newContenidoREA = {
+          //id_CREA: Math.floor((Math.random() * 100) + 1),
+          id_CREA: this.newID,
+          cont: this.newCont,
+          tipo_CREA: this.tipoContenidoSelected,
+          id_docente: this.id_docenteAuth,
+          id_materia: this.materiaSelected,
+          id_grado: this.gradoSelected,
+          id_colegio: this.id_colegioAuth,
+          nombre_CREA: form.value.nombre_CREA,
+          urlrepositorio: 'Temporal',
+          descripcion_CREA: form.value.descripcion_CREA,
+          en_uso: 0
+        }
+
+        //console.log('datosContenido', newContenidoREA);
+
+        this.correcto = false;
+        this.error = false;
+        this.error2 = false;
+        this.subiendo = true;
+
+        this.ContentREAService.createContentREA(newContenidoREA).subscribe(res => {
+          //this.router.navigateByUrl('/inicioProfesores')
+          //console.log('res',res);
+          this.temp2 = res;
+
+          if (this.temp2.Estado == "Error Crear Contenido") {
+            this.correcto = false;
+            this.error = true;
+            this.subiendo = false;
+          } else {
+            this.correcto = false;
+            this.error = false;
+            this.subiendo = true;
+
+            /*para subir multiples archivos*/
+            let formData = new FormData();
+            for (let i = 0; i < this.uploadedFiles.length; i++) {
+              formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name)
+            }
+
+            this.ContentREAService.uploadFile(formData).subscribe((res) => {
+              //console.log('url-res', res);
+              this.urlSelected = res;
+
+              const newUrl = {
+                id_CREA: this.newID,
+                urlrepositorio: this.urlSelected.url
+              }
+
+              //console.log('newUrl', newUrl);
+
+              this.ContentREAService.uploadURLContentREA(newUrl).subscribe((res) => {
+                //console.log('res', res);
+                this.correcto = true;
+                this.error = false;
+                this.subiendo = false;
+                this.resetForm(form);
+              });
+            });
+          }
+        });
+      });
     }
-    
-    this.ContentREAService.uploadFile(formData).subscribe((res) => {
-      console.log('url-res', res);
-      this.urlSelected =res;
-      console.log('urlFinal', this.urlSelected.url);
-      
-      const newContenidoREA = {
-        id_CREA: Math.floor((Math.random() * 100) + 1),
-        tipo_CREA: this.tipoContenidoSelected,
-        id_materia: this.materiaSelected,
-        id_grado: this.gradoSelected,
-        nombre_CREA: nombre_CREA,
-        urlrepositorio: this.urlSelected.url,
-        descripcion_CREA: descripcion_CREA
-      }
+  }
 
-      console.log('datosContenido', newContenidoREA);
-
-      this.ContentREAService.createContentREA(newContenidoREA).subscribe(res => {
-      //this.router.navigateByUrl('/inicioProfesores')
-      this.resetForm(form);
-      })
-    })
+  resetPage(){
+    window.location.reload();
   }
 
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
+      this.contenidoSeleccionado = false;
+      this.nombreContenido = "...";
+      this.ContentREAService.selectedContenidoREA = new contenidoREAI();
+      window.scrollTo(0, 0);
       //this.ContentREAService.selectedContenidoREA = new contenidoREAI();
+    }
+  }
+
+  comprobacionLogin(){
+    if (this.AuthDService.getIdDocente()){
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
     }
   }
   
