@@ -256,7 +256,7 @@ export class MetricasComponent implements OnInit {
                 //pasar datos del evento a metricas
                 this.metricas.push({id_metrica:this.eventos[n].id_evento, id_evento:this.eventos[n].id_evento, 
                     id_actividad:this.actividadToSave.id_actividad, id_estudiante:this.eventos[n].id_estudiante, 
-                    check_inicio:this.eventos[n].check_inicio, check_contenido: this.eventos[n].check_video,
+                    check_inicio:this.eventos[n].check_inicio, check_contenido: this.eventos[n].check_video,count_contenido: this.eventos[n].count_video, 
                     check_quiz:this.eventos[n].check_answer, check_evaluacion:check_evaluacionTemp, check_taller: this.eventos[n].check_download,
                     nota_quiz:nota_quizTemp, nota_evaluacion:nota_evaluacionTemp, nota_final:nota_finalTemp});
               }
@@ -314,7 +314,7 @@ export class MetricasComponent implements OnInit {
 
             this.metricasVisualizar.push({id_metrica:this.metricas[y].id_evento, id_evento:this.metricas[y].id_evento, 
                 id_actividad:this.metricas[y].id_actividad, id_estudiante:this.metricas[y].id_estudiante, 
-                check_inicio:this.metricas[y].check_inicio, check_contenido: this.metricas[y].check_contenido,
+                check_inicio:this.metricas[y].check_inicio, check_contenido:this.metricas[y].check_contenido, count_contenido:this.metricas[y].count_contenido,
                 check_quiz:this.metricas[y].check_quiz, check_evaluacion:this.metricas[y].check_evaluacion, check_taller: this.metricas[y].check_taller,
                 nota_quiz:this.metricas[y].nota_quiz, nota_evaluacion:this.metricas[y].nota_evaluacion, nota_final:this.metricas[y].nota_final, actividad: this.actividadToSave.titulo_actividad,
                 estudiante:nombre_estudianteTemp, inicio:accionInicio, contenido:accionContenido, quiz:accionQuiz, taller:accionTaller, evaluacion:accionEvaluacion});
