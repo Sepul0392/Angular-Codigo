@@ -353,7 +353,7 @@
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! C:\Users\sepul\Desktop\Desarrollo\FC\src\styles.css */
+    /*! C:\Users\sepul\Desktop\FC\src\styles.css */
     "./src/styles.css");
     /***/
   }
